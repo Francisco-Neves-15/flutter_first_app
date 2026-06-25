@@ -1,29 +1,49 @@
 import "package:flutter/material.dart";
 
-import "app_colors.dart";
-import "app_text_styles.dart";
+import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemes;
+import "package:flutter_first_app/styles/app_colors_theme.dart" show AppThemeColors;
+
+import "app_colors_all.dart" show AppColors;
+import "app_text_styles.dart" show AppTextStyles;
 
 /// Centraliza o ThemeData — equivalente ao ThemeProvider no React.
 /// AppColors e AppTextStyles só "funcionam" quando entram aqui.
 class AppTheme {
+  
+  static ThemeData build(AppThemeColors colors) {
 
-  static ThemeData get light {
-
-    final colorScheme = ColorScheme.light(
-      primary: AppColors.primary,
-      onPrimary: AppColors.primaryContrast,
-      secondary: AppColors.primary,
-      onSecondary: AppColors.primaryContrast,
-      surface: AppColors.background,
-      onSurface: AppColors.text,
-      inversePrimary: AppColors.primary,
-    );
+    ColorScheme colorScheme;
+    if (colors.themeMode == AppAvailableThemes.dark) {
+      colorScheme = ColorScheme.dark(
+        primary: AppColors.primary,
+        onPrimary: AppColors.primaryContrast,
+        inversePrimary: AppColors.primary,
+        secondary: AppColors.primary,
+        onSecondary: AppColors.primaryContrast,
+        surface: colors.background,
+        onSurface: colors.text,
+        error: colors.danger,
+        onError: AppColors.dangerContrast,
+      );
+    } else {
+      colorScheme = ColorScheme.light(
+        primary: AppColors.primary,
+        onPrimary: AppColors.primaryContrast,
+        inversePrimary: AppColors.primary,
+        secondary: AppColors.primary,
+        onSecondary: AppColors.primaryContrast,
+        surface: colors.background,
+        onSurface: colors.text,
+        error: colors.danger,
+        onError: AppColors.dangerContrast,
+      );
+    }
 
     // Garante que cor e fonte do textTheme não sejam sobrescritas pelo Material 3.
     final textTheme = AppTextStyles.textTheme.apply(
-      fontFamily: "Urbanist",
-      bodyColor: AppColors.text,
-      displayColor: AppColors.text,
+      fontFamily: "Comic Sans", 
+      bodyColor: colors.text,
+      displayColor: colors.text,
     );
 
     final elevatedButtonTheme = ElevatedButtonThemeData(
@@ -45,7 +65,7 @@ class AppTheme {
 
     final outlinedButtonTheme = OutlinedButtonThemeData(
       style: ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.text),
+        foregroundColor: WidgetStatePropertyAll(colors.text),
         side: WidgetStatePropertyAll(
           BorderSide(color: AppColors.border, width: 2, strokeAlign: BorderSide.strokeAlignInside),
         ),
@@ -61,7 +81,7 @@ class AppTheme {
 
     final textButtonTheme = TextButtonThemeData(
       style: ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.text),
+        foregroundColor: WidgetStatePropertyAll(colors.text),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
             fontFamily: "Urbanist",
@@ -109,7 +129,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: AppColors.background,
+      scaffoldBackgroundColor: colors.background,
       fontFamily: "Urbanist",
       textTheme: textTheme,
       elevatedButtonTheme: elevatedButtonTheme,      

@@ -1,12 +1,22 @@
 import "package:flutter/material.dart";
 
-import "package:first_app_and_simple_tutorial/styles/app_colors.dart";
-import "package:first_app_and_simple_tutorial/styles/app_text_styles.dart";
-import "package:first_app_and_simple_tutorial/styles/app_theme.dart";
-import "package:first_app_and_simple_tutorial/styles/app_metrics.dart";
+// Colors & Others
+import "package:flutter_first_app/styles/app_colors_all.dart" show AppColors;
+import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 
-import "package:first_app_and_simple_tutorial/widgets/layout/app_scaffold.dart";
-import "package:first_app_and_simple_tutorial/widgets/layout/app_container.dart";
+// Styles
+import "package:flutter_first_app/styles/app_theme.dart" show AppTheme;
+import "package:flutter_first_app/styles/app_text_styles.dart" show AppTextStyles;
+
+// Theme
+import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemes;
+import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
+import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightColors, appDarkColors;
+
+// Widget's
+import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
+import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
+
 
 void main() {
   runApp(const MyApp());
@@ -21,26 +31,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.light,
 
-      // Wrapper global (como um layout provider no React).
-      // Precisa ficar DENTRO do MaterialApp — fora dele o Theme ignora tudo.
-      builder: (context, child) {
-        return SafeArea(
-          
-        child: DefaultTextStyle(
-            style: AppTextStyles.baseText,
-            textAlign: TextAlign.left,
-            child: child ?? const SizedBox.shrink(),
+    return AnimatedBuilder(
+      animation: ThemeController.instance,
+      builder: (context, _) {
+
+        return MaterialApp(
+          theme: AppTheme.build(appLightColors),
+          darkTheme: AppTheme.build(appDarkColors),
+          themeMode: ThemeController.instance.themeMode,
+
+          // Wrapper global (como um layout provider no React).
+          // Precisa ficar DENTRO do MaterialApp — fora dele o Theme ignora tudo.
+          builder: (context, child) {
+            return SafeArea(
+              
+            child: DefaultTextStyle(
+                style: AppTextStyles.baseText,
+                textAlign: TextAlign.left,
+                child: child ?? const SizedBox.shrink(),
+              ),
+            );
+          },
+
+          home: const MyHomePage(
+            title: "WatchList",
           ),
+
         );
-      },
-
-      home: const MyHomePage(
-        title: "WatchList",
-      ),
-
+      }
     );
   }
 }
@@ -137,7 +156,31 @@ class _MyHomePageState extends State<MyHomePage> {
                     ]
                   )
                 ]
-              )
+              ),
+              Divider(),
+              Text("Tema do App", style: Theme.of(context).textTheme.titleMedium),
+              Text("mode ${ThemeController.instance.mode}", style: Theme.of(context).textTheme.titleSmall),
+              Text("themeMode ${ThemeController.instance.themeMode}", style: Theme.of(context).textTheme.titleSmall),
+              // Text("Tema do App ${ThemeController.instance.resolvedTheme}", style: Theme.of(context).textTheme.titleSmall),
+              Column(
+                spacing: 8, 
+                // inserir no ThemeData
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ElevatedButton(
+                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemes.auto); },
+                    child: const Text("Detectar Tema"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemes.light); },
+                    child: const Text("Tema Claro"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemes.dark); },
+                    child: const Text("Tema Escuro"),
+                  ),
+                ]
+              ),
             ],
           ),
         ),

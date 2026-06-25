@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:first_app_and_simple_tutorial/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 
 class AppContainer extends StatelessWidget {
   final Widget content;

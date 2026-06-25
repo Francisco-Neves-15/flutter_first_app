@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+// import "package:flutter_first_app/extensions/theme_colors_extension.dart";
 
 class AppScaffold extends StatelessWidget {
   final Widget body;
@@ -24,7 +25,9 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    Scaffold(
+      // backgroundColor: context.colors.background,
       appBar: appBar ? AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -42,7 +45,7 @@ class AppScaffold extends StatelessWidget {
           ),
         ],
       ) : null,
-      body: body,
+      body: SingleChildScrollView(child: body),
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
     );
