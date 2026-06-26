@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemes;
+import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 import "package:flutter_first_app/styles/app_colors_theme.dart" show AppThemeColors;
 
 import "app_colors_all.dart" show AppColors;
@@ -13,7 +13,7 @@ class AppTheme {
   static ThemeData build(AppThemeColors colors) {
 
     ColorScheme colorScheme;
-    if (colors.themeMode == AppAvailableThemes.dark) {
+    if (colors.themeMode == AppAvailableThemeMode.dark) {
       colorScheme = ColorScheme.dark(
         primary: AppColors.primary,
         onPrimary: AppColors.primaryContrast,

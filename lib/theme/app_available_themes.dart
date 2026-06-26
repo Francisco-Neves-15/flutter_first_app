@@ -1,2 +1,2 @@
-enum AppAvailableThemes { auto, light, dark }
-enum AppResolvedThemeMode { light, dark }
+enum AppAvailableThemeMode { auto, light, dark }
+enum AppAvailableThemeBrightness { light, dark }

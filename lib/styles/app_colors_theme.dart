@@ -1,9 +1,9 @@
 import "package:flutter/material.dart" show Color;
 import "package:flutter_first_app/styles/app_colors_all.dart" show AppColors;
-import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemes;
+import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 
 class AppThemeColors {
-  final AppAvailableThemes themeMode;
+  final AppAvailableThemeMode themeMode;
 
   final Color background;
   final Color backgroundInverted;
@@ -26,7 +26,7 @@ class AppThemeColors {
 }
 
 const appLightColors = AppThemeColors(
-  themeMode: AppAvailableThemes.light,
+  themeMode: AppAvailableThemeMode.light,
   // Main
   // no changes
   // Foundation
@@ -42,7 +42,7 @@ const appLightColors = AppThemeColors(
 );
 
 const appDarkColors = AppThemeColors(
-  themeMode: AppAvailableThemes.dark,
+  themeMode: AppAvailableThemeMode.dark,
   // Main
   // no changes
   // Foundation

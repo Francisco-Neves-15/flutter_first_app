@@ -9,7 +9,7 @@ import "package:flutter_first_app/styles/app_theme.dart" show AppTheme;
 import "package:flutter_first_app/styles/app_text_styles.dart" show AppTextStyles;
 
 // Theme
-import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemes;
+import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightColors, appDarkColors;
 
@@ -161,22 +161,23 @@ class _MyHomePageState extends State<MyHomePage> {
               Text("Tema do App", style: Theme.of(context).textTheme.titleMedium),
               Text("mode ${ThemeController.instance.mode}", style: Theme.of(context).textTheme.titleSmall),
               Text("themeMode ${ThemeController.instance.themeMode}", style: Theme.of(context).textTheme.titleSmall),
-              // Text("Tema do App ${ThemeController.instance.resolvedTheme}", style: Theme.of(context).textTheme.titleSmall),
+              Text("resolvedTheme ${ThemeController.instance.resolvedTheme(context)}", style: Theme.of(context).textTheme.titleSmall),
+              Text("> ${ThemeController.instance.labelDisplay(context)}", style: Theme.of(context).textTheme.titleSmall),
               Column(
                 spacing: 8, 
                 // inserir no ThemeData
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ElevatedButton(
-                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemes.auto); },
+                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.auto); },
                     child: const Text("Detectar Tema"),
                   ),
                   ElevatedButton(
-                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemes.light); },
+                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.light); },
                     child: const Text("Tema Claro"),
                   ),
                   ElevatedButton(
-                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemes.dark); },
+                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.dark); },
                     child: const Text("Tema Escuro"),
                   ),
                 ]
