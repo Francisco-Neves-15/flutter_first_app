@@ -26,13 +26,29 @@ class ThemeController extends ChangeNotifier {
     }
   }
 
-  /// Theme effectively applied
+  /// Theme actually applied
   AppAvailableThemeBrightness resolvedTheme(BuildContext context) {
     final brightness = Theme.of(context).brightness;
 
     return brightness == Brightness.dark
         ? AppAvailableThemeBrightness.dark
         : AppAvailableThemeBrightness.light;
+  }
+
+  // Bool's use
+
+  /// Is Light the Theme actually applied |
+  /// Context is required because the resolved theme belongs to `BuildContext`, not `ThemeMode`
+  bool isLight(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    return brightness == Brightness.light;
+  }
+
+  /// Is Dark the Theme actually applied |
+  /// Context is required because the resolved theme belongs to `BuildContext`, not `ThemeMode`
+  bool isDark(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    return brightness == Brightness.dark;
   }
 
   // In Controller Interface
@@ -78,3 +94,10 @@ class ThemeController extends ChangeNotifier {
   }
 
 }
+
+// using in:
+// e.g.:
+
+// import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
+// import "package:flutter_first_app/styles/app_colors_all.dart" show AppColors;
+// backgroundColor: appBarBackgroundColor ?? (ThemeController.instance.isDark(context) ? AppColors.backgroundInverted : AppColors.background),

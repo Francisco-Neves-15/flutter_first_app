@@ -24,6 +24,7 @@ class AppTheme {
         onSurface: colors.text,
         error: colors.danger,
         onError: AppColors.dangerContrast,
+        shadow: colors.shadow,
       );
     } else {
       colorScheme = ColorScheme.light(
@@ -36,6 +37,7 @@ class AppTheme {
         onSurface: colors.text,
         error: colors.danger,
         onError: AppColors.dangerContrast,
+        shadow: colors.shadow,
       );
     }
 
@@ -93,10 +95,14 @@ class AppTheme {
     );
 
     final floatingActionButtonTheme = FloatingActionButtonThemeData(
+      elevation: 0,
       iconSize: 32,
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.primaryContrast,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(32),
       ),
+
     );
 
     final dividerTheme = DividerThemeData(
@@ -109,19 +115,20 @@ class AppTheme {
     );
 
     final appBarTheme = AppBarTheme(
-      backgroundColor: AppColors.primary,
-      foregroundColor: AppColors.primaryContrast,
+      backgroundColor: colors.background,
+      foregroundColor: AppColors.text,
+      surfaceTintColor: Colors.transparent,
       elevation: 0,
       centerTitle: false,
       titleTextStyle: textTheme.titleLarge?.copyWith(
-        color: AppColors.primaryContrast,
+        color: AppColors.text,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(0),
           topRight: Radius.circular(0),
-          bottomLeft: Radius.circular(8),
-          bottomRight: Radius.circular(8),
+          bottomLeft: Radius.circular(0),
+          bottomRight: Radius.circular(0),
         )
       ),
     );
@@ -139,6 +146,7 @@ class AppTheme {
       dividerTheme: dividerTheme,
       iconTheme: iconTheme,
       appBarTheme: appBarTheme,
+      shadowColor: colorScheme.shadow
     );
   }
 }

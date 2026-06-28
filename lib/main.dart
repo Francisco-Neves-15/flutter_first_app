@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+// import "package:flutter/services.dart";
 
 // Colors & Others
 import "package:flutter_first_app/styles/app_colors_all.dart" show AppColors;
@@ -44,14 +45,11 @@ class MyApp extends StatelessWidget {
           // Wrapper global (como um layout provider no React).
           // Precisa ficar DENTRO do MaterialApp — fora dele o Theme ignora tudo.
           builder: (context, child) {
-            return SafeArea(
-              
-            child: DefaultTextStyle(
+            return DefaultTextStyle(
                 style: AppTextStyles.baseText,
                 textAlign: TextAlign.left,
                 child: child ?? const SizedBox.shrink(),
-              ),
-            );
+              );
           },
 
           home: const MyHomePage(
@@ -109,6 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return
       AppScaffold(
         title: widget.title,
+        appBar: true,
+        // appBarBackgroundColor: Colors.red,
         body: AppContainer(
           autoPadding: true,
           content: Column(

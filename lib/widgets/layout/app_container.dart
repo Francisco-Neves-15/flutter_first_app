@@ -15,12 +15,21 @@ class AppContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: padding ??
-          (autoPadding
-              ? const EdgeInsets.all(AppMetrics.base)
-              : EdgeInsets.zero),
-      child: content,
-    );
+
+    Widget resolvedChild;
+    if (autoPadding || padding != null) {
+      resolvedChild = 
+      Padding(
+        padding: padding ??
+            (autoPadding
+                ? const EdgeInsets.all(AppMetrics.base)
+                : EdgeInsets.zero),
+        child: content,
+      );
+    } else {
+      resolvedChild = content;
+    }
+
+    return resolvedChild;
   }
 }

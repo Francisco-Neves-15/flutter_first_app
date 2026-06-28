@@ -10,8 +10,7 @@ extension ThemeColorsExtension on BuildContext {
   }
 }
 
-// using in widgets
-
+// using in:
 // e.g.:
 
 // import "package:flutter_first_app/theme/theme_colors_extension.dart";
