@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 import "package:flutter_first_app/styles/app_colors_theme.dart" show AppThemeColors;
 
-import "app_colors_all.dart" show AppColors;
 import "app_text_styles.dart" show AppTextStyles;
 
 /// Centraliza o ThemeData — equivalente ao ThemeProvider no React.
@@ -15,43 +14,43 @@ class AppTheme {
     ColorScheme colorScheme;
     if (colors.themeMode == AppAvailableThemeMode.dark) {
       colorScheme = ColorScheme.dark(
-        primary: AppColors.primary,
-        onPrimary: AppColors.primaryContrast,
-        inversePrimary: AppColors.primary,
-        secondary: AppColors.primary,
-        onSecondary: AppColors.primaryContrast,
+        primary: colors.primary,
+        onPrimary: colors.primaryContrast,
+        inversePrimary: colors.primary,
+        secondary: colors.primary,
+        onSecondary: colors.primaryContrast,
         surface: colors.background,
         onSurface: colors.text,
         error: colors.danger,
-        onError: AppColors.dangerContrast,
+        onError: colors.dangerContrast,
         shadow: colors.shadow,
       );
     } else {
       colorScheme = ColorScheme.light(
-        primary: AppColors.primary,
-        onPrimary: AppColors.primaryContrast,
-        inversePrimary: AppColors.primary,
-        secondary: AppColors.primary,
-        onSecondary: AppColors.primaryContrast,
+        primary: colors.primary,
+        onPrimary: colors.primaryContrast,
+        inversePrimary: colors.primary,
+        secondary: colors.primary,
+        onSecondary: colors.primaryContrast,
         surface: colors.background,
         onSurface: colors.text,
         error: colors.danger,
-        onError: AppColors.dangerContrast,
+        onError: colors.dangerContrast,
         shadow: colors.shadow,
       );
     }
 
     // Garante que cor e fonte do textTheme não sejam sobrescritas pelo Material 3.
     final textTheme = AppTextStyles.textTheme.apply(
-      fontFamily: "Comic Sans", 
+      // fontFamily: "Urbanist",
       bodyColor: colors.text,
       displayColor: colors.text,
     );
 
     final elevatedButtonTheme = ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: WidgetStatePropertyAll(AppColors.primary),
-        foregroundColor: WidgetStatePropertyAll(AppColors.primaryContrast),
+        backgroundColor: WidgetStatePropertyAll(colors.primary),
+        foregroundColor: WidgetStatePropertyAll(colors.primaryContrast),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
             fontFamily: "Urbanist",
@@ -69,7 +68,7 @@ class AppTheme {
       style: ButtonStyle(
         foregroundColor: WidgetStatePropertyAll(colors.text),
         side: WidgetStatePropertyAll(
-          BorderSide(color: AppColors.border, width: 2, strokeAlign: BorderSide.strokeAlignInside),
+          BorderSide(color: colors.border, width: 2, strokeAlign: BorderSide.strokeAlignInside),
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
@@ -97,8 +96,8 @@ class AppTheme {
     final floatingActionButtonTheme = FloatingActionButtonThemeData(
       elevation: 0,
       iconSize: 32,
-      backgroundColor: AppColors.primary,
-      foregroundColor: AppColors.primaryContrast,
+      backgroundColor: colors.primary,
+      foregroundColor: colors.primaryContrast,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(32),
       ),
@@ -106,7 +105,7 @@ class AppTheme {
     );
 
     final dividerTheme = DividerThemeData(
-      color: AppColors.border,
+      color: colors.border,
       thickness: 1.5,
     );
 
@@ -115,13 +114,14 @@ class AppTheme {
     );
 
     final appBarTheme = AppBarTheme(
+      // backgroundColor: colors.primary,
       backgroundColor: colors.background,
-      foregroundColor: AppColors.text,
+      foregroundColor: colors.text,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       centerTitle: false,
       titleTextStyle: textTheme.titleLarge?.copyWith(
-        color: AppColors.text,
+        color: colors.text,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -131,13 +131,16 @@ class AppTheme {
           bottomRight: Radius.circular(0),
         )
       ),
+      iconTheme: IconThemeData(
+        color: colors.text,
+      ),
     );
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colors.background,
-      fontFamily: "Urbanist",
+      // fontFamily: "Urbanist",
       textTheme: textTheme,
       elevatedButtonTheme: elevatedButtonTheme,      
       outlinedButtonTheme: outlinedButtonTheme,      

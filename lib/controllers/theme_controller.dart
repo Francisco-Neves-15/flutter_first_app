@@ -37,6 +37,12 @@ class ThemeController extends ChangeNotifier {
 
   // Bool's use
 
+  /// Is Auto the Theme applied |
+  /// Context is required because the resolved theme belongs to `BuildContext`, not `ThemeMode`
+  bool isAuto(BuildContext context) {
+    return _mode == AppAvailableThemeMode.auto;
+  }
+
   /// Is Light the Theme actually applied |
   /// Context is required because the resolved theme belongs to `BuildContext`, not `ThemeMode`
   bool isLight(BuildContext context) {

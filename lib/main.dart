@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/extensions/theme_colors_extension.dart";
 // import "package:flutter/services.dart";
 
 // Colors & Others
-import "package:flutter_first_app/styles/app_colors_all.dart" show AppColors;
 import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 
 // Styles
@@ -17,6 +17,7 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightCol
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
+import "package:flutter_first_app/widgets/layout/headers/app_header.dart";
 
 
 void main() {
@@ -104,17 +105,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // return Container();
-    return
-      AppScaffold(
+    return AppScaffold(
         title: widget.title,
-        appBar: true,
-        // appBarBackgroundColor: Colors.red,
+        useAppBar: false,
         body: AppContainer(
           autoPadding: true,
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: AppMetrics.small,
             children: [
+              AppHeader(title: "Configurações"),
               Text("Sem style explícito (herda DefaultTextStyle + tema)"),
               Text("Display (displayMedium)", style: Theme.of(context).textTheme.displayMedium),
               Text("H1 (titleLarge)", style: Theme.of(context).textTheme.titleLarge),
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Text("Body (Italic)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic)),
               Text(
                 "Cor direta do token",
-                style: AppTextStyles.baseText.copyWith(color: AppColors.primary),
+                style: TextStyle(color: context.colors.primary),
               ),
               Divider(),
               Column(
@@ -182,6 +182,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ]
               ),
+              Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcTTTVv5agc4-0CfIq1mWbt6NxUox3HiD7Q&s",
+                loadingBuilder: (context, child, progress) {
+                  return progress == null ? child : LinearProgressIndicator();
+                },
+                width: 200,
+                height: 200,
+                semanticLabel: "White Owl",
+              )
             ],
           ),
         ),

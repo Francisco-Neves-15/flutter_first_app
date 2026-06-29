@@ -1,11 +1,10 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show MenuPosition;
+import "package:flutter_first_app/widgets/layout/headers/app_navigation_header.dart" show AppNavigationHeader;
 
 class AppScaffold extends StatelessWidget {
+
   final Widget body;
-  final String title;
-  final bool appBar;
-  final bool showBack;
-  final VoidCallback? onBack;
   // SafeArea
   final bool safeArea;
   final bool scroll;
@@ -16,13 +15,16 @@ class AppScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
+  /// AppBar
+  final String title;
+  final bool useAppBar;
+  final bool menu;
+  final MenuPosition menuPosition;
+  final List<Widget>? actions;
+
   const AppScaffold({
     super.key,
     required this.body,
-    required this.title,
-    this.appBar = true,
-    this.showBack = false,
-    this.onBack,
     // SafeArea
     this.safeArea = true,
     this.scroll = true,
@@ -32,6 +34,12 @@ class AppScaffold extends StatelessWidget {
     // Default Scaffold
     this.floatingActionButton,
     this.floatingActionButtonLocation,
+    // AppBar
+    this.title = "",
+    this.useAppBar = true,
+    this.menu = true,
+    this.menuPosition = MenuPosition.end,
+    this.actions,
   });
 
   @override
@@ -49,22 +57,11 @@ class AppScaffold extends StatelessWidget {
     }
 
     return Scaffold(
-      // backgroundColor: context.colors.background,
-      appBar: appBar ? AppBar(
-        // leading: showBack
-        //     ? IconButton(
-        //         icon: const Icon(Icons.arrow_back),
-        //         onPressed: onBack ?? () => Navigator.pop(context),
-        //       )
-        //     : null,
-        leading: Image.asset("assets/images/easywatchlist-logo-black.png", width: 8, height: 8),
-        title: Text(title),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
-          ),
-        ],
+      appBar: useAppBar ? AppNavigationHeader(
+        title: title,
+        actions: actions,
+        menu: menu,
+        menuPosition: menuPosition,
       ) : null,
       body: resolvedChild,
       floatingActionButton: floatingActionButton,

@@ -5,6 +5,8 @@ import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvail
 class AppThemeColors {
   final AppAvailableThemeMode themeMode;
 
+  final Color primary;
+  final Color primaryContrast;
   final Color background;
   final Color backgroundInverted;
   final Color border;
@@ -14,9 +16,12 @@ class AppThemeColors {
   final Color text;
   final Color textInverted;
   final Color danger;
+  final Color dangerContrast;
 
   const AppThemeColors({
     required this.themeMode,
+    required this.primary,
+    required this.primaryContrast,
     required this.background,
     required this.backgroundInverted,
     required this.border,
@@ -26,13 +31,15 @@ class AppThemeColors {
     required this.text,
     required this.textInverted,
     required this.danger,
+    required this.dangerContrast,
   });
 }
 
 const appLightColors = AppThemeColors(
   themeMode: AppAvailableThemeMode.light,
   // Main
-  // no changes
+  primary: AppColors.primary,
+  primaryContrast: AppColors.primaryContrast,
   // Foundation
   background: AppColors.background,
   backgroundInverted: AppColors.backgroundInverted,
@@ -45,12 +52,14 @@ const appLightColors = AppThemeColors(
   textInverted: AppColors.textInverted,
   // Semantic
   danger: AppColors.dangerLight,
+  dangerContrast: AppColors.dangerContrast,
 );
 
 const appDarkColors = AppThemeColors(
   themeMode: AppAvailableThemeMode.dark,
   // Main
-  // no changes
+  primary: AppColors.primary,
+  primaryContrast: AppColors.primaryContrast,
   // Foundation
   background: AppColors.backgroundInverted,
   backgroundInverted: AppColors.background,
@@ -63,4 +72,5 @@ const appDarkColors = AppThemeColors(
   textInverted: AppColors.text,
   // Semantic
   danger: AppColors.dangerDark,
+  dangerContrast: AppColors.dangerContrast,
 );

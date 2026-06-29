@@ -35,3 +35,9 @@ flutter:
           weight: 700
         - asset: assets/fonts/Urbanist/Urbanist-Italic.ttf
           style: italic
+    - family: DynaPuff
+      fonts:
+        - asset: assets/fonts/DynaPuff/DynaPuff-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/DynaPuff/DynaPuff-Bold.ttf
+          weight: 700

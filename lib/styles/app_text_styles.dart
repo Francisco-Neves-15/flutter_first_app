@@ -1,43 +1,44 @@
 import "package:flutter/material.dart";
-import "app_colors_all.dart";
 
 class AppTextStyles {
 
-  static final baseText = TextStyle(
-    fontFamily: "Urbanist",
-    color: AppColors.text,
-  );
+  static final baseText = TextStyle();
 
   static final textTheme = TextTheme(
 
     // ----- Display's
 
     // Normal Use
-    displayMedium: baseText.copyWith( fontSize: 32, fontWeight: FontWeight.bold),
+    displayLarge: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 36, fontWeight: FontWeight.bold ),
+    displayMedium: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 32, fontWeight: FontWeight.bold ),
+    displaySmall: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 28, fontWeight: FontWeight.bold ),
 
     // ----- Titles
 
     // H1
-    titleLarge: baseText.copyWith( fontSize: 24, fontWeight: FontWeight.bold),
+    titleLarge: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 24, fontWeight: FontWeight.bold ),
 
     // H2
-    titleMedium: baseText.copyWith( fontSize: 20, fontWeight: FontWeight.bold),
+    titleMedium: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 20, fontWeight: FontWeight.bold ),
 
     // H3
-    titleSmall: baseText.copyWith( fontSize: 16, fontWeight: FontWeight.bold),
+    titleSmall: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 16, fontWeight: FontWeight.bold ),
 
     // ----- Body's
 
     // Normal Use
-    bodyMedium: baseText.copyWith( fontSize: 16 ),
+    bodyMedium: baseText.copyWith( fontFamily: "Urbanist", fontSize: 16  ),
 
     // Occasional
-    bodySmall: baseText.copyWith( fontSize: 14 ),
+    bodySmall: baseText.copyWith( fontFamily: "Urbanist", fontSize: 14  ),
+    bodyLarge: baseText.copyWith( fontFamily: "Urbanist", fontSize: 14  ),
 
     // ----- Label's
 
     // Normal Use
-    labelMedium: baseText.copyWith( fontSize: 14, fontWeight: FontWeight.bold),
+    labelLarge: baseText.copyWith( fontFamily: "Urbanist", fontSize: 14, fontWeight: FontWeight.bold ),
+    labelMedium: baseText.copyWith( fontFamily: "Urbanist", fontSize: 14, fontWeight: FontWeight.bold ),
+    labelSmall: baseText.copyWith( fontFamily: "Urbanist", fontSize: 14, fontWeight: FontWeight.bold ),
 
   );
 }

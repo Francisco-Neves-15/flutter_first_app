@@ -19,7 +19,7 @@ class AppContainer extends StatelessWidget {
     Widget resolvedChild;
     if (autoPadding || padding != null) {
       resolvedChild = 
-      Padding(
+      Container(
         padding: padding ??
             (autoPadding
                 ? const EdgeInsets.all(AppMetrics.base)
