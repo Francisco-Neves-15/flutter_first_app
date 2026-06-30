@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/extensions/theme_colors_extension.dart";
+import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 
 class MenuButton extends StatelessWidget {
 
@@ -11,7 +11,7 @@ class MenuButton extends StatelessWidget {
       onPressed: () {},
       icon: const Icon(Icons.menu_rounded),
       iconSize: 32,
-      color: context.colors.text,
+      color: context.appTheme.colors.text,
     );
   }
 

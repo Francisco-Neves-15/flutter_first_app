@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
+import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 
 class AppLogo extends StatelessWidget {
@@ -26,10 +26,10 @@ class AppLogo extends StatelessWidget {
     } else if (color == AppAvailableThemeMode.light) {
       return logoDark;
     } else {
-      if (ThemeController.instance.isLight(context)) {
-        return logoLight;
-      } else {
+      if (context.appTheme.isDark) {
         return logoDark;
+      } else {
+        return logoLight;
       }
     }
   }

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/extensions/theme_colors_extension.dart";
+import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 // import "package:flutter/services.dart";
 
 // Colors & Others
@@ -34,8 +34,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // return ListenableBuilder(
+    //   listenable: ThemeController.instance,
+
     return AnimatedBuilder(
       animation: ThemeController.instance,
+
       builder: (context, _) {
 
         return MaterialApp(
@@ -104,102 +108,110 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // return Container();
-    return AppScaffold(
-        title: widget.title,
-        useAppBar: false,
-        body: AppContainer(
-          autoPadding: true,
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: AppMetrics.small,
-            children: [
-              AppHeader(title: "Configurações"),
-              Text("Sem style explícito (herda DefaultTextStyle + tema)"),
-              Text("Display (displayMedium)", style: Theme.of(context).textTheme.displayMedium),
-              Text("H1 (titleLarge)", style: Theme.of(context).textTheme.titleLarge),
-              Text("H2 (titleMedium)", style: Theme.of(context).textTheme.titleMedium),
-              Text("H3 (titleSmall)", style: Theme.of(context).textTheme.titleSmall),
-              Text("Body (bodyMedium)", style: Theme.of(context).textTheme.bodyMedium),
-              Text("Caption (bodySmall)", style: Theme.of(context).textTheme.bodySmall),
-              Text("Label (labelMedium)", style: Theme.of(context).textTheme.labelMedium),
-              Text("Body (Bold)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
-              Text("Body (Italic)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic)),
-              Text(
-                "Cor direta do token",
-                style: TextStyle(color: context.colors.primary),
-              ),
-              Divider(),
-              Column(
-                spacing: 4,
-                children: [
-                  Row(
-                    spacing: 8, 
-                    children: [
-                      Expanded(child: ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Clique 1"),
-                      )),
-                    ]
-                  ),
-                  Row(
-                    spacing: 8, 
-                    children: [
-                      Expanded(child: TextButton(
-                        onPressed: () {},
-                        child: const Text("Clique 2"),
-                      )),
-                      Expanded(child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text("Clique 3"),
-                      )),
-                    ]
-                  )
-                ]
-              ),
-              Divider(),
-              Text("Tema do App", style: Theme.of(context).textTheme.titleMedium),
-              Text("mode ${ThemeController.instance.mode}", style: Theme.of(context).textTheme.titleSmall),
-              Text("themeMode ${ThemeController.instance.themeMode}", style: Theme.of(context).textTheme.titleSmall),
-              Text("resolvedTheme ${ThemeController.instance.resolvedTheme(context)}", style: Theme.of(context).textTheme.titleSmall),
-              Text("> ${ThemeController.instance.labelDisplay(context)}", style: Theme.of(context).textTheme.titleSmall),
-              Column(
-                spacing: 8, 
-                // inserir no ThemeData
+
+    // Required to react to the ThemeController
+    return AnimatedBuilder(
+      animation: ThemeController.instance,
+      builder: (context, _) {
+
+        return AppScaffold(
+            title: widget.title,
+            useAppBar: false,
+            body: AppContainer(
+              autoPadding: true,
+              content: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: AppMetrics.small,
                 children: [
-                  ElevatedButton(
-                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.auto); },
-                    child: const Text("Detectar Tema"),
+                  AppHeader(title: "Configurações"),
+                  Text("Sem style explícito (herda DefaultTextStyle + tema)"),
+                  Text("Display (displayMedium)", style: Theme.of(context).textTheme.displayMedium),
+                  Text("H1 (titleLarge)", style: Theme.of(context).textTheme.titleLarge),
+                  Text("H2 (titleMedium)", style: Theme.of(context).textTheme.titleMedium),
+                  Text("H3 (titleSmall)", style: Theme.of(context).textTheme.titleSmall),
+                  Text("Body (bodyMedium)", style: Theme.of(context).textTheme.bodyMedium),
+                  Text("Caption (bodySmall)", style: Theme.of(context).textTheme.bodySmall),
+                  Text("Label (labelMedium)", style: Theme.of(context).textTheme.labelMedium),
+                  Text("Body (Bold)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+                  Text("Body (Italic)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic)),
+                  Text(
+                    "Cor direta do token",
+                    style: TextStyle(color: context.appTheme.colors.primary),
                   ),
-                  ElevatedButton(
-                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.light); },
-                    child: const Text("Tema Claro"),
+                  Divider(),
+                  Column(
+                    spacing: 4,
+                    children: [
+                      Row(
+                        spacing: 8, 
+                        children: [
+                          Expanded(child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Text("Clique 1"),
+                          )),
+                        ]
+                      ),
+                      Row(
+                        spacing: 8, 
+                        children: [
+                          Expanded(child: TextButton(
+                            onPressed: () {},
+                            child: const Text("Clique 2"),
+                          )),
+                          Expanded(child: OutlinedButton(
+                            onPressed: () {},
+                            child: const Text("Clique 3"),
+                          )),
+                        ]
+                      )
+                    ]
                   ),
-                  ElevatedButton(
-                    onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.dark); },
-                    child: const Text("Tema Escuro"),
+                  Divider(),
+                  Text("Tema do App", style: Theme.of(context).textTheme.titleMedium),
+                  Text("mode ${ThemeController.instance.mode}", style: Theme.of(context).textTheme.titleSmall),
+                  Text("themeMode ${ThemeController.instance.themeMode}", style: Theme.of(context).textTheme.titleSmall),
+                  Text("resolvedTheme ${ThemeController.instance.resolvedTheme(context)}", style: Theme.of(context).textTheme.titleSmall),
+                  Text("> ${ThemeController.instance.labelDisplay(context)}", style: Theme.of(context).textTheme.titleSmall),
+                  Column(
+                    spacing: 8, 
+                    // inserir no ThemeData
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.auto); },
+                        child: const Text("Detectar Tema"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.light); },
+                        child: const Text("Tema Claro"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.dark); },
+                        child: const Text("Tema Escuro"),
+                      ),
+                    ]
                   ),
-                ]
+                  Image.network(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcTTTVv5agc4-0CfIq1mWbt6NxUox3HiD7Q&s",
+                    loadingBuilder: (context, child, progress) {
+                      return progress == null ? child : LinearProgressIndicator();
+                    },
+                    width: 200,
+                    height: 200,
+                    semanticLabel: "White Owl",
+                  )
+                ],
               ),
-              Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcTTTVv5agc4-0CfIq1mWbt6NxUox3HiD7Q&s",
-                loadingBuilder: (context, child, progress) {
-                  return progress == null ? child : LinearProgressIndicator();
-                },
-                width: 200,
-                height: 200,
-                semanticLabel: "White Owl",
-              )
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          tooltip: "Increment",
-          child: const Icon(Icons.add),
-        ),
-      );
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {},
+              tooltip: "Increment",
+              child: const Icon(Icons.add),
+            ),
+        );
+
+      }
+    );
   }
 }
 

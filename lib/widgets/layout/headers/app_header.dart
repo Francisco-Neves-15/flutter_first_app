@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/extensions/theme_colors_extension.dart";
+import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show MenuPosition, resolveActions, resolveLeading;
 import "package:flutter_first_app/widgets/ui/app_logo.dart" show AppLogo;
@@ -37,7 +37,7 @@ class AppHeader extends StatelessWidget {
       Container(
         height: 64,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-        color: context.colors.background,
+        color: context.appTheme.colors.background,
         child: Row(
           spacing: AppMetrics.small,
           mainAxisAlignment: MainAxisAlignment.start,
