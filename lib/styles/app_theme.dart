@@ -5,8 +5,6 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show AppThemeCol
 
 import "app_text_styles.dart" show AppTextStyles;
 
-/// Centraliza o ThemeData — equivalente ao ThemeProvider no React.
-/// AppColors e AppTextStyles só "funcionam" quando entram aqui.
 class AppTheme {
   
   static ThemeData build(AppThemeColors colors) {
