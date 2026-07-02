@@ -18,6 +18,7 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightCol
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/headers/app_header.dart";
+import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager;
 
 
 void main() {
@@ -128,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 spacing: AppMetrics.small,
                 children: [
                   AppHeader(title: "Configurações"),
+                  ThemeManager(),
                   Text(
                     'Sem style explícito (herda DefaultTextStyle + tema) →'
                     'size=${Theme.of(context).textTheme.displayMedium?.fontSize}, '

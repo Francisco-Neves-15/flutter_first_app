@@ -57,8 +57,11 @@ class AppTheme {
         iconAlignment: IconAlignment.start,
 
         padding: WidgetStatePropertyAll(
-          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         ),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(32)
+        ))
       ),
     );
 
@@ -73,6 +76,13 @@ class AppTheme {
         iconColor: WidgetStatePropertyAll(colors.text),
         iconSize: WidgetStatePropertyAll(24),
         iconAlignment: IconAlignment.start,
+
+        padding: WidgetStatePropertyAll(
+          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        ),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(32)
+        ))
       ),
     );
 
@@ -84,6 +94,13 @@ class AppTheme {
         iconColor: WidgetStatePropertyAll(colors.text),
         iconSize: WidgetStatePropertyAll(24),
         iconAlignment: IconAlignment.start,
+
+        padding: WidgetStatePropertyAll(
+          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        ),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(32)
+        ))
       ),
     );
 

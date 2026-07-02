@@ -37,7 +37,7 @@ class AppTextStyle {
 class AppTextStyles {
 
   static final baseText = TextStyle(
-    fontFamilyFallback: resolveFontFamilyFallback(useRuntime: true),
+    fontFamilyFallback: resolveFontFamilyFallback(useRuntime: false),
   );
 
   static final appTextStyle = AppTextStyle(
