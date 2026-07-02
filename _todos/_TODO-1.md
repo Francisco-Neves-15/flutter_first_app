@@ -1,3 +1,7 @@
+# TODO
+
+### 30-06-26
+
 ---
 
 Problema no Tema do App
@@ -37,6 +41,8 @@ ${ThemeController.instance.resolvedTheme(context)} = dark
 ${ThemeController.instance.labelDisplay(context)}  = Autodetect (Dark)
 
 O problema presente aqui, é que os valores não atualizam ao clique no `setTheme`, algo que ele deveria "disparar" um aviso para alterar todos os valores conforme;
+
+### 01-07-26
 
 ---
 

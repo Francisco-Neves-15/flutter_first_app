@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_first_app/styles/app_colors_theme.dart' show AppThemeColors, appLightColors, appDarkColors;
+import 'package:flutter_first_app/styles/app_text_styles.dart' show AppTextStyles, AppTextStyle;
 
 // >>>>> OLD: context.colors
 
@@ -41,8 +42,10 @@ class AppThemeContext {
   bool get isLight => !isDark;
 
   // context.appTheme.colors
-  AppThemeColors get colors => 
-      isDark ? appDarkColors : appLightColors;
+  AppThemeColors get colors => isDark ? appDarkColors : appLightColors;
+
+  // context.appTheme.textStyles
+  AppTextStyle get textStyles => AppTextStyles.appTextStyle;
 
 }
 

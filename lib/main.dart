@@ -34,9 +34,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // return ListenableBuilder(
-    //   listenable: ThemeController.instance,
-
     return AnimatedBuilder(
       animation: ThemeController.instance,
 
@@ -50,11 +47,13 @@ class MyApp extends StatelessWidget {
           // Wrapper global (como um layout provider no React).
           // Precisa ficar DENTRO do MaterialApp — fora dele o Theme ignora tudo.
           builder: (context, child) {
-            return DefaultTextStyle(
+            return (
+              DefaultTextStyle(
                 style: AppTextStyles.baseText,
                 textAlign: TextAlign.left,
                 child: child ?? const SizedBox.shrink(),
-              );
+              )
+            );
           },
 
           home: const MyHomePage(
@@ -110,9 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     // Required to react to the ThemeController
-    return AnimatedBuilder(
-      animation: ThemeController.instance,
-      builder: (context, _) {
+
+    // return AnimatedBuilder(
+    //   animation: ThemeController.instance,
+    //   builder: (context, _) {
+
+    return ListenableBuilder(
+     listenable: ThemeController.instance,
+     builder: (context, _) {
 
         return AppScaffold(
             title: widget.title,
@@ -124,19 +128,48 @@ class _MyHomePageState extends State<MyHomePage> {
                 spacing: AppMetrics.small,
                 children: [
                   AppHeader(title: "Configurações"),
-                  Text("Sem style explícito (herda DefaultTextStyle + tema)"),
-                  Text("Display (displayMedium)", style: Theme.of(context).textTheme.displayMedium),
-                  Text("H1 (titleLarge)", style: Theme.of(context).textTheme.titleLarge),
-                  Text("H2 (titleMedium)", style: Theme.of(context).textTheme.titleMedium),
-                  Text("H3 (titleSmall)", style: Theme.of(context).textTheme.titleSmall),
-                  Text("Body (bodyMedium)", style: Theme.of(context).textTheme.bodyMedium),
-                  Text("Caption (bodySmall)", style: Theme.of(context).textTheme.bodySmall),
-                  Text("Label (labelMedium)", style: Theme.of(context).textTheme.labelMedium),
-                  Text("Body (Bold)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
-                  Text("Body (Italic)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic)),
+                  Text(
+                    'Sem style explícito (herda DefaultTextStyle + tema) →'
+                    'size=${Theme.of(context).textTheme.displayMedium?.fontSize}, '
+                    'font=${Theme.of(context).textTheme.displayMedium?.fontFamily}'
+                    'backgroundColor=${Theme.of(context).textTheme.displayMedium?.backgroundColor}'
+                    'background=${Theme.of(context).textTheme.displayMedium?.background}',
+                  ),
+                  Text("Display", style: context.appTheme.textStyles.display),
+                  Text("H1", style: context.appTheme.textStyles.h1),
+                  Text("H2", style: context.appTheme.textStyles.h2),
+                  Text("H3", style: context.appTheme.textStyles.h3),
+                  Text("Body", style: context.appTheme.textStyles.body),
+                  Text("Caption", style: context.appTheme.textStyles.caption),
+                  Text("Micro", style: context.appTheme.textStyles.micro),
+                  Text("Label", style: context.appTheme.textStyles.label),
+                  Text("Button Text", style: context.appTheme.textStyles.buttonText),
+                  Text("Button Small Text", style: context.appTheme.textStyles.buttonSmallText),
+                  Text("Body (Bold)", style: context.appTheme.textStyles.body.copyWith(fontWeight: FontWeight.bold)),
+                  Text("Body (Italic)", style: context.appTheme.textStyles.body.copyWith(fontStyle: FontStyle.italic)),
                   Text(
                     "Cor direta do token",
                     style: TextStyle(color: context.appTheme.colors.primary),
+                  ),
+                  Divider(),
+                  Text(
+                    'See the props (it also works for: `context.appTheme.textStyles`):'
+                    'bodySmall -> '
+                    'size=${Theme.of(context).textTheme.bodySmall?.fontSize}, '
+                    'font=${Theme.of(context).textTheme.bodySmall?.fontFamily}',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  Text(
+                    'Highlighted Text',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      background: Paint()
+                        ..color = Colors.blue
+                        ..strokeWidth = 2.0
+                        ..style = PaintingStyle.stroke
+                        ..strokeJoin = StrokeJoin.round,
+                    ),
                   ),
                   Divider(),
                   Column(

@@ -40,7 +40,7 @@ class AppTheme {
 
     // Garante que cor e fonte do textTheme não sejam sobrescritas pelo Material 3.
     final textTheme = AppTextStyles.textTheme.apply(
-      // fontFamily: "Urbanist",
+      fontFamily: "Urbanist",
       bodyColor: colors.text,
       displayColor: colors.text,
     );
@@ -49,13 +49,13 @@ class AppTheme {
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(colors.primary),
         foregroundColor: WidgetStatePropertyAll(colors.primaryContrast),
-        textStyle: WidgetStatePropertyAll(
-          TextStyle(
-            fontFamily: "Urbanist",
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-          ),
-        ),
+
+        textStyle: WidgetStatePropertyAll(AppTextStyles.appTextStyle.buttonText),
+        // Icon
+        iconColor: WidgetStatePropertyAll(colors.text),
+        iconSize: WidgetStatePropertyAll(24),
+        iconAlignment: IconAlignment.start,
+
         padding: WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
@@ -68,26 +68,22 @@ class AppTheme {
         side: WidgetStatePropertyAll(
           BorderSide(color: colors.border, width: 2, strokeAlign: BorderSide.strokeAlignInside),
         ),
-        textStyle: WidgetStatePropertyAll(
-          TextStyle(
-            fontFamily: "Urbanist",
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-          ),
-        ),
+        textStyle: WidgetStatePropertyAll(AppTextStyles.appTextStyle.buttonText),
+        // Icon
+        iconColor: WidgetStatePropertyAll(colors.text),
+        iconSize: WidgetStatePropertyAll(24),
+        iconAlignment: IconAlignment.start,
       ),
     );
 
     final textButtonTheme = TextButtonThemeData(
       style: ButtonStyle(
         foregroundColor: WidgetStatePropertyAll(colors.text),
-        textStyle: WidgetStatePropertyAll(
-          TextStyle(
-            fontFamily: "Urbanist",
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-          ),
-        ),
+        textStyle: WidgetStatePropertyAll(AppTextStyles.appTextStyle.buttonText),
+        // Icon
+        iconColor: WidgetStatePropertyAll(colors.text),
+        iconSize: WidgetStatePropertyAll(24),
+        iconAlignment: IconAlignment.start,
       ),
     );
 
@@ -118,7 +114,7 @@ class AppTheme {
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       centerTitle: false,
-      titleTextStyle: textTheme.titleLarge?.copyWith(
+      titleTextStyle: AppTextStyles.appTextStyle.h1.copyWith(
         color: colors.text,
       ),
       shape: RoundedRectangleBorder(
@@ -138,7 +134,6 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colors.background,
-      // fontFamily: "Urbanist",
       textTheme: textTheme,
       elevatedButtonTheme: elevatedButtonTheme,      
       outlinedButtonTheme: outlinedButtonTheme,      
