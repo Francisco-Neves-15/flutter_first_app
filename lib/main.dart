@@ -17,7 +17,7 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightCol
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
-import "package:flutter_first_app/widgets/layout/headers/app_header.dart";
+import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
 import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager;
 
 
@@ -202,11 +202,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ]
                   ),
                   Divider(),
-                  Text("Tema do App", style: Theme.of(context).textTheme.titleMedium),
-                  Text("mode ${ThemeController.instance.mode}", style: Theme.of(context).textTheme.titleSmall),
-                  Text("themeMode ${ThemeController.instance.themeMode}", style: Theme.of(context).textTheme.titleSmall),
-                  Text("resolvedTheme ${ThemeController.instance.resolvedTheme(context)}", style: Theme.of(context).textTheme.titleSmall),
-                  Text("> ${ThemeController.instance.labelDisplay(context)}", style: Theme.of(context).textTheme.titleSmall),
+                  // Text("Tema do App", style: Theme.of(context).textTheme.titleMedium),
+                  // Text("mode ${ThemeController.instance.mode}", style: Theme.of(context).textTheme.titleSmall),
+                  // Text("themeMode ${ThemeController.instance.themeMode}", style: Theme.of(context).textTheme.titleSmall),
+                  // Text("resolvedTheme ${ThemeController.instance.resolvedTheme(context)}", style: Theme.of(context).textTheme.titleSmall),
+                  // Text("> ${ThemeController.instance.labelDisplay(context)}", style: Theme.of(context).textTheme.titleSmall),
                   Column(
                     spacing: 8, 
                     // inserir no ThemeData

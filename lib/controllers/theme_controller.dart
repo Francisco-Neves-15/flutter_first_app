@@ -26,8 +26,8 @@ class ThemeController extends ChangeNotifier {
     }
   }
 
-  /// Theme actually applied
-  AppAvailableThemeBrightness resolvedTheme(BuildContext context) {
+  /// Theme actually applied (Brightness)
+  AppAvailableThemeBrightness resolvedBrightness(BuildContext context) {
     final brightness = Theme.of(context).brightness;
 
     return brightness == Brightness.dark
@@ -63,22 +63,22 @@ class ThemeController extends ChangeNotifier {
   String get labelThemeMode {
     switch (_mode) {
       case AppAvailableThemeMode.auto:
-        return "Autodetect";
+        return "auto";
       case AppAvailableThemeMode.light:
-        return "Light";
+        return "light";
       case AppAvailableThemeMode.dark:
-        return "Dark";
+        return "dark";
     }
   }
 
   /// Label for AppAvailableThemeBrightness
   /// Context is required because the resolved theme belongs to `BuildContext`, not `ThemeMode`
   String labelResolvedTheme(BuildContext context) {
-    switch (resolvedTheme(context)) {
+    switch (resolvedBrightness(context)) {
       case AppAvailableThemeBrightness.light:
-        return "Light";
+        return "light";
       case AppAvailableThemeBrightness.dark:
-        return "Dark";
+        return "dark";
     }
   }
 
@@ -86,7 +86,7 @@ class ThemeController extends ChangeNotifier {
   /// Context is required because, if it is "auto": The resolved theme belongs to the BuildContext, not the ThemeMode.
   String labelDisplay(BuildContext context) {
     if (_mode == AppAvailableThemeMode.auto) {
-      return "$labelThemeMode (${labelResolvedTheme(context)})";
+      return "$labelThemeMode-${labelResolvedTheme(context)}";
     }
     return labelThemeMode;
   }

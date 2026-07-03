@@ -28,7 +28,7 @@ import 'package:flutter_first_app/styles/app_text_styles.dart' show AppTextStyle
 //   AppThemeColors get colors => isDark ? appDarkColors : appLightColors;
 // }
 
-// >>>>> OLD: context.appTheme.
+// >>>>> NEW: context.appTheme.
 
 class AppThemeContext {
   const AppThemeContext._(this._theme);
