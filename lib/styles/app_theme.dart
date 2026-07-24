@@ -153,13 +153,18 @@ class AppTheme {
       scaffoldBackgroundColor: colors.background,
       textTheme: textTheme,
       elevatedButtonTheme: elevatedButtonTheme,      
-      outlinedButtonTheme: outlinedButtonTheme,      
+      outlinedButtonTheme: outlinedButtonTheme,
       textButtonTheme: textButtonTheme,
       floatingActionButtonTheme: floatingActionButtonTheme,
       dividerTheme: dividerTheme,
       iconTheme: iconTheme,
       appBarTheme: appBarTheme,
-      shadowColor: colorScheme.shadow
+      shadowColor: colorScheme.shadow,
+      bottomSheetTheme: BottomSheetThemeData(
+        showDragHandle: true,
+        dragHandleColor: colors.neutral,
+        dragHandleSize: Size(64, 4)
+      )
     );
   }
 }

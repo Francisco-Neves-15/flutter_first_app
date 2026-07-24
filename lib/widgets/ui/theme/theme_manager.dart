@@ -1,21 +1,49 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomsheetContainer;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode, AppAvailableThemeBrightness, AppThemeIcons;
 
+enum ThemeManagerDisplayType { pill, list }
+
 class ThemeManagerLabel {
   final IconData icon;
   final String text;
-  ThemeManagerLabel({required this.icon, required this.text});
+  ThemeManagerLabel({
+    required this.icon,
+    required this.text
+  });
 }
 
 class ThemeManager extends StatelessWidget {
-  const ThemeManager({ super.key });
+  final ThemeManagerDisplayType? displayType;
+
+  const ThemeManager({
+    super.key,
+    this.displayType = ThemeManagerDisplayType.list
+  });
 
   @override
   Widget build(BuildContext context) {
+
+    void open() async {
+      showModalBottomSheet<void>(
+        context: context,
+        elevation: 0,
+        builder: (_) => BottomsheetContainer(
+          title: "Tema do Aplicativo",
+          description: "Selecione o tema para o aplicativo",
+          child: Column(
+            children: [
+              Text("Conteúdo"),
+            ],
+          ),
+        ),
+      );
+    }
+
     return AnimatedBuilder(
       animation: ThemeController.instance,
       builder: (context, _) {
@@ -49,7 +77,7 @@ class ThemeManager extends StatelessWidget {
         ThemeManagerLabel visibleLabel = resolveLabel();
 
         return TextButton(
-          onPressed: () {}, 
+          onPressed: open,
           style: ButtonStyle(
             padding: WidgetStatePropertyAll(
               EdgeInsets.symmetric(horizontal: 16, vertical: 16),

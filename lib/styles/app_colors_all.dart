@@ -14,7 +14,11 @@ class AppColors {
   // Typography
   static const text = Color(0xFF000000);
   static const textInverted = Color(0xFFFFFFFF);
+  static const textSecondary = Color(0xFF404040);
+  static const textSecondaryInverted = Color(0xFFCCCCCC);
   // Semantic
+  static const neutral = Color(0xFF7F7F7F);
+  static const neutralContrast = Color(0xFFFFFFFF);
   static const dangerLight = Color(0xFFDB1616);
   static const dangerDark = Color(0xFFF51515);
   static const dangerContrast = Color(0xFFFFFFFF);

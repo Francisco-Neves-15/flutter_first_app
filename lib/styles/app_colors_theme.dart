@@ -16,6 +16,10 @@ class AppThemeColors {
   final Color shadowInverted;
   final Color text;
   final Color textInverted;
+  final Color textSecondary;
+  final Color textSecondaryInverted;
+  final Color neutral;
+  final Color neutralContrast;
   final Color danger;
   final Color dangerContrast;
 
@@ -31,6 +35,10 @@ class AppThemeColors {
     required this.shadowInverted,
     required this.text,
     required this.textInverted,
+    required this.textSecondary,
+    required this.textSecondaryInverted,
+    required this.neutral,
+    required this.neutralContrast,
     required this.danger,
     required this.dangerContrast,
   });
@@ -51,7 +59,11 @@ const appLightColors = AppThemeColors(
   // Typography
   text: AppColors.text,
   textInverted: AppColors.textInverted,
+  textSecondary: AppColors.textSecondary,
+  textSecondaryInverted: AppColors.textSecondaryInverted,
   // Semantic
+  neutral: AppColors.neutral,
+  neutralContrast: AppColors.neutralContrast,
   danger: AppColors.dangerLight,
   dangerContrast: AppColors.dangerContrast,
 );
@@ -71,7 +83,11 @@ const appDarkColors = AppThemeColors(
   // Typography
   text: AppColors.textInverted,
   textInverted: AppColors.text,
+  textSecondary: AppColors.textSecondaryInverted,
+  textSecondaryInverted: AppColors.textSecondary,
   // Semantic
+  neutral: AppColors.neutral,
+  neutralContrast: AppColors.neutralContrast,
   danger: AppColors.dangerDark,
   dangerContrast: AppColors.dangerContrast,
 );
