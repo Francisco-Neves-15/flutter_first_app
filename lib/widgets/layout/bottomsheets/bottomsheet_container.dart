@@ -1,11 +1,12 @@
 import "package:flutter/material.dart";
+import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
-import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_button.dart" show ActionSheetButton, ActionSheetButtonPalette;
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_button.dart" show BottomSheetButton, BottomSheetButtonPalette;
 
 enum BottomSheetDismissType { close, back }
 
-class BottomsheetContainer extends StatelessWidget {
+class BottomSheetContainer extends StatelessWidget {
   final Widget child;
 
   // --------------- Miscellaneous ---------------
@@ -15,14 +16,16 @@ class BottomsheetContainer extends StatelessWidget {
   // --------------- Dismiss ---------------
   /// Shows or hides the bottom button
   final bool showDismiss;
-  /// Keep the Dismiss element separate from the rest of the content (child).
-  final bool showDismissDivider;
   /// Button text/icon (default styles)
   final BottomSheetDismissType dismissType;
+  /// Button text/icon (default styles)
+  final BottomSheetButtonPalette dismissPalette;
   /// Allows overriding the default behavior.
   final VoidCallback? onDismiss;
+  /// Keep the Dismiss element separate from the rest of the content (child).
+  final bool showDismissDivider;
 
-  const BottomsheetContainer({
+  const BottomSheetContainer({
     super.key,
     required this.child,
     // ----- Miscellaneous -----
@@ -30,9 +33,10 @@ class BottomsheetContainer extends StatelessWidget {
     this.description,
     // ----- Dismiss -----
     this.showDismiss = true,
-    this.showDismissDivider = true,
     this.dismissType = BottomSheetDismissType.close,
+    this.dismissPalette = BottomSheetButtonPalette.text,
     this.onDismiss,
+    this.showDismissDivider = true,
   });
 
   @override
@@ -44,8 +48,8 @@ class BottomsheetContainer extends StatelessWidget {
     };
 
     final IconData icon = switch (dismissType) {
-      BottomSheetDismissType.close => Icons.close,
-      BottomSheetDismissType.back => Icons.arrow_back,
+      BottomSheetDismissType.close => Symbols.close,
+      BottomSheetDismissType.back => Symbols.arrow_top_left_rounded,
     };
 
     return SafeArea(
@@ -76,8 +80,8 @@ class BottomsheetContainer extends StatelessWidget {
                 const Divider(),
                 const SizedBox(height: AppMetrics.extraSmall),
               ],
-              ActionSheetButton(
-                palette: ActionSheetButtonPalette.danger,
+              BottomSheetButton(
+                palette: dismissPalette,
                 icon: icon,
                 label: label,
                 onPressed: onDismiss ?? () => Navigator.of(context).maybePop(),

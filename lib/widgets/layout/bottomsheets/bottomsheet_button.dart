@@ -2,12 +2,12 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 
-enum ActionSheetButtonPalette { text, textSecondary, danger }
+enum BottomSheetButtonPalette { text, textSecondary, danger }
 
-class ActionSheetButton extends StatelessWidget {
+class BottomSheetButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
-  final ActionSheetButtonPalette palette;
+  final BottomSheetButtonPalette palette;
 
   final IconData? icon;
   final Color? iconColor;
@@ -15,10 +15,10 @@ class ActionSheetButton extends StatelessWidget {
   final String label;
   final Color? labelColor;
 
-  const ActionSheetButton({
+  const BottomSheetButton({
     super.key,
     this.onPressed,
-    this.palette = ActionSheetButtonPalette.text,
+    this.palette = BottomSheetButtonPalette.text,
     this.icon,
     this.iconColor,
     required this.label,
@@ -29,9 +29,9 @@ class ActionSheetButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Color colorPalette = switch (palette) {
-      ActionSheetButtonPalette.text => context.appTheme.colors.text,
-      ActionSheetButtonPalette.textSecondary => context.appTheme.colors.textSecondary,
-      ActionSheetButtonPalette.danger => context.appTheme.colors.danger,
+      BottomSheetButtonPalette.text => context.appTheme.colors.text,
+      BottomSheetButtonPalette.textSecondary => context.appTheme.colors.textSecondary,
+      BottomSheetButtonPalette.danger => context.appTheme.colors.danger,
     };
 
     return TextButton(

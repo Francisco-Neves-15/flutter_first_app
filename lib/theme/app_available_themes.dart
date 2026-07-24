@@ -7,7 +7,17 @@ enum AppAvailableThemeBrightness { light, dark }
 class AppThemeIcons {
   static const IconData light = Symbols.light_mode_rounded;
   static const IconData dark = Symbols.dark_mode_rounded;
+  static const IconData auto = Symbols.routine_rounded;
   static const IconData autoLight = Symbols.routine_rounded;
   static const IconData autoDark = Symbols.routine_rounded;
   static const IconData undetected = Symbols.question_mark_rounded;
+}
+
+class AppThemeLabels {
+  static const String light = "Light";
+  static const String dark = "Dark";
+  static const String auto = "Autodetect";
+  static const String autoLight = "Autodetect (Light)";
+  static const String autoDark = "Autodetect (Dark)";
+  static const String undetected = "Not detected (error)";
 }

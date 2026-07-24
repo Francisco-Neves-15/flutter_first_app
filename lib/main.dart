@@ -202,30 +202,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ]
                   ),
                   Divider(),
-                  // Text("Tema do App", style: Theme.of(context).textTheme.titleMedium),
-                  // Text("mode ${ThemeController.instance.mode}", style: Theme.of(context).textTheme.titleSmall),
-                  // Text("themeMode ${ThemeController.instance.themeMode}", style: Theme.of(context).textTheme.titleSmall),
-                  // Text("resolvedTheme ${ThemeController.instance.resolvedTheme(context)}", style: Theme.of(context).textTheme.titleSmall),
-                  // Text("> ${ThemeController.instance.labelDisplay(context)}", style: Theme.of(context).textTheme.titleSmall),
-                  Column(
-                    spacing: 8, 
-                    // inserir no ThemeData
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.auto); },
-                        child: const Text("Detectar Tema"),
-                      ),
-                      ElevatedButton(
-                        onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.light); },
-                        child: const Text("Tema Claro"),
-                      ),
-                      ElevatedButton(
-                        onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.dark); },
-                        child: const Text("Tema Escuro"),
-                      ),
-                    ]
-                  ),
                   Image.network(
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcTTTVv5agc4-0CfIq1mWbt6NxUox3HiD7Q&s",
                     loadingBuilder: (context, child, progress) {

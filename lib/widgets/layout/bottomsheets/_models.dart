@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_button.dart";
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_button.dart";
 
-class ActionSheetItem {
+class ActionSheetBuilderItem {
   final String label;
 
   final IconData? icon;
 
-  final ActionSheetButtonPalette palette;
+  final BottomSheetButtonPalette palette;
 
   final Color? iconColor;
   final Color? labelColor;
@@ -15,10 +15,10 @@ class ActionSheetItem {
 
   final VoidCallback? onPressed;
 
-  const ActionSheetItem({
+  const ActionSheetBuilderItem({
     required this.label,
     this.icon,
-    this.palette = ActionSheetButtonPalette.text,
+    this.palette = BottomSheetButtonPalette.text,
     this.iconColor,
     this.labelColor,
     this.show = true,
