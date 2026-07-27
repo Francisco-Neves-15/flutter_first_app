@@ -15,6 +15,8 @@ class ActionSheetBuilderItem {
 
   final VoidCallback? onPressed;
 
+  final bool? selected;
+
   const ActionSheetBuilderItem({
     required this.label,
     this.icon,
@@ -23,5 +25,6 @@ class ActionSheetBuilderItem {
     this.labelColor,
     this.show = true,
     this.onPressed,
+    this.selected,
   });
 }

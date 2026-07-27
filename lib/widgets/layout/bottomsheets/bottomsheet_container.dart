@@ -9,9 +9,11 @@ enum BottomSheetDismissType { close, back }
 class BottomSheetContainer extends StatelessWidget {
   final Widget child;
 
-  // --------------- Miscellaneous ---------------
+  // --------------- Header ---------------
   final String? title;
   final String? description;
+  /// Keep the Header element separate from the rest of the content (child)
+  final bool showHeaderDivider;
 
   // --------------- Dismiss ---------------
   /// Shows or hides the bottom button
@@ -20,17 +22,18 @@ class BottomSheetContainer extends StatelessWidget {
   final BottomSheetDismissType dismissType;
   /// Button text/icon (default styles)
   final BottomSheetButtonPalette dismissPalette;
-  /// Allows overriding the default behavior.
+  /// Allows overriding the default behavior
   final VoidCallback? onDismiss;
-  /// Keep the Dismiss element separate from the rest of the content (child).
+  /// Keep the Dismiss element separate from the rest of the content (child)
   final bool showDismissDivider;
 
   const BottomSheetContainer({
     super.key,
     required this.child,
-    // ----- Miscellaneous -----
+    // ----- Header -----
     this.title,
     this.description,
+    this.showHeaderDivider = false,
     // ----- Dismiss -----
     this.showDismiss = true,
     this.dismissType = BottomSheetDismissType.close,
@@ -49,7 +52,7 @@ class BottomSheetContainer extends StatelessWidget {
 
     final IconData icon = switch (dismissType) {
       BottomSheetDismissType.close => Symbols.close,
-      BottomSheetDismissType.back => Symbols.arrow_top_left_rounded,
+      BottomSheetDismissType.back => Symbols.reply_rounded,
     };
 
     return SafeArea(
@@ -63,16 +66,16 @@ class BottomSheetContainer extends StatelessWidget {
             if (title != null) ...[
               Text(title ?? "Title", style: context.appTheme.textStyles.h1),
               const SizedBox(height: AppMetrics.extraSmall),
-              if (description == null) ...[
-                const Divider(),
-                const SizedBox(height: AppMetrics.extraSmall),
+              if (showHeaderDivider && description == null) ...[
+                const Divider()
               ]
             ],
             if (description != null) ...[
               Text(description ?? "Description", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textSecondary)),
               const SizedBox(height: AppMetrics.extraSmall),
-              const Divider(),
-              const SizedBox(height: AppMetrics.extraSmall),
+              if (showHeaderDivider && description == null) ...[
+                const Divider()
+              ]
             ],
             child,
             if (showDismiss) ...[
@@ -86,7 +89,7 @@ class BottomSheetContainer extends StatelessWidget {
                 label: label,
                 onPressed: onDismiss ?? () => Navigator.of(context).maybePop(),
               ),
-            ],
+            ]
           ],
         ),
       ),

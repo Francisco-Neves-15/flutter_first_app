@@ -45,6 +45,7 @@ class ActionSheetBuilder extends StatelessWidget {
                 labelColor: action.labelColor,
                 label: action.label,
                 onPressed: action.onPressed,
+                selected: action.selected,
               ),
 
 

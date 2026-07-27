@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 import "package:flutter_first_app/styles/app_colors_theme.dart" show AppThemeColors;
+import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 import "app_text_styles.dart" show AppTextStyles;
 
@@ -115,6 +116,10 @@ class AppTheme {
 
     );
 
+    final segmentedButtonTheme = SegmentedButtonThemeData(
+      selectedIcon: Icon(Symbols.check_rounded, size: 20, fill: 1, color: colors.primaryContrast)
+    );
+
     final dividerTheme = DividerThemeData(
       color: colors.border,
       thickness: 1.5,
@@ -156,6 +161,7 @@ class AppTheme {
       outlinedButtonTheme: outlinedButtonTheme,
       textButtonTheme: textButtonTheme,
       floatingActionButtonTheme: floatingActionButtonTheme,
+      segmentedButtonTheme: segmentedButtonTheme,
       dividerTheme: dividerTheme,
       iconTheme: iconTheme,
       appBarTheme: appBarTheme,
@@ -163,7 +169,7 @@ class AppTheme {
       bottomSheetTheme: BottomSheetThemeData(
         showDragHandle: true,
         dragHandleColor: colors.neutral,
-        dragHandleSize: Size(64, 4)
+        dragHandleSize: Size(128, 4),
       )
     );
   }

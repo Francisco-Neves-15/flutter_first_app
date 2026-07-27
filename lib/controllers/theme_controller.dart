@@ -43,18 +43,24 @@ class ThemeController extends ChangeNotifier {
     return _mode == AppAvailableThemeMode.auto;
   }
 
-  /// Is Light the Theme actually applied |
+  /// Is Light the Theme applied |
   /// Context is required because the resolved theme belongs to `BuildContext`, not `ThemeMode`
   bool isLight(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-    return brightness == Brightness.light;
+    // ===== Using: Theme actually applied
+    // final brightness = Theme.of(context).brightness;
+    // return brightness == Brightness.light;
+    // ===== Using: Theme applied by user
+    return _mode == AppAvailableThemeMode.light;
   }
 
-  /// Is Dark the Theme actually applied |
+  /// Is Dark the Theme applied |
   /// Context is required because the resolved theme belongs to `BuildContext`, not `ThemeMode`
   bool isDark(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-    return brightness == Brightness.dark;
+    // ===== Using: Theme actually applied
+    // final brightness = Theme.of(context).brightness;
+    // return brightness == Brightness.dark;
+    // ===== Using: Theme applied by user
+    return _mode == AppAvailableThemeMode.dark;
   }
 
   // In Controller Interface

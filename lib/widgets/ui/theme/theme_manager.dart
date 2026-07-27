@@ -3,12 +3,13 @@ import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_builder.dart" show ActionSheetBuilder;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetDismissType, BottomSheetContainer;
+import "package:flutter_first_app/widgets/ui/theme/theme_option_button_segment.dart" show ThemeOptionButtonSegment;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode, AppAvailableThemeBrightness, AppThemeIcons, AppThemeLabels;
 
-enum ThemeManagerDisplayType { pill, list }
+enum ThemeManagerDisplayType { segmented, list }
 
 class ThemeManagerLabel {
   final IconData icon;
@@ -30,31 +31,81 @@ class ThemeManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final Widget resolvedThemeManagerContent = switch (displayType) {
-      ThemeManagerDisplayType.list => (
-        ActionSheetBuilder(
-          showDividers: false,
-          actions: [
-            ActionSheetBuilderItem(
-              icon: AppThemeIcons.auto,
-              label: AppThemeLabels.auto,
-              onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.auto); },
-            ),
-            ActionSheetBuilderItem(
-              icon: AppThemeIcons.light,
-              label: AppThemeLabels.light,
-              onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.light); },
-            ),
-            ActionSheetBuilderItem(
-              icon: AppThemeIcons.dark,
-              label: AppThemeLabels.dark,
-              onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.dark); },
-            ),
-          ],
-        )
-      ),
-      ThemeManagerDisplayType.pill => (Text("pill version in progress..."))
-    };
+    final Widget resolvedThemeManagerContent = ListenableBuilder(
+      listenable: ThemeController.instance,
+      builder: (context, _) { 
+        return switch (displayType) {
+          ThemeManagerDisplayType.list => (
+            ActionSheetBuilder(
+              showDividers: false,
+              actions: [
+                ActionSheetBuilderItem(
+                  icon: AppThemeIcons.auto,
+                  label: AppThemeLabels.auto,
+                  onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.auto); },
+                  selected: ThemeController.instance.isAuto(context)
+                ),
+                ActionSheetBuilderItem(
+                  icon: AppThemeIcons.light,
+                  label: AppThemeLabels.light,
+                  onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.light); },
+                  selected: ThemeController.instance.isLight(context)
+                ),
+                ActionSheetBuilderItem(
+                  icon: AppThemeIcons.dark,
+                  label: AppThemeLabels.dark,
+                  onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.dark); },
+                  selected: ThemeController.instance.isDark(context)
+                ),
+              ],
+            )
+          ),
+          ThemeManagerDisplayType.segmented => 
+          Container(
+            margin: EdgeInsetsGeometry.symmetric(vertical: AppMetrics.small),
+            child: SegmentedButton<AppAvailableThemeMode>(
+              segments: [
+                ButtonSegment(
+                  value: AppAvailableThemeMode.light,
+                  // icon: Icon(AppThemeIcons.light, size: 20, fill: 1),
+                  // label: Text(AppThemeLabels.light)
+                  label: ThemeOptionButtonSegment(
+                    icon: AppThemeIcons.light,
+                    label: AppThemeLabels.light,
+                    margin: EdgeInsetsGeometry.directional(start: AppMetrics.small)
+                  )
+                ),
+                ButtonSegment(
+                  value: AppAvailableThemeMode.auto,
+                  // icon: Icon(AppThemeIcons.auto, size: 20, fill: 1),
+                  // label: Text(AppThemeLabels.auto)
+                  label: ThemeOptionButtonSegment(
+                    icon: AppThemeIcons.auto,
+                    label: AppThemeLabels.auto,
+                  )
+                ),
+                ButtonSegment( value: AppAvailableThemeMode.dark,
+                  // icon: Icon(AppThemeIcons.dark, size: 20, fill: 1),
+                  // label: Text(AppThemeLabels.dark)
+                  label: ThemeOptionButtonSegment(
+                    icon: AppThemeIcons.dark,
+                    label: AppThemeLabels.dark,
+                    margin: EdgeInsetsGeometry.directional(end: AppMetrics.small)
+                  )
+                )
+              ],
+              emptySelectionAllowed: false,
+              selectedIcon: Icon(Symbols.check_rounded, size: 20, fill: 1),
+              showSelectedIcon: false,
+              selected: {ThemeController.instance.mode},
+              onSelectionChanged: (selection) {
+                ThemeController.instance.setTheme(selection.first);
+              },
+            )
+          )
+        };
+      }
+    );
 
     void open() async {
       showModalBottomSheet<void>(
@@ -65,7 +116,7 @@ class ThemeManager extends StatelessWidget {
           description: "Selecione o tema para o aplicativo",
           dismissType: BottomSheetDismissType.back,
           child: resolvedThemeManagerContent
-        ),
+        )
       );
     }
 

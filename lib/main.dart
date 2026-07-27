@@ -10,7 +10,6 @@ import "package:flutter_first_app/styles/app_theme.dart" show AppTheme;
 import "package:flutter_first_app/styles/app_text_styles.dart" show AppTextStyles;
 
 // Theme
-import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightColors, appDarkColors;
 
@@ -18,7 +17,7 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightCol
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
-import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager;
+import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
 
 
 void main() {
@@ -129,7 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 spacing: AppMetrics.small,
                 children: [
                   AppHeader(title: "Configurações"),
-                  ThemeManager(),
+                  ThemeManager(displayType: ThemeManagerDisplayType.list),
+                  ThemeManager(displayType: ThemeManagerDisplayType.segmented),
                   Text(
                     'Sem style explícito (herda DefaultTextStyle + tema) →'
                     'size=${Theme.of(context).textTheme.displayMedium?.fontSize}, '

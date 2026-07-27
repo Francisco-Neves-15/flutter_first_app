@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:material_symbols_icons/symbols.dart";
 
 enum BottomSheetButtonPalette { text, textSecondary, danger }
 
@@ -15,6 +16,8 @@ class BottomSheetButton extends StatelessWidget {
   final String label;
   final Color? labelColor;
 
+  final bool? selected;
+
   const BottomSheetButton({
     super.key,
     this.onPressed,
@@ -23,6 +26,7 @@ class BottomSheetButton extends StatelessWidget {
     this.iconColor,
     required this.label,
     this.labelColor,
+    this.selected,
   });
 
   @override
@@ -58,6 +62,10 @@ class BottomSheetButton extends StatelessWidget {
             label,
             style: context.appTheme.textStyles.buttonText.copyWith(color: labelColor ?? colorPalette),
           ),
+          if (selected != null && selected == true) ...[
+            Spacer(),
+            Icon(Symbols.check_rounded)
+          ],
         ],
       )
     );
