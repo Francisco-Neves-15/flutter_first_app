@@ -17,6 +17,8 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightCol
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
+import "package:flutter_first_app/widgets/ui/control/displayModeManager/display_mode_manager.dart" show DisplayModeManager;
+import "package:flutter_first_app/widgets/ui/control/displayModeManager/display_mode_presets.dart" as DisplayModePresets show listGrid;
 import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
 
 
@@ -104,7 +106,16 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+// test
+enum ViewMode {
+  list,
+  grid,
+}
+
 class _MyHomePageState extends State<MyHomePage> {
+
+  ViewMode _viewMode = ViewMode.list;
+
   @override
   Widget build(BuildContext context) {
 
@@ -113,6 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // return AnimatedBuilder(
     //   animation: ThemeController.instance,
     //   builder: (context, _) {
+
 
     return ListenableBuilder(
      listenable: ThemeController.instance,
@@ -128,6 +140,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 spacing: AppMetrics.small,
                 children: [
                   AppHeader(title: "Configurações"),
+
+                  DisplayModeManager<ViewMode>(
+                    selected: _viewMode,
+                    onChanged: (value) {
+                      setState(() {
+                        _viewMode = value;
+                      });
+                    },
+                    options: DisplayModePresets.listGrid(
+                      list: ViewMode.list,
+                      grid: ViewMode.grid,
+                    ),
+                  ),
+
                   ThemeManager(displayType: ThemeManagerDisplayType.list),
                   ThemeManager(displayType: ThemeManagerDisplayType.segmented),
                   Text(

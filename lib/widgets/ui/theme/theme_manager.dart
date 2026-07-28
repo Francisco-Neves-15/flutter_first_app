@@ -3,7 +3,7 @@ import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_builder.dart" show ActionSheetBuilder;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetDismissType, BottomSheetContainer;
-import "package:flutter_first_app/widgets/ui/theme/theme_option_button_segment.dart" show ThemeOptionButtonSegment;
+import "package:flutter_first_app/widgets/ui/theme/theme_manager_option_button_segment.dart" show ThemeManagerOptionButtonSegment;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
@@ -69,7 +69,7 @@ class ThemeManager extends StatelessWidget {
                   value: AppAvailableThemeMode.light,
                   // icon: Icon(AppThemeIcons.light, size: 20, fill: 1),
                   // label: Text(AppThemeLabels.light)
-                  label: ThemeOptionButtonSegment(
+                  label: ThemeManagerOptionButtonSegment(
                     icon: AppThemeIcons.light,
                     label: AppThemeLabels.light,
                     margin: EdgeInsetsGeometry.directional(start: AppMetrics.small)
@@ -79,7 +79,7 @@ class ThemeManager extends StatelessWidget {
                   value: AppAvailableThemeMode.auto,
                   // icon: Icon(AppThemeIcons.auto, size: 20, fill: 1),
                   // label: Text(AppThemeLabels.auto)
-                  label: ThemeOptionButtonSegment(
+                  label: ThemeManagerOptionButtonSegment(
                     icon: AppThemeIcons.auto,
                     label: AppThemeLabels.auto,
                   )
@@ -87,7 +87,7 @@ class ThemeManager extends StatelessWidget {
                 ButtonSegment( value: AppAvailableThemeMode.dark,
                   // icon: Icon(AppThemeIcons.dark, size: 20, fill: 1),
                   // label: Text(AppThemeLabels.dark)
-                  label: ThemeOptionButtonSegment(
+                  label: ThemeManagerOptionButtonSegment(
                     icon: AppThemeIcons.dark,
                     label: AppThemeLabels.dark,
                     margin: EdgeInsetsGeometry.directional(end: AppMetrics.small)

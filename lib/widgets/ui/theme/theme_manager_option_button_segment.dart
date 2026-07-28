@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 
-class ThemeOptionButtonSegment extends StatelessWidget {
+class ThemeManagerOptionButtonSegment extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final IconData icon;
   final String label;
-  const ThemeOptionButtonSegment({
+  const ThemeManagerOptionButtonSegment({
     super.key,
     this.margin = const EdgeInsetsGeometry.all(0),
     required this.icon,
