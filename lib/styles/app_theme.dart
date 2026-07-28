@@ -70,7 +70,7 @@ class AppTheme {
       style: ButtonStyle(
         foregroundColor: WidgetStatePropertyAll(colors.text),
         side: WidgetStatePropertyAll(
-          BorderSide(color: colors.border, width: 2, strokeAlign: BorderSide.strokeAlignInside),
+          BorderSide(color: colors.border, width: 1, strokeAlign: BorderSide.strokeAlignInside),
         ),
         textStyle: WidgetStatePropertyAll(AppTextStyles.appTextStyle.buttonText),
         // Icon
@@ -117,7 +117,19 @@ class AppTheme {
     );
 
     final segmentedButtonTheme = SegmentedButtonThemeData(
-      selectedIcon: Icon(Symbols.check_rounded, size: 20, fill: 1, color: colors.primaryContrast)
+      selectedIcon: Icon(Symbols.check_rounded, size: 20, fill: 1, color: colors.primaryContrast),
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return colors.primaryAlpha;
+          }
+          // return colors.background;
+          return Colors.transparent;
+        }),
+        side: WidgetStatePropertyAll(
+          BorderSide(color: colors.base, width: 1, strokeAlign: BorderSide.strokeAlignInside),
+        ),
+      ),
     );
 
     final dividerTheme = DividerThemeData(

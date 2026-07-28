@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart' show Icon;
+import "package:flutter/material.dart" show Icon;
+
+enum DisplayModes { fallback, list, grid, listGrid }
 
 class DisplayModeOption<T> {
   final T value;

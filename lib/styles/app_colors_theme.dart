@@ -8,6 +8,7 @@ class AppThemeColors {
 
   final Color primary;
   final Color primaryContrast;
+  final Color primaryAlpha;
   final Color background;
   final Color backgroundInverted;
   final Color border;
@@ -22,11 +23,16 @@ class AppThemeColors {
   final Color neutralContrast;
   final Color danger;
   final Color dangerContrast;
+  final Color base;
+  final Color baseInverted;
+  final Color light;
+  final Color dark;
 
   const AppThemeColors({
     required this.themeMode,
     required this.primary,
     required this.primaryContrast,
+    required this.primaryAlpha,
     required this.background,
     required this.backgroundInverted,
     required this.border,
@@ -41,6 +47,10 @@ class AppThemeColors {
     required this.neutralContrast,
     required this.danger,
     required this.dangerContrast,
+    required this.base,
+    required this.baseInverted,
+    required this.light,
+    required this.dark,
   });
 }
 
@@ -49,6 +59,7 @@ const appLightColors = AppThemeColors(
   // Main
   primary: AppColors.primary,
   primaryContrast: AppColors.primaryContrast,
+  primaryAlpha: AppColors.primaryAlpha,
   // Foundation
   background: AppColors.background,
   backgroundInverted: AppColors.backgroundInverted,
@@ -66,6 +77,11 @@ const appLightColors = AppThemeColors(
   neutralContrast: AppColors.neutralContrast,
   danger: AppColors.dangerLight,
   dangerContrast: AppColors.dangerContrast,
+  // Base
+  base: AppColors.base,
+  baseInverted: AppColors.baseInverted,
+  light: AppColors.light,
+  dark: AppColors.dark,
 );
 
 const appDarkColors = AppThemeColors(
@@ -73,6 +89,7 @@ const appDarkColors = AppThemeColors(
   // Main
   primary: AppColors.primary,
   primaryContrast: AppColors.primaryContrast,
+  primaryAlpha: AppColors.primaryAlpha,
   // Foundation
   background: AppColors.backgroundInverted,
   backgroundInverted: AppColors.background,
@@ -90,4 +107,9 @@ const appDarkColors = AppThemeColors(
   neutralContrast: AppColors.neutralContrast,
   danger: AppColors.dangerDark,
   dangerContrast: AppColors.dangerContrast,
+  // Base
+  base: AppColors.baseInverted,
+  baseInverted: AppColors.base,
+  light: AppColors.light,
+  dark: AppColors.dark,
 );

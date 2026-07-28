@@ -143,16 +143,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   DisplayModeManager<ViewMode>(
                     selected: _viewMode,
-                    onChanged: (value) {
-                      setState(() {
-                        _viewMode = value;
-                      });
-                    },
-                    options: DisplayModePresets.listGrid(
-                      list: ViewMode.list,
-                      grid: ViewMode.grid,
-                    ),
+                    onChanged: (value) { setState(() { _viewMode = value; }); },
+                    options: DisplayModePresets.listGrid(list: ViewMode.list, grid: ViewMode.grid),
                   ),
+
+                  Divider(),
+
+                  Divider(),
 
                   ThemeManager(displayType: ThemeManagerDisplayType.list),
                   ThemeManager(displayType: ThemeManagerDisplayType.segmented),
