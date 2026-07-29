@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_builder.dart" show ActionSheetBuilder;
-import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetDismissType, BottomSheetContainer;
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
 import "package:flutter_first_app/widgets/ui/theme/theme_manager_option_button_segment.dart" show ThemeManagerOptionButtonSegment;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
@@ -112,9 +112,8 @@ class ThemeManager extends StatelessWidget {
         context: context,
         elevation: 0,
         builder: (_) => BottomSheetContainer(
-          title: "Tema do Aplicativo",
-          description: "Selecione o tema para o aplicativo",
-          dismissType: BottomSheetDismissType.back,
+          title: "App Appearance",
+          description: "Select the theme for the app",
           child: resolvedThemeManagerContent
         )
       );

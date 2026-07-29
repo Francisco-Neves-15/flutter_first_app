@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart' show immutable;
 
+@immutable
 class AppMetrics {
   /// Value: 32
   static const double extraLarge = 32;

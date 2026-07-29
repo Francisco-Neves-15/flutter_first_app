@@ -2,13 +2,14 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_button.dart";
 
 class ActionSheetBuilderItem {
-  final String label;
-
-  final IconData? icon;
-
   final BottomSheetButtonPalette palette;
 
+  final IconData? icon;
   final Color? iconColor;
+  final double? iconSize;
+  final double? iconFill;
+
+  final String label;
   final Color? labelColor;
 
   final bool show;
@@ -18,10 +19,12 @@ class ActionSheetBuilderItem {
   final bool? selected;
 
   const ActionSheetBuilderItem({
-    required this.label,
-    this.icon,
     this.palette = BottomSheetButtonPalette.text,
+    this.icon,
     this.iconColor,
+    this.iconSize,
+    this.iconFill,
+    required this.label,
     this.labelColor,
     this.show = true,
     this.onPressed,

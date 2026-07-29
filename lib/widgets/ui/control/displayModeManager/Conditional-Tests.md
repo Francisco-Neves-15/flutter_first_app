@@ -1,3 +1,7 @@
+# Conditional Tests: `DisplayModeManager`
+
+## Conditional Tests: `DisplayModeManagerSegmented`
+
 | showIcon | showLabel | showSelectedIcon | selectedIconReplaceMainIcon | Result: |
 | -------- | ------- | -------- | ------- | ------- |
 | 0 | 0 | 0 | 0 | *e001* |
@@ -18,3 +22,6 @@
 | 1 | 1 | 1 | 1 | **pass** |
 
 > "pass": means the widget will work correctly, based on the parameters used.
+
+## Conditional Tests: `DisplayModeManagerBottomsheet`
+

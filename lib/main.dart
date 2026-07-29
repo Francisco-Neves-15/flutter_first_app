@@ -17,8 +17,7 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightCol
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
-import "package:flutter_first_app/widgets/ui/control/displayModeManager/display_mode_manager.dart" show DisplayModeManager;
-import "package:flutter_first_app/widgets/ui/control/displayModeManager/display_mode_presets.dart" show DisplayModePresets;
+import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
 import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
 
 
@@ -141,31 +140,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   AppHeader(title: "Configurações"),
 
-                  DisplayModeManager<ViewMode>(
+                  DisplayModeManagerSegmented<ViewMode>(
                     selected: _viewMode,
                     onChanged: (value) { setState(() { _viewMode = value; }); },
                     options: DisplayModePresets.fallback(square: ViewMode.list, circle: ViewMode.grid),
                   ),
 
-                  DisplayModeManager<ViewMode>(
+                  DisplayModeManagerSegmented<ViewMode>(
                     selected: _viewMode,
                     onChanged: (value) { setState(() { _viewMode = value; }); },
                     options: DisplayModePresets.list(compact: ViewMode.list, wide: ViewMode.grid),
                   ),
 
-                  DisplayModeManager<ViewMode>(
+                  DisplayModeManagerSegmented<ViewMode>(
                     selected: _viewMode,
                     onChanged: (value) { setState(() { _viewMode = value; }); },
                     options: DisplayModePresets.grid(compact: ViewMode.list, wide: ViewMode.grid),
                   ),
 
-                  DisplayModeManager<ViewMode>(
+                  DisplayModeManagerSegmented<ViewMode>(
                     selected: _viewMode,
                     onChanged: (value) { setState(() { _viewMode = value; }); },
                     options: DisplayModePresets.listGrid(list: ViewMode.list, grid: ViewMode.grid),
                   ),
 
-                  DisplayModeManager<ViewMode>(
+                  DisplayModeManagerSegmented<ViewMode>(
                     selected: _viewMode,
                     onChanged: (value) { setState(() { _viewMode = value; }); },
                     options: DisplayModePresets.allListGrid(listCompact: ViewMode.list, listWide: ViewMode.grid, gridCompact: ViewMode.list, gridWide: ViewMode.grid),
@@ -173,6 +172,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   Divider(),
 
+                  DisplayModeManagerBottomsheet<ViewMode>(
+                    selected: _viewMode,
+                    onChanged: (value) { setState(() { _viewMode = value; }); },
+                    options: DisplayModePresets.listGrid(list: ViewMode.list, grid: ViewMode.grid),
+                    showSelectedLabel: false,
+                    showIndicator: false,
+                    indicatorPosition: .end,
+                  ),
+  
+                  DisplayModeManagerBottomsheet<ViewMode>(
+                    selected: _viewMode,
+                    onChanged: (value) { setState(() { _viewMode = value; }); },
+                    options: DisplayModePresets.allListGrid(listCompact: ViewMode.list, listWide: ViewMode.grid, gridCompact: ViewMode.list, gridWide: ViewMode.grid),
+                    showSelectedLabel: true,
+                    showIndicator: true,
+                  ),
 
                   Divider(),
 

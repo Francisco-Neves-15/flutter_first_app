@@ -12,6 +12,8 @@ class BottomSheetButton extends StatelessWidget {
 
   final IconData? icon;
   final Color? iconColor;
+  final double? iconSize;
+  final double? iconFill;
 
   final String label;
   final Color? labelColor;
@@ -24,6 +26,8 @@ class BottomSheetButton extends StatelessWidget {
     this.palette = BottomSheetButtonPalette.text,
     this.icon,
     this.iconColor,
+    this.iconSize = 24,
+    this.iconFill = 1,
     required this.label,
     this.labelColor,
     this.selected,
@@ -54,7 +58,7 @@ class BottomSheetButton extends StatelessWidget {
         children: [
           // icon
           if (icon != null) ...[
-            Icon(icon, size: 24, fill: 1, color: iconColor ?? colorPalette),
+            Icon(icon, size: iconSize, fill: iconFill, color: iconColor ?? colorPalette),
             const SizedBox(width: AppMetrics.small),
           ],
           // label
