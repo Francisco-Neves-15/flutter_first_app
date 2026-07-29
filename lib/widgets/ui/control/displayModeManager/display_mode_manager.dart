@@ -4,7 +4,10 @@ import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/models.dart" show DisplayModeOption;
 
+enum DisplayModeManagerType { segmented }
+
 class DisplayModeManager<T> extends StatelessWidget {
+  final DisplayModeManagerType mode;
   final List<DisplayModeOption<T>> options;
   final T selected;
   final ValueChanged<T> onChanged;
@@ -15,12 +18,13 @@ class DisplayModeManager<T> extends StatelessWidget {
 
   const DisplayModeManager({
     super.key,
+    this.mode = DisplayModeManagerType.segmented,
     required this.options,
     required this.selected,
     required this.onChanged,
     this.showIcon = true,
     this.showLabel = false,
-    this.showSelectedIcon = true,
+    this.showSelectedIcon = false,
     this.selectedIconReplaceMainIcon = false
   });
 
