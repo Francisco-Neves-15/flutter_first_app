@@ -1,16 +1,17 @@
-import "package:flutter/material.dart"; 
+import "package:flutter/material.dart";
+import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext; 
 import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show MenuPosition, resolveActions;
 
 class AppNavigationHeader extends StatelessWidget implements PreferredSizeWidget {
 
-  final String title;
+  final String? title;
   final bool menu;
   final MenuPosition menuPosition;
   final List<Widget>? actions;
 
   const AppNavigationHeader({
     super.key,
-    this.title = "",
+    this.title,
     this.menu = true,
     this.menuPosition = MenuPosition.end,
     this.actions,
@@ -29,9 +30,7 @@ class AppNavigationHeader extends StatelessWidget implements PreferredSizeWidget
     );
 
     return AppBar(
-      // leading
-      // title: const Text("Título", style: Theme.of(context).textTheme.displayMedium),
-      title: Text(title, style: Theme.of(context).textTheme.displayMedium),
+      title: Text(title ?? "<title-not-provided>", style: context.appTheme.textStyles.h1),
       actions: resolvedActions,
     );
   }

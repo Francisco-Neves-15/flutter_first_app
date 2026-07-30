@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show MenuPosition;
+import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
 import "package:flutter_first_app/widgets/layout/headers/app_navigation_header.dart" show AppNavigationHeader;
 
 class AppScaffold extends StatelessWidget {
@@ -16,11 +17,18 @@ class AppScaffold extends StatelessWidget {
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
   /// AppBar
-  final String title;
   final bool useAppBar;
-  final bool menu;
-  final MenuPosition menuPosition;
-  final List<Widget>? actions;
+  final String? appBarTitle;
+  final bool appBarUseMenu;
+  final MenuPosition appBarMenuPosition;
+  final List<Widget>? appBarActions;
+
+  /// AppHeader
+  final bool useAppHeader;
+  final String? appHeaderTitle;
+  final bool appHeaderUseMenu;
+  final MenuPosition appHeaderMenuPosition;
+  final List<Widget>? appHeaderActions;
 
   const AppScaffold({
     super.key,
@@ -35,37 +43,63 @@ class AppScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     // AppBar
-    this.title = "",
-    this.useAppBar = true,
-    this.menu = true,
-    this.menuPosition = MenuPosition.end,
-    this.actions,
+    this.useAppBar = false,
+    this.appBarTitle,
+    this.appBarUseMenu = true,
+    this.appBarMenuPosition = MenuPosition.end,
+    this.appBarActions,
+    // AppHeader
+    this.useAppHeader = false,
+    this.appHeaderTitle,
+    this.appHeaderUseMenu = true,
+    this.appHeaderMenuPosition = MenuPosition.end,
+    this.appHeaderActions,
   });
 
   @override
   Widget build(BuildContext context) {
 
+    Widget resolvedAppHeader = AppHeader(
+      title: appHeaderTitle,
+      useMenu: appHeaderUseMenu,
+      menuPosition: appHeaderMenuPosition,
+      actions: appHeaderActions,
+    );
+
+    List<Widget> childList = [
+      if (useAppHeader) ...[resolvedAppHeader],
+      body
+    ];
+
+    Widget childColumn = Column(
+      mainAxisAlignment: .start,
+      crossAxisAlignment: .start,
+      children: childList,
+    );
+
     Widget resolvedChild;
     if (safeArea && scroll) {
-      resolvedChild = SafeArea(child: ListView(children: [body]));
+      resolvedChild = SafeArea(child: ListView(children: childList));
     } else if (safeArea) {
-      resolvedChild = SafeArea(child: body);
+      resolvedChild = SafeArea(child: childColumn);
     } else if (scroll) {
-      resolvedChild = ListView(children: [body]);
+      resolvedChild = ListView(children: childList);
     } else {
-      resolvedChild = body;
+      resolvedChild = childColumn;
     }
 
     return Scaffold(
       appBar: useAppBar ? AppNavigationHeader(
-        title: title,
-        actions: actions,
-        menu: menu,
-        menuPosition: menuPosition,
+        title: appBarTitle,
+        actions: appBarActions,
+        menu: appBarUseMenu,
+        menuPosition: appBarMenuPosition,
       ) : null,
       body: resolvedChild,
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
+      resizeToAvoidBottomInset: true,
+      bottomNavigationBar: SafeArea(bottom: true, child: Container(height: 64, color: Color(0x50FF0000))),
     );
   }
 }

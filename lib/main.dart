@@ -16,7 +16,6 @@ import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightCol
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
-import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
 import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
 
@@ -113,6 +112,8 @@ enum ViewMode {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  // int currentPageIndex = 0;
+
   ViewMode _viewMode = ViewMode.list;
 
   @override
@@ -124,164 +125,165 @@ class _MyHomePageState extends State<MyHomePage> {
     //   animation: ThemeController.instance,
     //   builder: (context, _) {
 
+    Widget testArea = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: AppMetrics.small,
+      children: [
+
+        DisplayModeManagerSegmented<ViewMode>(
+          selected: _viewMode,
+          onChanged: (value) { setState(() { _viewMode = value; }); },
+          options: DisplayModePresets.fallback(square: ViewMode.list, circle: ViewMode.grid),
+        ),
+
+        DisplayModeManagerSegmented<ViewMode>(
+          selected: _viewMode,
+          onChanged: (value) { setState(() { _viewMode = value; }); },
+          options: DisplayModePresets.list(compact: ViewMode.list, wide: ViewMode.grid),
+        ),
+
+        DisplayModeManagerSegmented<ViewMode>(
+          selected: _viewMode,
+          onChanged: (value) { setState(() { _viewMode = value; }); },
+          options: DisplayModePresets.grid(compact: ViewMode.list, wide: ViewMode.grid),
+        ),
+
+        DisplayModeManagerSegmented<ViewMode>(
+          selected: _viewMode,
+          onChanged: (value) { setState(() { _viewMode = value; }); },
+          options: DisplayModePresets.listGrid(list: ViewMode.list, grid: ViewMode.grid),
+        ),
+
+        DisplayModeManagerSegmented<ViewMode>(
+          selected: _viewMode,
+          onChanged: (value) { setState(() { _viewMode = value; }); },
+          options: DisplayModePresets.allListGrid(listCompact: ViewMode.list, listWide: ViewMode.grid, gridCompact: ViewMode.list, gridWide: ViewMode.grid),
+        ),
+
+        Divider(),
+
+        DisplayModeManagerBottomsheet<ViewMode>(
+          selected: _viewMode,
+          onChanged: (value) { setState(() { _viewMode = value; }); },
+          options: DisplayModePresets.listGrid(list: ViewMode.list, grid: ViewMode.grid),
+          showSelectedLabel: false,
+          showIndicator: false,
+          indicatorPosition: .end,
+        ),
+
+        DisplayModeManagerBottomsheet<ViewMode>(
+          selected: _viewMode,
+          onChanged: (value) { setState(() { _viewMode = value; }); },
+          options: DisplayModePresets.allListGrid(listCompact: ViewMode.list, listWide: ViewMode.grid, gridCompact: ViewMode.list, gridWide: ViewMode.grid),
+          showSelectedLabel: true,
+          showIndicator: true,
+        ),
+
+        Divider(),
+
+        ThemeManager(displayType: ThemeManagerDisplayType.list),
+        ThemeManager(displayType: ThemeManagerDisplayType.segmented),
+        Text(
+          'Sem style explícito (herda DefaultTextStyle + tema) →'
+          'size=${Theme.of(context).textTheme.displayMedium?.fontSize}, '
+          'font=${Theme.of(context).textTheme.displayMedium?.fontFamily}'
+          'backgroundColor=${Theme.of(context).textTheme.displayMedium?.backgroundColor}'
+          'background=${Theme.of(context).textTheme.displayMedium?.background}',
+        ),
+        Text("Display", style: context.appTheme.textStyles.display),
+        Text("H1", style: context.appTheme.textStyles.h1),
+        Text("H2", style: context.appTheme.textStyles.h2),
+        Text("H3", style: context.appTheme.textStyles.h3),
+        Text("Body", style: context.appTheme.textStyles.body),
+        Text("Caption", style: context.appTheme.textStyles.caption),
+        Text("Micro", style: context.appTheme.textStyles.micro),
+        Text("Label", style: context.appTheme.textStyles.label),
+        Text("Button Text", style: context.appTheme.textStyles.buttonText),
+        Text("Button Small Text", style: context.appTheme.textStyles.buttonSmallText),
+        Text("Body (Bold)", style: context.appTheme.textStyles.body.copyWith(fontWeight: FontWeight.bold)),
+        Text("Body (Italic)", style: context.appTheme.textStyles.body.copyWith(fontStyle: FontStyle.italic)),
+        Text(
+          "Cor direta do token",
+          style: TextStyle(color: context.appTheme.colors.primary),
+        ),
+        Divider(),
+        Text(
+          'See the props (it also works for: `context.appTheme.textStyles`):'
+          'bodySmall -> '
+          'size=${Theme.of(context).textTheme.bodySmall?.fontSize}, '
+          'font=${Theme.of(context).textTheme.bodySmall?.fontFamily}',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+        Text(
+          'Highlighted Text',
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+            background: Paint()
+              ..color = Colors.blue
+              ..strokeWidth = 2.0
+              ..style = PaintingStyle.stroke
+              ..strokeJoin = StrokeJoin.round,
+          ),
+        ),
+        // Divider(),
+        // Column(
+        //   spacing: 4,
+        //   children: [
+        //     Row(
+        //       spacing: 8, 
+        //       children: [
+        //         Expanded(child: ElevatedButton(
+        //           onPressed: () {},
+        //           child: const Text("Clique 1"),
+        //         )),
+        //       ]
+        //     ),
+        //     Row(
+        //       spacing: 8, 
+        //       children: [
+        //         Expanded(child: TextButton(
+        //           onPressed: () {},
+        //           child: const Text("Clique 2"),
+        //         )),
+        //         Expanded(child: OutlinedButton(
+        //           onPressed: () {},
+        //           child: const Text("Clique 3"),
+        //         )),
+        //       ]
+        //     )
+        //   ]
+        // ),
+        // Divider(),
+        // Image.network(
+        //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcTTTVv5agc4-0CfIq1mWbt6NxUox3HiD7Q&s",
+        //   loadingBuilder: (context, child, progress) {
+        //     return progress == null ? child : LinearProgressIndicator();
+        //   },
+        //   width: 200,
+        //   height: 200,
+        //   semanticLabel: "White Owl",
+        // ),
+      ],
+    );
 
     return ListenableBuilder(
      listenable: ThemeController.instance,
      builder: (context, _) {
 
         return AppScaffold(
-            title: widget.title,
-            useAppBar: false,
+            useAppHeader: true,
+            appHeaderTitle: widget.title,
             body: AppContainer(
               autoPadding: true,
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: AppMetrics.small,
-                children: [
-                  AppHeader(title: "Configurações"),
-
-                  DisplayModeManagerSegmented<ViewMode>(
-                    selected: _viewMode,
-                    onChanged: (value) { setState(() { _viewMode = value; }); },
-                    options: DisplayModePresets.fallback(square: ViewMode.list, circle: ViewMode.grid),
-                  ),
-
-                  DisplayModeManagerSegmented<ViewMode>(
-                    selected: _viewMode,
-                    onChanged: (value) { setState(() { _viewMode = value; }); },
-                    options: DisplayModePresets.list(compact: ViewMode.list, wide: ViewMode.grid),
-                  ),
-
-                  DisplayModeManagerSegmented<ViewMode>(
-                    selected: _viewMode,
-                    onChanged: (value) { setState(() { _viewMode = value; }); },
-                    options: DisplayModePresets.grid(compact: ViewMode.list, wide: ViewMode.grid),
-                  ),
-
-                  DisplayModeManagerSegmented<ViewMode>(
-                    selected: _viewMode,
-                    onChanged: (value) { setState(() { _viewMode = value; }); },
-                    options: DisplayModePresets.listGrid(list: ViewMode.list, grid: ViewMode.grid),
-                  ),
-
-                  DisplayModeManagerSegmented<ViewMode>(
-                    selected: _viewMode,
-                    onChanged: (value) { setState(() { _viewMode = value; }); },
-                    options: DisplayModePresets.allListGrid(listCompact: ViewMode.list, listWide: ViewMode.grid, gridCompact: ViewMode.list, gridWide: ViewMode.grid),
-                  ),
-
-                  Divider(),
-
-                  DisplayModeManagerBottomsheet<ViewMode>(
-                    selected: _viewMode,
-                    onChanged: (value) { setState(() { _viewMode = value; }); },
-                    options: DisplayModePresets.listGrid(list: ViewMode.list, grid: ViewMode.grid),
-                    showSelectedLabel: false,
-                    showIndicator: false,
-                    indicatorPosition: .end,
-                  ),
-  
-                  DisplayModeManagerBottomsheet<ViewMode>(
-                    selected: _viewMode,
-                    onChanged: (value) { setState(() { _viewMode = value; }); },
-                    options: DisplayModePresets.allListGrid(listCompact: ViewMode.list, listWide: ViewMode.grid, gridCompact: ViewMode.list, gridWide: ViewMode.grid),
-                    showSelectedLabel: true,
-                    showIndicator: true,
-                  ),
-
-                  Divider(),
-
-                  ThemeManager(displayType: ThemeManagerDisplayType.list),
-                  ThemeManager(displayType: ThemeManagerDisplayType.segmented),
-                  Text(
-                    'Sem style explícito (herda DefaultTextStyle + tema) →'
-                    'size=${Theme.of(context).textTheme.displayMedium?.fontSize}, '
-                    'font=${Theme.of(context).textTheme.displayMedium?.fontFamily}'
-                    'backgroundColor=${Theme.of(context).textTheme.displayMedium?.backgroundColor}'
-                    'background=${Theme.of(context).textTheme.displayMedium?.background}',
-                  ),
-                  Text("Display", style: context.appTheme.textStyles.display),
-                  Text("H1", style: context.appTheme.textStyles.h1),
-                  Text("H2", style: context.appTheme.textStyles.h2),
-                  Text("H3", style: context.appTheme.textStyles.h3),
-                  Text("Body", style: context.appTheme.textStyles.body),
-                  Text("Caption", style: context.appTheme.textStyles.caption),
-                  Text("Micro", style: context.appTheme.textStyles.micro),
-                  Text("Label", style: context.appTheme.textStyles.label),
-                  Text("Button Text", style: context.appTheme.textStyles.buttonText),
-                  Text("Button Small Text", style: context.appTheme.textStyles.buttonSmallText),
-                  Text("Body (Bold)", style: context.appTheme.textStyles.body.copyWith(fontWeight: FontWeight.bold)),
-                  Text("Body (Italic)", style: context.appTheme.textStyles.body.copyWith(fontStyle: FontStyle.italic)),
-                  Text(
-                    "Cor direta do token",
-                    style: TextStyle(color: context.appTheme.colors.primary),
-                  ),
-                  Divider(),
-                  Text(
-                    'See the props (it also works for: `context.appTheme.textStyles`):'
-                    'bodySmall -> '
-                    'size=${Theme.of(context).textTheme.bodySmall?.fontSize}, '
-                    'font=${Theme.of(context).textTheme.bodySmall?.fontFamily}',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  Text(
-                    'Highlighted Text',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      background: Paint()
-                        ..color = Colors.blue
-                        ..strokeWidth = 2.0
-                        ..style = PaintingStyle.stroke
-                        ..strokeJoin = StrokeJoin.round,
-                    ),
-                  ),
-                  Divider(),
-                  Column(
-                    spacing: 4,
-                    children: [
-                      Row(
-                        spacing: 8, 
-                        children: [
-                          Expanded(child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("Clique 1"),
-                          )),
-                        ]
-                      ),
-                      Row(
-                        spacing: 8, 
-                        children: [
-                          Expanded(child: TextButton(
-                            onPressed: () {},
-                            child: const Text("Clique 2"),
-                          )),
-                          Expanded(child: OutlinedButton(
-                            onPressed: () {},
-                            child: const Text("Clique 3"),
-                          )),
-                        ]
-                      )
-                    ]
-                  ),
-                  Divider(),
-                  Image.network(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcTTTVv5agc4-0CfIq1mWbt6NxUox3HiD7Q&s",
-                    loadingBuilder: (context, child, progress) {
-                      return progress == null ? child : LinearProgressIndicator();
-                    },
-                    width: 200,
-                    height: 200,
-                    semanticLabel: "White Owl",
-                  )
-                ],
-              ),
+              content: testArea
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {},
               tooltip: "Increment",
               child: const Icon(Icons.add),
             ),
+
         );
 
       }

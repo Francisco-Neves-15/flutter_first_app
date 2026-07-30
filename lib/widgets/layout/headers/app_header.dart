@@ -6,15 +6,15 @@ import "package:flutter_first_app/widgets/ui/app_logo.dart" show AppLogo;
 
 class AppHeader extends StatelessWidget {
 
-  final String title;
-  final bool menu;
+  final String? title;
+  final bool useMenu;
   final MenuPosition menuPosition;
   final List<Widget>? actions;
 
   const AppHeader({
     super.key,
-    this.title = "",
-    this.menu = true,
+    this.title,
+    this.useMenu = true,
     this.menuPosition = MenuPosition.end,
     this.actions,
   });
@@ -23,28 +23,28 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final resolvedActions = resolveActions(
-      menu: menu,
+      menu: useMenu,
       menuPosition: menuPosition,
       actions: actions,
     );
 
     final resolvedLeading = resolveLeading(
-      logo: menu,
+      logo: useMenu,
       logoWidget: AppLogo(height: 48, width: 48),
     );
 
     return SafeArea(child:
       Container(
         height: 64,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+        padding: const EdgeInsets.symmetric(horizontal: AppMetrics.base, vertical: AppMetrics.extraSmall),
         color: context.appTheme.colors.background,
         child: Row(
-          spacing: AppMetrics.small,
+          spacing: AppMetrics.base,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(spacing: AppMetrics.small, children: resolvedLeading),
-            Text(title, style: Theme.of(context).textTheme.titleLarge),
+            Text(title ?? "<title-not-provided>", style: context.appTheme.textStyles.h1),
             Spacer(),
             Row(spacing: AppMetrics.small, children: resolvedActions),
           ],
