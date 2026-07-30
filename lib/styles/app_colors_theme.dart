@@ -9,6 +9,9 @@ class AppThemeColors {
   final Color primary;
   final Color primaryContrast;
   final Color primaryAlpha;
+  final Color primaryInverted;
+  final Color primaryInvertedContrast;
+  final Color primaryInvertedAlpha;
   final Color background;
   final Color backgroundInverted;
   final Color border;
@@ -33,6 +36,9 @@ class AppThemeColors {
     required this.primary,
     required this.primaryContrast,
     required this.primaryAlpha,
+    required this.primaryInverted,
+    required this.primaryInvertedContrast,
+    required this.primaryInvertedAlpha,
     required this.background,
     required this.backgroundInverted,
     required this.border,
@@ -60,6 +66,9 @@ const appLightColors = AppThemeColors(
   primary: AppColors.primary,
   primaryContrast: AppColors.primaryContrast,
   primaryAlpha: AppColors.primaryAlpha,
+  primaryInverted: AppColors.primaryInverted,
+  primaryInvertedContrast: AppColors.primaryInvertedContrast,
+  primaryInvertedAlpha: AppColors.primaryInvertedAlpha,
   // Foundation
   background: AppColors.background,
   backgroundInverted: AppColors.backgroundInverted,
@@ -87,9 +96,12 @@ const appLightColors = AppThemeColors(
 const appDarkColors = AppThemeColors(
   themeMode: AppAvailableThemeMode.dark,
   // Main
-  primary: AppColors.primary,
-  primaryContrast: AppColors.primaryContrast,
-  primaryAlpha: AppColors.primaryAlpha,
+  primary: AppColors.primaryInverted,
+  primaryContrast: AppColors.primaryInvertedContrast,
+  primaryAlpha: AppColors.primaryInvertedAlpha,
+  primaryInverted: AppColors.primary,
+  primaryInvertedContrast: AppColors.primaryContrast,
+  primaryInvertedAlpha: AppColors.primaryAlpha,
   // Foundation
   background: AppColors.backgroundInverted,
   backgroundInverted: AppColors.background,

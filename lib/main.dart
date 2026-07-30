@@ -18,6 +18,7 @@ import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaf
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
 import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
+import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 
 void main() {
@@ -112,23 +113,51 @@ enum ViewMode {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  // int currentPageIndex = 0;
+  int _currentPageIndex = 2;
+  final ScrollController _mainController = ScrollController();
 
   ViewMode _viewMode = ViewMode.list;
 
+  void showModal(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        icon: Icon(Symbols.warning_rounded),
+        title: Text( "Alerta!"),
+        semanticLabel: "Teste",
+        scrollable: true,
+        content: const Text('Example Dialog'),
+        actions: <TextButton>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Close'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    // Required to react to the ThemeController
-
-    // return AnimatedBuilder(
-    //   animation: ThemeController.instance,
-    //   builder: (context, _) {
 
     Widget testArea = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppMetrics.small,
       children: [
+
+        Container(width: 44, height: 44, color: Color(0xFF3B5BDB)),
+        Container(width: 44, height: 44, color: Color(0xFF4C6EF5)),
+        Container(width: 44, height: 44, color: Color(0xFF748FFC)),
+
+        Divider(),
 
         DisplayModeManagerSegmented<ViewMode>(
           selected: _viewMode,
@@ -267,22 +296,121 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
+    Widget bottomNavigationBar = NavigationBar(
+      labelBehavior: .alwaysShow,
+      animationDuration: Duration(milliseconds: 2000),
+      onDestinationSelected: (int index) {
+
+        debugPrint("Change to page: $index");
+
+        setState(() {
+          if (index != 3) {
+            _currentPageIndex = index;
+          }
+        });
+
+        if (index != 3) {
+          _mainController.animateTo(
+            0.0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        }
+
+        switch (index) {
+          case 3:
+            showModal(context);
+        }
+
+      },
+      selectedIndex: _currentPageIndex,
+      destinations: <Widget>[
+        NavigationDestination(
+          selectedIcon: Icon(Symbols.home_rounded, color: context.appTheme.colors.primary, fill: 1),
+          icon: Icon(Symbols.home_rounded, color: context.appTheme.colors.primary, fill: 0),
+          label: "Home",
+          tooltip: "",
+        ),
+        NavigationDestination(
+          selectedIcon: Badge(
+            offset: Offset(16, -4),
+            label: Text("2"),
+            // isLabelVisible: _currentPageIndex != 1,
+            child: Icon(Symbols.concierge_rounded, color: context.appTheme.colors.primary, fill: 1),
+          ),
+          icon: Badge(
+            offset: Offset(16, -4),
+            label: Text("2"),
+            // isLabelVisible: _currentPageIndex != 1,
+            child: Icon(Symbols.concierge_rounded, color: context.appTheme.colors.primary, fill: 0),
+          ),
+          label: "UI Tests",
+          tooltip: "",
+        ),
+        NavigationDestination(
+          icon: Icon(Symbols.add_rounded, color: context.appTheme.colors.primary, fill: 0),
+          label: "",
+        ),
+        NavigationDestination(
+          selectedIcon: Badge(
+            isLabelVisible: false,
+            child: Icon(Symbols.notifications_rounded, color: context.appTheme.colors.primary, fill: 1),
+          ),
+          icon: Badge(
+            isLabelVisible: true, 
+            backgroundColor: Color(0xFFFF0000),
+            child: Icon(Symbols.notifications_rounded, color: context.appTheme.colors.primary, fill: 0),
+          ),
+          label: "Notifications",
+          tooltip: "",
+        ),
+        NavigationDestination(
+          selectedIcon: Icon(Symbols.settings_rounded, color: context.appTheme.colors.primary, fill: 1),
+          icon: Icon(Symbols.settings_rounded, color: context.appTheme.colors.primary, fill: 0),
+          label: "Settings",
+          tooltip: "",
+        ),
+      ],
+    );
+
+    List<Widget> bottomNavigationBarTabs = [
+      Column(children: [
+        Text("Home")
+      ]),
+      testArea,
+      Column(children: [
+        Text("Notifications")
+      ]),
+      Column(children: [
+        Text("Settings")
+      ]),
+    ];
+
+    // Required to react to the ThemeController
+    // return AnimatedBuilder(
+    //   animation: ThemeController.instance,
+    //   builder: (context, _) {
     return ListenableBuilder(
      listenable: ThemeController.instance,
      builder: (context, _) {
 
         return AppScaffold(
+            controller: _mainController,
             useAppHeader: true,
             appHeaderTitle: widget.title,
+            // BottomNavigationBar: ,
+            bottomNavigationBar: bottomNavigationBar,
+            // Body
             body: AppContainer(
               autoPadding: true,
-              content: testArea
+              content: bottomNavigationBarTabs[_currentPageIndex]
             ),
-            floatingActionButton: FloatingActionButton(
+            // Floating Button
+            floatingActionButton: _currentPageIndex == 0 ? FloatingActionButton(
               onPressed: () {},
               tooltip: "Increment",
               child: const Icon(Icons.add),
-            ),
+            ) : null,
 
         );
 

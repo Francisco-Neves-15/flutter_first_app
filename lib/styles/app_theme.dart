@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 
 import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
 import "package:flutter_first_app/styles/app_colors_theme.dart" show AppThemeColors;
@@ -164,6 +165,55 @@ class AppTheme {
       ),
     );
 
+    final navigationBarTheme = NavigationBarThemeData(
+      elevation: 0,
+      labelPadding: .all(0),
+      labelBehavior: .alwaysShow,
+      backgroundColor: Colors.transparent,
+      indicatorColor: Colors.transparent,
+      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>(
+        (states) {
+          if (states.contains(WidgetState.selected)) {
+            return TextStyle(
+              color: colors.primary,
+              fontSize: 12,
+              fontStyle: .normal,
+              fontWeight: .w500,
+              fontFamily: "Urbanist"
+            );
+          }
+          return TextStyle(
+            color: colors.text,
+              fontSize: 12,
+              fontStyle: .normal,
+              fontWeight: .w500,
+              fontFamily: "Urbanist"
+          );
+        },
+      ),
+      iconTheme: WidgetStateProperty.resolveWith<IconThemeData?>(
+        (states) {
+          return IconThemeData(
+            color: colors.primary,
+            size: 32
+          );
+        },
+      ),
+    );
+
+    final badgeTheme = BadgeThemeData(
+      backgroundColor: colors.primary,
+      textColor: colors.primaryContrast,
+      padding: .all(AppMetrics.min),
+      textStyle: TextStyle(
+        color: colors.primaryContrast,
+        fontSize: 12,
+        fontStyle: .normal,
+        fontWeight: .w500,
+        fontFamily: "Urbanist"
+      )
+    );
+
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
@@ -182,7 +232,9 @@ class AppTheme {
         showDragHandle: true,
         dragHandleColor: colors.neutral,
         dragHandleSize: Size(128, 4),
-      )
+      ),
+      navigationBarTheme: navigationBarTheme,
+      badgeTheme: badgeTheme,
     );
   }
 }

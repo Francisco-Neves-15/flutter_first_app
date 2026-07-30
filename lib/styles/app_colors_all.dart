@@ -5,6 +5,9 @@ class AppColors {
   static const primary = Color(0xFF000080);
   static const primaryContrast = Color(0xFFFFFFFF);
   static const primaryAlpha = Color(0xBF000080);
+  static const primaryInverted = Color(0xFF3B5BDB);
+  static const primaryInvertedContrast = Color(0xFFFFFFFF);
+  static const primaryInvertedAlpha = Color(0x803B5BDB);
   // Foundation
   static const background = Color(0xFFF3F3F3);
   static const backgroundInverted = Color(0xFF0B0B0B);
@@ -133,22 +136,3 @@ class AppColors {
 // - 2% — 05
 // - 1% — 03
 // - 0% — 00
-
-// === 4-digits version ===
-
-// - 100% — F
-// - 93% — E
-// - 86% — D
-// - 80% — C
-// - 73% — B
-// - 67% — A
-// - 60% — 9
-// - 53% — 8
-// - 47% — 7
-// - 40% — 6
-// - 33% — 5
-// - 27% — 4
-// - 20% — 3
-// - 13% — 2
-// - 7% — 1
-// - 0% — 0
