@@ -106,15 +106,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 // test
+
 enum ViewMode {
   list,
   grid,
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+enum AppHomeTab {
+  home,
+  tests,
+  notifications,
+  settings,
+}
 
-  int _currentPageIndex = 2;
-  final ScrollController _mainController = ScrollController();
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+
+  AppHomeTab initialHomeTab = AppHomeTab.home;
+  int _currentScreenIndex = 0;
+
+  final ScrollController _mainScreenController = ScrollController();
+  late final TabController homeTabController;
 
   ViewMode _viewMode = ViewMode.list;
 
@@ -146,9 +157,89 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    debugPrint(">>>> Init");
+    _currentScreenIndex = initialHomeTab.index;
+    _viewMode = ViewMode.list;
+
+    homeTabController = TabController(
+      length: 3,
+      vsync: this,
+    );
+
+  }
+
+  @override
+  void dispose() {
+    homeTabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
 
-    Widget testArea = Column(
+    // Home Screen
+
+    Widget homeScreenTabsHeader = ListenableBuilder(
+     listenable: homeTabController,
+     builder: (context, _) {
+        return TabBar(
+          controller: homeTabController,
+          indicatorSize: .tab,
+          indicatorPadding: EdgeInsetsGeometry.symmetric(horizontal: 4),
+          labelPadding: .all(0),
+          labelColor: context.appTheme.colors.primary,
+          labelStyle: context.appTheme.textStyles.label,
+          unselectedLabelColor: context.appTheme.colors.text,
+          tabs: [
+            Tab(
+              icon: Icon(Icons.directions_car),
+              text: "Car",
+              iconMargin: EdgeInsetsGeometry.only(bottom: 4),
+            ),
+            Tab(
+              icon: Icon(Icons.directions_transit),
+              text: "Bus",
+              iconMargin: EdgeInsetsGeometry.only(bottom: 8),
+            ),
+            Tab(
+              child: Row(
+                crossAxisAlignment: .center,
+                mainAxisAlignment: .center,
+                children: [
+                  Text("Bike"),
+                  if (homeTabController.index == 2) ...[Icon(Symbols.keyboard_arrow_down_rounded, size: 20, fill: 1)]
+                ],
+              ),
+            ),
+          ],
+        );
+      }
+    );
+
+    Widget homeScreenTabsBody = TabBarView(
+      controller: homeTabController,
+      children: [
+        ListView(
+          controller: _mainScreenController,
+          children: [
+            Text("Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque veniam beatae inventore temporibus optio officiis, nulla nobis illum, recusandae ex accusamus molestias ipsum asperiores. Vero quasi dolores inventore nostrum ut ad laborum voluptate aliquid voluptatem, error repellat molestias minus illum consequuntur, nisi facere ab consectetur mollitia ex aliquam autem eum. Quas exercitationem et eum consequatur veritatis? Officiis, minima iste. Temporibus, harum quibusdam corrupti consequuntur eius facilis perferendis amet. Assumenda unde repellat autem officia error praesentium deleniti pariatur cupiditate nihil reiciendis id laboriosam delectus vitae, harum illo, iusto beatae aut accusantium, vel saepe eligendi similique architecto quisquam? Itaque eius enim similique distinctio eos impedit pariatur est, ullam suscipit aliquid aut totam dolorum quidem hic! Quis sequi autem est provident animi dolore ex iste! Repellat amet numquam, vero, in deserunt accusantium consequuntur odit dolor provident fugit debitis natus facilis laboriosam alias? Architecto quam nihil numquam dolorum mollitia commodi velit cumque doloremque eligendi sint aspernatur dolor, atque qui impedit? Quo amet, cupiditate mollitia quibusdam blanditiis harum reprehenderit cumque ipsum nisi ipsa commodi quisquam esse animi, dolores quam ut assumenda. Dolores iste illum commodi sapiente nulla culpa eaque dolore quidem sed quaerat, asperiores sunt, temporibus aspernatur illo fugit eius id voluptatum dicta cupiditate laboriosam similique. Iusto, dolor. Distinctio debitis molestiae nobis ipsa consequatur! Inventore aperiam culpa exercitationem et explicabo hic ipsum nulla autem dolore. Id deserunt quidem excepturi laborum vero officiis perspiciatis, ratione nostrum iure tenetur, ducimus nulla blanditiis praesentium odio modi inventore voluptatem accusantium! Laboriosam quis tempora, aspernatur, similique accusamus dolorem est sit distinctio quisquam facilis et praesentium illum possimus veritatis laborum aperiam dicta quas modi placeat? Magnam tempore culpa pariatur temporibus ab molestias dolorem expedita fugit? Ipsa cumque laboriosam hic saepe aut beatae. Alias corporis veniam magnam animi hic, nisi reiciendis officia odio aliquid id veritatis! Magnam nihil laborum neque inventore, accusantium aspernatur quam tempora veniam eveniet rem accusamus eum quaerat ut quidem illum ipsum aperiam est suscipit sit itaque! Excepturi aperiam dolorem minima laboriosam vel sed perferendis modi laudantium ratione omnis repellat, error dignissimos culpa molestias tempore ut cumque amet nisi, magnam a vero eius unde, exercitationem ea! Animi laudantium a possimus repellendus architecto blanditiis praesentium placeat sit perspiciatis deleniti incidunt, assumenda totam ipsam, delectus recusandae hic velit quas corrupti ullam ex, dicta in quisquam provident consectetur? Assumenda itaque at esse quidem eum maiores voluptatibus, odit laboriosam accusantium molestiae fugiat dolores quod earum illum id amet porro rerum nobis odio enim dolorem ad repellendus distinctio. Tenetur enim mollitia, perspiciatis numquam vel blanditiis odio quam, dolorum eum voluptatem id totam excepturi sunt quo. Reiciendis a in quidem ipsum, doloribus nesciunt accusantium soluta, sequi voluptatem aliquam natus rerum fugit eius corporis delectus. Deserunt sequi minus, ad cum reprehenderit adipisci quas excepturi nihil facere nulla veniam mollitia a velit nam! Sunt est eos incidunt sint impedit aliquam consequuntur at maiores! Quidem amet quia nihil vero quae perspiciatis quam exercitationem, optio voluptatem velit accusantium illo aspernatur eaque animi quo, assumenda, fugit ad perferendis fuga est! Velit quis, accusantium facilis libero provident quidem hic beatae? In blanditiis autem dolore similique ex odit hic non id nam asperiores amet esse, deleniti ducimus iste modi facilis officia corporis rem ullam quas expedita praesentium. Ullam possimus porro cumque aut commodi architecto facilis quo corrupti reiciendis pariatur accusamus fugiat nulla corporis explicabo, voluptatum ipsum magnam. Quibusdam quia laboriosam a dolores. At et temporibus placeat autem esse, vel culpa! Delectus error id ea, tempora eos quae et. Illum, iste repellat corrupti eius vero architecto rem culpa, iure ut laboriosam consequatur. Possimus autem iste consectetur aut quo ullam repellat commodi sapiente eaque praesentium perferendis assumenda exercitationem porro temporibus, vero accusantium rerum? Ducimus natus ut itaque harum laboriosam nesciunt eum delectus. Illo aperiam cumque consequatur nisi, minus necessitatibus dolore dolores totam, omnis, ducimus cupiditate dolor assumenda repellendus praesentium molestiae. Officiis natus facere iste, maiores autem consequuntur architecto quaerat totam praesentium impedit veniam voluptatem laudantium blanditiis aliquam eaque, nostrum molestias placeat quod commodi. Eius, adipisci! Ducimus consequatur magnam nulla debitis commodi ipsum pariatur illum deleniti error sit dolorem vitae esse quidem, eos iusto corrupti cum consequuntur cumque non nobis amet facere dolor. Voluptatibus dolor facilis, ullam magnam ut repellat quia delectus dolores consectetur laborum quam vero pariatur expedita labore natus minus voluptas nesciunt omnis nisi provident sapiente iusto sunt dolorem unde? Ducimus vel aspernatur esse iusto quam suscipit, atque magni, cupiditate sequi quis autem illo, doloribus non voluptatum. Eos fuga earum quas est suscipit aliquid consectetur voluptatum corrupti ipsum hic corporis id soluta veniam, in esse! Soluta repudiandae similique repellendus voluptates molestiae laborum aliquam, fugit possimus nostrum eum distinctio delectus iusto aperiam repellat exercitationem saepe nulla dolorem impedit ea. Illo, minima! A fugiat consequatur provident hic perspiciatis exercitationem illo. Distinctio libero, numquam tenetur impedit animi eum. Illum explicabo corporis totam minima. Inventore debitis nemo repellendus autem. Corrupti, fugit, animi dolore a facilis voluptatibus ab quibusdam earum optio praesentium quos tempora nemo accusantium quae ut exercitationem amet sint nostrum perferendis error unde iste quas repudiandae sunt! Saepe doloremque ipsam non magnam labore maiores fuga, voluptates odio dicta ipsa sapiente atque nihil, ab nisi ad alias maxime corrupti. Alias excepturi eligendi eum debitis error ea nam ex, natus voluptatum iste, molestias doloribus! Deserunt ratione modi soluta similique accusamus quaerat asperiores, a earum, saepe architecto vitae consequuntur pariatur exercitationem, itaque sit rem voluptatum reiciendis. Repellendus voluptatum cum veritatis architecto totam ipsum, minima animi unde asperiores quam ipsam! Ullam culpa soluta, dignissimos provident odit sint libero ea itaque amet eveniet at impedit doloribus ad debitis esse. Pariatur, iure earum nulla qui eveniet sunt soluta, harum commodi at, ullam rem quae laborum cum minus reiciendis magnam adipisci necessitatibus ipsa vel nemo. Voluptatum fugiat error quasi id ullam explicabo earum excepturi accusamus autem nisi magnam nulla illo distinctio adipisci labore inventore ipsam at illum reiciendis repellat, aut itaque. Unde est molestias reiciendis dolore ex delectus voluptatibus vel enim vitae eius? Culpa animi nisi excepturi eaque libero doloremque, vel aspernatur reiciendis temporibus ducimus repellendus ratione eum harum quaerat pariatur nesciunt rerum! Fugiat provident pariatur id, eius explicabo reprehenderit corrupti quod aliquam!")
+          ]
+        ),
+        Container(
+          color: Colors.green,
+          child: Icon(Icons.directions_transit),
+        ),
+        Container(
+          color: Colors.yellow,
+          child: Icon(Icons.directions_bike),
+        ),
+      ],
+    );
+
+    // Test Screen
+    Widget testScreen = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppMetrics.small,
       children: [
@@ -296,6 +387,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
+    // Bottom Navigation Bar
     Widget bottomNavigationBar = NavigationBar(
       labelBehavior: .alwaysShow,
       animationDuration: Duration(milliseconds: 2000),
@@ -305,12 +397,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
         setState(() {
           if (index != 3) {
-            _currentPageIndex = index;
+            _currentScreenIndex = index;
           }
         });
 
         if (index != 3) {
-          _mainController.animateTo(
+          _mainScreenController.animateTo(
             0.0,
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeInOut,
@@ -323,7 +415,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
 
       },
-      selectedIndex: _currentPageIndex,
+      selectedIndex: _currentScreenIndex,
       destinations: <Widget>[
         NavigationDestination(
           selectedIcon: Icon(Symbols.home_rounded, color: context.appTheme.colors.primary, fill: 1),
@@ -335,21 +427,17 @@ class _MyHomePageState extends State<MyHomePage> {
           selectedIcon: Badge(
             offset: Offset(16, -4),
             label: Text("2"),
-            // isLabelVisible: _currentPageIndex != 1,
+            // isLabelVisible: _currentScreenIndex != 1,
             child: Icon(Symbols.concierge_rounded, color: context.appTheme.colors.primary, fill: 1),
           ),
           icon: Badge(
             offset: Offset(16, -4),
             label: Text("2"),
-            // isLabelVisible: _currentPageIndex != 1,
+            // isLabelVisible: _currentScreenIndex != 1,
             child: Icon(Symbols.concierge_rounded, color: context.appTheme.colors.primary, fill: 0),
           ),
           label: "UI Tests",
           tooltip: "",
-        ),
-        NavigationDestination(
-          icon: Icon(Symbols.add_rounded, color: context.appTheme.colors.primary, fill: 0),
-          label: "",
         ),
         NavigationDestination(
           selectedIcon: Badge(
@@ -374,10 +462,28 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     List<Widget> bottomNavigationBarTabs = [
-      Column(children: [
-        Text("Home")
-      ]),
-      testArea,
+      Column(
+        spacing: AppMetrics.extraSmall,
+        children: [
+          homeScreenTabsHeader,
+          Expanded(child: 
+            AppContainer(
+              autoPadding: true,
+              paddingExclude: [.top, .left],
+              content: homeScreenTabsBody
+            )
+          )
+        ]
+      ),
+      ListView(
+        controller: _mainScreenController,
+        children: [
+          AppContainer(
+            autoPadding: true,
+            content: testScreen
+          )
+        ]
+      ),
       Column(children: [
         Text("Notifications")
       ]),
@@ -395,23 +501,18 @@ class _MyHomePageState extends State<MyHomePage> {
      builder: (context, _) {
 
         return AppScaffold(
-            controller: _mainController,
-            useAppHeader: true,
-            appHeaderTitle: widget.title,
-            // BottomNavigationBar: ,
-            bottomNavigationBar: bottomNavigationBar,
-            // Body
-            body: AppContainer(
-              autoPadding: true,
-              content: bottomNavigationBarTabs[_currentPageIndex]
-            ),
-            // Floating Button
-            floatingActionButton: _currentPageIndex == 0 ? FloatingActionButton(
-              onPressed: () {},
-              tooltip: "Increment",
-              child: const Icon(Icons.add),
-            ) : null,
-
+          useAppHeader: true,
+          appHeaderTitle: widget.title,
+          // BottomNavigationBar: ,
+          bottomNavigationBar: bottomNavigationBar,
+          // Body
+          body: bottomNavigationBarTabs[_currentScreenIndex],
+          // Floating Button
+          floatingActionButton: _currentScreenIndex == 0 ? FloatingActionButton(
+            onPressed: () {},
+            tooltip: "Increment",
+            child: const Icon(Icons.add),
+          ) : null,
         );
 
       }

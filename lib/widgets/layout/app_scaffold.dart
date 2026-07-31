@@ -10,10 +10,6 @@ class AppScaffold extends StatelessWidget {
   // SafeArea
   final bool safeArea;
 
-  // Scroll
-  final bool scroll;
-  final ScrollController? controller;
-
   // AppBar
   final Color? appBarBackgroundColor;
   final Color? appBarSurfaceTintColor;
@@ -44,9 +40,6 @@ class AppScaffold extends StatelessWidget {
     required this.body,
     // SafeArea
     this.safeArea = true,
-    // Scroll
-    this.scroll = true,
-    this.controller,
     // AppBar
     this.appBarBackgroundColor,
     this.appBarSurfaceTintColor,
@@ -79,37 +72,16 @@ class AppScaffold extends StatelessWidget {
       actions: appHeaderActions,
     );
 
-    List<Widget> childList = [
-      if (useAppHeader) ...[resolvedAppHeader],
-      body
-    ];
-
-    Widget childListView = ListView(
-      controller: controller,
+    Widget content = Column(
       children: [
-        if (useAppHeader) ...[resolvedAppHeader],
-        body
-      ]
+        if (useAppHeader) resolvedAppHeader,
+        Expanded(child: body),
+      ],
     );
 
-    Widget childColumn = Column(
-      mainAxisAlignment: .start,
-      crossAxisAlignment: .start,
-      children: childList,
-    );
-
-    Widget resolvedChild;
-    if (safeArea && scroll) {
-      resolvedChild = SafeArea(child: childListView);
-    } else if (safeArea) {
-      resolvedChild = SafeArea(child: childColumn);
-    } else if (scroll) {
-      resolvedChild = childListView;
-    } else {
-      resolvedChild = childColumn;
+    if (safeArea) {
+      content = SafeArea(child: content);
     }
-
-    final resolvedBottomNavigationBar = bottomNavigationBar == null ? null : SafeArea(bottom: true, child: bottomNavigationBar!);
 
     return Scaffold(
       appBar: useAppBar ? AppNavigationHeader(
@@ -118,11 +90,14 @@ class AppScaffold extends StatelessWidget {
         menu: appBarUseMenu,
         menuPosition: appBarMenuPosition,
       ) : null,
-      body: resolvedChild,
+      body: content,
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
       resizeToAvoidBottomInset: true,
-      bottomNavigationBar: resolvedBottomNavigationBar
+      bottomNavigationBar: bottomNavigationBar != null 
+          ? SafeArea(bottom: true, child: bottomNavigationBar!) 
+          : null,
     );
+
   }
 }
