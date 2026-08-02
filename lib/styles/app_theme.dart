@@ -92,6 +92,7 @@ class AppTheme {
       style: ButtonStyle(
         foregroundColor: WidgetStatePropertyAll(colors.text),
         textStyle: WidgetStatePropertyAll(AppTextStyles.appTextStyle.buttonText),
+
         // Icon
         iconColor: WidgetStatePropertyAll(colors.text),
         iconSize: WidgetStatePropertyAll(24),
@@ -115,6 +116,13 @@ class AppTheme {
         borderRadius: BorderRadius.circular(32),
       ),
 
+    );
+
+    final iconButtonTheme = IconButtonThemeData(
+      style: ButtonStyle(
+        iconColor: WidgetStatePropertyAll(colors.text),
+        iconSize: WidgetStatePropertyAll(24),
+      )
     );
 
     final segmentedButtonTheme = SegmentedButtonThemeData(
@@ -214,6 +222,34 @@ class AppTheme {
       )
     );
 
+    final tabBarTheme = TabBarThemeData(
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicatorAnimation: .elastic,
+      indicatorColor: colors.primary,
+
+      dividerColor: Colors.transparent,
+      dividerHeight: 2,
+      
+      tabAlignment: TabAlignment.fill,
+          
+      labelPadding: EdgeInsets.symmetric(
+        horizontal: AppMetrics.base,
+        vertical: AppMetrics.extraSmall,
+      ),
+
+      labelColor: colors.primary,
+      unselectedLabelColor: colors.text,
+
+      labelStyle: TextStyle(
+        color: colors.text,
+        fontSize: 14,
+        fontStyle: .normal,
+        fontWeight: .w500,
+        fontFamily: "Urbanist"
+      ),
+
+    );
+
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
@@ -223,6 +259,7 @@ class AppTheme {
       outlinedButtonTheme: outlinedButtonTheme,
       textButtonTheme: textButtonTheme,
       floatingActionButtonTheme: floatingActionButtonTheme,
+      iconButtonTheme: iconButtonTheme,
       segmentedButtonTheme: segmentedButtonTheme,
       dividerTheme: dividerTheme,
       iconTheme: iconTheme,
@@ -235,6 +272,7 @@ class AppTheme {
       ),
       navigationBarTheme: navigationBarTheme,
       badgeTheme: badgeTheme,
+      tabBarTheme: tabBarTheme
     );
   }
 }

@@ -12,6 +12,7 @@ import "package:flutter_first_app/styles/app_text_styles.dart" show AppTextStyle
 // Theme
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightColors, appDarkColors;
+import "package:flutter_first_app/widgets/flutter-widgets-adaptations/tab_bar_tab.dart" show TabBarTab;
 
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
@@ -159,6 +160,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   @override
   void initState() {
     super.initState();
+
     debugPrint(">>>> Init");
     _currentScreenIndex = initialHomeTab.index;
     _viewMode = ViewMode.list;
@@ -184,36 +186,52 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     Widget homeScreenTabsHeader = ListenableBuilder(
      listenable: homeTabController,
      builder: (context, _) {
-        return TabBar(
-          controller: homeTabController,
-          indicatorSize: .tab,
-          indicatorPadding: EdgeInsetsGeometry.symmetric(horizontal: 4),
-          labelPadding: .all(0),
-          labelColor: context.appTheme.colors.primary,
-          labelStyle: context.appTheme.textStyles.label,
-          unselectedLabelColor: context.appTheme.colors.text,
-          tabs: [
-            Tab(
-              icon: Icon(Icons.directions_car),
-              text: "Car",
-              iconMargin: EdgeInsetsGeometry.only(bottom: 4),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_transit),
-              text: "Bus",
-              iconMargin: EdgeInsetsGeometry.only(bottom: 8),
-            ),
-            Tab(
-              child: Row(
-                crossAxisAlignment: .center,
-                mainAxisAlignment: .center,
-                children: [
-                  Text("Bike"),
-                  if (homeTabController.index == 2) ...[Icon(Symbols.keyboard_arrow_down_rounded, size: 20, fill: 1)]
-                ],
+
+        return Row(children: [
+          // Main Items
+          Expanded(child: Align(
+            alignment: .centerLeft,
+            child: TabBar(
+              controller: homeTabController,
+
+              indicatorPadding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+
+              padding: EdgeInsetsGeometry.only(
+                top: 0,
+                bottom: 0,
+                left: AppMetrics.small,
+                right: AppMetrics.small
               ),
-            ),
-          ],
+
+              isScrollable: true,
+              tabAlignment: TabAlignment.start,
+
+              tabs: [
+                TabBarTab(
+                  text: "Início",
+                ),
+                TabBarTab(
+                  text: "Discovery",
+                ),
+                TabBarTab(
+                  child: Row(
+                    crossAxisAlignment: .center,
+                    mainAxisAlignment: .center,
+                    children: [
+                      Text("For You", style: context.appTheme.textStyles.label),
+                      if (homeTabController.index == 2) ...[Icon(Symbols.keyboard_arrow_down_rounded, size: 20, fill: 1)]
+                    ],
+                  )
+                )
+              ],
+            )
+          )),
+          // Separated
+          IconButton(
+            icon: Icon(Symbols.add_rounded, size: 24, fill: 1),
+            onPressed: () => homeTabController.index = 0,
+          )
+          ]
         );
       }
     );
