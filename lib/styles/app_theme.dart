@@ -266,9 +266,10 @@ class AppTheme {
       appBarTheme: appBarTheme,
       shadowColor: colorScheme.shadow,
       bottomSheetTheme: BottomSheetThemeData(
-        showDragHandle: true,
+        showDragHandle: false,
         dragHandleColor: colors.neutral,
         dragHandleSize: Size(128, 4),
+        modalBackgroundColor: Colors.transparent,
       ),
       navigationBarTheme: navigationBarTheme,
       badgeTheme: badgeTheme,

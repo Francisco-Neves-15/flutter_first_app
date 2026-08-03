@@ -9,6 +9,14 @@ enum BottomSheetDismissType { close, back }
 class BottomSheetContainer extends StatelessWidget {
   final Widget child;
 
+  // ----- Others -----
+  final bool floatingContainer;
+
+  // ----- Drag Handle -----
+  final bool showDragHandle;
+  final Color? dragHandleColor;
+  final Size? dragHandleSize;
+
   // --------------- Header ---------------
   final String? title;
   final String? description;
@@ -30,6 +38,12 @@ class BottomSheetContainer extends StatelessWidget {
   const BottomSheetContainer({
     super.key,
     required this.child,
+    // ----- Others -----
+    this.floatingContainer = true,
+    // ----- Drag Handle -----
+    this.showDragHandle = true,
+    this.dragHandleColor,
+    this.dragHandleSize,
     // ----- Header -----
     this.title,
     this.description,
@@ -55,45 +69,74 @@ class BottomSheetContainer extends StatelessWidget {
       BottomSheetDismissType.back => Symbols.reply_rounded,
     };
 
+    final double finalWidth = dragHandleSize?.width ?? 64;
+    final double finalHeight = dragHandleSize?.height ?? 4;
+
+    final double containerBorderRadiusValue = floatingContainer ? 16 : 32;
+    final BorderRadiusGeometry containerBorderRadius = BorderRadiusGeometry.only(
+      topRight: .circular(containerBorderRadiusValue),
+      topLeft: .circular(containerBorderRadiusValue),
+      bottomLeft: floatingContainer ? .circular(containerBorderRadiusValue) : .zero,
+      bottomRight: floatingContainer ? .circular(containerBorderRadiusValue) : .zero
+    );
+
     return SafeArea(
       top: false,
       child: Container(
-        padding: const EdgeInsets.all(AppMetrics.base),
         color: Colors.transparent,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (title != null) ...[
-              Text(title ?? "Title", style: context.appTheme.textStyles.h1),
-              const SizedBox(height: AppMetrics.extraSmall),
-              if (showHeaderDivider && description == null) ...[
-                const Divider()
-              ]
-            ],
-            if (description != null) ...[
-              Text(description ?? "Description", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textSecondary)),
-              const SizedBox(height: AppMetrics.extraSmall),
-              if (showHeaderDivider && description == null) ...[
-                const Divider()
-              ]
-            ],
-            child,
-            if (showDismiss) ...[
-              if (showDismissDivider) ...[
-                const Divider(),
-                const SizedBox(height: AppMetrics.extraSmall),
+        padding: floatingContainer ? EdgeInsets.all(AppMetrics.base) : EdgeInsets.all(0),
+        child: Container(
+          padding: const EdgeInsets.all(AppMetrics.base),
+          decoration: BoxDecoration(
+            color: context.appTheme.colors.background,
+            borderRadius: containerBorderRadius,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (showDragHandle) ...[
+                const SizedBox(height: AppMetrics.small),
+                Container(
+                  decoration: BoxDecoration(
+                    color: context.appTheme.colors.neutral,
+                    borderRadius: BorderRadius.circular(finalHeight/2)
+                  ),
+                  width: finalWidth,
+                  height: finalHeight
+                ),
+                const SizedBox(height: AppMetrics.base)
               ],
-              BottomSheetButton(
-                palette: dismissPalette,
-                icon: icon,
-                label: label,
-                onPressed: onDismiss ?? () => Navigator.of(context).maybePop(),
-              ),
-            ]
-          ],
-        ),
-      ),
+              if (title != null) ...[
+                Text(title ?? "Title", style: context.appTheme.textStyles.h1),
+                const SizedBox(height: AppMetrics.extraSmall),
+                if (showHeaderDivider && description == null) ...[
+                  const Divider()
+                ]
+              ],
+              if (description != null) ...[
+                Text(description ?? "Description", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textSecondary)),
+                const SizedBox(height: AppMetrics.extraSmall),
+                if (showHeaderDivider && description == null) ...[
+                  const Divider()
+                ]
+              ],
+              child,
+              if (showDismiss) ...[
+                if (showDismissDivider) ...[
+                  const Divider(),
+                  const SizedBox(height: AppMetrics.extraSmall),
+                ],
+                BottomSheetButton(
+                  palette: dismissPalette,
+                  icon: icon,
+                  label: label,
+                  onPressed: onDismiss ?? () => Navigator.of(context).maybePop(),
+                ),
+              ]
+            ],
+          )
+        )
+      )
     );
-
   }
 }

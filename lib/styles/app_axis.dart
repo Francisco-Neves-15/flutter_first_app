@@ -15,6 +15,8 @@ enum AppAxisPosition { top, bottom, left, right }
 enum AppAxisPositionVertical { top, bottom }
 /// Horizontal Positions
 enum AppAxisPositionHorizontal { left, right }
+/// Horizontal Diagonal
+enum AppAxisPositionDiagonal { topRight, topLeft, bottomLeft, bottomRight }
 
 /// N - E - S - W
 enum AppCardinalDirections {

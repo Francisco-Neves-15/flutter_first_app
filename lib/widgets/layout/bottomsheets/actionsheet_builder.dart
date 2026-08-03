@@ -31,7 +31,6 @@ class ActionSheetBuilder extends StatelessWidget {
 
           final isLast = index == visibleActions.length - 1;
 
-
           return Column(
             mainAxisSize: MainAxisSize.min,
             spacing: AppMetrics.small,

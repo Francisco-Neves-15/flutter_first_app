@@ -37,13 +37,12 @@ class ThemeManager extends StatelessWidget {
         return switch (displayType) {
           ThemeManagerDisplayType.list => (
             ActionSheetBuilder(
-              showDividers: false,
               actions: [
                 ActionSheetBuilderItem(
                   icon: AppThemeIcons.auto,
                   label: AppThemeLabels.auto,
                   onPressed: () { ThemeController.instance.setTheme(AppAvailableThemeMode.auto); },
-                  selected: ThemeController.instance.isAuto(context)
+                  selected: ThemeController.instance.isAuto(context),
                 ),
                 ActionSheetBuilderItem(
                   icon: AppThemeIcons.light,
@@ -112,6 +111,7 @@ class ThemeManager extends StatelessWidget {
         context: context,
         elevation: 0,
         builder: (_) => BottomSheetContainer(
+          floatingContainer: false,
           title: "App Appearance",
           description: "Select the theme for the app",
           child: resolvedThemeManagerContent
