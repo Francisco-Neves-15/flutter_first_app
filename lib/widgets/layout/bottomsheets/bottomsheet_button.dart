@@ -46,7 +46,7 @@ class BottomSheetButton extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         padding: WidgetStatePropertyAll(
-          EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+          EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         ),
         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8)

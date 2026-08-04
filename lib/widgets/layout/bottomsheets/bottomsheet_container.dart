@@ -10,6 +10,7 @@ class BottomSheetContainer extends StatelessWidget {
   final Widget child;
 
   // ----- Others -----
+  /// In test
   final bool floatingContainer;
 
   // ----- Drag Handle -----
@@ -39,7 +40,7 @@ class BottomSheetContainer extends StatelessWidget {
     super.key,
     required this.child,
     // ----- Others -----
-    this.floatingContainer = true,
+    this.floatingContainer = false,
     // ----- Drag Handle -----
     this.showDragHandle = true,
     this.dragHandleColor,

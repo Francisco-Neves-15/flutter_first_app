@@ -111,7 +111,6 @@ class ThemeManager extends StatelessWidget {
         context: context,
         elevation: 0,
         builder: (_) => BottomSheetContainer(
-          floatingContainer: false,
           title: "App Appearance",
           description: "Select the theme for the app",
           child: resolvedThemeManagerContent

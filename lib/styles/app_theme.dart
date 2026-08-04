@@ -267,9 +267,9 @@ class AppTheme {
       shadowColor: colorScheme.shadow,
       bottomSheetTheme: BottomSheetThemeData(
         showDragHandle: false,
-        dragHandleColor: colors.neutral,
-        dragHandleSize: Size(128, 4),
         modalBackgroundColor: Colors.transparent,
+        // dragHandleColor: colors.neutral,
+        // dragHandleSize: Size(128, 4),
       ),
       navigationBarTheme: navigationBarTheme,
       badgeTheme: badgeTheme,
