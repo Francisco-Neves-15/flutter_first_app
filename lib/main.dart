@@ -14,6 +14,12 @@ import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeC
 import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightColors, appDarkColors;
 import "package:flutter_first_app/widgets/flutter-widgets-adaptations/tab_bar_tab.dart" show TabBarTab;
 
+// Localization
+import "package:flutter_first_app/localization/generated/app_localizations.dart" show AppLocalizations;
+import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
+import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
+import "package:flutter_first_app/config/app_available_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleLabels;
+
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
@@ -36,15 +42,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return AnimatedBuilder(
-      animation: ThemeController.instance,
+    return ListenableBuilder(
+      listenable: Listenable.merge([ThemeController.instance, LangController.instance]),
 
       builder: (context, _) {
 
         return MaterialApp(
+
+          // Theme
           theme: AppTheme.build(appLightColors),
           darkTheme: AppTheme.build(appDarkColors),
           themeMode: ThemeController.instance.themeMode,
+
+          // Localization
+          locale: LangController.instance.locale,
+          supportedLocales: AppAvailableLocale.values.map((value) => value.locale),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
 
           // Wrapper global (como um layout provider no React).
           // Precisa ficar DENTRO do MaterialApp — fora dele o Theme ignora tudo.
@@ -181,6 +194,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
 
+    final l10n = context.l10n;
+
     // Home Screen
 
     Widget homeScreenTabsHeader = ListenableBuilder(
@@ -261,6 +276,34 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppMetrics.small,
       children: [
+
+        // Ungrouped key, used directly from the generated class.
+        Text(l10n.raw.hello),
+
+        // Namespaced access: "common*" and "pageHome*" arb keys regrouped by i18n.dart.
+        Text(l10n.common.confirm),
+        Text(l10n.pageHome.welcome),
+
+        // Placeholder (interpolated) string.
+        Text(l10n.raw.welcomeWithName("Ana", "Silva")),
+
+        // ICU plural string.
+        Text(l10n.raw.newMessages(0)),
+        Text(l10n.raw.newMessages(1)),
+        Text(l10n.raw.newMessages(5)),
+
+        // Language switcher (in-session only, no persistence yet — mirrors ThemeManager).
+        Row(
+          spacing: AppMetrics.small,
+          children: AppAvailableLocale.values.map((value) {
+            return TextButton(
+              onPressed: () => LangController.instance.setLocale(value),
+              child: Text(AppLocaleLabels.of(value)),
+            );
+          }).toList(),
+        ),
+
+        Divider(),
 
         Container(width: 44, height: 44, color: Color(0xFF3B5BDB)),
         Container(width: 44, height: 44, color: Color(0xFF4C6EF5)),
@@ -515,7 +558,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     //   animation: ThemeController.instance,
     //   builder: (context, _) {
     return ListenableBuilder(
-     listenable: ThemeController.instance,
+     listenable: Listenable.merge([ThemeController.instance, LangController.instance]),
      builder: (context, _) {
 
         return AppScaffold(

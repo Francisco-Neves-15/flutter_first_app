@@ -1,0 +1,40 @@
+{
+  "@@locale": "en",
+
+  "hello": "Hello",
+  "@hello": {
+    "description": "Simple greeting used for quick testing."
+  },
+
+  "welcomeWithName": "Welcome {firstName} {lastName}!",
+  "@welcomeWithName": {
+    "description": "Greets the user by first and last name.",
+    "placeholders": {
+      "firstName": { "type": "String" },
+      "lastName": { "type": "String" }
+    }
+  },
+
+  "newMessages": "{count, plural, =0{No new messages} =1{One new message} other{{count} new messages}}",
+  "@newMessages": {
+    "description": "Number of unread messages in the inbox.",
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "commonOk": "OK",
+  "commonCancel": "Cancel",
+  "commonConfirm": "Confirm",
+  "commonContinue": "Continue",
+  "commonClose": "Close",
+  "commonSave": "Save",
+  "commonTypeHere": "Type here",
+
+  "pageHomeTitle": "Home",
+  "pageHomeWelcome": "Welcome to the app!",
+  "pageHomeButtonClick": "Click here",
+
+  "pageSettingsTitle": "Settings",
+  "pageSettingsLanguageLabel": "Language"
+}

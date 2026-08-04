@@ -1,0 +1,24 @@
+{
+  "@@locale": "pt",
+
+  "hello": "Olá",
+
+  "welcomeWithName": "Bem-vindo {firstName} {lastName}!",
+
+  "newMessages": "{count, plural, =0{Nenhuma mensagem nova} =1{Uma mensagem nova} other{{count} mensagens novas}}",
+
+  "commonOk": "OK",
+  "commonCancel": "Cancelar",
+  "commonConfirm": "Confirmar",
+  "commonContinue": "Continuar",
+  "commonClose": "Fechar",
+  "commonSave": "Salvar",
+  "commonTypeHere": "Digite aqui",
+
+  "pageHomeTitle": "Início",
+  "pageHomeWelcome": "Bem-vindo ao app!",
+  "pageHomeButtonClick": "Clique aqui",
+
+  "pageSettingsTitle": "Definições",
+  "pageSettingsLanguageLabel": "Idioma"
+}

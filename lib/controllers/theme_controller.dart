@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_first_app/theme/app_available_themes.dart' show AppAvailableThemeMode, AppAvailableThemeBrightness;
+import "package:flutter/material.dart";
+import "package:flutter_first_app/config/app_available_themes.dart" show AppAvailableThemeMode, AppAvailableThemeBrightness;
 
 class ThemeController extends ChangeNotifier {
   ThemeController._();
