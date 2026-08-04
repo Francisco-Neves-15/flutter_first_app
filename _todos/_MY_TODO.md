@@ -1,1 +1,1 @@
-- criar componente de troca de tema com Builder proprio (remover do body?)
+- Bottomsheet/Modal possui "onClose"? Ajustar ou aplicar se necesssario o metodo, para utilização.

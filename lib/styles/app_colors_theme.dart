@@ -1,6 +1,6 @@
 import "package:flutter/material.dart" show Color, immutable;
 import "package:flutter_first_app/styles/app_colors_all.dart" show AppColors;
-import "package:flutter_first_app/theme/app_available_themes.dart" show AppAvailableThemeMode;
+import "package:flutter_first_app/config/app_available_themes.dart" show AppAvailableThemeMode;
 
 @immutable
 class AppThemeColors {
