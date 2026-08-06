@@ -19,8 +19,6 @@ extension AppAvailableLocaleMapping on AppAvailableLocale {
 const List<AppAvailableLocale> kAppAvailableLocales = AppAvailableLocale.values;
 
 class AppLocaleLabels {
-  /// Label in the locale's own language — for a language picker
-  /// (e.g. show "Português" even while the app UI is in English).
   static const String en = "English";
   static const String pt = "Português";
 
@@ -35,8 +33,6 @@ class AppLocaleLabels {
 }
 
 class AppLocaleIcons {
-  // Flags aren't part of Material Symbols; kept as plain emoji so a picker
-  // can show a flag without pulling in a flag-icon package.
   static const String en = "US";
   static const String pt = "BR";
 

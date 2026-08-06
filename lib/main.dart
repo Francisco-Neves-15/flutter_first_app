@@ -11,14 +11,14 @@ import "package:flutter_first_app/styles/app_text_styles.dart" show AppTextStyle
 
 // Theme
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
-import "package:flutter_first_app/styles/app_colors_theme.dart" show appLightColors, appDarkColors;
+import "package:flutter_first_app/theme/app_colors_theme.dart" show appLightColors, appDarkColors;
 import "package:flutter_first_app/widgets/flutter-widgets-adaptations/tab_bar_tab.dart" show TabBarTab;
 
 // Localization
 import "package:flutter_first_app/localization/generated/app_localizations.dart" show AppLocalizations;
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
-import "package:flutter_first_app/config/app_available_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleLabels;
+import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleLabels;
 
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;

@@ -20,5 +20,6 @@
   "pageHomeButtonClick": "Clique aqui",
 
   "pageSettingsTitle": "Definições",
-  "pageSettingsLanguageLabel": "Idioma"
+  "pageSettingsLanguageLabel": "Idioma",
+  "pageSettingsThemeLabel": "Tema"
 }

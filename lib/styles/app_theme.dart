@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 
-import "package:flutter_first_app/config/app_available_themes.dart" show AppAvailableThemeMode;
-import "package:flutter_first_app/styles/app_colors_theme.dart" show AppThemeColors;
+import "package:flutter_first_app/config/app_config_themes.dart" show AppAvailableThemeMode;
+import "package:flutter_first_app/theme/app_colors_theme.dart" show AppThemeColors;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 import "app_text_styles.dart" show AppTextStyles;

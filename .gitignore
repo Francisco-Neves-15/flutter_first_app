@@ -1,6 +1,4 @@
-*._TEMP/
-*._TEMP/
-**._TEMP/
+*_TEMP/
 
 # Miscellaneous
 *.class

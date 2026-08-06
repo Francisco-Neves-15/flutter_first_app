@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_first_app/styles/app_colors_theme.dart' show AppThemeColors, appLightColors, appDarkColors;
+import 'package:flutter_first_app/theme/app_colors_theme.dart' show AppThemeColors, appLightColors, appDarkColors;
 import 'package:flutter_first_app/styles/app_text_styles.dart' show AppTextStyles, AppTextStyle;
 
 // >>>>> OLD: context.colors

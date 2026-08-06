@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_builder.dart" show ActionSheetBuilder;
@@ -7,7 +8,7 @@ import "package:flutter_first_app/widgets/ui/theme/theme_manager_option_button_s
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
-import "package:flutter_first_app/config/app_available_themes.dart" show AppAvailableThemeMode, AppAvailableThemeBrightness, AppThemeIcons, AppThemeLabels;
+import "package:flutter_first_app/config/app_config_themes.dart" show AppAvailableThemeMode, AppAvailableThemeBrightness, AppThemeIcons, AppThemeLabels;
 
 enum ThemeManagerDisplayType { segmented, list }
 
@@ -30,6 +31,8 @@ class ThemeManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final l10n = context.l10n;
 
     final Widget resolvedThemeManagerContent = ListenableBuilder(
       listenable: ThemeController.instance,
@@ -150,29 +153,37 @@ class ThemeManager extends StatelessWidget {
         }
         ThemeManagerLabel visibleLabel = resolveLabel();
 
-        return TextButton(
-          onPressed: open,
-          style: ButtonStyle(
-            padding: WidgetStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            ),
-            shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8)
-            ))
-          ),
-          child: Row(
-            children: [
-              Row(
-                spacing: AppMetrics.small, 
-                children: [
-                  Icon(visibleLabel.icon, size: 24, fill: 1),
-                  Text(visibleLabel.text, style: context.appTheme.textStyles.buttonText),
-                ]
+        return Column(
+          spacing: AppMetrics.extraSmall,
+          mainAxisAlignment: .start,
+          crossAxisAlignment: .start,
+          children: [
+            Text(l10n.pageSettings.themeLabel, style: context.appTheme.textStyles.h3),
+            TextButton(
+              onPressed: open,
+              style: ButtonStyle(
+                padding: WidgetStatePropertyAll(
+                  EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                ),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)
+                ))
               ),
-              Spacer(),
-              Icon(Symbols.keyboard_arrow_down_rounded, size: 24)
-            ],
-          )
+              child: Row(
+                children: [
+                  Row(
+                    spacing: AppMetrics.small, 
+                    children: [
+                      Icon(visibleLabel.icon, size: 24, fill: 1),
+                      Text(visibleLabel.text, style: context.appTheme.textStyles.buttonText),
+                    ]
+                  ),
+                  Spacer(),
+                  Icon(Symbols.keyboard_arrow_down_rounded, size: 24)
+                ],
+              )
+            )
+          ],
         );
       },
     );

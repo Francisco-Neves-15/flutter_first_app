@@ -33,6 +33,7 @@ class PageSettingsStrings {
 
   String get title => _t.pageSettingsTitle;
   String get languageLabel => _t.pageSettingsLanguageLabel;
+  String get themeLabel => _t.pageSettingsThemeLabel;
 }
 
 /// Ergonomic, namespaced entry point over the flat `AppLocalizations` class

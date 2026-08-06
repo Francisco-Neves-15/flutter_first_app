@@ -36,5 +36,6 @@
   "pageHomeButtonClick": "Click here",
 
   "pageSettingsTitle": "Settings",
-  "pageSettingsLanguageLabel": "Language"
+  "pageSettingsLanguageLabel": "Language",
+  "pageSettingsThemeLabel": "Theme"
 }
