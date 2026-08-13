@@ -66,4 +66,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get pageSettingsThemeLabel => 'Tema';
+
+  @override
+  String get pageSettingsLocaleLabel => 'Idioma';
 }

@@ -193,6 +193,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Theme'**
   String get pageSettingsThemeLabel;
+
+  /// No description provided for @pageSettingsLocaleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get pageSettingsLocaleLabel;
 }
 
 class _AppLocalizationsDelegate

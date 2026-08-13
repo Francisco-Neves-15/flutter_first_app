@@ -21,5 +21,6 @@
 
   "pageSettingsTitle": "Definições",
   "pageSettingsLanguageLabel": "Idioma",
-  "pageSettingsThemeLabel": "Tema"
+  "pageSettingsThemeLabel": "Tema",
+  "pageSettingsLocaleLabel": "Idioma"
 }

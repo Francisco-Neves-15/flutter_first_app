@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_builder.dart" show ActionSheetBuilder;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
-import "package:flutter_first_app/widgets/ui/theme/theme_manager_option_button_segment.dart" show ThemeManagerOptionButtonSegment;
+import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager_option_button_segment.dart" show ThemeManagerOptionButtonSegment;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
+import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/config/app_config_themes.dart" show AppAvailableThemeMode, AppAvailableThemeBrightness, AppThemeIcons, AppThemeLabels;
 

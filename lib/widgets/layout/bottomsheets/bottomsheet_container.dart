@@ -6,7 +6,7 @@ import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_button
 
 enum BottomSheetDismissType { close, back }
 
-class BottomSheetContainer extends StatelessWidget {
+class BottomSheetContainer extends StatefulWidget {
   final Widget child;
 
   // ----- Others -----
@@ -25,6 +25,8 @@ class BottomSheetContainer extends StatelessWidget {
   final bool showHeaderDivider;
 
   // --------------- Dismiss ---------------
+  /// Shows or hides the bottom button
+  final Listenable? dismissListenable;
   /// Shows or hides the bottom button
   final bool showDismiss;
   /// Button text/icon (default styles)
@@ -50,6 +52,7 @@ class BottomSheetContainer extends StatelessWidget {
     this.description,
     this.showHeaderDivider = false,
     // ----- Dismiss -----
+    this.dismissListenable,
     this.showDismiss = true,
     this.dismissType = BottomSheetDismissType.close,
     this.dismissPalette = BottomSheetButtonPalette.text,
@@ -58,34 +61,69 @@ class BottomSheetContainer extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  State<BottomSheetContainer> createState() => _BottomSheetContainerState();
+}
 
-    final String label = switch (dismissType) {
+class _BottomSheetContainerState extends State<BottomSheetContainer> {
+
+  @override
+  void initState() {
+    super.initState();
+    widget.dismissListenable?.addListener(_handleDismissTrigger);
+  }
+
+  @override
+  void didUpdateWidget(covariant BottomSheetContainer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.dismissListenable != widget.dismissListenable) {
+      oldWidget.dismissListenable?.removeListener(_handleDismissTrigger);
+      widget.dismissListenable?.addListener(_handleDismissTrigger);
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.dismissListenable?.removeListener(_handleDismissTrigger);
+    super.dispose();
+  }
+
+  void _handleDismissTrigger() {
+    if (!mounted) return;
+    if (widget.onDismiss != null) {
+      widget.onDismiss!();
+    } else {
+      Navigator.of(context).maybePop();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final String label = switch (widget.dismissType) {
       BottomSheetDismissType.close => "Close",
       BottomSheetDismissType.back => "Back",
     };
 
-    final IconData icon = switch (dismissType) {
+    final IconData icon = switch (widget.dismissType) {
       BottomSheetDismissType.close => Symbols.close,
       BottomSheetDismissType.back => Symbols.reply_rounded,
     };
 
-    final double finalWidth = dragHandleSize?.width ?? 64;
-    final double finalHeight = dragHandleSize?.height ?? 4;
+    final double finalWidth = widget.dragHandleSize?.width ?? 64;
+    final double finalHeight = widget.dragHandleSize?.height ?? 4;
+    final double containerBorderRadiusValue = widget.floatingContainer ? 16 : 32;
 
-    final double containerBorderRadiusValue = floatingContainer ? 16 : 32;
-    final BorderRadiusGeometry containerBorderRadius = BorderRadiusGeometry.only(
-      topRight: .circular(containerBorderRadiusValue),
-      topLeft: .circular(containerBorderRadiusValue),
-      bottomLeft: floatingContainer ? .circular(containerBorderRadiusValue) : .zero,
-      bottomRight: floatingContainer ? .circular(containerBorderRadiusValue) : .zero
+    final BorderRadiusGeometry containerBorderRadius = BorderRadius.only(
+      topRight: Radius.circular(containerBorderRadiusValue),
+      topLeft: Radius.circular(containerBorderRadiusValue),
+      bottomLeft: widget.floatingContainer ? Radius.circular(containerBorderRadiusValue) : Radius.zero,
+      bottomRight: widget.floatingContainer ? Radius.circular(containerBorderRadiusValue) : Radius.zero,
     );
 
     return SafeArea(
       top: false,
       child: Container(
         color: Colors.transparent,
-        padding: floatingContainer ? EdgeInsets.all(AppMetrics.base) : EdgeInsets.all(0),
+        padding: widget.floatingContainer ? const EdgeInsets.all(AppMetrics.base) : EdgeInsets.zero,
         child: Container(
           padding: const EdgeInsets.all(AppMetrics.base),
           decoration: BoxDecoration(
@@ -95,49 +133,58 @@ class BottomSheetContainer extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (showDragHandle) ...[
+              if (widget.showDragHandle) ...[
                 const SizedBox(height: AppMetrics.small),
                 Container(
                   decoration: BoxDecoration(
                     color: context.appTheme.colors.neutral,
-                    borderRadius: BorderRadius.circular(finalHeight/2)
+                    borderRadius: BorderRadius.circular(finalHeight / 2),
                   ),
                   width: finalWidth,
-                  height: finalHeight
+                  height: finalHeight,
                 ),
-                const SizedBox(height: AppMetrics.base)
+                const SizedBox(height: AppMetrics.base),
               ],
-              if (title != null) ...[
-                Text(title ?? "Title", style: context.appTheme.textStyles.h1),
+              if (widget.title != null) ...[
+                Text(widget.title!, style: context.appTheme.textStyles.h1),
                 const SizedBox(height: AppMetrics.extraSmall),
-                if (showHeaderDivider && description == null) ...[
-                  const Divider()
-                ]
+                if (widget.showHeaderDivider && widget.description == null) ...[
+                  const Divider(),
+                ],
               ],
-              if (description != null) ...[
-                Text(description ?? "Description", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textSecondary)),
-                const SizedBox(height: AppMetrics.extraSmall),
-                if (showHeaderDivider && description == null) ...[
-                  const Divider()
-                ]
+              if (widget.description != null) ...[
+                Text(
+                  widget.description!,
+                  style: context.appTheme.textStyles.body.copyWith(
+                    color: context.appTheme.colors.textSecondary,
+                  ),
+                ),
+                if (widget.showHeaderDivider) ...[
+                  const SizedBox(height: AppMetrics.small),
+                  const Divider(),
+                  const SizedBox(height: AppMetrics.small),
+                ] else ...[
+                  const SizedBox(height: AppMetrics.small)
+                ],
               ],
-              child,
-              if (showDismiss) ...[
-                if (showDismissDivider) ...[
+              widget.child,
+              const SizedBox(height: AppMetrics.small),
+              if (widget.showDismiss) ...[
+                if (widget.showDismissDivider) ...[
                   const Divider(),
                   const SizedBox(height: AppMetrics.extraSmall),
                 ],
                 BottomSheetButton(
-                  palette: dismissPalette,
+                  palette: widget.dismissPalette,
                   icon: icon,
                   label: label,
-                  onPressed: onDismiss ?? () => Navigator.of(context).maybePop(),
+                  onPressed: widget.onDismiss ?? () => Navigator.of(context).maybePop(),
                 ),
-              ]
+              ],
             ],
-          )
-        )
-      )
+          ),
+        ),
+      ),
     );
   }
 }

@@ -37,5 +37,6 @@
 
   "pageSettingsTitle": "Settings",
   "pageSettingsLanguageLabel": "Language",
-  "pageSettingsThemeLabel": "Theme"
+  "pageSettingsThemeLabel": "Theme",
+  "pageSettingsLocaleLabel": "Language"
 }

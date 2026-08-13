@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart" show LangManager;
 import "package:flutter_svg/svg.dart" show SvgPicture;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
@@ -27,7 +28,7 @@ import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaf
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
-import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
+import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
 
 
 void main() {
@@ -311,30 +312,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         Text(l10n.raw.newMessages(5)),
 
         // Language switcher (in-session only, no persistence yet — mirrors ThemeManager).
-        Column(
-          spacing: AppMetrics.small,
-          children: AppAvailableLocale.values.map((value) {
-            return TextButton(
-              onPressed: () => LangController.instance.setLocale(value),
-              child: Row(
-                spacing: AppMetrics.base,
-                children: [
-                  SvgPicture.asset(
-                    AppLocaleFlags.of(value),
-                    width: 32 * 1,
-                    height: 32 * 0.75,
-                    semanticsLabel: "${AppLocaleAcronym.of(value)} Flag",
-                  ),
-                  Text(AppLocaleLabels.of(value)),
-                  if (LangController.instance.isCurrent(value)) ...[
-                    Spacer(),
-                    Icon(Symbols.check_rounded)
-                  ]
-                ],
-              ),
-            );
-          }).toList(),
-        ),
+        LangManager(),
 
         Divider(),
 
