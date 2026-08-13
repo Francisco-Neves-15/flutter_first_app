@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart" show SvgPicture;
+import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 // import "package:flutter/services.dart";
 
@@ -18,14 +20,14 @@ import "package:flutter_first_app/widgets/flutter-widgets-adaptations/tab_bar_ta
 import "package:flutter_first_app/localization/generated/app_localizations.dart" show AppLocalizations;
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
-import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleLabels;
+import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleAcronym, AppLocaleFlags, AppLocaleLabels;
 
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
 import "package:flutter_first_app/widgets/ui/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
-import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 
 void main() {
@@ -167,7 +169,23 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           ),
         ],
       ),
-    );
+    ).whenComplete(() {
+      debugPrint("Modal dismissed");
+    });
+  }
+
+  void showBottomSheet() async {
+    showModalBottomSheet<void>(
+      context: context,
+      elevation: 0,
+      builder: (_) => BottomSheetContainer(
+        title: "Title",
+        description: "Desc",
+        child: Text("TEXTOOOOO")
+      )
+    ).whenComplete(() {
+      debugPrint("Bottom sheet dismissed");
+    });
   }
 
   @override
@@ -293,14 +311,36 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         Text(l10n.raw.newMessages(5)),
 
         // Language switcher (in-session only, no persistence yet — mirrors ThemeManager).
-        Row(
+        Column(
           spacing: AppMetrics.small,
           children: AppAvailableLocale.values.map((value) {
             return TextButton(
               onPressed: () => LangController.instance.setLocale(value),
-              child: Text(AppLocaleLabels.of(value)),
+              child: Row(
+                spacing: AppMetrics.base,
+                children: [
+                  SvgPicture.asset(
+                    AppLocaleFlags.of(value),
+                    width: 32 * 1,
+                    height: 32 * 0.75,
+                    semanticsLabel: "${AppLocaleAcronym.of(value)} Flag",
+                  ),
+                  Text(AppLocaleLabels.of(value)),
+                  if (LangController.instance.isCurrent(value)) ...[
+                    Spacer(),
+                    Icon(Symbols.check_rounded)
+                  ]
+                ],
+              ),
             );
           }).toList(),
+        ),
+
+        Divider(),
+
+        ElevatedButton(
+          onPressed: showBottomSheet,
+          child: Text("Chamar BottomSheet"),
         ),
 
         Divider(),

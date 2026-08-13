@@ -4,6 +4,9 @@ import 'package:material_symbols_icons/symbols.dart' show Symbols;
 enum AppAvailableThemeMode { auto, light, dark }
 enum AppAvailableThemeBrightness { light, dark }
 
+const List<AppAvailableThemeMode> kAppAvailableThemeModes = AppAvailableThemeMode.values;
+const List<AppAvailableThemeBrightness> kAppAvailableThemeBrightness = AppAvailableThemeBrightness.values;
+
 class AppThemeIcons {
   static const IconData light = Symbols.light_mode_rounded;
   static const IconData dark = Symbols.dark_mode_rounded;

@@ -32,9 +32,23 @@ class AppLocaleLabels {
   }
 }
 
-class AppLocaleIcons {
+class AppLocaleAcronym {
   static const String en = "US";
   static const String pt = "BR";
+
+  static String of(AppAvailableLocale value) {
+    switch (value) {
+      case AppAvailableLocale.en:
+        return en;
+      case AppAvailableLocale.pt:
+        return pt;
+    }
+  }
+}
+
+class AppLocaleFlags {
+  static const String en = "assets/localization/flags-ISO3166-4x3-svgs/us.svg";
+  static const String pt = "assets/localization/flags-ISO3166-4x3-svgs/br.svg";
 
   static String of(AppAvailableLocale value) {
     switch (value) {

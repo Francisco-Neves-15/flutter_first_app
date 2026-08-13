@@ -10,12 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: 1.0.8
+  flutter_svg: 2.3.0
+
   uuid: 4.5.3
-  material_symbols_icons: ^4.2951.0
+  material_symbols_icons: 4.2951.0
+  cupertino_icons: 1.0.8
   flutter_localizations:
     sdk: flutter
-  intl: ^0.20.2
+  intl: 0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +32,7 @@ flutter:
   assets:
     - assets/images/easywatchlist-logo-black.png
     - assets/images/easywatchlist-logo-white.png
+    - assets/localization/flags-ISO3166-4x3-svgs/
 
 fonts:
   - family: Urbanist

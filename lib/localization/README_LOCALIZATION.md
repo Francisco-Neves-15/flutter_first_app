@@ -105,6 +105,8 @@ Currently, `LangController` only holds **which language is active in the session
 - `current` / `locale` — reads the current state.
 - `setLocale(value)` — updates the language and notifies listeners (`ChangeNotifier`, same as `ThemeController`).
 - `labelCurrent` — label of the current language (via `AppLocaleLabels`).
+- `acronymCurrent` — acronym of the current language (via `AppLocaleAcronym`).
+- `flagsCurrent` — flags of the current language (via `AppLocaleFlags`).
 
 What it does NOT do: persistence across sessions (SharedPreferences) or automatic system language detection. It remains purely in-memory and resets upon restarting the app — same as `ThemeController` today.
 

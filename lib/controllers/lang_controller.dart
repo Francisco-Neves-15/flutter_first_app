@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleLabels;
+import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleLabels, AppLocaleAcronym, AppLocaleFlags;
 
 class LangController extends ChangeNotifier {
   LangController._();
@@ -22,6 +22,12 @@ class LangController extends ChangeNotifier {
 
   /// Label for the language currently selected
   String get labelCurrent => AppLocaleLabels.of(_current);
+
+  /// Acronym for the language currently selected
+  String get acronymCurrent => AppLocaleAcronym.of(_current);
+
+  /// Flags for the language currently selected
+  String get flagsCurrent => AppLocaleFlags.of(_current);
 
   // Methods
 
