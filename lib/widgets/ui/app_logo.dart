@@ -1,37 +1,47 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/config/app_config_themes.dart" show AppAvailableThemeMode;
+import "package:flutter_svg/svg.dart" show SvgPicture;
 
 class AppLogo extends StatelessWidget {
 
-  final AppAvailableThemeMode color;
-  final double width;
-  final double height;
+  final bool? useThemed;
+  final Color? color;
+  final double? width;
+  final double? height;
 
   const AppLogo({
     super.key,
-    this.color = AppAvailableThemeMode.auto,
-    this.width = 32,
-    this.height = 32,
+    this. useThemed,
+    this.color,
+    this.width,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
 
-    final logoLight = Image.asset("assets/images/easywatchlist-logo-black.png", width: width, height: height);
-    final logoDark = Image.asset("assets/images/easywatchlist-logo-white.png", width: width, height: height);
-
-    if (color == AppAvailableThemeMode.dark) {
-      return logoLight;
-    } else if (color == AppAvailableThemeMode.light) {
-      return logoDark;
-    } else {
-      if (context.appTheme.isDark) {
-        return logoDark;
+    Color getColor() {
+      if (context.appTheme.isLight) {
+        return Color(0xFF000000);
       } else {
-        return logoLight;
+        return Color(0xFFFFFFFF);
       }
     }
+    final Color rColor = getColor();
+
+    final logoSvg = SvgPicture.asset(
+      "assets/svg/easywatchlist-logo-1x1.svg",
+      width: width,
+      height: height,
+      colorFilter: ColorFilter.mode(
+        rColor,
+        BlendMode.srcIn
+      ),
+      semanticsLabel: "App Logo",
+    );
+
+    return logoSvg;
   }
 
 }

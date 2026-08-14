@@ -30,8 +30,8 @@ flutter:
   generate: true
 
   assets:
-    - assets/images/easywatchlist-logo-black.png
-    - assets/images/easywatchlist-logo-white.png
+    - assets/images/
+    - assets/svg/
     - assets/localization/flags-ISO3166-4x3-svgs/
 
 fonts:

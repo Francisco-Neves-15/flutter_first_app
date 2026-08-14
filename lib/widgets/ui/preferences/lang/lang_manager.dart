@@ -21,7 +21,14 @@ class LangManagerLabel {
 
 class LangManager extends StatelessWidget {
 
-  const LangManager({super.key});
+  final bool showFlagOnList;
+  final bool showFlagOnLabel;
+
+  const LangManager({
+    super.key,
+    this.showFlagOnLabel = true,
+    this.showFlagOnList = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +39,12 @@ class LangManager extends StatelessWidget {
       listenable: LangController.instance,
       builder: (context, _) { 
       return Column(
-          spacing: AppMetrics.small,
           children: AppAvailableLocale.values.map((value) {
             return TextButton(
               onPressed: () => LangController.instance.setLocale(value),
               style: ButtonStyle(
                 padding: WidgetStatePropertyAll(
-                  EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 ),
                 shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)
@@ -47,12 +53,14 @@ class LangManager extends StatelessWidget {
               child: Row(
                 spacing: AppMetrics.base,
                 children: [
-                  SvgPicture.asset(
-                    AppLocaleFlags.of(value),
-                    width: 32 * 1,
-                    height: 32 * 0.75,
-                    semanticsLabel: "${AppLocaleAcronym.of(value)} Flag",
-                  ),
+                  if (showFlagOnList) ...[
+                    SvgPicture.asset(
+                      AppLocaleFlags.of(value),
+                      width: 32 * 1,
+                      height: 32 * 0.75,
+                      semanticsLabel: "${AppLocaleAcronym.of(value)} Flag",
+                    )
+                  ],
                   Text(AppLocaleLabels.of(value)),
                   if (LangController.instance.isCurrent(value)) ...[
                     Spacer(),
@@ -114,12 +122,14 @@ class LangManager extends StatelessWidget {
                   Row(
                     spacing: AppMetrics.small, 
                     children: [
-                      SvgPicture.asset(
-                        visibleLabel.flag,
-                        width: 32 * 1,
-                        height: 32 * 0.75,
-                        semanticsLabel: "${visibleLabel.acronym} Flag",
-                      ),
+                      if (showFlagOnLabel) ...[
+                        SvgPicture.asset(
+                          visibleLabel.flag,
+                          width: 32 * 1,
+                          height: 32 * 0.75,
+                          semanticsLabel: "${visibleLabel.acronym} Flag",
+                        )
+                      ],
                       Text(visibleLabel.label, style: context.appTheme.textStyles.buttonText),
                     ]
                   ),

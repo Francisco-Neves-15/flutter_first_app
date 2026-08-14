@@ -1,6 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart" show LangManager;
-import "package:flutter_svg/svg.dart" show SvgPicture;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 // import "package:flutter/services.dart";
@@ -21,7 +19,7 @@ import "package:flutter_first_app/widgets/flutter-widgets-adaptations/tab_bar_ta
 import "package:flutter_first_app/localization/generated/app_localizations.dart" show AppLocalizations;
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
-import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleAcronym, AppLocaleFlags, AppLocaleLabels;
+import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping;
 
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
@@ -29,7 +27,7 @@ import "package:flutter_first_app/widgets/layout/app_container.dart" show AppCon
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
 import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
-
+import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart" show LangManager;
 
 void main() {
   runApp(const MyApp());
@@ -146,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
   ViewMode _viewMode = ViewMode.list;
 
-  void showModal(BuildContext context) {
+  void callDialog(BuildContext context) {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -175,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     });
   }
 
-  void showBottomSheet() async {
+  void callBottomSheet(BuildContext context) async {
     showModalBottomSheet<void>(
       context: context,
       elevation: 0,
@@ -281,11 +279,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         ),
         Container(
           color: Colors.green,
-          child: Icon(Icons.directions_transit),
+          child: Icon(Symbols.directions_transit),
         ),
         Container(
           color: Colors.yellow,
-          child: Icon(Icons.directions_bike),
+          child: Icon(Symbols.directions_bike),
         ),
       ],
     );
@@ -312,13 +310,18 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         Text(l10n.raw.newMessages(5)),
 
         // Language switcher (in-session only, no persistence yet — mirrors ThemeManager).
-        LangManager(),
+        LangManager(showFlagOnList: true, showFlagOnLabel: true),
 
         Divider(),
 
         ElevatedButton(
-          onPressed: showBottomSheet,
+          onPressed: () => callBottomSheet(context),
           child: Text("Chamar BottomSheet"),
+        ),
+
+        ElevatedButton(
+          onPressed: () => callDialog(context),
+          child: Text("Chamar Dialog"),
         ),
 
         Divider(),
@@ -380,8 +383,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
         Divider(),
 
-        ThemeManager(displayType: ThemeManagerDisplayType.list),
-        ThemeManager(displayType: ThemeManagerDisplayType.segmented),
+        ThemeManager(displayType: .list),
+        ThemeManager(displayType: .segmented),
+
         Text(
           'Sem style explícito (herda DefaultTextStyle + tema) →'
           'size=${Theme.of(context).textTheme.displayMedium?.fontSize}, '
@@ -490,7 +494,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
         switch (index) {
           case 3:
-            showModal(context);
+            callDialog(context);
         }
 
       },
@@ -590,7 +594,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           floatingActionButton: _currentScreenIndex == 0 ? FloatingActionButton(
             onPressed: () {},
             tooltip: "Increment",
-            child: const Icon(Icons.add),
+            child: const Icon(Symbols.add_rounded),
           ) : null,
         );
 
@@ -626,6 +630,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 //   floatingActionButton: FloatingActionButton(
 //     onPressed: _incrementCounter,
 //     tooltip: "Increment",
-//     child: const Icon(Icons.add),
+//     child: const Icon(Symbols.add_rounded),
 //   ),
 // );
