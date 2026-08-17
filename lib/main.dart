@@ -265,6 +265,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
     final l10n = context.l10n;
 
+    double screenWidth = MediaQuery.sizeOf(context).width;
+    double screenHeight = MediaQuery.sizeOf(context).height;
+
     // Home Screen
 
     Widget homeScreenTabsHeader = ListenableBuilder(
@@ -363,6 +366,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
         // Language switcher (in-session only, no persistence yet — mirrors ThemeManager).
         LangManager(showFlagOnList: true, showFlagOnLabel: true),
+
+        Divider(),
+
+        Text("screenWidth: $screenWidth"),
+        Text("screenHeight: $screenHeight"),
 
         Divider(),
 

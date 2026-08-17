@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_button.dart";
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_button.dart" show ActionSheetButtonPalette;
 
 class ActionSheetBuilderItem {
-  final BottomSheetButtonPalette palette;
+  final ActionSheetButtonPalette palette;
 
   final IconData? icon;
   final Color? iconColor;
@@ -19,7 +19,7 @@ class ActionSheetBuilderItem {
   final bool? selected;
 
   const ActionSheetBuilderItem({
-    this.palette = BottomSheetButtonPalette.text,
+    this.palette = ActionSheetButtonPalette.text,
     this.icon,
     this.iconColor,
     this.iconSize,

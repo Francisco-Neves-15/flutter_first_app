@@ -3,12 +3,12 @@ import "package:flutter_first_app/extensions/theme_extension.dart" show AppTheme
 import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 import "package:material_symbols_icons/symbols.dart";
 
-enum BottomSheetButtonPalette { text, textSecondary, danger }
+enum ActionSheetButtonPalette { text, textSecondary, danger }
 
 class BottomSheetButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
-  final BottomSheetButtonPalette palette;
+  final ActionSheetButtonPalette palette;
 
   final IconData? icon;
   final Color? iconColor;
@@ -23,7 +23,7 @@ class BottomSheetButton extends StatelessWidget {
   const BottomSheetButton({
     super.key,
     this.onPressed,
-    this.palette = BottomSheetButtonPalette.text,
+    this.palette = ActionSheetButtonPalette.text,
     this.icon,
     this.iconColor,
     this.iconSize = 24,
@@ -37,9 +37,9 @@ class BottomSheetButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Color colorPalette = switch (palette) {
-      BottomSheetButtonPalette.text => context.appTheme.colors.text,
-      BottomSheetButtonPalette.textSecondary => context.appTheme.colors.textSecondary,
-      BottomSheetButtonPalette.danger => context.appTheme.colors.danger,
+     ActionSheetButtonPalette.text => context.appTheme.colors.text,
+     ActionSheetButtonPalette.textSecondary => context.appTheme.colors.textSecondary,
+     ActionSheetButtonPalette.danger => context.appTheme.colors.danger,
     };
 
     return TextButton(

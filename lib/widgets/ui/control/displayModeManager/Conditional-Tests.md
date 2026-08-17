@@ -24,4 +24,3 @@
 > "pass": means the widget will work correctly, based on the parameters used.
 
 ## Conditional Tests: `DisplayModeManagerBottomsheet`
-

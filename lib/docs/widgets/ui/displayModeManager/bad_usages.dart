@@ -22,7 +22,8 @@ class BadUsagesDisplayModeManager {
       "Without a label, this configuration cannot produce the intended result. "
       "Consider enabling showLabel or disabling selectedIconReplaceMainIcon. "
       "TIP > Keeping both the main icon and the selected indicator visible is also the "
-      "recommended Material Design behavior, as it provides a clearer selection state.",
+      "recommended Material Design behavior, as it provides a clearer selection state."
+    ,
   );
 
   static const e003 = BadUsageMessage(
