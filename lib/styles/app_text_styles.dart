@@ -38,6 +38,10 @@ class AppTextStyles {
 
   static final baseText = TextStyle(
     fontFamilyFallback: resolveFontFamilyFallback(useRuntime: false),
+    // backgroundColor: Colors.transparent,
+    // fontFamily: "Urbanist",
+    // fontSize: 16,
+    // fontWeight: FontWeight.w400
   );
 
   static final appTextStyle = AppTextStyle(
@@ -69,9 +73,9 @@ class AppTextStyles {
     titleMedium: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 16, fontWeight: FontWeight.w500 ),
     titleSmall: baseText.copyWith( fontFamily: "DynaPuff", fontSize: 14, fontWeight: FontWeight.w500 ),
     // ----- Body's
-    bodySmall: baseText.copyWith( fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w400 ),
+    bodyLarge: baseText.copyWith( fontFamily: "Urbanist", fontSize: 16, fontWeight: FontWeight.w400 ),
     bodyMedium: baseText.copyWith( fontFamily: "Urbanist", fontSize: 14, fontWeight: FontWeight.w400 ),
-    bodyLarge: baseText.copyWith( fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w400 ),
+    bodySmall: baseText.copyWith( fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w400 ),
     // ----- Label's
     labelLarge: baseText.copyWith( fontFamily: "Urbanist", fontSize: 14, fontWeight: FontWeight.w500, ),
     labelMedium: baseText.copyWith( fontFamily: "Urbanist", fontSize: 12, fontWeight: FontWeight.w500 ),

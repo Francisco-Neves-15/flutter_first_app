@@ -40,9 +40,8 @@ class AppTheme {
       );
     }
 
-    // Garante que cor e fonte do textTheme não sejam sobrescritas pelo Material 3.
+    // Material 3 (Default "Text()" in the App)
     final textTheme = AppTextStyles.textTheme.apply(
-      fontFamily: "Urbanist",
       bodyColor: colors.text,
       displayColor: colors.text,
     );
@@ -250,6 +249,42 @@ class AppTheme {
 
     );
 
+    final bottomSheetTheme = BottomSheetThemeData(
+      showDragHandle: false,
+      backgroundColor: colors.backgroundSecondary,
+      modalBackgroundColor: Colors.transparent,
+      // dragHandleColor: colors.neutral,
+      // dragHandleSize: Size(128, 4),
+    );
+
+    final dialogTheme = DialogThemeData(
+      elevation: 0,
+      iconColor: colors.primary,
+      titleTextStyle: TextStyle(
+        color: colors.text,
+        fontSize: 24,
+        fontStyle: .normal,
+        fontWeight: .w700,
+        fontFamily: "Urbanist"
+      ),
+      backgroundColor: colors.backgroundSurface,
+      contentTextStyle: TextStyle(
+        color: colors.text,
+        fontSize: 15,
+        fontStyle: .normal,
+        fontWeight: .w500,
+        fontFamily: "Urbanist"
+      ),
+      actionsPadding: .directional(
+        start: AppMetrics.base, end: AppMetrics.base,
+        top: AppMetrics.base, bottom: AppMetrics.base,
+      ),
+      barrierColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16))
+      ),
+    );
+
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
@@ -265,12 +300,8 @@ class AppTheme {
       iconTheme: iconTheme,
       appBarTheme: appBarTheme,
       shadowColor: colorScheme.shadow,
-      bottomSheetTheme: BottomSheetThemeData(
-        showDragHandle: false,
-        modalBackgroundColor: Colors.transparent,
-        // dragHandleColor: colors.neutral,
-        // dragHandleSize: Size(128, 4),
-      ),
+      bottomSheetTheme: bottomSheetTheme,
+      dialogTheme: dialogTheme,
       navigationBarTheme: navigationBarTheme,
       badgeTheme: badgeTheme,
       tabBarTheme: tabBarTheme

@@ -26,7 +26,7 @@ import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaf
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
-import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart" show ThemeManager, ThemeManagerDisplayType;
+import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart" show ThemeManager;
 import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart" show LangManager;
 
 void main() {
@@ -148,13 +148,13 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        icon: Icon(Symbols.warning_rounded),
+        // icon: Icon(Symbols.warning_rounded, size: 64),
         title: Text( "Alerta!"),
         semanticLabel: "Teste",
         scrollable: true,
         content: const Text('Example Dialog'),
-        actions: <TextButton>[
-          TextButton(
+        actions: [
+          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
             },
@@ -164,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text('Close'),
+            child: const Text('Continue'),
           ),
         ],
       ),
@@ -177,14 +177,66 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     showModalBottomSheet<void>(
       context: context,
       elevation: 0,
-      builder: (_) => BottomSheetContainer(
-        title: "Title",
-        description: "Desc",
-        child: Text("TEXTOOOOO")
+      // builder: (_) => BottomSheetContainer(
+      //   title: "Title",
+      //   description: "Desc",
+      //   child: Text("TEXTOOOOO")
+      // )
+      builder: (_) => Container(
+        height: 250,
+        color: Colors.grey,
+        child: const Center(
+          child: Text("Modal Scrollable BottomSheet"),
+        ),
       )
     ).whenComplete(() {
       debugPrint("Bottom sheet dismissed");
     });
+  }
+
+  void callScrollableBottomSheet(BuildContext context) async {
+    showModalBottomSheet<void>(
+      context: context,
+      elevation: 0,
+      builder: (_) => Container(
+        height: 400,
+        color: Colors.grey,
+        child: ListView.builder(
+          itemCount: 25,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text("Item $index"),
+            );
+          }
+        )
+      )
+    );
+  }
+
+  void callFullScreenBottomSheet(BuildContext context) async {
+    showModalBottomSheet<void>(
+      context: context,
+      elevation: 0,
+      isScrollControlled: true,
+      builder: (_) => DraggableScrollableSheet(
+        initialChildSize: 1.0,
+        maxChildSize: 1.0,
+        minChildSize: 0.5,
+        builder: (_, fullscreenBottomsheetScroller) => Container(
+        color: Colors.grey,
+        child: Text("Asd")
+        // ListView.builder(
+        //   controller: fullscreenBottomsheetScroller,
+        //   itemCount: 50,
+        //   itemBuilder: (context, index) {
+        //     return ListTile(
+        //       title: Text("Item $index"),
+        //     );
+        //   }
+        // )
+      )
+      )
+    );
   }
 
   @override
@@ -316,7 +368,15 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
         ElevatedButton(
           onPressed: () => callBottomSheet(context),
-          child: Text("Chamar BottomSheet"),
+          child: Text("Chamar Modal BottomSheet"),
+        ),
+        ElevatedButton(
+          onPressed: () => callScrollableBottomSheet(context),
+          child: Text("Chamar Scrollable Modal BottomSheet"),
+        ),
+        ElevatedButton(
+          onPressed: () => callFullScreenBottomSheet(context),
+          child: Text("Chamar FullScreen BottomSheet"),
         ),
 
         ElevatedButton(
@@ -329,6 +389,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         Container(width: 44, height: 44, color: Color(0xFF3B5BDB)),
         Container(width: 44, height: 44, color: Color(0xFF4C6EF5)),
         Container(width: 44, height: 44, color: Color(0xFF748FFC)),
+
+        Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSurface, child: Text("Card Text"),),
+        Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSecondary, child: Text("Card Text"),),
+        Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSurfaceInverted, child: Text("Card Text", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textInverted)),),
+        Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSecondaryInverted, child: Text("Card Text", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textInverted)),),
 
         Divider(),
 
@@ -385,6 +450,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
         ThemeManager(displayType: .list),
         ThemeManager(displayType: .segmented),
+
+        Divider(),
 
         Text(
           'Sem style explícito (herda DefaultTextStyle + tema) →'

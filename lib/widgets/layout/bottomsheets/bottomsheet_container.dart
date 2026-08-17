@@ -127,7 +127,7 @@ class _BottomSheetContainerState extends State<BottomSheetContainer> {
         child: Container(
           padding: const EdgeInsets.all(AppMetrics.base),
           decoration: BoxDecoration(
-            color: context.appTheme.colors.background,
+            color: context.appTheme.colors.backgroundSurface,
             borderRadius: containerBorderRadius,
           ),
           child: Column(

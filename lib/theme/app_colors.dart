@@ -10,7 +10,11 @@ class AppColors {
   static const primaryInvertedAlpha = Color(0x803B5BDB);
   // Foundation
   static const background = Color(0xFFF3F3F3);
-  static const backgroundInverted = Color(0xFF0B0B0B);
+  static const backgroundInverted = Color(0xFF0C0C0C);
+  static const backgroundSecondary = Color(0xFFCFCFCF);
+  static const backgroundSecondaryInverted = Color(0xFF323232);
+  static const backgroundSurface = Color(0xFFE7E7E7);
+  static const backgroundSurfaceInverted = Color(0xFF1C1C1C);
   static const border = Color(0xFFB6B6B6);
   static const borderInverted = Color(0xFF4D4D4D);
   static const shadow = Color(0x15000000);

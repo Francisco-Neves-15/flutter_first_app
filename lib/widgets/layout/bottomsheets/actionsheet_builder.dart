@@ -49,7 +49,6 @@ class ActionSheetBuilder extends StatelessWidget {
                 selected: action.selected,
               ),
 
-
               if (showDividers && !isLast)
                 const Divider(
                   height: AppMetrics.small,
