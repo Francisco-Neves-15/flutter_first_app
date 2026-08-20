@@ -6,11 +6,13 @@ class ThemeManagerOptionButtonSegment extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final IconData icon;
   final String label;
+  final double? iconFill;
   const ThemeManagerOptionButtonSegment({
     super.key,
     this.margin = const EdgeInsetsGeometry.all(0),
     required this.icon,
-    required this.label
+    required this.label,
+    this.iconFill = 1
   });
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class ThemeManagerOptionButtonSegment extends StatelessWidget {
       child: Column(
         spacing: AppMetrics.extraSmall,
         children: [
-          Icon(icon, size: 24, fill: 1),
+          Icon(icon, size: 24, fill: iconFill ?? 1),
           Text(label, style: context.appTheme.textStyles.buttonText)
         ]
       ),

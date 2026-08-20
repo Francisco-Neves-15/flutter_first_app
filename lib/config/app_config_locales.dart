@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart' show Locale;
+import 'package:flutter/material.dart' show IconData, Locale;
+import 'package:material_symbols_icons/symbols.dart' show Symbols;
 
 enum AppAvailableLocale { en, pt }
+
+const IconData appLocaleIcon = Symbols.translate_rounded;
 
 extension AppAvailableLocaleMapping on AppAvailableLocale {
   /// `Locale` instance to feed `MaterialApp.locale` / `supportedLocales`.

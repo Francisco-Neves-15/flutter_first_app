@@ -44,6 +44,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonClose => 'Close';
 
   @override
+  String get commonBack => 'Back';
+
+  @override
   String get commonSave => 'Save';
 
   @override
@@ -62,11 +65,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pageSettingsTitle => 'Settings';
 
   @override
-  String get pageSettingsLanguageLabel => 'Language';
-
-  @override
   String get pageSettingsThemeLabel => 'Theme';
 
   @override
+  String get pageSettingsThemeTitle => 'App Appearance';
+
+  @override
+  String get pageSettingsThemeDescription => 'Select the theme for the app';
+
+  @override
   String get pageSettingsLocaleLabel => 'Language';
+
+  @override
+  String get pageSettingsLocaleTitle => 'App Language';
+
+  @override
+  String get pageSettingsLocaleDescription => 'Select the language for the app';
 }

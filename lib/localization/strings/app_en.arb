@@ -28,6 +28,7 @@
   "commonConfirm": "Confirm",
   "commonContinue": "Continue",
   "commonClose": "Close",
+  "commonBack": "Back",
   "commonSave": "Save",
   "commonTypeHere": "Type here",
 
@@ -36,7 +37,12 @@
   "pageHomeButtonClick": "Click here",
 
   "pageSettingsTitle": "Settings",
-  "pageSettingsLanguageLabel": "Language",
+
   "pageSettingsThemeLabel": "Theme",
-  "pageSettingsLocaleLabel": "Language"
+  "pageSettingsThemeTitle": "App Appearance",
+  "pageSettingsThemeDescription": "Select the theme for the app",
+  
+  "pageSettingsLocaleLabel": "Language",
+  "pageSettingsLocaleTitle": "App Language",
+  "pageSettingsLocaleDescription": "Select the language for the app"
 }

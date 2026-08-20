@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppLocaleFlags, AppLocaleAcronym, AppLocaleLabels;
+import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppLocaleFlags, AppLocaleAcronym, AppLocaleLabels, appLocaleIcon;
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
 import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
@@ -7,6 +7,8 @@ import "package:flutter_svg/svg.dart" show SvgPicture;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
+
+enum LangManagerDisplayLayout { icon, block }
 
 class LangManagerLabel {
   final String flag;
@@ -23,11 +25,13 @@ class LangManager extends StatelessWidget {
 
   final bool showFlagOnList;
   final bool showFlagOnLabel;
+  final LangManagerDisplayLayout displayLayout;
 
   const LangManager({
     super.key,
     this.showFlagOnLabel = true,
     this.showFlagOnList = true,
+    this.displayLayout = LangManagerDisplayLayout.block
   });
 
   @override
@@ -79,8 +83,8 @@ class LangManager extends StatelessWidget {
         context: context,
         elevation: 0,
         builder: (_) => BottomSheetContainer(
-          title: "App Language",
-          description: "Select the language for the app",
+          title: l10n.pageSettings.localeTitle,
+          description: l10n.pageSettings.localeDescription,
           showDividerHeader: false,
           headInfoLayout: .large,
           dismissLocation: .footer,
@@ -107,45 +111,64 @@ class LangManager extends StatelessWidget {
         }
         LangManagerLabel visibleLabel = resolveLabel();
 
-        return Column(
-          spacing: AppMetrics.extraSmall,
-          mainAxisAlignment: .start,
-          crossAxisAlignment: .start,
-          children: [
-            Text(l10n.pageSettings.localeLabel, style: context.appTheme.textStyles.h3),
-            TextButton(
+        final Widget langManagerLayout = switch(displayLayout) {
+          LangManagerDisplayLayout.icon =>
+            IconButton(
               onPressed: open,
-              style: ButtonStyle(
-                padding: WidgetStatePropertyAll(
-                  EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                ),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)
-                ))
-              ),
-              child: Row(
-                children: [
-                  Row(
-                    spacing: AppMetrics.small, 
-                    children: [
-                      if (showFlagOnLabel) ...[
-                        SvgPicture.asset(
-                          visibleLabel.flag,
-                          width: 32 * 1,
-                          height: 32 * 0.75,
-                          semanticsLabel: "${visibleLabel.acronym} Flag",
-                        )
-                      ],
-                      Text(visibleLabel.label, style: context.appTheme.textStyles.buttonText),
-                    ]
-                  ),
-                  Spacer(),
-                  Icon(Symbols.keyboard_arrow_down_rounded, size: 24)
-                ],
-              )
+              icon: Icon(appLocaleIcon, fill: 1, size: 32, color: context.appTheme.colors.text)
             )
-          ],
-        );
+          ,
+          LangManagerDisplayLayout.block =>
+            Column(
+              spacing: AppMetrics.small,
+              mainAxisAlignment: .start,
+              crossAxisAlignment: .start,
+              children: [
+                Row(
+                  mainAxisAlignment: .start,
+                  crossAxisAlignment: .center,
+                  spacing: AppMetrics.small,
+                  children: [
+                    Icon(appLocaleIcon, fill: 1, size: 32, color: context.appTheme.colors.text),
+                    Text(l10n.pageSettings.localeLabel, style: context.appTheme.textStyles.h3),
+                  ]
+                ),
+                TextButton(
+                  onPressed: open,
+                  style: ButtonStyle(
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    ),
+                    shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)
+                    ))
+                  ),
+                  child: Row(
+                    children: [
+                      Row(
+                        spacing: AppMetrics.small, 
+                        children: [
+                          if (showFlagOnLabel) ...[
+                            SvgPicture.asset(
+                              visibleLabel.flag,
+                              width: 32 * 1,
+                              height: 32 * 0.75,
+                              semanticsLabel: "${visibleLabel.acronym} Flag",
+                            )
+                          ],
+                          Text(visibleLabel.label, style: context.appTheme.textStyles.buttonText),
+                        ]
+                      ),
+                      Spacer(),
+                      Icon(Symbols.keyboard_arrow_down_rounded, size: 24)
+                    ],
+                  )
+                )
+              ],
+            )
+        };
+
+        return langManagerLayout;
       },
     );
   }

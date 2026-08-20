@@ -17,8 +17,10 @@ class AppColors {
   static const backgroundSurfaceInverted = Color(0xFF1C1C1C);
   static const border = Color(0xFFB6B6B6);
   static const borderInverted = Color(0xFF4D4D4D);
-  static const shadow = Color(0x15000000);
-  static const shadowInverted = Color(0x15FFFFFF);
+  static const shadow = Color(0x1A000000);
+  static const shadowInverted = Color(0x1AFFFFFF);
+  static const hover = Color(0x1A000000);
+  static const hoverInverted = Color(0x1AFFFFFF);
   // Typography
   static const text = Color(0xFF000000);
   static const textInverted = Color(0xFFFFFFFF);

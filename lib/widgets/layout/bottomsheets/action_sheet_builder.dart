@@ -32,8 +32,7 @@ class ActionSheetBuilder extends StatelessWidget {
           final isLast = index == visibleActions.length - 1;
 
           return Column(
-            mainAxisSize: MainAxisSize.min,
-            spacing: AppMetrics.small,
+            mainAxisSize: .min,
 
             children: [
 
@@ -49,10 +48,8 @@ class ActionSheetBuilder extends StatelessWidget {
                 selected: action.selected,
               ),
 
-              if (showDividers && !isLast)
-                const Divider(
-                  height: AppMetrics.small,
-                ),
+              if (showDividers && !isLast) const Divider(height: AppMetrics.small),
+
             ],
           );
         },

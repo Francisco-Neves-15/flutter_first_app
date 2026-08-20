@@ -44,6 +44,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get commonClose => 'Fechar';
 
   @override
+  String get commonBack => 'Voltar';
+
+  @override
   String get commonSave => 'Salvar';
 
   @override
@@ -59,14 +62,25 @@ class AppLocalizationsPt extends AppLocalizations {
   String get pageHomeButtonClick => 'Clique aqui';
 
   @override
-  String get pageSettingsTitle => 'Definições';
-
-  @override
-  String get pageSettingsLanguageLabel => 'Idioma';
+  String get pageSettingsTitle => 'Configurações';
 
   @override
   String get pageSettingsThemeLabel => 'Tema';
 
   @override
+  String get pageSettingsThemeTitle => 'Aparência do aplicativo';
+
+  @override
+  String get pageSettingsThemeDescription =>
+      'Selecione a aparência para o aplicativo';
+
+  @override
   String get pageSettingsLocaleLabel => 'Idioma';
+
+  @override
+  String get pageSettingsLocaleTitle => 'Idioma do aplicativo';
+
+  @override
+  String get pageSettingsLocaleDescription =>
+      'Selecione o idioma para o aplicativo';
 }

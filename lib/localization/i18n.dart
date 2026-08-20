@@ -12,6 +12,7 @@ class CommonStrings {
   String get confirm => _t.commonConfirm;
   String get continueLabel => _t.commonContinue;
   String get close => _t.commonClose;
+  String get back => _t.commonBack;
   String get save => _t.commonSave;
   String get typeHere => _t.commonTypeHere;
 }
@@ -32,9 +33,14 @@ class PageSettingsStrings {
   final AppLocalizations _t;
 
   String get title => _t.pageSettingsTitle;
-  String get languageLabel => _t.pageSettingsLanguageLabel;
+
   String get themeLabel => _t.pageSettingsThemeLabel;
+  String get themeTitle => _t.pageSettingsThemeTitle;
+  String get themeDescription => _t.pageSettingsThemeDescription;
+
   String get localeLabel => _t.pageSettingsLocaleLabel;
+  String get localeTitle => _t.pageSettingsLocaleTitle;
+  String get localeDescription => _t.pageSettingsLocaleDescription;
 }
 
 /// Ergonomic, namespaced entry point over the flat `AppLocalizations` class

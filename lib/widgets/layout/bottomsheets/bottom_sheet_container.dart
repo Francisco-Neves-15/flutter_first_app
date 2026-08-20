@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 // import "package:flutter_first_app/docs/widgets/layout/bottomsheet/bad_usages.dart" show BadUsagesBottomsheets;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
@@ -134,7 +135,7 @@ class _BottomSheetContainerState extends State<BottomSheetContainer> {
   @override
   Widget build(BuildContext context) {
 
-    // Assert's
+    final l10n = context.l10n;
     
     // Continue
 
@@ -181,8 +182,8 @@ class _BottomSheetContainerState extends State<BottomSheetContainer> {
     if (widget.showDismiss) {
 
       final String dismissLabel = switch (widget.dismissLayout) {
-        BottomSheetDismissLayout.close => "Close",
-        BottomSheetDismissLayout.back => "Back",
+        BottomSheetDismissLayout.close => l10n.common.close,
+        BottomSheetDismissLayout.back => l10n.common.back,
       };
 
       final IconData dismissIcon = switch (widget.dismissLayout) {

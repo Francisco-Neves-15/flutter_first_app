@@ -73,6 +73,8 @@ class AppTheme {
           BorderSide(color: colors.border, width: 1, strokeAlign: BorderSide.strokeAlignInside),
         ),
         textStyle: WidgetStatePropertyAll(AppTextStyles.appTextStyle.buttonText),
+        overlayColor: WidgetStatePropertyAll(colors.hover),
+
         // Icon
         iconColor: WidgetStatePropertyAll(colors.text),
         iconSize: WidgetStatePropertyAll(24),
@@ -91,6 +93,7 @@ class AppTheme {
       style: ButtonStyle(
         foregroundColor: WidgetStatePropertyAll(colors.text),
         textStyle: WidgetStatePropertyAll(AppTextStyles.appTextStyle.buttonText),
+        overlayColor: WidgetStatePropertyAll(colors.hover),
 
         // Icon
         iconColor: WidgetStatePropertyAll(colors.text),
@@ -113,14 +116,16 @@ class AppTheme {
       foregroundColor: colors.primaryContrast,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(32),
-      ),
-
+      )
     );
 
     final iconButtonTheme = IconButtonThemeData(
       style: ButtonStyle(
+        elevation: .all(0),
         iconColor: WidgetStatePropertyAll(colors.text),
         iconSize: WidgetStatePropertyAll(24),
+        overlayColor: WidgetStatePropertyAll(colors.hover),
+        backgroundColor: WidgetStatePropertyAll(Colors.transparent),
       )
     );
 
@@ -270,7 +275,7 @@ class AppTheme {
       backgroundColor: colors.backgroundSurface,
       contentTextStyle: TextStyle(
         color: colors.text,
-        fontSize: 15,
+        fontSize: 16,
         fontStyle: .normal,
         fontWeight: .w500,
         fontFamily: "Urbanist"

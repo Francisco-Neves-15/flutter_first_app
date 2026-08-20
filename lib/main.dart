@@ -369,6 +369,16 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
         Divider(),
 
+        Row(
+          spacing: 4,
+          children: [
+            LangManager(showFlagOnList: true, showFlagOnLabel: true, displayLayout: .icon),
+            ThemeManager(displayLayout: .icon),
+          ],
+        ),
+
+        Divider(),
+
         Text("screenWidth: $screenWidth"),
         Text("screenHeight: $screenHeight"),
 
@@ -456,8 +466,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
         Divider(),
 
-        ThemeManager(displayType: .list),
-        ThemeManager(displayType: .segmented),
+        ThemeManager(optionsLayout: .list),
+        ThemeManager(optionsLayout: .segmented),
 
         Divider(),
 

@@ -22,6 +22,8 @@ class AppThemeColors {
   final Color borderInverted;
   final Color shadow;
   final Color shadowInverted;
+  final Color hover;
+  final Color hoverInverted;
   final Color text;
   final Color textInverted;
   final Color textSecondary;
@@ -53,6 +55,8 @@ class AppThemeColors {
     required this.borderInverted,
     required this.shadow,
     required this.shadowInverted,
+    required this.hover,
+    required this.hoverInverted,
     required this.text,
     required this.textInverted,
     required this.textSecondary,
@@ -88,6 +92,8 @@ const appLightColors = AppThemeColors(
   borderInverted: AppColors.borderInverted,
   shadow: AppColors.shadow,
   shadowInverted: AppColors.shadowInverted,
+  hover: AppColors.hover,
+  hoverInverted: AppColors.hoverInverted,
   // Typography
   text: AppColors.text,
   textInverted: AppColors.textInverted,
@@ -125,6 +131,8 @@ const appDarkColors = AppThemeColors(
   borderInverted: AppColors.border,
   shadow: AppColors.shadowInverted,
   shadowInverted: AppColors.shadow,
+  hover: AppColors.hoverInverted,
+  hoverInverted: AppColors.hover,
   // Typography
   text: AppColors.textInverted,
   textInverted: AppColors.text,

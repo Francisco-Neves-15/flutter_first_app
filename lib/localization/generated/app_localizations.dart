@@ -146,6 +146,12 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get commonClose;
 
+  /// No description provided for @commonBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get commonBack;
+
   /// No description provided for @commonSave.
   ///
   /// In en, this message translates to:
@@ -182,23 +188,41 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get pageSettingsTitle;
 
-  /// No description provided for @pageSettingsLanguageLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get pageSettingsLanguageLabel;
-
   /// No description provided for @pageSettingsThemeLabel.
   ///
   /// In en, this message translates to:
   /// **'Theme'**
   String get pageSettingsThemeLabel;
 
+  /// No description provided for @pageSettingsThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'App Appearance'**
+  String get pageSettingsThemeTitle;
+
+  /// No description provided for @pageSettingsThemeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the theme for the app'**
+  String get pageSettingsThemeDescription;
+
   /// No description provided for @pageSettingsLocaleLabel.
   ///
   /// In en, this message translates to:
   /// **'Language'**
   String get pageSettingsLocaleLabel;
+
+  /// No description provided for @pageSettingsLocaleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'App Language'**
+  String get pageSettingsLocaleTitle;
+
+  /// No description provided for @pageSettingsLocaleDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the language for the app'**
+  String get pageSettingsLocaleDescription;
 }
 
 class _AppLocalizationsDelegate

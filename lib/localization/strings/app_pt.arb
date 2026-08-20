@@ -12,6 +12,7 @@
   "commonConfirm": "Confirmar",
   "commonContinue": "Continuar",
   "commonClose": "Fechar",
+  "commonBack": "Voltar",
   "commonSave": "Salvar",
   "commonTypeHere": "Digite aqui",
 
@@ -19,8 +20,14 @@
   "pageHomeWelcome": "Bem-vindo ao app!",
   "pageHomeButtonClick": "Clique aqui",
 
-  "pageSettingsTitle": "Definições",
-  "pageSettingsLanguageLabel": "Idioma",
+  "pageSettingsTitle": "Configurações",
+
   "pageSettingsThemeLabel": "Tema",
-  "pageSettingsLocaleLabel": "Idioma"
+  "pageSettingsThemeTitle": "Aparência do aplicativo",
+  "pageSettingsThemeDescription": "Selecione a aparência para o aplicativo",
+  
+  "pageSettingsLocaleLabel": "Idioma",
+  "pageSettingsLocaleTitle": "Idioma do aplicativo",
+  "pageSettingsLocaleDescription": "Selecione o idioma para o aplicativo"
+
 }
