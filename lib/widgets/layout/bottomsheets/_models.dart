@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_button.dart" show ActionSheetButtonPalette;
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_button.dart" show ActionSheetButtonPalette;
 
 class ActionSheetBuilderItem {
   final ActionSheetButtonPalette palette;

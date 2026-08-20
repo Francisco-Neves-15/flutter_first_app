@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
-import "package:flutter_first_app/widgets/layout/bottomsheets/actionsheet_builder.dart" show ActionSheetBuilder;
-import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
+import "package:flutter_first_app/widgets/layout/bottomsheets/action_sheet_builder.dart" show ActionSheetBuilder;
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
 import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager_option_button_segment.dart" show ThemeManagerOptionButtonSegment;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
@@ -64,7 +64,7 @@ class ThemeManager extends StatelessWidget {
           ),
           ThemeManagerDisplayType.segmented => 
           Container(
-            margin: EdgeInsetsGeometry.symmetric(vertical: AppMetrics.small),
+            margin: EdgeInsetsGeometry.directional(top: AppMetrics.small, bottom: AppMetrics.base),
             child: SegmentedButton<AppAvailableThemeMode>(
               segments: [
                 ButtonSegment(
@@ -116,6 +116,13 @@ class ThemeManager extends StatelessWidget {
         builder: (_) => BottomSheetContainer(
           title: "App Appearance",
           description: "Select the theme for the app",
+          showDividerHeader: false,
+          headInfoLayout: .large,
+          dismissLocation: .footer,
+          showDividerFooter: true,
+          showDismiss: true,
+          /// Close after selection (off)
+          // dismissListenable: ThemeController.instance,
           child: resolvedThemeManagerContent
         )
       );

@@ -24,7 +24,7 @@ import "package:flutter_first_app/config/app_config_locales.dart" show AppAvaila
 // Widget's
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
-import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
 import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
 import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart" show ThemeManager;
 import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart" show LangManager;

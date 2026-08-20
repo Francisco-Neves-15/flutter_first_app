@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppLocaleFlags, AppLocaleAcronym, AppLocaleLabels;
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
 import "package:flutter_first_app/styles/app_metrics.dart";
-import "package:flutter_first_app/widgets/layout/bottomsheets/bottomsheet_container.dart" show BottomSheetContainer;
+import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
 import "package:flutter_svg/svg.dart" show SvgPicture;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
@@ -81,6 +81,12 @@ class LangManager extends StatelessWidget {
         builder: (_) => BottomSheetContainer(
           title: "App Language",
           description: "Select the language for the app",
+          showDividerHeader: false,
+          headInfoLayout: .large,
+          dismissLocation: .footer,
+          showDividerFooter: true,
+          showDismiss: true,
+          /// Close after selection (on)
           dismissListenable: LangController.instance,
           child: resolvedLangManagerContent,
         )
