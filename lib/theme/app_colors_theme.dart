@@ -16,8 +16,6 @@ class AppThemeColors {
   final Color backgroundInverted;
   final Color backgroundSecondary;
   final Color backgroundSecondaryInverted;
-  final Color backgroundSurface;
-  final Color backgroundSurfaceInverted;
   final Color border;
   final Color borderInverted;
   final Color shadow;
@@ -49,8 +47,6 @@ class AppThemeColors {
     required this.backgroundInverted,
     required this.backgroundSecondary,
     required this.backgroundSecondaryInverted,
-    required this.backgroundSurface,
-    required this.backgroundSurfaceInverted,
     required this.border,
     required this.borderInverted,
     required this.shadow,
@@ -86,8 +82,6 @@ const appLightColors = AppThemeColors(
   backgroundInverted: AppColors.backgroundInverted,
   backgroundSecondary: AppColors.backgroundSecondary,
   backgroundSecondaryInverted: AppColors.backgroundSecondaryInverted,
-  backgroundSurface: AppColors.backgroundSurface,
-  backgroundSurfaceInverted: AppColors.backgroundSurfaceInverted,
   border: AppColors.border,
   borderInverted: AppColors.borderInverted,
   shadow: AppColors.shadow,
@@ -125,8 +119,6 @@ const appDarkColors = AppThemeColors(
   backgroundInverted: AppColors.background,
   backgroundSecondary: AppColors.backgroundSecondaryInverted,
   backgroundSecondaryInverted: AppColors.backgroundSecondary,
-  backgroundSurface: AppColors.backgroundSurfaceInverted,
-  backgroundSurfaceInverted: AppColors.backgroundSurface,
   border: AppColors.borderInverted,
   borderInverted: AppColors.border,
   shadow: AppColors.shadowInverted,

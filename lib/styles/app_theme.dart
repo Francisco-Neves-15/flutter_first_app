@@ -6,6 +6,7 @@ import "package:flutter_first_app/theme/app_colors_theme.dart" show AppThemeColo
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 import "app_text_styles.dart" show AppTextStyles;
+import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 
 class AppTheme {
   
@@ -257,7 +258,7 @@ class AppTheme {
     final bottomSheetTheme = BottomSheetThemeData(
       showDragHandle: false,
       backgroundColor: colors.backgroundSecondary,
-      modalBackgroundColor: Colors.transparent,
+      modalBarrierColor: AppColors.overlay,
       // dragHandleColor: colors.neutral,
       // dragHandleSize: Size(128, 4),
     );
@@ -272,7 +273,7 @@ class AppTheme {
         fontWeight: .w700,
         fontFamily: "Urbanist"
       ),
-      backgroundColor: colors.backgroundSurface,
+      backgroundColor: colors.backgroundSecondary,
       contentTextStyle: TextStyle(
         color: colors.text,
         fontSize: 16,
@@ -284,7 +285,7 @@ class AppTheme {
         start: AppMetrics.base, end: AppMetrics.base,
         top: AppMetrics.base, bottom: AppMetrics.base,
       ),
-      barrierColor: Colors.transparent,
+      barrierColor: AppColors.overlay,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16))
       ),

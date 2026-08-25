@@ -408,9 +408,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         Container(width: 44, height: 44, color: Color(0xFF4C6EF5)),
         Container(width: 44, height: 44, color: Color(0xFF748FFC)),
 
-        Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSurface, child: Text("Card Text"),),
         Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSecondary, child: Text("Card Text"),),
-        Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSurfaceInverted, child: Text("Card Text", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textInverted)),),
         Container(width: 320, height: 64, color: context.appTheme.colors.backgroundSecondaryInverted, child: Text("Card Text", style: context.appTheme.textStyles.body.copyWith(color: context.appTheme.colors.textInverted)),),
 
         Divider(),
