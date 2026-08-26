@@ -35,7 +35,7 @@ A ideia é o menu do app ter algumas condicionais ao tentar navegar, que ele con
 
 # Ajustes
 
-- Ajustar cores background, backgroundSecondary, backgroundSurface em um monitor que mostre as cores reais (desktop)
+- FEITO (background & backgroundSecondary) > Ajustar cores background, backgroundSecondary, backgroundSurface em um monitor que mostre as cores reais (desktop)
 
 # Verificar:
 - Criar o "ActionSheet", que usa dos estilos das actions, palletes e outras regras; Na construção, ele utiliza um BottomsheetContainer, porém, ActionSheet é feito para suportar actions apenas;

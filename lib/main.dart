@@ -667,8 +667,15 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
      builder: (context, _) {
 
         return AppScaffold(
-          useAppHeader: true,
-          appHeaderTitle: widget.title,
+          appBar: .header,
+          appBarActions: [
+            IconButton(onPressed: () => debugPrint("AAAAA"), icon: Icon(Symbols.lab_research))
+          ],
+          appBarTitle: widget.title,
+          // Menu
+          menuButton: true,
+          // menuButtonLocation: .actions,
+          // menuButtonPosition: .end,
           // BottomNavigationBar: ,
           bottomNavigationBar: bottomNavigationBar,
           // Body
