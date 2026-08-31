@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/docs/widgets/layout/bad_usages.dart" show BadUsagesLayoutWidgets;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisPositionHorizontal;
 import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show AppBarType, MenuButtonPosition, MenuButtonLocation, resolveActions, resolveLeading;
@@ -22,6 +23,7 @@ class AppScaffold extends StatelessWidget {
   final String? appBarTitle;
   final List<Widget>? appBarLeading;
   final List<Widget>? appBarActions;
+  final bool? appBarLogo;
 
   // MenuButton
   final bool? menuButton;
@@ -48,6 +50,7 @@ class AppScaffold extends StatelessWidget {
     this.appBarTitle,
     this.appBarLeading,
     this.appBarActions,
+    this.appBarLogo,
     // MenuButton
     this.menuButton = true,
     this.menuButtonLocation = .actions,
@@ -62,13 +65,19 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // Rules
-    // NO APPLY > App Logo never show when is NavigationHeader, only when is: AppBarType.header
+    // Assert's
+
+    assert(
+     !(menuButton == true && sideMenu == false),
+      BadUsagesLayoutWidgets.e001.warn(),
+    );
+    
+    void openDrawer() async {
+      Scaffold.of(context).openDrawer();
+    }
 
     Widget? widgetMenuButton = menuButton! ? IconButton(
-      onPressed: () {
-        Scaffold.of(context).openDrawer();
-      },
+      onPressed: () => openDrawer(),
       icon: const Icon(Icons.menu_rounded),
       iconSize: 32,
       color: context.appTheme.colors.text,
@@ -84,7 +93,7 @@ class AppScaffold extends StatelessWidget {
       menuButton: menuButtonLocation == .leading ? widgetMenuButton : null,
       menuButtonPosition: menuButtonPosition,
       // logo: (appBar != null && appBar == AppBarType.header) ? AppLogo(height: 48, width: 48) : null,
-      logo: AppLogo(height: 48, width: 48),
+      logo: appBarLogo == true ? AppLogo(height: 48, width: 48) : null,
     );
 
     // Header
