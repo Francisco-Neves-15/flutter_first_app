@@ -1,6 +1,13 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
+import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show AppBarType;
 import "package:flutter_svg/svg.dart" show SvgPicture;
+
+double getAppLogoSize(AppBarType? appBar) => switch (appBar) {
+  AppBarType.header => 48,
+  AppBarType.navigation => 36,
+  null => 32
+};
 
 class AppLogo extends StatelessWidget {
 

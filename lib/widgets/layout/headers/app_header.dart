@@ -29,7 +29,7 @@ class AppHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(spacing: AppMetrics.small, children: leading ?? []),
-            Text(title ?? "<title-not-provided>", style: context.appTheme.textStyles.h1),
+            if (title != null) ...[Text(title ?? "", style: context.appTheme.textStyles.h1)],
             Spacer(),
             Row(spacing: AppMetrics.small, children: actions ?? []),
           ],

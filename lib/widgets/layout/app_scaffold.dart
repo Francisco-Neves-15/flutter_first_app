@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart" show kDebugMode;
 import "package:flutter/material.dart";
 import "package:flutter_first_app/docs/widgets/layout/bad_usages.dart" show BadUsagesLayoutWidgets;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
@@ -5,7 +6,7 @@ import "package:flutter_first_app/styles/app_axis.dart" show AppAxisPositionHori
 import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show AppBarType, MenuButtonPosition, MenuButtonLocation, resolveActions, resolveLeading;
 import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
 import "package:flutter_first_app/widgets/layout/headers/app_navigation_bar.dart" show AppNavigationBar;
-import "package:flutter_first_app/widgets/ui/app_logo.dart" show AppLogo;
+import "package:flutter_first_app/widgets/ui/app_logo.dart" show AppLogo, getAppLogoSize;
 
 class AppScaffold extends StatelessWidget {
 
@@ -56,8 +57,8 @@ class AppScaffold extends StatelessWidget {
     this.menuButtonLocation = .actions,
     this.menuButtonPosition = .end,
     // Side Menu
-    this.sideMenu,
-    this.sideMenuOrigin,
+    this.sideMenu = true,
+    this.sideMenuOrigin = .left,
     // BottomNavigationBar
     this.bottomNavigationBar,
   });
@@ -65,23 +66,40 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // Assert's
-
-    assert(
-     !(menuButton == true && sideMenu == false),
-      BadUsagesLayoutWidgets.e001.warn(),
-    );
-    
-    void openDrawer() async {
-      Scaffold.of(context).openDrawer();
+    void showBadUsages(int entry) {
+      switch (entry) {
+        case 1:
+          debugPrint(BadUsagesLayoutWidgets.e001.warn());
+          break;
+        default:
+          break;
+      }
     }
 
-    Widget? widgetMenuButton = menuButton! ? IconButton(
-      onPressed: () => openDrawer(),
-      icon: const Icon(Icons.menu_rounded),
-      iconSize: 32,
-      color: context.appTheme.colors.text,
+    // Initial Warn's
+
+    if (kDebugMode && menuButton == true && sideMenu != true) showBadUsages(1);
+
+    // Essentials
+
+    Widget? widgetMenuButton = menuButton! ? Builder(
+      builder: (scaffoldContext) => IconButton(
+        onPressed: () {
+          if (kDebugMode && menuButton == true && sideMenu != true) {
+            showBadUsages(1);
+          } else {
+            sideMenuOrigin == AppAxisPositionHorizontal.right
+                ? Scaffold.of(scaffoldContext).openEndDrawer()
+                : Scaffold.of(scaffoldContext).openDrawer();
+          }
+        },
+        icon: const Icon(Icons.menu_rounded),
+        iconSize: 24,
+        color: context.appTheme.colors.text,
+      ),
     ) : null;
+
+    // Resolves
 
     final resolvedActions = resolveActions(
       menuButton: menuButtonLocation == .actions ? widgetMenuButton : null,
@@ -92,8 +110,7 @@ class AppScaffold extends StatelessWidget {
     final resolvedLeading = resolveLeading(
       menuButton: menuButtonLocation == .leading ? widgetMenuButton : null,
       menuButtonPosition: menuButtonPosition,
-      // logo: (appBar != null && appBar == AppBarType.header) ? AppLogo(height: 48, width: 48) : null,
-      logo: appBarLogo == true ? AppLogo(height: 48, width: 48) : null,
+      logo: appBarLogo == true ? AppLogo(height: getAppLogoSize(appBar), width: getAppLogoSize(appBar)) : null,
     );
 
     // Header
@@ -144,7 +161,9 @@ class AppScaffold extends StatelessWidget {
     return Scaffold(
       appBar: (appBar != null && appBar == AppBarType.navigation) ? AppNavigationBar(
         title: appBarTitle,
-        actions: appBarActions,
+        leading: resolvedLeading,
+        actions: resolvedActions,
+        appBar: appBar,
       ) : null,
       body: content,
       // Extras
@@ -153,8 +172,8 @@ class AppScaffold extends StatelessWidget {
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
       // Drawer
-      drawer: (sideMenu != null && sideMenuOrigin == .left) ? drawerContent : null,
-      endDrawer: (sideMenu != null && sideMenuOrigin == .right) ? drawerContent : null,
+      drawer: sideMenuOrigin == AppAxisPositionHorizontal.left ? drawerContent : null,
+      endDrawer: sideMenuOrigin == AppAxisPositionHorizontal.right ? drawerContent : null,
       // Bottom Navigation Bar
       bottomNavigationBar: bottomNavigationBar != null 
           ? SafeArea(bottom: true, child: bottomNavigationBar!) 
