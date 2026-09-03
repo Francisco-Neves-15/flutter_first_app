@@ -10,7 +10,7 @@ import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 
 class AppTheme {
   
-  static ThemeData build(AppThemeColors colors) {
+  static ThemeData build(AppThemeColors colors, double screenWidth, double screenHeight) {
 
     ColorScheme colorScheme;
     if (colors.themeMode == AppAvailableThemeMode.dark) {
@@ -64,6 +64,7 @@ class AppTheme {
         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(32)
         ))
+
       ),
     );
 
@@ -291,6 +292,12 @@ class AppTheme {
       ),
     );
 
+    final drawerTheme = DrawerThemeData(
+      elevation: 0,
+      backgroundColor: colors.background,
+      width: screenWidth * 0.75
+    );
+
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
@@ -310,7 +317,8 @@ class AppTheme {
       dialogTheme: dialogTheme,
       navigationBarTheme: navigationBarTheme,
       badgeTheme: badgeTheme,
-      tabBarTheme: tabBarTheme
+      tabBarTheme: tabBarTheme,
+      drawerTheme: drawerTheme
     );
   }
 }

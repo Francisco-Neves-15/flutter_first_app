@@ -6,6 +6,7 @@ import "package:flutter_first_app/styles/app_axis.dart" show AppAxisPositionHori
 import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show AppBarType, MenuButtonPosition, MenuButtonLocation, resolveActions, resolveLeading;
 import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
 import "package:flutter_first_app/widgets/layout/headers/app_navigation_bar.dart" show AppNavigationBar;
+import "package:flutter_first_app/widgets/layout/sidemenu/app_side_menu.dart" show AppSideMenu, SideMenuAnchor;
 import "package:flutter_first_app/widgets/ui/app_logo.dart" show AppLogo, getAppLogoSize;
 
 class AppScaffold extends StatelessWidget {
@@ -34,6 +35,8 @@ class AppScaffold extends StatelessWidget {
   // Side Menu
   final bool? sideMenu;
   final AppAxisPositionHorizontal? sideMenuOrigin;
+  final String? sideMenuTitle;
+  final SideMenuAnchor? sideMenuAnchor;
 
   // BottomNavigationBar
   final Widget? bottomNavigationBar;
@@ -58,7 +61,9 @@ class AppScaffold extends StatelessWidget {
     this.menuButtonPosition = .end,
     // Side Menu
     this.sideMenu = true,
-    this.sideMenuOrigin = .left,
+    this.sideMenuOrigin = .right,
+    this.sideMenuTitle,
+    this.sideMenuAnchor = .origin,
     // BottomNavigationBar
     this.bottomNavigationBar,
   });
@@ -114,6 +119,7 @@ class AppScaffold extends StatelessWidget {
     );
 
     // Header
+
     Widget resolvedAppHeader = AppHeader(
       title: appBarTitle,
       leading: resolvedLeading,
@@ -121,27 +127,11 @@ class AppScaffold extends StatelessWidget {
     );
 
     // Drawer
-    Widget drawerContent = Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
-      child: ListView(
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
-        children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(color: Colors.blue),
-            child: Text('Drawer Header'),
-          ),
-          ListTile(
-            title: const Text('Home'),
-            selected: true,
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
+
+    Widget drawerContent = AppSideMenu( 
+      title: sideMenuTitle,
+      origin: sideMenuOrigin,
+      anchor: sideMenuAnchor,
     );
 
     // Content
@@ -163,7 +153,7 @@ class AppScaffold extends StatelessWidget {
         title: appBarTitle,
         leading: resolvedLeading,
         actions: resolvedActions,
-        appBar: appBar,
+        appBar: appBar
       ) : null,
       body: content,
       // Extras

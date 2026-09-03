@@ -29,7 +29,7 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
     const double paddingValue = AppMetrics.small;
 
     return AppBar(
-      backgroundColor: Colors.red,
+      backgroundColor: context.appTheme.colors.background,
       title: title != null ? Text(title ?? "", style: context.appTheme.textStyles.h1) : null,
       actions: actions,
       actionsPadding: const EdgeInsets.only(right: paddingValue),
@@ -42,7 +42,7 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
           spacing: AppMetrics.small,
           children: leading!,
         ),
-      ) : null,
+      ) : null
     );
   }
 

@@ -8,14 +8,14 @@ enum ActionSheetButtonPalette { text, textSecondary, danger }
 class BottomSheetButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
-  final ActionSheetButtonPalette palette;
+  final ActionSheetButtonPalette? palette;
 
   final IconData? icon;
   final Color? iconColor;
   final double? iconSize;
   final double? iconFill;
 
-  final String label;
+  final String? label;
   final Color? labelColor;
 
   final bool? selected;
@@ -28,7 +28,7 @@ class BottomSheetButton extends StatelessWidget {
     this.iconColor,
     this.iconSize = 24,
     this.iconFill = 1,
-    required this.label,
+    this.label,
     this.labelColor,
     this.selected,
   });
@@ -37,9 +37,10 @@ class BottomSheetButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Color colorPalette = switch (palette) {
-     ActionSheetButtonPalette.text => context.appTheme.colors.text,
-     ActionSheetButtonPalette.textSecondary => context.appTheme.colors.textSecondary,
-     ActionSheetButtonPalette.danger => context.appTheme.colors.danger,
+      ActionSheetButtonPalette.text => context.appTheme.colors.text,
+      ActionSheetButtonPalette.textSecondary => context.appTheme.colors.textSecondary,
+      ActionSheetButtonPalette.danger => context.appTheme.colors.danger,
+      null => context.appTheme.colors.text,
     };
 
     return TextButton(
@@ -62,10 +63,12 @@ class BottomSheetButton extends StatelessWidget {
             const SizedBox(width: AppMetrics.small),
           ],
           // label
-          Text(
-            label,
-            style: context.appTheme.textStyles.buttonText.copyWith(color: labelColor ?? colorPalette),
-          ),
+          if (label != null) ...[
+            Text(
+              label ?? "",
+              style: context.appTheme.textStyles.buttonText.copyWith(color: labelColor ?? colorPalette),
+            )
+          ],
           if (selected != null && selected == true) ...[
             Spacer(),
             Icon(Symbols.check_rounded)

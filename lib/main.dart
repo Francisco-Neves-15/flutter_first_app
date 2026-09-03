@@ -48,11 +48,14 @@ class MyApp extends StatelessWidget {
 
       builder: (context, _) {
 
+        double screenWidth = MediaQuery.sizeOf(context).width;
+        double screenHeight = MediaQuery.sizeOf(context).height;
+
         return MaterialApp(
 
           // Theme
-          theme: AppTheme.build(appLightColors),
-          darkTheme: AppTheme.build(appDarkColors),
+          theme: AppTheme.build(appLightColors, screenWidth, screenHeight),
+          darkTheme: AppTheme.build(appDarkColors, screenWidth, screenHeight),
           themeMode: ThemeController.instance.themeMode,
 
           // Localization
@@ -678,7 +681,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           appBarLogo: true,
           // Menu
           // sideMenu: true,
+          sideMenuTitle: "Meu Title!",
           sideMenuOrigin: .right,
+          sideMenuAnchor: .origin,
           // Bottom Navigation
           bottomNavigationBar: bottomNavigationBar,
           // Body
