@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
+import "package:flutter_first_app/widgets/layout/overlay/app_overlay.dart";
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 // import "package:flutter/services.dart";
@@ -281,6 +283,32 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenHeight = MediaQuery.sizeOf(context).height;
 
+    final screenOverlay = Overlay.of(context);
+
+    late OverlayEntry screenOverlayContentTest1;
+    screenOverlayContentTest1 = OverlayEntry(
+      opaque: true,
+      canSizeOverlay: true,
+      maintainState: true,
+      builder: (context) {
+        return AppOverlay(
+          overlayEntry: screenOverlayContentTest1,
+          body: AppScaffold(
+            body: Row(
+              mainAxisAlignment: .start,
+              crossAxisAlignment: .start,
+              children: [
+                IconButton(onPressed: () => screenOverlayContentTest1.remove(), icon: Icon(Symbols.close_rounded)),
+                const Text("Meu conteúdo"),
+              ],
+            )
+          )
+        );
+      },
+    );
+
+    
+
     // Home Screen
 
     Widget homeScreenTabsHeader = ListenableBuilder(
@@ -416,6 +444,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         ElevatedButton(
           onPressed: () => callDialog(context),
           child: Text("Chamar Dialog"),
+        ),
+
+        ElevatedButton(
+          onPressed: () => screenOverlay.insert(screenOverlayContentTest1),
+          child: Text("Chamar Modal (Overlay in Flutter)"),
         ),
 
         Divider(),

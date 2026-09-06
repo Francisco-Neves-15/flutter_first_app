@@ -11,6 +11,9 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final AppBarType? appBar;
 
+  // provavelmente adicionar "x" ou "arrow" sobre "Dismiss", com opções de mudar oq a ação de "Dismiss" faz?
+  // é possivel com navigation do flutter?
+
   const AppNavigationBar({
     super.key,
     this.title,
