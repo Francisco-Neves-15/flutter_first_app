@@ -29,7 +29,17 @@ import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" 
 import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart" show ThemeManager;
 import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart" show LangManager;
 
-void main() {
+void main() async {
+  // Needed because we `await` (SharedPreferences) before `runApp`.
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Read persisted theme/language before the first frame, so the app opens
+  // already in the right theme/language instead of flashing the default and
+  // then switching. When a real splash screen exists, this can move there
+  // instead of blocking `main()`.
+  await ThemeController.instance.loadPersistedPreference();
+  await LangController.instance.loadPersistedPreference();
+
   runApp(const MyApp());
 }
 // - main() → ponto de 

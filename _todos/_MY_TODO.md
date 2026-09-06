@@ -12,7 +12,7 @@
 
 - Aplicar navegação entre telas (e "encontrar" uma forma de fazer a tela com overlay)
 
-- Criar menu laterial, surgindo apartir do botão lateral
+- FEITO: Criar menu laterial, surgindo apartir do botão lateral
 
 - Conseguir ajustar botões de navegação de acordo com a tela; Por exemplo:
 
@@ -38,7 +38,7 @@ A ideia é o menu do app ter algumas condicionais ao tentar navegar, que ele con
 - FEITO (background & backgroundSecondary) > Ajustar cores background, backgroundSecondary, backgroundSurface em um monitor que mostre as cores reais (desktop)
 
 # Verificar:
-- Criar o "ActionSheet", que usa dos estilos das actions, palletes e outras regras; Na construção, ele utiliza um BottomsheetContainer, porém, ActionSheet é feito para suportar actions apenas;
+- Feito? - Criar o "ActionSheet", que usa dos estilos das actions, palletes e outras regras; Na construção, ele utiliza um BottomsheetContainer, porém, ActionSheet é feito para suportar actions apenas;
 
 # Analisar:
 - BottomsheetContainer passa a suportar diferentes configurações de comportamento, como: Draggable, Full Screen, Scrollable & Custom Height

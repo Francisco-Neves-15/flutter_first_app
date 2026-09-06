@@ -295,7 +295,23 @@ class AppTheme {
     final drawerTheme = DrawerThemeData(
       elevation: 0,
       backgroundColor: colors.background,
-      width: screenWidth * 0.75
+      width: screenWidth * 0.75,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(0),
+          topRight: Radius.circular(32),
+          bottomLeft: Radius.circular(0),
+          bottomRight: Radius.circular(32)
+        )
+      ),
+      endShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(32),
+          topRight: Radius.circular(0),
+          bottomLeft: Radius.circular(32),
+          bottomRight: Radius.circular(0)
+        )
+      ),
     );
 
     return ThemeData(
