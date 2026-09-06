@@ -1,8 +1,10 @@
+import "dart:ui" show PlatformDispatcher;
+
 import "package:flutter/material.dart";
 import "package:shared_preferences/shared_preferences.dart";
 import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppAvailableLocaleMapping, AppLocaleLabels, AppLocaleAcronym, AppLocaleFlags;
 
-// Cloud Sync Detection Area - Line: 68
+// Cloud Sync Detection Area - Line: 70
 // If the app ever gains user accounts, this is where a per-account lookup
 // would run before falling back to the value persisted on this device.
 
@@ -13,8 +15,8 @@ class LangController extends ChangeNotifier {
 
   static const _prefsKey = "app_locale";
 
-  /// Default locale used while there's no real OS-locale auto-detection yet
-  /// (that part is intentionally left for later — see localization README).
+  /// Used when "auto" can't match the device's language to any locale this
+  /// app ships (see `_detectDefault`).
   static const _fallbackLocale = AppAvailableLocale.en;
 
   AppAvailableLocale _current = _fallbackLocale;
@@ -107,10 +109,18 @@ class LangController extends ChangeNotifier {
     _persist();
   }
 
-  /// Stand-in for real OS-locale detection (left for later — see
-  /// `lib/localization/README.md`). For now "auto" just resolves to a
-  /// fixed default, same as any other locale that was never chosen.
-  static AppAvailableLocale _detectDefault() => _fallbackLocale;
+  /// "auto" resolution: tries to match the device's language against the
+  /// locales this app ships (`AppAvailableLocale.values`); falls back to
+  /// `_fallbackLocale` when there's no match (e.g. device set to French).
+  static AppAvailableLocale _detectDefault() {
+    final deviceLanguageCode = PlatformDispatcher.instance.locale.languageCode;
+
+    for (final value in AppAvailableLocale.values) {
+      if (value.locale.languageCode == deviceLanguageCode) return value;
+    }
+
+    return _fallbackLocale;
+  }
 
   Future<void> _persist() async {
     final prefs = await SharedPreferences.getInstance();
@@ -125,6 +135,7 @@ class LangController extends ChangeNotifier {
     return switch (locale) {
       AppAvailableLocale.en => "en",
       AppAvailableLocale.pt => "pt",
+      // AppAvailableLocale.fr => "fr",
     };
   }
 
@@ -136,6 +147,7 @@ class LangController extends ChangeNotifier {
       "auto" => (true, true, _fallbackLocale),
       "en" => (false, true, AppAvailableLocale.en),
       "pt" => (false, true, AppAvailableLocale.pt),
+      // "fr" => (false, true, AppAvailableLocale.fr),
       _ => (true, false, _fallbackLocale),
     };
   }

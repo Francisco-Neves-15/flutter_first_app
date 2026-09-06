@@ -101,14 +101,38 @@ The `L10n` class centralizes this and exposes:
 
 ## 6. `lang_controller.dart` — current responsibility
 
-Currently, `LangController` only holds **which language is active in the session** (an `AppAvailableLocale`) and exposes:
+`LangController` holds **which language is active** (an `AppAvailableLocale`) and persists that choice on the device. It exposes:
 - `current` / `locale` — reads the current state.
-- `setLocale(value)` — updates the language and notifies listeners (`ChangeNotifier`, same as `ThemeController`).
-- `labelCurrent` — label of the current language (via `AppLocaleLabels`).
-- `acronymCurrent` — acronym of the current language (via `AppLocaleAcronym`).
-- `flagsCurrent` — flags of the current language (via `AppLocaleFlags`).
+- `isAutoMode` — `true` while following "auto" (device language) instead of a language the user fixed by hand.
+- `hasUserChosen` — `false` only for the very first run, before the user has touched the language setting at all (see section 7); `true` in every other case, including "auto" explicitly picked.
+- `loadPersistedPreference()` — reads the stored preference (see section 7). `await` it once, before `runApp` (see `main.dart`), so the first frame already renders in the right language.
+- `setLocale(value)` — fixes the language to `en`/`pt`, marks it as user-chosen, and persists it.
+- `setAutoDetect()` — switches back to "auto" (device language), and persists that.
+- `labelCurrent` / `acronymCurrent` / `flagsCurrent` — display helpers for the current language (via `AppLocaleLabels` / `AppLocaleAcronym` / `AppLocaleFlags`).
 
-What it does NOT do: persistence across sessions (SharedPreferences) or automatic system language detection. It remains purely in-memory and resets upon restarting the app — same as `ThemeController` today.
+**"Auto" fallback**: `_detectDefault()` reads `PlatformDispatcher.instance.locale.languageCode` (the device's language) and looks for a matching `AppAvailableLocale`. If the device is set to a language this app doesn't ship (e.g. French), it falls back to `_fallbackLocale` (`AppAvailableLocale.en`). This is the one exception to "detection is left for later" mentioned elsewhere in this project — language detection is simple enough (just `languageCode` matching) that it was implemented directly, unlike theme detection which is entirely handled by Flutter itself (`ThemeMode.system`, see the theme README) or a hypothetical future region/currency auto-detection, which would need a lot more than a `languageCode` compare.
+
+## 7. Persistence format
+
+Both `ThemeController` and `LangController` follow the same on-device storage shape, one `SharedPreferences` string key each (`app_locale` here). The stored value is one of:
+
+| Stored value | Meaning |
+|---|---|
+| *(key absent — `null`)* | Never loaded before on this device (fresh install). Only ever seen once, inside `loadPersistedPreference()`. |
+| `"auto-unchosen"` | Following "auto" (device language), and the user has never touched the language setting. This is what gets written the very first time `loadPersistedPreference()` runs. |
+| `"auto"` | Following "auto", but the user explicitly picked "Auto-detect" at some point. Behaves identically to `"auto-unchosen"` today — the distinction only matters if you later want to force a "choose your language" onboarding step for users who never chose anything. |
+| `"en"` / `"pt"` | A language the user picked by hand. |
+
+`_encode`/`_decode` in `lang_controller.dart` are the only place that translates between this string format and `(isAutoMode, hasUserChosen, AppAvailableLocale)`. `_encode` switches over the `AppAvailableLocale` enum with no `default` case, so the Dart compiler forces you to add a case there the moment you add a new value to the enum — you cannot forget it. `_decode` switches over the raw *string* read from storage instead, so it has no such compiler safety net (storage can contain garbage from an older app version) — it needs a manual `_` fallback case, and adding a new locale means remembering to add its string case by hand.
+
+## 8. Adding a new locale — checklist
+
+Everything that needs a manual touch when adding, say, Spanish (`es`):
+
+1. **`.arb`**: create `lib/localization/strings/app_es.arb` with every key from the template (`app_en.arb`), translated.
+2. **`app_config_locales.dart`**: add `es` to the `AppAvailableLocale` enum, then fill in its case in `AppAvailableLocaleMapping.locale`, `AppLocaleLabels`, `AppLocaleAcronym`, and `AppLocaleFlags` (plus the actual flag asset file, if you're using one). The compiler will point at every one of these — Dart's exhaustiveness check on `switch` fails the build until every enum member is handled.
+3. **`lang_controller.dart`**: add the `"es"` case to `_encode` (compiler-enforced, see section 7) and to `_decode` (**not** compiler-enforced — easy to forget, since a missing case there just silently falls back to `auto-unchosen` instead of erroring).
+4. Nothing else: `main.dart`'s `supportedLocales` is generated from `AppAvailableLocale.values`, and `gen-l10n` auto-discovers every `.arb` in `arb-dir` — neither needs manual edits.
 
 ---
 

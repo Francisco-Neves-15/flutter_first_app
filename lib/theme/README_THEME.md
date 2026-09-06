@@ -35,13 +35,42 @@ This is why there are two calls (`theme:` and `darkTheme:`) — each builds an i
 
 ## 4. `theme_controller.dart` — current responsibility
 
-Holds **which mode is active in the session** (`AppAvailableThemeMode`: `auto`/`light`/`dark`) and exposes:
+Holds **which mode is active** (`AppAvailableThemeMode`: `auto`/`light`/`dark`) and persists that choice on the device. It exposes:
 - `mode` / `themeMode` — reads the state (`themeMode` already converted to the `ThemeMode` expected by `MaterialApp`).
+- `hasUserChosen` — `false` only for the very first run, before the user has touched the theme setting at all (see section 4.1); `true` in every other case, including "auto" explicitly picked.
 - `resolvedBrightness(context)` — when mode is set to `auto`, resolves which brightness is actually being applied (`Theme.of(context).brightness`), since "auto" itself is not a brightness.
-- `setTheme(value)` — updates the mode and notifies listeners (`ChangeNotifier`).
+- `loadPersistedPreference()` — reads the stored preference (see section 4.1). `await` it once, before `runApp` (see `main.dart`), so the first frame already renders in the right theme.
+- `setTheme(value)` — updates the mode, marks it as user-chosen, notifies listeners (`ChangeNotifier`), and persists it.
 - `isAuto` / `isLight` / `isDark`, `labelThemeMode`, `labelResolvedTheme`, `labelDisplay` — helper methods for reading/displaying state.
 
-Like `LangController`, it does not persist across sessions — remaining strictly in-memory for now.
+**"Auto" detection**: unlike locale (see the localization README), theme detection needs no code of ours — `AppAvailableThemeMode.auto` maps to `ThemeMode.system`, and Flutter itself watches the OS's light/dark setting and rebuilds automatically (via `MediaQuery`/`PlatformDispatcher.platformBrightness`) whenever it changes. `resolvedBrightness(context)` is just reading that already-resolved result back out.
+
+### 4.1 Persistence format
+
+`ThemeController` stores one `SharedPreferences` string key (`app_theme_mode`), one of:
+
+| Stored value | Meaning |
+|---|---|
+| *(key absent — `null`)* | Never loaded before on this device (fresh install). Only ever seen once, inside `loadPersistedPreference()`. |
+| `"auto-unchosen"` | Following "auto" (system brightness), and the user has never touched the theme setting. This is what gets written the very first time `loadPersistedPreference()` runs. |
+| `"auto"` | Following "auto", but the user explicitly picked "Auto-detect" at some point. Behaves identically to `"auto-unchosen"` today — the distinction only matters if you later want to force a "pick your theme" onboarding step for users who never chose anything. |
+| `"light"` / `"dark"` | A mode the user picked by hand. |
+
+`_encode`/`_decode` in `theme_controller.dart` are the only place that translates between this string format and `(AppAvailableThemeMode, hasUserChosen)`. `_encode` switches over the `AppAvailableThemeMode` enum with no `default` case, so the Dart compiler forces a case for every enum member — adding a mode without updating `_encode` won't compile. `_decode` switches over the raw *string* read from storage instead, so it has no such compiler safety net (storage can contain garbage from an older app version) — it keeps a manual `_` fallback case, and adding a mode means remembering to add its string case there by hand too.
+
+### 4.2 Adding a new theme mode/variant — checklist
+
+Two different things can be meant by "a new theme", with very different amounts of work:
+
+**A new color variant of an existing mode** (e.g. an AMOLED-black dark mode) — no new `AppAvailableThemeMode` needed:
+1. Add the raw colors to `app_colors.dart` (still no theme rules there).
+2. Add the mapping/remapping rules in `app_colors_theme.dart` (a new `AppThemeColors` constant, e.g. `appAmoledColors`).
+3. Pass it into `AppTheme.build(...)` wherever `main.dart` currently only passes `appLightColors`/`appDarkColors` — this needs its own selection mechanism (e.g. extending `AppAvailableThemeMode`, see below), since `MaterialApp.theme`/`darkTheme` only accepts one `ThemeData` each for light/dark.
+
+**An actual new mode value** (a true 4th option beyond auto/light/dark) — this is more involved, because Flutter's own `ThemeMode` enum only has 3 members (`system`/`light`/`dark`); `MaterialApp` has no 4th slot to plug a new `ThemeData` into automatically. Adding one means:
+1. Add the value to `AppAvailableThemeMode` in `app_config_themes.dart`, plus its `AppThemeLabels`/`AppThemeIcons` entries — the compiler will point at `ThemeController.themeMode`'s switch and `_encode` (both exhaustive) until they're updated.
+2. Add the `"<value>"` string case to `_decode` (not compiler-enforced, see 4.1).
+3. Decide how it actually renders — since `MaterialApp` itself can't route a 4th mode, you'd need extra plumbing beyond what `themeMode:` gives you for free (e.g. wrapping the app to force `theme:`/`darkTheme:` to the same custom `ThemeData` regardless of the resolved `ThemeMode`).
 
 ## 5. `context.appTheme` (`theme_extension.dart`)
 

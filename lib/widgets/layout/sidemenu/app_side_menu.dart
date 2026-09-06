@@ -56,8 +56,6 @@ class AppSideMenu extends StatelessWidget {
             height: 75,
             margin: .zero,
             padding: EdgeInsets.only(
-              top: AppMetrics.small,
-              bottom: AppMetrics.small,
               left: resolvedAnchor == .right ? AppMetrics.base : AppMetrics.small,
               right: resolvedAnchor == .left ? AppMetrics.base : AppMetrics.small
             ),
@@ -77,22 +75,33 @@ class AppSideMenu extends StatelessWidget {
                 children: [
                   SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 0, label: "Label 1", selected: false, onPressed: () => debugPrint("Teste"),),
                   SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 0, label: "Label 2", selected: false, onPressed: () => debugPrint("Teste"),),
-                  SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 1, label: "Label 3", selected: true, onPressed: () => debugPrint("Teste"),),
                   Spacer(),
-                  Row(
-                    mainAxisAlignment: .end,
-                    crossAxisAlignment: .center,
-                    spacing: 4,
-                    children: [
-                      LangManager(displayLayout: .icon),
-                      ThemeManager(displayLayout: .icon, optionsLayout: .segmented),
-                      SizedBox(width: AppMetrics.small)
-                    ],
-                  )
+                  SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 1, label: "Label 3", selected: true, onPressed: () => debugPrint("Teste"),),
+                  SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 1, label: "Label 3", selected: true, onPressed: () => debugPrint("Teste"),),
                 ],
               ),
             )
-          )
+          ),
+
+          // Footer
+          Container(
+            height: 75,
+            margin: .zero,
+            padding: EdgeInsets.only(
+              left: resolvedAnchor == .right ? AppMetrics.base : AppMetrics.small,
+              right: resolvedAnchor == .left ? AppMetrics.base : AppMetrics.small
+            ),
+            child: Row(
+              mainAxisAlignment: .end,
+              crossAxisAlignment: .center,
+              spacing: 4,
+              children: [
+                LangManager(displayLayout: .icon),
+                ThemeManager(displayLayout: .icon, optionsLayout: .segmented),
+                SizedBox(width: AppMetrics.small)
+              ],
+            )
+          ),
 
         ],
       ),

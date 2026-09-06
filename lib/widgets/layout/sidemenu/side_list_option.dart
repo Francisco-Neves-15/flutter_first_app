@@ -32,7 +32,7 @@ class SideMenuListOption extends StatelessWidget {
 
     final rowContent = <Widget>[
       Text(label ?? "", style: context.appTheme.textStyles.buttonText.copyWith(color: mainColor)),
-      Icon(icon, size: 32, fill: iconFill, color: mainColor),
+      Icon(icon, size: 24, fill: iconFill, color: mainColor),
     ];
 
     return TextButton(

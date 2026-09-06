@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' show IconData, Locale;
 import 'package:material_symbols_icons/symbols.dart' show Symbols;
 
+// enum AppAvailableLocale { en, pt, fr }
 enum AppAvailableLocale { en, pt }
 
 const IconData appLocaleIcon = Symbols.translate_rounded;
@@ -13,6 +14,8 @@ extension AppAvailableLocaleMapping on AppAvailableLocale {
         return const Locale("en");
       case AppAvailableLocale.pt:
         return const Locale("pt");
+      // case AppAvailableLocale.fr:
+      //   return const Locale("fr");
     }
   }
 }
@@ -24,6 +27,7 @@ const List<AppAvailableLocale> kAppAvailableLocales = AppAvailableLocale.values;
 class AppLocaleLabels {
   static const String en = "English";
   static const String pt = "Português";
+  // static const String fr = "Français";
 
   static String of(AppAvailableLocale value) {
     switch (value) {
@@ -31,6 +35,8 @@ class AppLocaleLabels {
         return en;
       case AppAvailableLocale.pt:
         return pt;
+      // case AppAvailableLocale.fr:
+      //   return fr;
     }
   }
 }
@@ -38,6 +44,7 @@ class AppLocaleLabels {
 class AppLocaleAcronym {
   static const String en = "US";
   static const String pt = "BR";
+  // static const String fr = "FR";
 
   static String of(AppAvailableLocale value) {
     switch (value) {
@@ -45,6 +52,8 @@ class AppLocaleAcronym {
         return en;
       case AppAvailableLocale.pt:
         return pt;
+      // case AppAvailableLocale.fr:
+      //   return fr;
     }
   }
 }
@@ -52,6 +61,7 @@ class AppLocaleAcronym {
 class AppLocaleFlags {
   static const String en = "assets/localization/flags-ISO3166-4x3-svgs/us.svg";
   static const String pt = "assets/localization/flags-ISO3166-4x3-svgs/br.svg";
+  // static const String fr = "assets/localization/flags-ISO3166-4x3-svgs/fr.svg";
 
   static String of(AppAvailableLocale value) {
     switch (value) {
@@ -59,6 +69,8 @@ class AppLocaleFlags {
         return en;
       case AppAvailableLocale.pt:
         return pt;
+      // case AppAvailableLocale.fr:
+      //   return fr;
     }
   }
 }
