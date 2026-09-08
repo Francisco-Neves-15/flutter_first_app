@@ -5,7 +5,7 @@ import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/action_sheet_builder.dart" show ActionSheetBuilder;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
-import "package:flutter_first_app/widgets/ui/control/displayModeManager/models.dart" show DisplayModeOption;
+import "package:flutter_first_app/widgets/app/displayModeManager/models.dart" show DisplayModeOption;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 class _DisplayModeBottomsheetContent<T> extends StatefulWidget {

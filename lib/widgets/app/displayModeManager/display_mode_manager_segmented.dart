@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/docs/widgets/ui/displayModeManager/bad_usages.dart" show BadUsagesDisplayModeManager;
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_metrics.dart";
-import "package:flutter_first_app/widgets/ui/control/displayModeManager/models.dart" show DisplayModeOption;
+import "package:flutter_first_app/widgets/app/displayModeManager/models.dart" show DisplayModeOption;
 
 class DisplayModeManagerSegmented<T> extends StatelessWidget {
   final List<DisplayModeOption<T>> options;

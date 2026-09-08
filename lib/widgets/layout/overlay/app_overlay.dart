@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/docs/widgets/layout/bad_usages.dart" show BadUsagesLayoutWidgets;
 import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 
 // Testar "botão" de voltar no emulador;
@@ -31,7 +32,7 @@ class AppOverlay extends StatelessWidget {
 
     void dismiss() {
       if (onDismiss == null) {
-        debugPrint("$overlayEntry : The barrier was triggered, but no dispensing function was found.");
+        debugPrint("$overlayEntry : ${BadUsagesLayoutWidgets.e002.warn()}");
       } else {
         overlayEntry.remove();
       }

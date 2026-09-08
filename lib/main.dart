@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/styles/app_icons.dart" show AppIcons;
 import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 import "package:flutter_first_app/widgets/layout/overlay/app_overlay.dart";
+import "package:flutter_first_app/widgets/ui/app_icon.dart" show AppIcon;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 // import "package:flutter/services.dart";
@@ -27,7 +29,7 @@ import "package:flutter_first_app/config/app_config_locales.dart" show AppAvaila
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
-import "package:flutter_first_app/widgets/ui/control/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
+import "package:flutter_first_app/widgets/app/displayModeManager/_.dart" show DisplayModePresets, DisplayModeManagerSegmented, DisplayModeManagerBottomsheet;
 import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart" show ThemeManager;
 import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart" show LangManager;
 
@@ -397,6 +399,38 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppMetrics.small,
       children: [
+
+        Row(children: [
+          Text('Widget "Icon", using "Icons."'),
+          Icon(Icons.add_rounded)
+        ]),
+
+        Row(children: [
+          Text('Widget "Icon", using "Symbols."'),
+          Icon(Symbols.add_rounded, size: 32),
+        ]),
+
+        Row(children: [
+          Text('Widget "Icon", using "AppIcons."'),
+          Icon(AppIcons.add),
+        ]),
+
+        Row(children: [
+          Text('Widget "AppIcon", using "Icons."'),
+          AppIcon(Icons.add_rounded),
+        ]),
+
+        Row(children: [
+          Text('Widget "AppIcon", using "Symbols."'),
+          AppIcon(Symbols.add_rounded, size: 32),
+        ]),
+
+        Row(children: [
+          Text('Widget "AppIcon", using "AppIcons."'),
+          AppIcon(AppIcons.add),
+        ]),
+
+        Divider(),
 
         // Ungrouped key, used directly from the generated class.
         Text(l10n.raw.hello),

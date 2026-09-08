@@ -1,0 +1,1 @@
+radio, chips, checkbox, switchers, etc;

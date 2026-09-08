@@ -1,6 +1,6 @@
 import "package:flutter/material.dart" show Icon;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
-import "package:flutter_first_app/widgets/ui/control/displayModeManager/models.dart" show DisplayModeOption;
+import "package:flutter_first_app/widgets/app/displayModeManager/models.dart" show DisplayModeOption;
 
 final double defaultIconSize = 20;
 

@@ -14,6 +14,8 @@
 
 - FEITO: Criar menu laterial, surgindo apartir do botão lateral
 
+- Reorganizar qualquer uso de Icones (Icon, Icons ou Symbols) no App Inteiro. Inclui uso dos icones, tipagem em Widgets, etc.
+
 - Conseguir ajustar botões de navegação de acordo com a tela; Por exemplo:
 
 ---

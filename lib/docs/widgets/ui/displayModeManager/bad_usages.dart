@@ -1,7 +1,7 @@
 import "package:flutter_first_app/docs/models.dart" show BadUsageMessage;
 
 class BadUsagesDisplayModeManager {
-  static const _prefix = "badUsage-widgets-ui-displayModeManager";
+  static const _prefix = "badUsage-widgets-app-displayModeManager";
   static const _owner = "DisplayModeManager";
 
   static const e001 = BadUsageMessage(
