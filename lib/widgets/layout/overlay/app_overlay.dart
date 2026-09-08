@@ -12,23 +12,30 @@ class AppOverlay extends StatelessWidget {
 
   // --------------- Dismiss ---------------
 
-  // /// Allows overriding the default behavior
-  // final Listenable? dismissListenable;
+  final VoidCallback? onDismiss;
 
-  // /// Allows overriding the default behavior
-  // final VoidCallback? onPressedDismiss;
+  /// If true, calls "onDismiss" when clicking the barrier (transparent background)
+  final bool? backgroundTapDismiss;
 
   const AppOverlay({ 
     super.key,
     required this.overlayEntry,
+    required this.onDismiss,
     required this.body,
-    this.safeArea = true,
-    // this.dismissListenable,
-    // this.onPressedDismiss,
+    this.safeArea = false,
+    this.backgroundTapDismiss = true,
   });
 
   @override
   Widget build(BuildContext context) {
+
+    void dismiss() {
+      if (onDismiss == null) {
+        debugPrint("$overlayEntry : The barrier was triggered, but no dispensing function was found.");
+      } else {
+        overlayEntry.remove();
+      }
+    }
 
     Widget content = body;
     if (safeArea != null) {
@@ -41,7 +48,7 @@ class AppOverlay extends StatelessWidget {
         // background
         Positioned.fill(
           child: GestureDetector(
-            onTap: () => overlayEntry.remove(),
+            onTap: (backgroundTapDismiss != null && backgroundTapDismiss == true) ? dismiss : () => {},
             child: Container(
               color: AppColors.overlay,
             ),
@@ -49,7 +56,7 @@ class AppOverlay extends StatelessWidget {
         ),
 
         // content
-        Center(child: content),
+        Center(child: body),
 
       ],
     );

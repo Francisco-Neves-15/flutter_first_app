@@ -287,27 +287,32 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
     late OverlayEntry screenOverlayContentTest1;
     screenOverlayContentTest1 = OverlayEntry(
-      opaque: true,
-      canSizeOverlay: true,
-      maintainState: true,
       builder: (context) {
         return AppOverlay(
           overlayEntry: screenOverlayContentTest1,
-          body: AppScaffold(
-            body: Row(
-              mainAxisAlignment: .start,
-              crossAxisAlignment: .start,
-              children: [
-                IconButton(onPressed: () => screenOverlayContentTest1.remove(), icon: Icon(Symbols.close_rounded)),
-                const Text("Meu conteúdo"),
-              ],
-            )
+          onDismiss: () => screenOverlayContentTest1.remove(),
+          // body: AppScaffold(
+          //   body: Row(
+          //     mainAxisAlignment: .start,
+          //     crossAxisAlignment: .start,
+          //     children: [
+          //       IconButton(onPressed: () => screenOverlayContentTest1.remove(), icon: Icon(Symbols.close_rounded)),
+          //       const Text("Meu conteúdo"),
+          //     ],
+          //   )
+          // )
+          body: Container(
+            width: 300,
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const Text("Meu conteúdo"),
           )
         );
       },
     );
-
-    
 
     // Home Screen
 
