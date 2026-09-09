@@ -264,8 +264,11 @@ class _HomePageState extends State<HomePage>
     screenOverlayContentTest1 = OverlayEntry(
       builder: (context) {
         return AppOverlay(
+          safeArea: true,
+          centralize: false,
           overlayEntry: screenOverlayContentTest1,
           onDismiss: () => screenOverlayContentTest1.remove(),
+          // ===== Scaffold E.g.
           // body: AppScaffold(
           //   body: Row(
           //     mainAxisAlignment: .start,
@@ -276,15 +279,15 @@ class _HomePageState extends State<HomePage>
           //     ],
           //   )
           // )
+          // ===== Expanded E.g.
           body: Container(
-            width: 300,
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
             ),
             child: const Text("Meu conteúdo"),
-          ),
+          )
         );
       },
     );
@@ -364,13 +367,16 @@ class _HomePageState extends State<HomePage>
         ListView(
           controller: _mainScreenController,
           children: [
-            Text("Try to Scroll!"),
-            ...List.generate(
-              50,
-              (index) => Text(
-                "$index Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            Expanded(child: Container(color: Colors.red, child: Column(crossAxisAlignment: .end, children: [
+              Text("PaddingExclude is ON"),
+              Text("Try to Scroll!"),
+              ...List.generate(
+                50,
+                (index) => Text(
+                  "$index Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                ),
               ),
-            ),
+            ])))
           ],
         ),
         Container(color: Colors.green, child: Icon(Symbols.directions_transit)),

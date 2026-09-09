@@ -15,12 +15,14 @@ class AppSideMenu extends StatelessWidget {
   final String? title;
   final AppAxisPositionHorizontal? origin;
   final SideMenuAnchor? anchor;
+  final bool? safeArea;
 
   const AppSideMenu({ 
     super.key,
     this.title,
     this.origin,
     this.anchor,
+    this.safeArea = true,
   });
 
   @override
@@ -47,7 +49,7 @@ class AppSideMenu extends StatelessWidget {
       )
     ];
 
-    return Drawer(
+    Widget content = Drawer(
       child: Column(
         children: [
 
@@ -106,5 +108,14 @@ class AppSideMenu extends StatelessWidget {
         ],
       ),
     );
+
+    if (safeArea == true) {
+      content = SafeArea(
+        child: content,
+      );
+    }
+
+    return content;
+
   }
 }

@@ -10,6 +10,7 @@ class AppOverlay extends StatelessWidget {
   final Widget body;
 
   final bool? safeArea;
+  final bool? centralize;
 
   // --------------- Dismiss ---------------
 
@@ -18,12 +19,13 @@ class AppOverlay extends StatelessWidget {
   /// If true, calls "onDismiss" when clicking the barrier (transparent background)
   final bool? backgroundTapDismiss;
 
-  const AppOverlay({ 
+  const AppOverlay({
     super.key,
     required this.overlayEntry,
     required this.onDismiss,
     required this.body,
-    this.safeArea = false,
+    this.safeArea = true,
+    this.centralize = true,
     this.backgroundTapDismiss = true,
   });
 
@@ -33,14 +35,23 @@ class AppOverlay extends StatelessWidget {
     void dismiss() {
       if (onDismiss == null) {
         debugPrint("$overlayEntry : ${BadUsagesLayoutWidgets.e002.warn()}");
-      } else {
-        overlayEntry.remove();
+        return;
       }
+      overlayEntry.remove();
     }
 
     Widget content = body;
-    if (safeArea != null) {
-      content = SafeArea(child: content);
+
+    if (centralize == true) {
+      content = Center(
+        child: content,
+      );
+    }
+
+    if (safeArea == true) {
+      content = SafeArea(
+        child: content,
+      );
     }
 
     return Stack(
@@ -57,7 +68,7 @@ class AppOverlay extends StatelessWidget {
         ),
 
         // content
-        Center(child: body),
+        content
 
       ],
     );
