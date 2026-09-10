@@ -80,6 +80,53 @@ class _HomePageState extends State<HomePage>
 
   ViewMode _viewMode = ViewMode.list;
 
+  // Kept as a single State field (not recreated every build) so open/close
+  // always agree on which instance is currently showing.
+  OverlayEntry? _testOverlayEntry;
+
+  void _openTestOverlay(BuildContext context) {
+    late OverlayEntry entry;
+
+    entry = OverlayEntry(
+      builder: (context) {
+        return AppOverlay(
+          safeArea: true,
+          centralize: false,
+          overlayEntry: entry,
+          onDismiss: _closeTestOverlay,
+          // ===== Scaffold E.g.
+          // body: AppScaffold(
+          //   body: Row(
+          //     mainAxisAlignment: .start,
+          //     crossAxisAlignment: .start,
+          //     children: [
+          //       IconButton(onPressed: () => screenOverlayContentTest1.remove(), icon: Icon(Symbols.close_rounded)),
+          //       const Text("Meu conteúdo"),
+          //     ],
+          //   )
+          // )
+          // ===== Container E.g.
+          body: Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const Text("Meu conteúdo"),
+          ),
+        );
+      },
+    );
+
+    _testOverlayEntry = entry;
+    Overlay.of(context).insert(entry);
+  }
+
+  void _closeTestOverlay() {
+    _testOverlayEntry?.remove();
+    _testOverlayEntry = null;
+  }
+
   Future<bool> _shouldLogout() async {
     final shouldLogout = await showDialog<bool>(
       context: context,
@@ -257,40 +304,6 @@ class _HomePageState extends State<HomePage>
 
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenHeight = MediaQuery.sizeOf(context).height;
-
-    final screenOverlay = Overlay.of(context);
-
-    late OverlayEntry screenOverlayContentTest1;
-    screenOverlayContentTest1 = OverlayEntry(
-      builder: (context) {
-        return AppOverlay(
-          safeArea: true,
-          centralize: false,
-          overlayEntry: screenOverlayContentTest1,
-          onDismiss: () => screenOverlayContentTest1.remove(),
-          // ===== Scaffold E.g.
-          // body: AppScaffold(
-          //   body: Row(
-          //     mainAxisAlignment: .start,
-          //     crossAxisAlignment: .start,
-          //     children: [
-          //       IconButton(onPressed: () => screenOverlayContentTest1.remove(), icon: Icon(Symbols.close_rounded)),
-          //       const Text("Meu conteúdo"),
-          //     ],
-          //   )
-          // )
-          // ===== Expanded E.g.
-          body: Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: const Text("Meu conteúdo"),
-          )
-        );
-      },
-    );
 
     final screenListenable =   Listenable.merge([
       ThemeController.instance,
@@ -491,7 +504,7 @@ class _HomePageState extends State<HomePage>
         ),
 
         ElevatedButton(
-          onPressed: () => screenOverlay.insert(screenOverlayContentTest1),
+          onPressed: () => _openTestOverlay(context),
           child: Text("Chamar Modal (Overlay in Flutter)"),
         ),
 
@@ -854,6 +867,17 @@ class _HomePageState extends State<HomePage>
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
+
+        // `canPop: false` means this callback is the ONLY thing that runs
+        // on a back attempt — nothing else (LocalHistoryEntry included)
+        // gets a chance to react first. So if something else on screen
+        // should consume "back" instead of the exit prompt, it has to be
+        // checked here.
+        if (_testOverlayEntry != null) {
+          _closeTestOverlay();
+          return;
+        }
+
         _confirmExit(context);
       },
       // Required to react to the ThemeController

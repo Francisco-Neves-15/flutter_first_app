@@ -6,15 +6,23 @@
 
 - FEITO > Variações de Layout para ThemeManager & LangManager (adicionar opção para IconButton simples & icones "idiomas" e "tema")
 
-# Nest Steps
+# Minor Steps
+
+- Contruir e Padronizar Layout/UI em Dialogs (Alert, Confirm, Input; Style em "sucess", "deleting", "warn", etc)
+
+- Implementar Toasts
+
+- Reorganizar qualquer uso de Icones (Icon, Icons ou Symbols) no App Inteiro. Inclui uso dos icones, tipagem em Widgets, etc.
+
+# Next Steps
 
 - Persistencia do tema e idioma guardando no cache;
 
-- Aplicar navegação entre telas (e "encontrar" uma forma de fazer a tela com overlay)
+> - Aplicar navegação entre telas (e "encontrar" uma forma de fazer a tela com overlay)
+- FEITO: Sistema de Navegação
+- FEITO: Controle do Botão de "Voltar" em Modais
 
 - FEITO: Criar menu laterial, surgindo apartir do botão lateral
-
-- Reorganizar qualquer uso de Icones (Icon, Icons ou Symbols) no App Inteiro. Inclui uso dos icones, tipagem em Widgets, etc.
 
 - Conseguir ajustar botões de navegação de acordo com a tela; Por exemplo:
 
