@@ -6,6 +6,9 @@ import "package:flutter_first_app/controllers/auth_controller.dart" show AuthCon
 // Extensions
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 
+// Navigation
+import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
+
 // Screens
 import "package:flutter_first_app/screens/home_screen.dart" show HomePage;
 
@@ -25,7 +28,10 @@ class LoginScreen extends StatelessWidget {
     // from history — the hardware/gesture back button on Home won't return
     // to it, same as Splash disappearing after this screen took over.
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const HomePage(title: "WatchList")),
+      MaterialPageRoute(
+        settings: const RouteSettings(name: AppRoutes.home),
+        builder: (_) => const HomePage(title: "WatchList"),
+      ),
     );
   }
 

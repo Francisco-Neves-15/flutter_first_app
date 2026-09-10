@@ -28,6 +28,7 @@ import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart"
 
 // Navigation
 import "package:flutter_first_app/controllers/auth_controller.dart" show AuthController;
+import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
 import "package:flutter_first_app/screens/login_screen.dart" show LoginScreen;
 
 // MaterialApp
@@ -157,7 +158,12 @@ class _HomePageState extends State<HomePage>
     
     if (!context.mounted) return;
 
-    Navigator.of(context).pushReplacement(MaterialPageRoute( builder: (_) => const LoginScreen()));
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        settings: const RouteSettings(name: AppRoutes.login),
+        builder: (_) => const LoginScreen(),
+      ),
+    );
   }
 
   /// Home is the stack's root once Login/Splash got replaced away (see

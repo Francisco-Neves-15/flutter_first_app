@@ -5,6 +5,9 @@ import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeC
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
 import "package:flutter_first_app/controllers/auth_controller.dart" show AuthController;
 
+// Navigation
+import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
+
 // Screens
 import "package:flutter_first_app/screens/home_screen.dart" show HomePage;
 import "package:flutter_first_app/screens/login_screen.dart" show LoginScreen;
@@ -44,9 +47,14 @@ class _SplashScreenState extends State<SplashScreen> {
     // pushReplacement: swaps Splash for Login/Home on the navigation stack.
     // Splash is gone from history — there's no way back to it, which is the
     // point (nobody should ever see it again once decided where to go).
+    final isLoggedIn = AuthController.instance.isLoggedIn;
+
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => AuthController.instance.isLoggedIn
+        settings: RouteSettings(
+          name: isLoggedIn ? AppRoutes.home : AppRoutes.login,
+        ),
+        builder: (_) => isLoggedIn
             ? const HomePage(title: "WatchList")
             : const LoginScreen(),
       ),

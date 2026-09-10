@@ -1,11 +1,25 @@
 import "package:flutter/material.dart";
+import "package:material_symbols_icons/material_symbols_icons.dart";
+import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
+
+// Values
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisPositionHorizontal;
 import "package:flutter_first_app/styles/app_metrics.dart";
-import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
+
+// Screens
+import "package:flutter_first_app/screens/home_screen.dart" show HomePage;
+import "package:flutter_first_app/screens/settings_screen.dart" show SettingsScreen;
+
+// Widgets
 import "package:flutter_first_app/widgets/layout/sidemenu/side_list_option.dart" show SideMenuListOption;
 import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart";
 import "package:flutter_first_app/widgets/ui/preferences/theme/theme_manager.dart";
-import "package:material_symbols_icons/material_symbols_icons.dart";
+
+// Navigation
+import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
+import "package:flutter_first_app/navigation/utils.dart" show isRouteSelected, navigateOrPopToRoute;
+
+// Continue
 
 enum SideMenuAnchor { left, right, origin }
 enum SideMenuAnchorResolved { left, right }
@@ -77,6 +91,34 @@ class AppSideMenu extends StatelessWidget {
                 children: [
                   SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 0, label: "Label 1", selected: false, onPressed: () => debugPrint("Teste"),),
                   SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 0, label: "Label 2", selected: false, onPressed: () => debugPrint("Teste"),),
+                  // ----- Real navigation demo — see lib/navigation/README_NAVIGATION.md
+                  SideMenuListOption(
+                    anchor: resolvedAnchor,
+                    icon: Symbols.home_rounded,
+                    iconFill: isRouteSelected(context, AppRoutes.home) ? 1 : 0,
+                    label: "Home",
+                    selected: isRouteSelected(context, AppRoutes.home),
+                    onPressed: () => navigateOrPopToRoute(
+                      context,
+                      routeName: AppRoutes.home,
+                      builder: (_) => const HomePage(title: "WatchList"),
+                    ),
+                  ),
+                  SideMenuListOption(
+                    anchor: resolvedAnchor,
+                    icon: Symbols.settings_rounded,
+                    // includeSubRoutes: false — testing not treating
+                    // "/settings/privacy" as still "inside" Configurações.
+                    iconFill: isRouteSelected(context, AppRoutes.settings, includeSubRoutes: false) ? 1 : 0,
+                    label: "Configurações",
+                    selected: isRouteSelected(context, AppRoutes.settings, includeSubRoutes: false),
+                    onPressed: () => navigateOrPopToRoute(
+                      context,
+                      routeName: AppRoutes.settings,
+                      builder: (_) => const SettingsScreen(),
+                    ),
+                  ),
+                  // -----
                   Spacer(),
                   SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 1, label: "Label 3", selected: true, onPressed: () => debugPrint("Teste"),),
                   SideMenuListOption(anchor: resolvedAnchor, icon: Symbols.phone, iconFill: 1, label: "Label 3", selected: true, onPressed: () => debugPrint("Teste"),),

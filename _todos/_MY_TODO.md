@@ -8,6 +8,8 @@
 
 # Minor Steps
 
+- Icone do App e Derivados...
+
 - Contruir e Padronizar Layout/UI em Dialogs (Alert, Confirm, Input; Style em "sucess", "deleting", "warn", etc)
 
 - Implementar Toasts
@@ -21,6 +23,9 @@
 > - Aplicar navegação entre telas (e "encontrar" uma forma de fazer a tela com overlay)
 - FEITO: Sistema de Navegação
 - FEITO: Controle do Botão de "Voltar" em Modais
+
+- FEITO: Sistema de Navegação Aprimorado: Rotas nomeadas, rotas detectaveis, menu lateral (sideMenu) formado para suportar navegação
+- Configurar AppBar (navigation & header) para incluir "back";
 
 - FEITO: Criar menu laterial, surgindo apartir do botão lateral
 
