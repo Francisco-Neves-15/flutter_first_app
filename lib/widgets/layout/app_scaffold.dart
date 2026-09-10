@@ -1,13 +1,22 @@
-import "package:flutter/foundation.dart" show kDebugMode;
+import "dart:io" show Platform;
 import "package:flutter/material.dart";
+import "package:flutter/foundation.dart" show kDebugMode;
 import "package:flutter_first_app/docs/widgets/layout/bad_usages.dart" show BadUsagesLayoutWidgets;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisPositionHorizontal;
-import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show AppBarType, MenuButtonPosition, MenuButtonLocation, resolveActions, resolveLeading;
+import "package:flutter_first_app/navigation/utils.dart" show shouldShowBackButton;
+import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show 
+  AppBarType,
+  MenuButtonPosition,
+  MenuButtonLocation,
+  resolveActions,
+  resolveLeading
+;
 import "package:flutter_first_app/widgets/layout/headers/app_header.dart" show AppHeader;
 import "package:flutter_first_app/widgets/layout/headers/app_navigation_bar.dart" show AppNavigationBar;
 import "package:flutter_first_app/widgets/layout/sidemenu/app_side_menu.dart" show AppSideMenu, SideMenuAnchor;
 import "package:flutter_first_app/widgets/ui/app_logo.dart" show AppLogo, getAppLogoSize;
+import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 class AppScaffold extends StatelessWidget {
 
@@ -26,6 +35,11 @@ class AppScaffold extends StatelessWidget {
   final List<Widget>? appBarLeading;
   final List<Widget>? appBarActions;
   final bool? appBarLogo;
+
+  // Back
+  final bool? backAutomatic;
+  final bool? backButton;
+  final VoidCallback? backFunction;
 
   // MenuButton
   final bool? menuButton;
@@ -49,6 +63,10 @@ class AppScaffold extends StatelessWidget {
     // Default Scaffold
     this.floatingActionButton,
     this.floatingActionButtonLocation,
+    // Back
+    this.backAutomatic = true,
+    this.backButton,
+    this.backFunction,
     // AppBar
     this.appBar,
     this.appBarTitle,
@@ -87,6 +105,22 @@ class AppScaffold extends StatelessWidget {
 
     // Essentials
 
+    // `AppNavigationBar` reserves exactly `getAppLogoSize(appBar)` px per
+    // leading item (see `_leadingWidth`). A plain `IconButton` ignores that
+    // and keeps Material's default 48x48 minimum tap target regardless of
+    // `iconSize` — `constraints` alone doesn't fix it either, since
+    // `MaterialTapTargetSize.padded` (the `ThemeData` default) pads the
+    // button's actual footprint back up to 48 even when `constraints` says
+    // smaller. `shrinkWrap` is what turns that padding off, so the button's
+    // real occupied space finally matches what the width calculation
+    // assumes.
+    final double leadingIconButtonSize = getAppLogoSize(appBar);
+    final BoxConstraints leadingIconButtonConstraints = BoxConstraints.tightFor(
+      width: leadingIconButtonSize,
+      height: leadingIconButtonSize,
+    );
+    const MaterialTapTargetSize leadingIconButtonTapTargetSize = MaterialTapTargetSize.shrinkWrap;
+
     Widget? widgetMenuButton = menuButton! ? Builder(
       builder: (scaffoldContext) => IconButton(
         onPressed: () {
@@ -101,7 +135,28 @@ class AppScaffold extends StatelessWidget {
         icon: const Icon(Icons.menu_rounded),
         iconSize: 24,
         color: context.appTheme.colors.text,
+        padding: EdgeInsets.zero,
+        constraints: leadingIconButtonConstraints,
+        // materialTapTargetSize: leadingIconButtonTapTargetSize,
       ),
+    ) : null;
+
+    IconData widgetBackButtonIcon = (Platform.isMacOS || Platform.isIOS)
+        ? Symbols.arrow_back_ios_new_rounded
+        : Symbols.arrow_back_rounded;
+
+    Widget? widgetBackButton = shouldShowBackButton(
+      context,
+      backAutomatic: backAutomatic,
+      backButton: backButton,
+    ) ? IconButton(
+      onPressed: backFunction ?? () => Navigator.maybePop(context),
+      icon: Icon(widgetBackButtonIcon, size: 24),
+      iconSize: 24,
+      color: context.appTheme.colors.text,
+      padding: EdgeInsets.zero,
+      constraints: leadingIconButtonConstraints,
+      // materialTapTargetSize: leadingIconButtonTapTargetSize,
     ) : null;
 
     // Resolves
@@ -113,6 +168,7 @@ class AppScaffold extends StatelessWidget {
     );
 
     final resolvedLeading = resolveLeading(
+      backButton: widgetBackButton,
       menuButton: menuButtonLocation == .leading ? widgetMenuButton : null,
       menuButtonPosition: menuButtonPosition,
       logo: appBarLogo == true ? AppLogo(height: getAppLogoSize(appBar), width: getAppLogoSize(appBar)) : null,

@@ -1,5 +1,25 @@
 import "package:flutter/material.dart";
 
+/// Whether an automatic back button should show, for `AppScaffold`'s
+/// `backAutomatic`/`backButton` params (see
+/// `lib/navigation/README_NAVIGATION.md`):
+/// - `backButton` explicitly `true`/`false` always wins — forces the
+///   button shown or hidden regardless of whether there's actually a
+///   previous route.
+/// - Otherwise, if `backAutomatic` is `true`, it's decided by whether
+///   there's a route to go back to (`Navigator.canPop`) — e.g. Home has
+///   none, Settings (pushed on top of it) does.
+/// - Otherwise (both unset/`false`), no button.
+bool shouldShowBackButton(
+  BuildContext context, {
+  required bool? backAutomatic,
+  required bool? backButton,
+}) {
+  if (backButton != null) return backButton;
+  if (backAutomatic != true) return false;
+  return Navigator.of(context).canPop();
+}
+
 /// The SideMenu's own navigation policy (see
 /// `lib/navigation/README_NAVIGATION.md`):
 /// - Tapping the item for the route already showing just closes the menu.

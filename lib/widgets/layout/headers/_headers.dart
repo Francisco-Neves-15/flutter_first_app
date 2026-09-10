@@ -24,6 +24,7 @@ List<Widget>? resolveActions({
 }
 
 List<Widget>? resolveLeading({
+  Widget? backButton,
   Widget? logo,
   Widget? menuButton,
   MenuButtonPosition? menuButtonPosition,
@@ -40,6 +41,13 @@ List<Widget>? resolveLeading({
       case MenuButtonPosition.start: resolvedLeading.insert(0, menuButton);
       case MenuButtonPosition.end: resolvedLeading.add(menuButton);
     }
+  }
+
+  // Back button always leads, ahead of the logo/menu button — platform
+  // convention (and independent of `menuButtonPosition`, which is only
+  // about the menu button's own placement).
+  if (backButton != null) {
+    resolvedLeading.insert(0, backButton);
   }
 
   return resolvedLeading;
