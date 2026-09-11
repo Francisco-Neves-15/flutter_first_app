@@ -1,0 +1,89 @@
+PS C:\Work\FlutterProjects\flutter_first_app> flutter run -d ZF524LGHFB
+Launching lib\main.dart on moto g34 5G in debug mode...
+Running Gradle task 'assembleDebug'...                             16,1s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...           5,7s
+I/FlutterActivityAndFragmentDelegate(11948): If you are attempting to set --enable-dart-profiling via Intent extras to launch a Flutter component outside of using the Flutter CLI, note that support for setting engine flags on Android via Intent will soon be dropped; see https://github.com/flutter/flutter/issues/180686 for more information on this breaking change. To migrate, set --enable-dart-profiling or any other flags specified via Intent extras on the command line instead or see https://github.com/flutter/flutter/blob/main/docs/engine/Flutter-Android-Engine-Flags.md for alternative methods.
+D/FlutterJNI(11948): Beginning load of flutter...
+D/FlutterJNI(11948): flutter (null) was loaded normally!
+I/flutter (11948): [IMPORTANT:flutter/shell/platform/android/android_context_vk_impeller.cc(62)] Using the Impeller rendering backend (Vulkan).
+I/flutter (11948): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FlutterRenderer(11948): Width is zero. 0,0
+Syncing files to device moto g34 5G...                             106ms
+
+Flutter run key commands.
+r Hot reload. 
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on moto g34 5G is available at: http://127.0.0.1:60688/OYrazz9_y_M=/
+The Flutter DevTools debugger and profiler on moto g34 5G is available at: http://127.0.0.1:60688/OYrazz9_y_M=/devtools/?uri=ws://127.0.0.1:60688/OYrazz9_y_M=/ws
+I/Choreographer(11948): Skipped 373 frames!  The application may be doing too much work on its main thread.
+I/WindowExtensionsImpl(11948): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer(11948): Width is zero. 0,0
+I/utter_first_app(11948): Compiler allocated 5292KB to compile void android.view.ViewRootImpl.performTraversals()
+W/libc    (11948): Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+W/utter_first_app(11948): type=1400 audit(0.0:53145): avc:  denied  { read } for  name="u:object_r:vendor_display_prop:s0" dev="tmpfs" ino=14425 scontext=u:r:untrusted_app:s
+0:c175,c257,c512,c768 tcontext=u:object_r:vendor_display_prop:s0 tclass=file permissive=0 app=com.example.flutter_first_app
+D/FlutterJNI(11948): Sending viewport metrics to the engine.
+I/HWUI    (11948): setGrContext nullptr-->validptr
+W/utter_first_app(11948): Unable to open libdolphin.so: dlopen failed: library "libdolphin.so" not found.
+W/libc    (11948): Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+W/utter_first_app(11948): type=1400 audit(0.0:53146): avc:  denied  { read } for  name="u:object_r:vendor_display_prop:s0" dev="tmpfs" ino=14425 scontext=u:r:untrusted_app:s
+0:c175,c257,c512,c768 tcontext=u:object_r:vendor_display_prop:s0 tclass=file permissive=0 app=com.example.flutter_first_app
+D/Surface (11948): Surface::disconnect
+D/BufferQueueProducer(11948): [SurfaceView[com.example.flutter_first_app/com.example.flutter_first_app.MainActivity](BLAST)#29762(BLAST Consumer)pid:11948](id:2eac00000001,a
+pi:1,p:11948,c:11948) disconnect: api 1
+W/WindowOnBackDispatcher(11948): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher(11948): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/Choreographer(11948): Skipped 42 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI(11948): Sending viewport metrics to the engine.
+D/ProfileInstaller(11948): Installing profile for com.example.flutter_first_app
+
+
+W/utter_first_app(11948): Unable to open libdolphin.so: dlopen failed: library "libdolphin.so" not found.
+I/flutter (11948): >>>> Init
+W/WindowOnBackDispatcher(11948): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher(11948): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+
+══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 12 pixels on the right.
+
+The relevant error-causing widget was:
+  Row
+  Row:file:///C:/Work/FlutterProjects/flutter_first_app/lib/widgets/layout/headers/app_navigation_bar.dart:43:16
+
+To inspect this widget in Flutter DevTools, visit:
+http://127.0.0.1:60688/OYrazz9_y_M=/devtools//#/inspector?uri=http%3A%2F%2F127.0.0.1%3A60688%2FOYrazz9_y_M%3D%2F&inspectorRef=inspector-118
+
+The overflowing RenderFlex has an orientation of Axis.horizontal.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#e8e12 OVERFLOWING:
+  creator: Row ← Padding ← IconButtonTheme ← ConstrainedBox ← LayoutId-[<_ToolbarSlot.leading>] ←
+    CustomMultiChildLayout ← NavigationToolbar ← DefaultTextStyle ← IconTheme ← Builder ←
+    CustomSingleChildLayout ← ClipRect ← ⋯
+  parentData: offset=Offset(8.0, 0.0) (can use size)
+  constraints: BoxConstraints(w=36.0, h=56.0)
+  size: Size(36.0, 56.0)
+  direction: horizontal
+  mainAxisAlignment: start
+  mainAxisSize: min
+  crossAxisAlignment: center
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 8.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+Another exception was thrown: A RenderFlex overflowed by 12 pixels on the right.

@@ -18,18 +18,18 @@
 
 # Next Steps
 
-- Persistencia do tema e idioma guardando no cache;
+- FEITO: Persistencia do tema e idioma guardando no cache;
 
 > - Aplicar navegação entre telas (e "encontrar" uma forma de fazer a tela com overlay)
 - FEITO: Sistema de Navegação
 - FEITO: Controle do Botão de "Voltar" em Modais
 
 - FEITO: Sistema de Navegação Aprimorado: Rotas nomeadas, rotas detectaveis, menu lateral (sideMenu) formado para suportar navegação
-- Configurar AppBar (navigation & header) para incluir "back";
+- FEITO: Configurar AppBar (navigation & header) para incluir "back";
 
 - FEITO: Criar menu laterial, surgindo apartir do botão lateral
 
-- Conseguir ajustar botões de navegação de acordo com a tela; Por exemplo:
+- FEITO: Conseguir ajustar botões de navegação de acordo com a tela; Por exemplo:
 
 ---
 

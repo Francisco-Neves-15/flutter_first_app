@@ -108,18 +108,21 @@ class AppScaffold extends StatelessWidget {
     // `AppNavigationBar` reserves exactly `getAppLogoSize(appBar)` px per
     // leading item (see `_leadingWidth`). A plain `IconButton` ignores that
     // and keeps Material's default 48x48 minimum tap target regardless of
-    // `iconSize` — `constraints` alone doesn't fix it either, since
-    // `MaterialTapTargetSize.padded` (the `ThemeData` default) pads the
-    // button's actual footprint back up to 48 even when `constraints` says
-    // smaller. `shrinkWrap` is what turns that padding off, so the button's
-    // real occupied space finally matches what the width calculation
-    // assumes.
+    // `iconSize`/`constraints`: Material 3's `IconButton` wraps its visual
+    // content in a `_RenderInputPadding` that pads the *reported* size back
+    // up to 48x48 whenever `MaterialTapTargetSize.padded` is in effect (the
+    // `ThemeData` default) — confirmed via DevTools: the inner content
+    // really was 36x36, but the wrapper around it still measured 48x48.
+    // The standalone `materialTapTargetSize:` constructor param does NOT
+    // drive this in the M3 implementation — only `ButtonStyle.tapTargetSize`
+    // (set here via `style:`) actually reaches `_RenderInputPadding`.
     final double leadingIconButtonSize = getAppLogoSize(appBar);
-    final BoxConstraints leadingIconButtonConstraints = BoxConstraints.tightFor(
-      width: leadingIconButtonSize,
-      height: leadingIconButtonSize,
+    final ButtonStyle leadingIconButtonStyle = IconButton.styleFrom(
+      padding: EdgeInsets.zero,
+      minimumSize: Size(leadingIconButtonSize, leadingIconButtonSize),
+      maximumSize: Size(leadingIconButtonSize, leadingIconButtonSize),
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
-    const MaterialTapTargetSize leadingIconButtonTapTargetSize = MaterialTapTargetSize.shrinkWrap;
 
     Widget? widgetMenuButton = menuButton! ? Builder(
       builder: (scaffoldContext) => IconButton(
@@ -135,9 +138,7 @@ class AppScaffold extends StatelessWidget {
         icon: const Icon(Icons.menu_rounded),
         iconSize: 24,
         color: context.appTheme.colors.text,
-        padding: EdgeInsets.zero,
-        constraints: leadingIconButtonConstraints,
-        // materialTapTargetSize: leadingIconButtonTapTargetSize,
+        style: leadingIconButtonStyle,
       ),
     ) : null;
 
@@ -154,9 +155,7 @@ class AppScaffold extends StatelessWidget {
       icon: Icon(widgetBackButtonIcon, size: 24),
       iconSize: 24,
       color: context.appTheme.colors.text,
-      padding: EdgeInsets.zero,
-      constraints: leadingIconButtonConstraints,
-      // materialTapTargetSize: leadingIconButtonTapTargetSize,
+      style: leadingIconButtonStyle,
     ) : null;
 
     // Resolves

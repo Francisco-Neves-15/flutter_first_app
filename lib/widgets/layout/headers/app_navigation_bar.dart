@@ -34,6 +34,7 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: context.appTheme.colors.background,
       title: title != null ? Text(title ?? "", style: context.appTheme.textStyles.h1) : null,
+      titleSpacing: AppMetrics.small,
       actions: actions,
       actionsPadding: const EdgeInsets.only(right: paddingValue),
       automaticallyImplyLeading: false,

@@ -386,7 +386,10 @@ class _HomePageState extends State<HomePage>
         ListView(
           controller: _mainScreenController,
           children: [
-            Expanded(child: Container(color: Colors.red, child: Column(crossAxisAlignment: .end, children: [
+            // `Expanded` needs a Row/Column/Flex ancestor to size against —
+            // a ListView (sliver-based) doesn't provide one, which is what
+            // was throwing "Incorrect use of ParentDataWidget" here.
+            Container(color: Colors.red, child: Column(crossAxisAlignment: .end, children: [
               Text("PaddingExclude is ON"),
               Text("Try to Scroll!"),
               ...List.generate(
@@ -395,7 +398,7 @@ class _HomePageState extends State<HomePage>
                   "$index Lorem ipsum dolor sit amet consectetur adipisicing elit.",
                 ),
               ),
-            ])))
+            ]))
           ],
         ),
         Container(color: Colors.green, child: Icon(Symbols.directions_transit)),

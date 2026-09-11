@@ -1,0 +1,1637 @@
+1789131864208 [stdout] flutter: >>>> Init
+1789131716127 [flutter.navigation] {
+  "type": "Event",
+  "kind": "Extension",
+  "extensionKind": "Flutter.Navigation",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131716127,
+  "extensionData": {
+    "route": {
+      "description": "MaterialPageRoute<dynamic>(/login)",
+      "settings": {
+        "name": "/login"
+      }
+    }
+  }
+}
+1789131864190 [flutter.navigation] {
+  "type": "Event",
+  "kind": "Extension",
+  "extensionKind": "Flutter.Navigation",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131864190,
+  "extensionData": {
+    "route": {
+      "description": "MaterialPageRoute<dynamic>(/home)",
+      "settings": {
+        "name": "/home"
+      }
+    }
+  }
+}
+1789131889242 [httptimelineloggingstatechange] {
+  "type": "Event",
+  "kind": "Extension",
+  "extensionKind": "HttpTimelineLoggingStateChange",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131889242,
+  "extensionData": {
+    "isolateId": "isolates/3194569141766003",
+    "enabled": true
+  }
+}
+1789131889245 [socketprofilingstatechange] {
+  "type": "Event",
+  "kind": "Extension",
+  "extensionKind": "SocketProfilingStateChange",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131889245,
+  "extensionData": {
+    "isolateId": "isolates/3194569141766003",
+    "enabled": true
+  }
+}
+1789131715848 [TimerSignificantlyOverdue] {
+  "type": "Event",
+  "kind": "TimerSignificantlyOverdue",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131715848,
+  "details": "A timer should have fired 1100 ms ago, but just fired now. This means that timers were blocked from firing for nearly 1100 ms. Some possible causes of this are: asynchronous operations were blocked by uninterruptible synchronous ones, or your program was frozen by the OS to conserve resources."
+}
+1789131715854 [TimerSignificantlyOverdue] {
+  "type": "Event",
+  "kind": "TimerSignificantlyOverdue",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131715854,
+  "details": "A timer should have fired 1106 ms ago, but just fired now. This means that timers were blocked from firing for nearly 1106 ms. Some possible causes of this are: asynchronous operations were blocked by uninterruptible synchronous ones, or your program was frozen by the OS to conserve resources."
+}
+1789131716089 [TimerSignificantlyOverdue] {
+  "type": "Event",
+  "kind": "TimerSignificantlyOverdue",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131716089,
+  "details": "A timer should have fired 242 ms ago, but just fired now. This means that timers were blocked from firing for nearly 242 ms. Some possible causes of this are: asynchronous operations were blocked by uninterruptible synchronous ones, or your program was frozen by the OS to conserve resources."
+}
+1789131716094 [TimerSignificantlyOverdue] {
+  "type": "Event",
+  "kind": "TimerSignificantlyOverdue",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131716094,
+  "details": "A timer should have fired 246 ms ago, but just fired now. This means that timers were blocked from firing for nearly 246 ms. Some possible causes of this are: asynchronous operations were blocked by uninterruptible synchronous ones, or your program was frozen by the OS to conserve resources."
+}
+1789131902534 [flutter.navigation] {
+  "type": "Event",
+  "kind": "Extension",
+  "extensionKind": "Flutter.Navigation",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131902534,
+  "extensionData": {
+    "route": {
+      "description": "MaterialPageRoute<dynamic>(/home)",
+      "settings": {
+        "name": "/home"
+      }
+    }
+  }
+}
+1789131902537 [flutter.navigation] {
+  "type": "Event",
+  "kind": "Extension",
+  "extensionKind": "Flutter.Navigation",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131902537,
+  "extensionData": {
+    "route": {
+      "description": "MaterialPageRoute<dynamic>(/settings)",
+      "settings": {
+        "name": "/settings"
+      }
+    }
+  }
+}
+1789131902724 [flutter.error] {
+  "description": "Exception caught by rendering library",
+  "type": "_FlutterErrorDetailsNode",
+  "allowWrap": false,
+  "valueId": "inspector-119",
+  "properties": [
+    {
+      "description": "The following assertion was thrown during layout:",
+      "type": "ErrorDescription",
+      "showSeparator": false,
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-120",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "info"
+    },
+    {
+      "description": "A RenderFlex overflowed by 12 pixels on the right.",
+      "type": "ErrorSummary",
+      "showSeparator": false,
+      "level": "summary",
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-121",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "summary"
+    },
+    {
+      "description": "",
+      "type": "ErrorSpacer",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    },
+    {
+      "description": "",
+      "type": "DiagnosticsBlock",
+      "name": "The relevant error-causing widget was",
+      "style": "whitespace",
+      "hasChildren": true,
+      "allowWrap": false,
+      "valueId": null,
+      "properties": [],
+      "children": [
+        {
+          "description": "Row Row:file:///C:/Work/FlutterProjects/flutter_first_app/lib/widgets/layout/headers/app_navigation_bar.dart:43:16",
+          "type": "ErrorDescription",
+          "showSeparator": false,
+          "showName": false,
+          "style": "flat",
+          "allowNameWrap": true,
+          "valueId": "inspector-122",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "List<Object>",
+          "defaultLevel": "info"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "type": "ErrorSpacer",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    },
+    {
+      "description": "To inspect this widget in Flutter DevTools, visit: http://127.0.0.1:60688/OYrazz9_y_M=/devtools//#/inspector?uri=http%3A%2F%2F127.0.0.1%3A60688%2FOYrazz9_y_M%3D%2F&inspectorRef=inspector-118",
+      "type": "DevToolsDeepLinkProperty",
+      "name": "",
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": "inspector-123",
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "String",
+      "defaultLevel": "info",
+      "value": "http://127.0.0.1:60688/OYrazz9_y_M=/devtools//#/inspector?uri=http%3A%2F%2F127.0.0.1%3A60688%2FOYrazz9_y_M%3D%2F&inspectorRef=inspector-118"
+    },
+    {
+      "description": "",
+      "type": "ErrorSpacer",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    },
+    {
+      "description": "The overflowing RenderFlex has an orientation of Axis.horizontal.",
+      "type": "ErrorDescription",
+      "showSeparator": false,
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-124",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "info"
+    },
+    {
+      "description": "The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and black striped pattern. This is usually caused by the contents being too big for the RenderFlex.",
+      "type": "ErrorDescription",
+      "showSeparator": false,
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-125",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "info"
+    },
+    {
+      "description": "Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the RenderFlex to fit within the available space instead of being sized to their natural size.",
+      "type": "ErrorHint",
+      "showSeparator": false,
+      "level": "hint",
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-126",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "hint"
+    },
+    {
+      "description": "This is considered an error condition because it indicates that there is content that cannot be seen. If the content is legitimately bigger than the available space, consider clipping it with a ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex, like a ListView.",
+      "type": "ErrorHint",
+      "showSeparator": false,
+      "level": "hint",
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-127",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "hint"
+    },
+    {
+      "description": "RenderFlex#e8e12 OVERFLOWING",
+      "type": "DiagnosticableTreeNode",
+      "name": "The specific RenderFlex in question is",
+      "style": "shallow",
+      "hasChildren": true,
+      "allowWrap": false,
+      "valueId": "inspector-128",
+      "properties": [
+        {
+          "description": "offset=Offset(8.0, 0.0) (can use size)",
+          "type": "DiagnosticsProperty<ParentData>",
+          "name": "parentData",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-129",
+          "properties": [],
+          "children": [],
+          "ifNull": "MISSING",
+          "tooltip": "can use size",
+          "missingIfNull": true,
+          "propertyType": "ParentData",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "BoxConstraints(w=36.0, h=56.0)",
+          "type": "DiagnosticsProperty<Constraints>",
+          "name": "constraints",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-130",
+          "properties": [],
+          "children": [],
+          "ifNull": "MISSING",
+          "missingIfNull": true,
+          "propertyType": "Constraints",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "Size(36.0, 56.0)",
+          "type": "DiagnosticsProperty<Size>",
+          "name": "size",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-131",
+          "properties": [],
+          "children": [],
+          "ifNull": "MISSING",
+          "missingIfNull": true,
+          "propertyType": "Size",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "horizontal",
+          "type": "EnumProperty<Axis>",
+          "name": "direction",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-132",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "Axis",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "start",
+          "type": "EnumProperty<MainAxisAlignment>",
+          "name": "mainAxisAlignment",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-133",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "MainAxisAlignment",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "min",
+          "type": "EnumProperty<MainAxisSize>",
+          "name": "mainAxisSize",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-134",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "MainAxisSize",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "center",
+          "type": "EnumProperty<CrossAxisAlignment>",
+          "name": "crossAxisAlignment",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-135",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "CrossAxisAlignment",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "ltr",
+          "type": "EnumProperty<TextDirection>",
+          "name": "textDirection",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-136",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "TextDirection",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "down",
+          "type": "EnumProperty<VerticalDirection>",
+          "name": "verticalDirection",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-137",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "VerticalDirection",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "8.0",
+          "type": "DoubleProperty",
+          "name": "spacing",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-138",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "double",
+          "defaultLevel": "info",
+          "value": 8.0,
+          "numberToString": "8.0"
+        }
+      ],
+      "children": [
+        {
+          "description": "RenderSemanticsAnnotations#27d4d relayoutBoundary=up1",
+          "type": "DiagnosticableTreeNode",
+          "name": "child 1",
+          "hasChildren": true,
+          "allowWrap": false,
+          "valueId": "inspector-139",
+          "properties": [
+            {
+              "description": "offset=Offset(0.0, 4.0); flex=null; fit=null (can use size)",
+              "type": "DiagnosticsProperty<ParentData>",
+              "name": "parentData",
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-140",
+              "properties": [],
+              "children": [],
+              "ifNull": "MISSING",
+              "tooltip": "can use size",
+              "missingIfNull": true,
+              "propertyType": "ParentData",
+              "defaultLevel": "info"
+            },
+            {
+              "description": "BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=56.0)",
+              "type": "DiagnosticsProperty<Constraints>",
+              "name": "constraints",
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-141",
+              "properties": [],
+              "children": [],
+              "ifNull": "MISSING",
+              "missingIfNull": true,
+              "propertyType": "Constraints",
+              "defaultLevel": "info"
+            },
+            {
+              "description": "semantic boundary",
+              "type": "FlagProperty",
+              "name": "isSemanticBoundary",
+              "showName": false,
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-142",
+              "properties": [],
+              "children": [],
+              "defaultValue": "null",
+              "missingIfNull": false,
+              "propertyType": "bool",
+              "defaultLevel": "info",
+              "value": true,
+              "ifTrue": "semantic boundary"
+            },
+            {
+              "description": "Size(48.0, 48.0)",
+              "type": "DiagnosticsProperty<Size>",
+              "name": "size",
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-143",
+              "properties": [],
+              "children": [],
+              "ifNull": "MISSING",
+              "missingIfNull": true,
+              "propertyType": "Size",
+              "defaultLevel": "info"
+            }
+          ],
+          "children": [
+            {
+              "description": "_RenderInputPadding#22e49 relayoutBoundary=up2",
+              "type": "DiagnosticableTreeNode",
+              "name": "child",
+              "hasChildren": true,
+              "allowWrap": false,
+              "valueId": "inspector-144",
+              "properties": [
+                {
+                  "description": "<none> (can use size)",
+                  "type": "DiagnosticsProperty<ParentData>",
+                  "name": "parentData",
+                  "style": "singleLine",
+                  "allowNameWrap": true,
+                  "valueId": "inspector-145",
+                  "properties": [],
+                  "children": [],
+                  "ifNull": "MISSING",
+                  "tooltip": "can use size",
+                  "missingIfNull": true,
+                  "propertyType": "ParentData",
+                  "defaultLevel": "info"
+                },
+                {
+                  "description": "BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=56.0)",
+                  "type": "DiagnosticsProperty<Constraints>",
+                  "name": "constraints",
+                  "style": "singleLine",
+                  "allowNameWrap": true,
+                  "valueId": "inspector-141",
+                  "properties": [],
+                  "children": [],
+                  "ifNull": "MISSING",
+                  "missingIfNull": true,
+                  "propertyType": "Constraints",
+                  "defaultLevel": "info"
+                },
+                {
+                  "description": "Size(48.0, 48.0)",
+                  "type": "DiagnosticsProperty<Size>",
+                  "name": "size",
+                  "style": "singleLine",
+                  "allowNameWrap": true,
+                  "valueId": "inspector-146",
+                  "properties": [],
+                  "children": [],
+                  "ifNull": "MISSING",
+                  "missingIfNull": true,
+                  "propertyType": "Size",
+                  "defaultLevel": "info"
+                }
+              ],
+              "children": [
+                {
+                  "description": "RenderConstrainedBox#f00f2 relayoutBoundary=up3",
+                  "type": "DiagnosticableTreeNode",
+                  "name": "child",
+                  "hasChildren": true,
+                  "allowWrap": false,
+                  "valueId": "inspector-147",
+                  "properties": [
+                    {
+                      "description": "offset=Offset(6.0, 6.0) (can use size)",
+                      "type": "DiagnosticsProperty<ParentData>",
+                      "name": "parentData",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-148",
+                      "properties": [],
+                      "ifNull": "MISSING",
+                      "tooltip": "can use size",
+                      "missingIfNull": true,
+                      "propertyType": "ParentData",
+                      "defaultLevel": "info"
+                    },
+                    {
+                      "description": "BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=56.0)",
+                      "type": "DiagnosticsProperty<Constraints>",
+                      "name": "constraints",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-141",
+                      "properties": [],
+                      "ifNull": "MISSING",
+                      "missingIfNull": true,
+                      "propertyType": "Constraints",
+                      "defaultLevel": "info"
+                    },
+                    {
+                      "description": "Size(36.0, 36.0)",
+                      "type": "DiagnosticsProperty<Size>",
+                      "name": "size",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-149",
+                      "properties": [],
+                      "ifNull": "MISSING",
+                      "missingIfNull": true,
+                      "propertyType": "Size",
+                      "defaultLevel": "info"
+                    },
+                    {
+                      "description": "BoxConstraints(w=36.0, h=36.0)",
+                      "type": "DiagnosticsProperty<BoxConstraints>",
+                      "name": "additionalConstraints",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-150",
+                      "properties": [],
+                      "missingIfNull": false,
+                      "propertyType": "BoxConstraints",
+                      "defaultLevel": "info"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "description": "RenderPhysicalShape#50b7a",
+                      "type": "DiagnosticableTreeNode",
+                      "name": "child",
+                      "hasChildren": true,
+                      "allowWrap": false,
+                      "valueId": "inspector-151",
+                      "properties": [
+                        {
+                          "description": "<none> (can use size)",
+                          "type": "DiagnosticsProperty<ParentData>",
+                          "name": "parentData",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-152",
+                          "properties": [],
+                          "ifNull": "MISSING",
+                          "tooltip": "can use size",
+                          "missingIfNull": true,
+                          "propertyType": "ParentData",
+                          "defaultLevel": "info"
+                        },
+                        {
+                          "description": "BoxConstraints(w=36.0, h=36.0)",
+                          "type": "DiagnosticsProperty<Constraints>",
+                          "name": "constraints",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-153",
+                          "properties": [],
+                          "ifNull": "MISSING",
+                          "missingIfNull": true,
+                          "propertyType": "Constraints",
+                          "defaultLevel": "info"
+                        },
+                        {
+                          "description": "Size(36.0, 36.0)",
+                          "type": "DiagnosticsProperty<Size>",
+                          "name": "size",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-154",
+                          "properties": [],
+                          "ifNull": "MISSING",
+                          "missingIfNull": true,
+                          "propertyType": "Size",
+                          "defaultLevel": "info"
+                        },
+                        {
+                          "description": "0.0",
+                          "type": "DoubleProperty",
+                          "name": "elevation",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-155",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "double",
+                          "defaultLevel": "info",
+                          "value": 0.0,
+                          "numberToString": "0.0"
+                        },
+                        {
+                          "description": "Color(alpha: 0.0000, red: 0.0000, green: 0.0000, blue: 0.0000, colorSpace: ColorSpace.sRGB)",
+                          "type": "ColorProperty",
+                          "name": "color",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-156",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "Color",
+                          "defaultLevel": "info",
+                          "valueProperties": {
+                            "red": 0,
+                            "green": 0,
+                            "blue": 0,
+                            "alpha": 0
+                          }
+                        },
+                        {
+                          "description": "Color(alpha: 0.0000, red: 0.0000, green: 0.0000, blue: 0.0000, colorSpace: ColorSpace.sRGB)",
+                          "type": "ColorProperty",
+                          "name": "shadowColor",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-156",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "Color",
+                          "defaultLevel": "info",
+                          "valueProperties": {
+                            "red": 0,
+                            "green": 0,
+                            "blue": 0,
+                            "alpha": 0
+                          }
+                        },
+                        {
+                          "description": "ShapeBorderClipper",
+                          "type": "DiagnosticsProperty<CustomClipper<Path>>",
+                          "name": "clipper",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-157",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "CustomClipper<Path>",
+                          "defaultLevel": "info"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤",
+      "type": "DiagnosticsProperty<void>",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowWrap": false,
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    }
+  ],
+  "children": [],
+  "errorsSinceReload": 0,
+  "renderedErrorText": "══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 12 pixels on the right.
+
+The relevant error-causing widget was:
+  Row
+  Row:file:///C:/Work/FlutterProjects/flutter_first_app/lib/widgets/layout/headers/app_navigation_bar.dart:43:16
+
+To inspect this widget in Flutter DevTools, visit:
+http://127.0.0.1:60688/OYrazz9_y_M=/devtools//#/inspector?uri=http%3A%2F%2F127.0.0.1%3A60688%2FOYrazz9_y_M%3D%2F&inspectorRef=inspector-118
+
+The overflowing RenderFlex has an orientation of Axis.horizontal.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#e8e12 OVERFLOWING:
+  creator: Row ← Padding ← IconButtonTheme ← ConstrainedBox ← LayoutId-[<_ToolbarSlot.leading>] ←
+    CustomMultiChildLayout ← NavigationToolbar ← DefaultTextStyle ← IconTheme ← Builder ←
+    CustomSingleChildLayout ← ClipRect ← ⋯
+  parentData: offset=Offset(8.0, 0.0) (can use size)
+  constraints: BoxConstraints(w=36.0, h=56.0)
+  size: Size(36.0, 56.0)
+  direction: horizontal
+  mainAxisAlignment: start
+  mainAxisSize: min
+  crossAxisAlignment: center
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 8.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════"
+}
+1789131908309 [flutter.navigation] {
+  "type": "Event",
+  "kind": "Extension",
+  "extensionKind": "Flutter.Navigation",
+  "isolateGroup": {
+    "type": "@IsolateGroup",
+    "id": "isolateGroups/1647603575678342",
+    "name": "main.dart",
+    "number": "1647603575678342",
+    "isSystemIsolateGroup": false
+  },
+  "isolate": {
+    "type": "@Isolate",
+    "id": "isolates/3194569141766003",
+    "name": "main",
+    "number": "3194569141766003",
+    "isSystemIsolate": false,
+    "isolateGroupId": "isolateGroups/1647603575678342"
+  },
+  "timestamp": 1789131908309,
+  "extensionData": {
+    "route": {
+      "description": "MaterialPageRoute<dynamic>(/settings/privacy)",
+      "settings": {
+        "name": "/settings/privacy"
+      }
+    }
+  }
+}
+1789131908379 [flutter.error] {
+  "description": "Exception caught by rendering library",
+  "type": "_FlutterErrorDetailsNode",
+  "allowWrap": false,
+  "valueId": "inspector-159",
+  "properties": [
+    {
+      "description": "The following assertion was thrown during layout:",
+      "type": "ErrorDescription",
+      "showSeparator": false,
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-160",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "info"
+    },
+    {
+      "description": "A RenderFlex overflowed by 12 pixels on the right.",
+      "type": "ErrorSummary",
+      "showSeparator": false,
+      "level": "summary",
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-161",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "summary"
+    },
+    {
+      "description": "",
+      "type": "ErrorSpacer",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    },
+    {
+      "description": "",
+      "type": "DiagnosticsBlock",
+      "name": "The relevant error-causing widget was",
+      "style": "whitespace",
+      "hasChildren": true,
+      "allowWrap": false,
+      "valueId": null,
+      "properties": [],
+      "children": [
+        {
+          "description": "Row Row:file:///C:/Work/FlutterProjects/flutter_first_app/lib/widgets/layout/headers/app_navigation_bar.dart:43:16",
+          "type": "ErrorDescription",
+          "showSeparator": false,
+          "showName": false,
+          "style": "flat",
+          "allowNameWrap": true,
+          "valueId": "inspector-162",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "List<Object>",
+          "defaultLevel": "info"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "type": "ErrorSpacer",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    },
+    {
+      "description": "To inspect this widget in Flutter DevTools, visit: http://127.0.0.1:60688/OYrazz9_y_M=/devtools//#/inspector?uri=http%3A%2F%2F127.0.0.1%3A60688%2FOYrazz9_y_M%3D%2F&inspectorRef=inspector-158",
+      "type": "DevToolsDeepLinkProperty",
+      "name": "",
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": "inspector-163",
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "String",
+      "defaultLevel": "info",
+      "value": "http://127.0.0.1:60688/OYrazz9_y_M=/devtools//#/inspector?uri=http%3A%2F%2F127.0.0.1%3A60688%2FOYrazz9_y_M%3D%2F&inspectorRef=inspector-158"
+    },
+    {
+      "description": "",
+      "type": "ErrorSpacer",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    },
+    {
+      "description": "The overflowing RenderFlex has an orientation of Axis.horizontal.",
+      "type": "ErrorDescription",
+      "showSeparator": false,
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-164",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "info"
+    },
+    {
+      "description": "The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and black striped pattern. This is usually caused by the contents being too big for the RenderFlex.",
+      "type": "ErrorDescription",
+      "showSeparator": false,
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-165",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "info"
+    },
+    {
+      "description": "Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the RenderFlex to fit within the available space instead of being sized to their natural size.",
+      "type": "ErrorHint",
+      "showSeparator": false,
+      "level": "hint",
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-166",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "hint"
+    },
+    {
+      "description": "This is considered an error condition because it indicates that there is content that cannot be seen. If the content is legitimately bigger than the available space, consider clipping it with a ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex, like a ListView.",
+      "type": "ErrorHint",
+      "showSeparator": false,
+      "level": "hint",
+      "showName": false,
+      "style": "flat",
+      "allowNameWrap": true,
+      "valueId": "inspector-167",
+      "properties": [],
+      "children": [],
+      "defaultValue": "null",
+      "missingIfNull": false,
+      "propertyType": "List<Object>",
+      "defaultLevel": "hint"
+    },
+    {
+      "description": "RenderFlex#57a69 OVERFLOWING",
+      "type": "DiagnosticableTreeNode",
+      "name": "The specific RenderFlex in question is",
+      "style": "shallow",
+      "hasChildren": true,
+      "allowWrap": false,
+      "valueId": "inspector-168",
+      "properties": [
+        {
+          "description": "offset=Offset(8.0, 0.0) (can use size)",
+          "type": "DiagnosticsProperty<ParentData>",
+          "name": "parentData",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-169",
+          "properties": [],
+          "children": [],
+          "ifNull": "MISSING",
+          "tooltip": "can use size",
+          "missingIfNull": true,
+          "propertyType": "ParentData",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "BoxConstraints(w=36.0, h=56.0)",
+          "type": "DiagnosticsProperty<Constraints>",
+          "name": "constraints",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-170",
+          "properties": [],
+          "children": [],
+          "ifNull": "MISSING",
+          "missingIfNull": true,
+          "propertyType": "Constraints",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "Size(36.0, 56.0)",
+          "type": "DiagnosticsProperty<Size>",
+          "name": "size",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-171",
+          "properties": [],
+          "children": [],
+          "ifNull": "MISSING",
+          "missingIfNull": true,
+          "propertyType": "Size",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "horizontal",
+          "type": "EnumProperty<Axis>",
+          "name": "direction",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-132",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "Axis",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "start",
+          "type": "EnumProperty<MainAxisAlignment>",
+          "name": "mainAxisAlignment",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-133",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "MainAxisAlignment",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "min",
+          "type": "EnumProperty<MainAxisSize>",
+          "name": "mainAxisSize",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-134",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "MainAxisSize",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "center",
+          "type": "EnumProperty<CrossAxisAlignment>",
+          "name": "crossAxisAlignment",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-135",
+          "properties": [],
+          "children": [],
+          "missingIfNull": false,
+          "propertyType": "CrossAxisAlignment",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "ltr",
+          "type": "EnumProperty<TextDirection>",
+          "name": "textDirection",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-136",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "TextDirection",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "down",
+          "type": "EnumProperty<VerticalDirection>",
+          "name": "verticalDirection",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-137",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "VerticalDirection",
+          "defaultLevel": "info"
+        },
+        {
+          "description": "8.0",
+          "type": "DoubleProperty",
+          "name": "spacing",
+          "style": "singleLine",
+          "allowNameWrap": true,
+          "valueId": "inspector-138",
+          "properties": [],
+          "children": [],
+          "defaultValue": "null",
+          "missingIfNull": false,
+          "propertyType": "double",
+          "defaultLevel": "info",
+          "value": 8.0,
+          "numberToString": "8.0"
+        }
+      ],
+      "children": [
+        {
+          "description": "RenderSemanticsAnnotations#6b852 relayoutBoundary=up1",
+          "type": "DiagnosticableTreeNode",
+          "name": "child 1",
+          "hasChildren": true,
+          "allowWrap": false,
+          "valueId": "inspector-172",
+          "properties": [
+            {
+              "description": "offset=Offset(0.0, 4.0); flex=null; fit=null (can use size)",
+              "type": "DiagnosticsProperty<ParentData>",
+              "name": "parentData",
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-173",
+              "properties": [],
+              "children": [],
+              "ifNull": "MISSING",
+              "tooltip": "can use size",
+              "missingIfNull": true,
+              "propertyType": "ParentData",
+              "defaultLevel": "info"
+            },
+            {
+              "description": "BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=56.0)",
+              "type": "DiagnosticsProperty<Constraints>",
+              "name": "constraints",
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-174",
+              "properties": [],
+              "children": [],
+              "ifNull": "MISSING",
+              "missingIfNull": true,
+              "propertyType": "Constraints",
+              "defaultLevel": "info"
+            },
+            {
+              "description": "semantic boundary",
+              "type": "FlagProperty",
+              "name": "isSemanticBoundary",
+              "showName": false,
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-142",
+              "properties": [],
+              "children": [],
+              "defaultValue": "null",
+              "missingIfNull": false,
+              "propertyType": "bool",
+              "defaultLevel": "info",
+              "value": true,
+              "ifTrue": "semantic boundary"
+            },
+            {
+              "description": "Size(48.0, 48.0)",
+              "type": "DiagnosticsProperty<Size>",
+              "name": "size",
+              "style": "singleLine",
+              "allowNameWrap": true,
+              "valueId": "inspector-175",
+              "properties": [],
+              "children": [],
+              "ifNull": "MISSING",
+              "missingIfNull": true,
+              "propertyType": "Size",
+              "defaultLevel": "info"
+            }
+          ],
+          "children": [
+            {
+              "description": "_RenderInputPadding#a6d3d relayoutBoundary=up2",
+              "type": "DiagnosticableTreeNode",
+              "name": "child",
+              "hasChildren": true,
+              "allowWrap": false,
+              "valueId": "inspector-176",
+              "properties": [
+                {
+                  "description": "<none> (can use size)",
+                  "type": "DiagnosticsProperty<ParentData>",
+                  "name": "parentData",
+                  "style": "singleLine",
+                  "allowNameWrap": true,
+                  "valueId": "inspector-177",
+                  "properties": [],
+                  "children": [],
+                  "ifNull": "MISSING",
+                  "tooltip": "can use size",
+                  "missingIfNull": true,
+                  "propertyType": "ParentData",
+                  "defaultLevel": "info"
+                },
+                {
+                  "description": "BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=56.0)",
+                  "type": "DiagnosticsProperty<Constraints>",
+                  "name": "constraints",
+                  "style": "singleLine",
+                  "allowNameWrap": true,
+                  "valueId": "inspector-174",
+                  "properties": [],
+                  "children": [],
+                  "ifNull": "MISSING",
+                  "missingIfNull": true,
+                  "propertyType": "Constraints",
+                  "defaultLevel": "info"
+                },
+                {
+                  "description": "Size(48.0, 48.0)",
+                  "type": "DiagnosticsProperty<Size>",
+                  "name": "size",
+                  "style": "singleLine",
+                  "allowNameWrap": true,
+                  "valueId": "inspector-178",
+                  "properties": [],
+                  "children": [],
+                  "ifNull": "MISSING",
+                  "missingIfNull": true,
+                  "propertyType": "Size",
+                  "defaultLevel": "info"
+                }
+              ],
+              "children": [
+                {
+                  "description": "RenderConstrainedBox#720b2 relayoutBoundary=up3",
+                  "type": "DiagnosticableTreeNode",
+                  "name": "child",
+                  "hasChildren": true,
+                  "allowWrap": false,
+                  "valueId": "inspector-179",
+                  "properties": [
+                    {
+                      "description": "offset=Offset(6.0, 6.0) (can use size)",
+                      "type": "DiagnosticsProperty<ParentData>",
+                      "name": "parentData",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-180",
+                      "properties": [],
+                      "ifNull": "MISSING",
+                      "tooltip": "can use size",
+                      "missingIfNull": true,
+                      "propertyType": "ParentData",
+                      "defaultLevel": "info"
+                    },
+                    {
+                      "description": "BoxConstraints(0.0<=w<=Infinity, 0.0<=h<=56.0)",
+                      "type": "DiagnosticsProperty<Constraints>",
+                      "name": "constraints",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-174",
+                      "properties": [],
+                      "ifNull": "MISSING",
+                      "missingIfNull": true,
+                      "propertyType": "Constraints",
+                      "defaultLevel": "info"
+                    },
+                    {
+                      "description": "Size(36.0, 36.0)",
+                      "type": "DiagnosticsProperty<Size>",
+                      "name": "size",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-181",
+                      "properties": [],
+                      "ifNull": "MISSING",
+                      "missingIfNull": true,
+                      "propertyType": "Size",
+                      "defaultLevel": "info"
+                    },
+                    {
+                      "description": "BoxConstraints(w=36.0, h=36.0)",
+                      "type": "DiagnosticsProperty<BoxConstraints>",
+                      "name": "additionalConstraints",
+                      "style": "singleLine",
+                      "allowNameWrap": true,
+                      "valueId": "inspector-182",
+                      "properties": [],
+                      "missingIfNull": false,
+                      "propertyType": "BoxConstraints",
+                      "defaultLevel": "info"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "description": "RenderPhysicalShape#48b22",
+                      "type": "DiagnosticableTreeNode",
+                      "name": "child",
+                      "hasChildren": true,
+                      "allowWrap": false,
+                      "valueId": "inspector-183",
+                      "properties": [
+                        {
+                          "description": "<none> (can use size)",
+                          "type": "DiagnosticsProperty<ParentData>",
+                          "name": "parentData",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-184",
+                          "properties": [],
+                          "ifNull": "MISSING",
+                          "tooltip": "can use size",
+                          "missingIfNull": true,
+                          "propertyType": "ParentData",
+                          "defaultLevel": "info"
+                        },
+                        {
+                          "description": "BoxConstraints(w=36.0, h=36.0)",
+                          "type": "DiagnosticsProperty<Constraints>",
+                          "name": "constraints",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-185",
+                          "properties": [],
+                          "ifNull": "MISSING",
+                          "missingIfNull": true,
+                          "propertyType": "Constraints",
+                          "defaultLevel": "info"
+                        },
+                        {
+                          "description": "Size(36.0, 36.0)",
+                          "type": "DiagnosticsProperty<Size>",
+                          "name": "size",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-186",
+                          "properties": [],
+                          "ifNull": "MISSING",
+                          "missingIfNull": true,
+                          "propertyType": "Size",
+                          "defaultLevel": "info"
+                        },
+                        {
+                          "description": "0.0",
+                          "type": "DoubleProperty",
+                          "name": "elevation",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-155",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "double",
+                          "defaultLevel": "info",
+                          "value": 0.0,
+                          "numberToString": "0.0"
+                        },
+                        {
+                          "description": "Color(alpha: 0.0000, red: 0.0000, green: 0.0000, blue: 0.0000, colorSpace: ColorSpace.sRGB)",
+                          "type": "ColorProperty",
+                          "name": "color",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-156",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "Color",
+                          "defaultLevel": "info",
+                          "valueProperties": {
+                            "red": 0,
+                            "green": 0,
+                            "blue": 0,
+                            "alpha": 0
+                          }
+                        },
+                        {
+                          "description": "Color(alpha: 0.0000, red: 0.0000, green: 0.0000, blue: 0.0000, colorSpace: ColorSpace.sRGB)",
+                          "type": "ColorProperty",
+                          "name": "shadowColor",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-156",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "Color",
+                          "defaultLevel": "info",
+                          "valueProperties": {
+                            "red": 0,
+                            "green": 0,
+                            "blue": 0,
+                            "alpha": 0
+                          }
+                        },
+                        {
+                          "description": "ShapeBorderClipper",
+                          "type": "DiagnosticsProperty<CustomClipper<Path>>",
+                          "name": "clipper",
+                          "style": "singleLine",
+                          "allowNameWrap": true,
+                          "valueId": "inspector-187",
+                          "properties": [],
+                          "missingIfNull": false,
+                          "propertyType": "CustomClipper<Path>",
+                          "defaultLevel": "info"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤",
+      "type": "DiagnosticsProperty<void>",
+      "name": "",
+      "showName": false,
+      "style": "singleLine",
+      "allowWrap": false,
+      "allowNameWrap": true,
+      "valueId": null,
+      "properties": [],
+      "children": [],
+      "missingIfNull": false,
+      "propertyType": "void",
+      "defaultLevel": "info",
+      "value": null
+    }
+  ],
+  "children": [],
+  "errorsSinceReload": 1,
+  "renderedErrorText": "Another exception was thrown: A RenderFlex overflowed by 12 pixels on the right."
+}
