@@ -10,7 +10,7 @@
 
 - Icone do App e Derivados...
 
-- Contruir e Padronizar Layout/UI em Dialogs (Alert, Confirm, Input; Style em "sucess", "deleting", "warn", etc)
+- Contruir e Padronizar Layout/UI em Dialogs (Alert, Confirm, Input; Style em "success", "deleting", "warn", etc)
 
 - Implementar Toasts
 

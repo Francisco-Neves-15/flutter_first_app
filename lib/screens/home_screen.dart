@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_icons.dart" show AppIcons;
 // import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 import "package:flutter_first_app/widgets/layout/overlay/app_overlay.dart";
+import "package:flutter_first_app/widgets/ui/alerts/_alerts.dart" show AlertDialogContainerType;
 import "package:flutter_first_app/widgets/ui/app_icon.dart" show AppIcon;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
@@ -30,6 +31,7 @@ import "package:flutter_first_app/widgets/ui/preferences/lang/lang_manager.dart"
 import "package:flutter_first_app/controllers/auth_controller.dart" show AuthController;
 import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
 import "package:flutter_first_app/screens/login_screen.dart" show LoginScreen;
+
 
 // MaterialApp
 // - “container global” do app
@@ -196,11 +198,11 @@ class _HomePageState extends State<HomePage>
 
   }
 
-  void callDialog(BuildContext context) {
+  void callDialog(BuildContext context, {AlertDialogContainerType? alertType = .alert}) {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        // icon: Icon(Symbols.warning_rounded, size: 64),
+        icon: Icon(Symbols.warning_rounded, size: 64),
         title: Text("Alerta!"),
         semanticLabel: "Teste",
         scrollable: true,
@@ -507,9 +509,26 @@ class _HomePageState extends State<HomePage>
           child: Text("Chamar FullScreen BottomSheet"),
         ),
 
-        ElevatedButton(
-          onPressed: () => callDialog(context),
-          child: Text("Chamar Dialog"),
+        Column(
+          children: [
+            Text("Dialogs: "),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => callDialog(context, alertType: .alert),
+                  child: Text("Alert"),
+                ),
+                ElevatedButton(
+                  onPressed: () => callDialog(context, alertType: .confirm),
+                  child: Text("Confirm"),
+                ),
+                ElevatedButton(
+                  onPressed: () => callDialog(context, alertType: .input),
+                  child: Text("Input"),
+                ),
+              ]
+            ),
+          ]
         ),
 
         ElevatedButton(
