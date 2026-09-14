@@ -4,11 +4,16 @@ import "app_alert_dialog.dart";
 import "app_confirm_dialog.dart";
 import "app_input_dialog.dart";
 
+/// See: AppAlertDialog (lib\widgets\ui\dialogs\app alertdialog.dart) for more information about the parameters.
 Future<void> showAppAlertDialog(
   BuildContext context, {
   AppAlertDialogType type = AppAlertDialogType.standard,
+  String? title,
   String? message,
+  Widget? icon,
+  bool showIcon = true,
   bool requiredInteraction = false,
+  List<Widget>? actions,
 }) {
   return showDialog<void>(
     context: context,
@@ -17,6 +22,10 @@ Future<void> showAppAlertDialog(
       type: type,
       message: message,
       requiredInteraction: requiredInteraction,
+      actions: actions,
+      icon: icon,
+      showIcon: showIcon,
+      title: title,
     ),
   );
 }

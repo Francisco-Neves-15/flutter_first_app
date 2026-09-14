@@ -30,6 +30,14 @@ class AppThemeColors {
   final Color neutralContrast;
   final Color danger;
   final Color dangerContrast;
+  final Color success;
+  final Color successContrast;
+  final Color warn;
+  final Color warnContrast;
+  final Color info;
+  final Color infoContrast;
+  final Color error;
+  final Color errorContrast;
   final Color base;
   final Color baseInverted;
   final Color light;
@@ -61,6 +69,14 @@ class AppThemeColors {
     required this.neutralContrast,
     required this.danger,
     required this.dangerContrast,
+    required this.success,
+    required this.successContrast,
+    required this.warn,
+    required this.warnContrast,
+    required this.info,
+    required this.infoContrast,
+    required this.error,
+    required this.errorContrast,
     required this.base,
     required this.baseInverted,
     required this.light,
@@ -98,6 +114,14 @@ const appLightColors = AppThemeColors(
   neutralContrast: AppColors.neutralContrast,
   danger: AppColors.dangerLight,
   dangerContrast: AppColors.dangerContrast,
+  success: AppColors.successLight,
+  successContrast: AppColors.successContrast,
+  warn: AppColors.warnLight,
+  warnContrast: AppColors.warnContrast,
+  info: AppColors.infoLight,
+  infoContrast: AppColors.infoContrast,
+  error: AppColors.errorLight,
+  errorContrast: AppColors.errorContrast,
   // Base
   base: AppColors.base,
   baseInverted: AppColors.baseInverted,
@@ -135,6 +159,14 @@ const appDarkColors = AppThemeColors(
   neutralContrast: AppColors.neutralContrast,
   danger: AppColors.dangerDark,
   dangerContrast: AppColors.dangerContrast,
+  success: AppColors.successDark,
+  successContrast: AppColors.successContrast,
+  warn: AppColors.warnDark,
+  warnContrast: AppColors.warnContrast,
+  info: AppColors.infoDark,
+  infoContrast: AppColors.infoContrast,
+  error: AppColors.errorDark,
+  errorContrast: AppColors.errorContrast,
   // Base
   base: AppColors.baseInverted,
   baseInverted: AppColors.base,

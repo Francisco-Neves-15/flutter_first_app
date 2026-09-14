@@ -14,6 +14,8 @@
 - - Actions para Alert
 - - No "input", adicionar required info, que precisa preencher o campo para concluir (talvez, tipar o retorno?); Quando Required, talvez tbm remover o "cancel"
 
+- - - Pós fazer o Toast, adicionar avisos de tentativas de fechar Dialogs required ou "requiredInteraction"
+
 - Estilo para as Headers de BottomDivider
 
 - Implementar Toasts

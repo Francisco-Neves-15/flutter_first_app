@@ -530,7 +530,12 @@ class _HomePageState extends State<HomePage>
                     await showAppAlertDialog(
                       context,
                       type: .success,
+                      title: "Usuário Criado!",
                       message: "Usuário criado com sucesso.",
+                      icon: Icon(Symbols.abc, color: Colors.red),
+                      actions: [
+                        OutlinedButton(onPressed: () { Navigator.of(context).pop(); }, child: Text("hey!"))
+                      ]
                     )
                   },
                   child: Text("AppAlertDialog"),
@@ -539,8 +544,8 @@ class _HomePageState extends State<HomePage>
                   onPressed: () async => {
                     await showAppAlertDialog(
                       context,
-                      type: .danger,
-                      message: "Essa operação não pode ser desfeita (required).",
+                      type: .error,
+                      message: "Falha na Operação",
                       requiredInteraction: true,
                     )
                   },

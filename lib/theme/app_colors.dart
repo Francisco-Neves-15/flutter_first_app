@@ -25,11 +25,29 @@ class AppColors {
   static const textSecondary = Color(0xFF404040);
   static const textSecondaryInverted = Color(0xFFCCCCCC);
   // Semantic
+  // Neutral
   static const neutral = Color(0xFF7F7F7F);
   static const neutralContrast = Color(0xFFFFFFFF);
+  // Danger
   static const dangerLight = Color(0xFFDB1616);
   static const dangerDark = Color(0xFFF51515);
   static const dangerContrast = Color(0xFFFFFFFF);
+  // Success
+  static const successLight = Color(0xFF16803A);
+  static const successDark = Color(0xFF22C55E);
+  static const successContrast = Color(0xFFFFFFFF);
+  // Warn
+  static const warnLight = Color(0xFFB86E00);
+  static const warnDark = Color(0xFFF59E0B);
+  static const warnContrast = Color(0xFFFFFFFF);
+  // Info
+  static const infoLight = Color(0xFF1769AA);
+  static const infoDark = Color(0xFF42A5F5);
+  static const infoContrast = Color(0xFFFFFFFF);
+  // Error
+  static const errorLight = Color(0xFFC62828);
+  static const errorDark = Color(0xFFEF5350);
+  static const errorContrast = Color(0xFFFFFFFF);
   // Base
   static const base = Color(0xFF000000);
   static const baseInverted = Color(0xFFFFFFFF);
