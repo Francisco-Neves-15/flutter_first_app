@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_icons.dart" show AppIcons;
 // import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 import "package:flutter_first_app/widgets/layout/overlay/app_overlay.dart";
-import "package:flutter_first_app/widgets/ui/alerts/_alerts.dart" show AlertDialogContainerType;
 import "package:flutter_first_app/widgets/ui/app_icon.dart" show AppIcon;
+import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_helpers.dart" show showAppAlertDialog, showAppConfirmDialog, showAppInputDialog;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter/services.dart" show SystemNavigator;
@@ -87,8 +87,30 @@ class _HomePageState extends State<HomePage>
   // always agree on which instance is currently showing.
   OverlayEntry? _testOverlayEntry;
 
-  void _openTestOverlay(BuildContext context) {
+  void _openTestOverlay(BuildContext context, { bool appScaffold = false }) {
     late OverlayEntry entry;
+
+    Widget content = appScaffold ?
+      AppScaffold(
+        body: Row(
+          mainAxisAlignment: .start,
+          crossAxisAlignment: .start,
+          children: [
+            IconButton(onPressed: _closeTestOverlay, icon: Icon(Symbols.close_rounded)),
+            const Text("Meu conteúdo"),
+          ],
+        )
+      )
+    : 
+      Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: const Text("Meu conteúdo"),
+      )
+    ;
 
     entry = OverlayEntry(
       builder: (context) {
@@ -97,26 +119,7 @@ class _HomePageState extends State<HomePage>
           centralize: false,
           overlayEntry: entry,
           onDismiss: _closeTestOverlay,
-          // ===== Scaffold E.g.
-          // body: AppScaffold(
-          //   body: Row(
-          //     mainAxisAlignment: .start,
-          //     crossAxisAlignment: .start,
-          //     children: [
-          //       IconButton(onPressed: () => screenOverlayContentTest1.remove(), icon: Icon(Symbols.close_rounded)),
-          //       const Text("Meu conteúdo"),
-          //     ],
-          //   )
-          // )
-          // ===== Container E.g.
-          body: Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: const Text("Meu conteúdo"),
-          ),
+          body: content
         );
       },
     );
@@ -198,15 +201,15 @@ class _HomePageState extends State<HomePage>
 
   }
 
-  void callDialog(BuildContext context, {AlertDialogContainerType? alertType = .alert}) {
+  void callDialog(BuildContext context) {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         icon: Icon(Symbols.warning_rounded, size: 64),
-        title: Text("Alerta!"),
-        semanticLabel: "Teste",
+        title: Text('Default "AlertDialog"'),
+        semanticLabel: "Default Alert Label",
         scrollable: true,
-        content: const Text('Example Dialog'),
+        content: const Text('Example Dialog Content'),
         actions: [
           ElevatedButton(
             onPressed: () {
@@ -510,30 +513,151 @@ class _HomePageState extends State<HomePage>
         ),
 
         Column(
+          crossAxisAlignment: .start,
           children: [
-            Text("Dialogs: "),
-            Row(
+            Text("Dialogs: ", style: context.appTheme.textStyles.h2),
+            Column(
+              crossAxisAlignment: .start,
               children: [
+                Text("Default (AlertDialog)"),
                 ElevatedButton(
-                  onPressed: () => callDialog(context, alertType: .alert),
-                  child: Text("Alert"),
+                  onPressed: () => callDialog(context),
+                  child: Text("AlertDialog"),
+                ),
+                Text("AppAlertDialog"),
+                ElevatedButton(
+                  onPressed: () async => {
+                    await showAppAlertDialog(
+                      context,
+                      type: .success,
+                      message: "Usuário criado com sucesso.",
+                    )
+                  },
+                  child: Text("AppAlertDialog"),
                 ),
                 ElevatedButton(
-                  onPressed: () => callDialog(context, alertType: .confirm),
-                  child: Text("Confirm"),
+                  onPressed: () async => {
+                    await showAppAlertDialog(
+                      context,
+                      type: .danger,
+                      message: "Essa operação não pode ser desfeita (required).",
+                      requiredInteraction: true,
+                    )
+                  },
+                  child: Text("AppAlertDialog (required)"),
+                ),
+                Text("AppConfirmDialog"),
+                ElevatedButton(
+                  //
+                  // uso direto
+                  // if (await showAppConfirmDialog(
+                  //   context,
+                  //   title: "Excluir usuário?",
+                  //   nullReturnFalse: true,
+                  // )) {
+                  //   // Confirmado
+                  // }
+                  //
+                  onPressed: () async {
+                    final result = await showAppConfirmDialog(
+                      context,
+                      title: "Excluir usuário?",
+                      message: "Essa operação não poderá ser desfeita.",
+                    );
+
+                    if (result == true) {
+                      debugPrint("confirmando");
+                    } else if (result == false) {
+                      debugPrint("des-confirmando");
+                    } else {
+                      debugPrint("nullable");
+                    }
+                  },
+                  child: Text("AppConfirmDialog (com null)"),
                 ),
                 ElevatedButton(
-                  onPressed: () => callDialog(context, alertType: .input),
-                  child: Text("Input"),
+                  onPressed: () async {
+                    final result = await showAppConfirmDialog(
+                      context,
+                      title: "Excluir usuário?",
+                      message: "Essa operação não poderá ser desfeita.",
+                      nullReturnFalse: true,
+                    );
+                    if (result == true) {
+                      debugPrint("confirmando");
+                    } else if (result == false) {
+                      debugPrint("des-confirmando");
+                    } else {
+                      debugPrint("nunca vou aparecer");
+                    }
+                  },
+                  child: Text("AppConfirmDialog (com null vira false)"),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final result = await showAppConfirmDialog(
+                      context,
+                      title: "Confirmar operação",
+                      message: "Você precisa escolher uma opção.",
+                      requiredInteraction: true,
+                    );
+                    if (result == true) {
+                      debugPrint("confirmando");
+                    } else if (result == false) {
+                      debugPrint("des-confirmando");
+                    } else {
+                      debugPrint("nunca vou aparecer");
+                    }
+                  },
+                  child: Text("AppConfirmDialog (required)"),
+                ),
+                Text("AlertDialog"),
+                ElevatedButton(
+                  onPressed: () async {
+                    final name = await showAppInputDialog(
+                      context,
+                      title: "Nome",
+                      message: "Digite seu nome:",
+                      hintText: "Ex.: Roberto",
+                    );
+                    if (name != null) {
+                      debugPrint(name);
+                    } else {
+                      debugPrint("nome não informado");
+                    }
+                  },
+                  child: Text("AppInputDialog (com null)"),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final name = await showAppInputDialog(
+                      context,
+                      title: "Nome",
+                      requiredInteraction: true,
+                    );
+                    if (name != null) {
+                      debugPrint(name);
+                    } else {
+                      debugPrint("nunca devo aparecer");
+                    }
+                  },
+                  child: Text("AppInputDialog (required)"),
                 ),
               ]
             ),
           ]
         ),
 
+        Divider(),
+
         ElevatedButton(
           onPressed: () => _openTestOverlay(context),
           child: Text("Chamar Modal (Overlay in Flutter)"),
+        ),
+
+        ElevatedButton(
+          onPressed: () => _openTestOverlay(context, appScaffold: true),
+          child: Text("Chamar Modal (com AppScaffold)"),
         ),
 
         Divider(),

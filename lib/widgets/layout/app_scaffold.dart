@@ -1,4 +1,3 @@
-import "dart:io" show Platform;
 import "package:flutter/material.dart";
 import "package:flutter/foundation.dart" show kDebugMode;
 import "package:flutter_first_app/docs/widgets/layout/bad_usages.dart" show BadUsagesLayoutWidgets;
@@ -89,6 +88,8 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final platform = Theme.of(context).platform;
+
     void showBadUsages(int entry) {
       switch (entry) {
         case 1:
@@ -142,7 +143,7 @@ class AppScaffold extends StatelessWidget {
       ),
     ) : null;
 
-    IconData widgetBackButtonIcon = (Platform.isMacOS || Platform.isIOS)
+    IconData widgetBackButtonIcon = (platform == TargetPlatform.macOS || platform == TargetPlatform.iOS)
         ? Symbols.arrow_back_ios_new_rounded
         : Symbols.arrow_back_rounded;
 
