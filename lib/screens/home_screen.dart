@@ -533,12 +533,35 @@ class _HomePageState extends State<HomePage>
                       title: "Usuário Criado!",
                       message: "Usuário criado com sucesso.",
                       icon: Icon(Symbols.abc, color: Colors.red),
+                      actionFlow: .column,
+                      actionsFullWidth: false,
                       actions: [
-                        OutlinedButton(onPressed: () { Navigator.of(context).pop(); }, child: Text("hey!"))
+                        TextButton(onPressed: () { Navigator.of(context).pop(); }, style: ButtonStyle(alignment: .centerEnd), child: Text("hey1!")),
+                        TextButton(onPressed: () { Navigator.of(context).pop(); }, style: ButtonStyle(alignment: .centerEnd), child: Text("hey2!")),
+                        TextButton(onPressed: () { Navigator.of(context).pop(); }, child: Text("hey2!")),
                       ]
                     )
                   },
-                  child: Text("AppAlertDialog"),
+                  child: Text("AppAlertDialog Actions Column"),
+                ),
+                ElevatedButton(
+                  onPressed: () async => {
+                    await showAppAlertDialog(
+                      context,
+                      type: .success,
+                      title: "Usuário Criado!",
+                      message: "Usuário criado com sucesso.",
+                      icon: Icon(Symbols.abc, color: Colors.red),
+                      actionFlow: .row,
+                      actionsFullWidth: true,
+                      actions: [
+                        OutlinedButton(onPressed: () { Navigator.of(context).pop(); }, child: Text("Cancel")),
+                        OutlinedButton(onPressed: () { Navigator.of(context).pop(); }, child: Text("Confirm!")),
+                        // OutlinedButton(onPressed: () { Navigator.of(context).pop(); }, child: Text("hey2!")),
+                      ]
+                    )
+                  },
+                  child: Text("AppAlertDialog Actions Row"),
                 ),
                 ElevatedButton(
                   onPressed: () async => {
@@ -1046,6 +1069,11 @@ class _HomePageState extends State<HomePage>
         builder: (context, _) {
           return AppScaffold(
             appBar: .header,
+            // Home is always the root of the stack (Splash/Login exit via pushReplacement — see README_NAVIGATION.md); 
+            // not relying on `canPop()` prevents the back action from "getting stuck" when a bottom sheet
+            // (ThemeManager/LangManager) or a screen stacked on top (Settings) triggers a rebuild of the Home 
+            // via ThemeController/LangController while they are still at the top of the Navigator.
+            backButton: false,
             appBarActions: [
               IconButton(
                 onPressed: () => debugPrint("AAAAA"),

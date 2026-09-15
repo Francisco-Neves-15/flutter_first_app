@@ -18,6 +18,9 @@ enum AppAxisPositionHorizontal { left, right }
 /// Horizontal Diagonal
 enum AppAxisPositionDiagonal { topRight, topLeft, bottomLeft, bottomRight }
 
+/// Flows
+enum AppAxisFlow { row, column }
+
 /// N - E - S - W
 enum AppCardinalDirections {
   north,

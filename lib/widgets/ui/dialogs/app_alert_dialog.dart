@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart";
+import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
 import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show buildActions;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 
 enum AppAlertDialogType {
@@ -39,6 +41,12 @@ class AppAlertDialog extends StatelessWidget {
   /// By default, use a TextButton | To close the dialog: () { Navigator.of(context).pop(); }
   final List<Widget>? actions;
 
+  /// Actions layout flow (by deufalt, use Row)
+  final AppAxisFlow? actionFlow;
+
+  /// Makes every action occupy the full available width (see `buildActions`).
+  final bool actionsFullWidth;
+
   const AppAlertDialog({
     super.key,
     this.type = AppAlertDialogType.standard,
@@ -48,6 +56,8 @@ class AppAlertDialog extends StatelessWidget {
     this.showIcon = true,
     this.requiredInteraction = false,
     this.actions,
+    this.actionFlow = .row,
+    this.actionsFullWidth = false,
   });
 
   IconData? _buildIcon() {
@@ -138,7 +148,7 @@ class AppAlertDialog extends StatelessWidget {
     // Actions
     
     // Standard "OK" or action list
-    List<Widget>? rActions = actions ?? [
+    List<Widget>? actionsList = actions ?? [
       TextButton(
         onPressed: () { Navigator.of(context).pop(); },
         // style: ElevatedButton.styleFrom(backgroundColor: rMainColor.color),
@@ -148,6 +158,7 @@ class AppAlertDialog extends StatelessWidget {
     ];
 
     final rMainColor = buildMainColor(type);
+    final rActions = buildActions(actionFlow, actionsList, actionsFullWidth: actionsFullWidth);
     final rIcon = _buildIcon();
     final rTitle = _buildTitle();
 
@@ -169,7 +180,7 @@ class AppAlertDialog extends StatelessWidget {
       child: AlertDialog(
         title: wTitle,
         content: message != null ? Text(message!, style: context.appTheme.textStyles.body) : null,
-        actions: rActions,
+        actions: rActions
       ),
     );
   }

@@ -11,7 +11,8 @@
 - Icone do App e Derivados (Favicon? Icon no Mobile, Default Splash Screen se houver) (no Dispositvo)
 
 - Contruir e Padronizar Layout/UI em Dialogs (Alert, Confirm, Input; Style em "success", "deleting", "warn", etc)
-- - Actions para Alert
+- - Actions para Alert (falta Confirm & Input)
+- - Feito: Actions para Alert com Opção de Preencher toda a area disponivel (Width em Row e Column, quando Row divide espaço)
 - - No "input", adicionar required info, que precisa preencher o campo para concluir (talvez, tipar o retorno?); Quando Required, talvez tbm remover o "cancel"
 
 - - - Pós fazer o Toast, adicionar avisos de tentativas de fechar Dialogs required ou "requiredInteraction"

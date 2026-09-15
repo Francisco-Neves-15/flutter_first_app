@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
 
-import "app_alert_dialog.dart";
-import "app_confirm_dialog.dart";
-import "app_input_dialog.dart";
+import "app_alert_dialog.dart" show AppAlertDialog, AppAlertDialogType;
+import "app_confirm_dialog.dart" show AppConfirmDialog;
+import "app_input_dialog.dart" show AppInputDialog;
 
 /// See: AppAlertDialog (lib\widgets\ui\dialogs\app alertdialog.dart) for more information about the parameters.
 Future<void> showAppAlertDialog(
@@ -14,6 +15,8 @@ Future<void> showAppAlertDialog(
   bool showIcon = true,
   bool requiredInteraction = false,
   List<Widget>? actions,
+  AppAxisFlow? actionFlow,
+  bool actionsFullWidth = false,
 }) {
   return showDialog<void>(
     context: context,
@@ -23,6 +26,8 @@ Future<void> showAppAlertDialog(
       message: message,
       requiredInteraction: requiredInteraction,
       actions: actions,
+      actionFlow: actionFlow,
+      actionsFullWidth: actionsFullWidth,
       icon: icon,
       showIcon: showIcon,
       title: title,
