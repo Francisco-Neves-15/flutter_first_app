@@ -157,8 +157,10 @@ class AppAlertDialog extends StatelessWidget {
       ),
     ];
 
+    // Vars
+
     final rMainColor = buildMainColor(type);
-    final rActions = buildActions(actionFlow, actionsList, actionsFullWidth: actionsFullWidth);
+    final rActions = buildActions(actionsList, actionFlow, actionsFullWidth: actionsFullWidth);
     final rIcon = _buildIcon();
     final rTitle = _buildTitle();
 

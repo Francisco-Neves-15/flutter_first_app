@@ -574,6 +574,33 @@ class _HomePageState extends State<HomePage>
                   },
                   child: Text("AppAlertDialog (required)"),
                 ),
+                Text("AppAlertDialog Types"),
+                Wrap(children: [
+                  ElevatedButton(
+                    onPressed: () async => { await showAppAlertDialog(context, type: .standard, title: "standard") },
+                    child: Text("AppAlertDialog (standard)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppAlertDialog(context, type: .success, title: "success") },
+                    child: Text("AppAlertDialog (success)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppAlertDialog(context, type: .danger, title: "danger") },
+                    child: Text("AppAlertDialog (danger)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppAlertDialog(context, type: .warn, title: "warn") },
+                    child: Text("AppAlertDialog (warn)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppAlertDialog(context, type: .info, title: "info") },
+                    child: Text("AppAlertDialog (info)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppAlertDialog(context, type: .error, title: "error") },
+                    child: Text("AppAlertDialog (error)"),
+                  ),
+                ]),
                 Text("AppConfirmDialog"),
                 ElevatedButton(
                   //
@@ -628,6 +655,8 @@ class _HomePageState extends State<HomePage>
                       title: "Confirmar operação",
                       message: "Você precisa escolher uma opção.",
                       requiredInteraction: true,
+                      actionsFullWidth: true,
+                      actionFlow: .column
                     );
                     if (result == true) {
                       debugPrint("confirmando");

@@ -5,7 +5,7 @@ import "app_alert_dialog.dart" show AppAlertDialog, AppAlertDialogType;
 import "app_confirm_dialog.dart" show AppConfirmDialog;
 import "app_input_dialog.dart" show AppInputDialog;
 
-/// See: AppAlertDialog (lib\widgets\ui\dialogs\app alertdialog.dart) for more information about the parameters.
+/// See: AppAlertDialog (lib\widgets\ui\dialogs\app_alertdialog.dart) for more information about the parameters.
 Future<void> showAppAlertDialog(
   BuildContext context, {
   AppAlertDialogType type = AppAlertDialogType.standard,
@@ -35,12 +35,16 @@ Future<void> showAppAlertDialog(
   );
 }
 
+/// See: AppConfirmDialog (lib\widgets\ui\dialogs\app_confirm_dialog.dart) for more information about the parameters.
 Future<bool?> showAppConfirmDialog(
   BuildContext context, {
   required String title,
   String? message,
   bool requiredInteraction = false,
   bool nullReturnFalse = false,
+  List<Widget>? actions,
+  AppAxisFlow? actionFlow,
+  bool actionsFullWidth = false,
 }) async {
   final result = await showDialog<bool?>(
     context: context,
@@ -49,6 +53,9 @@ Future<bool?> showAppConfirmDialog(
       title: title,
       message: message,
       requiredInteraction: requiredInteraction,
+      actions: actions,
+      actionFlow: actionFlow,
+      actionsFullWidth: actionsFullWidth,
     ),
   );
 

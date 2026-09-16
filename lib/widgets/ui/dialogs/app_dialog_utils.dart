@@ -14,10 +14,12 @@ import "package:flutter_first_app/styles/app_metrics.dart";
 ///   test a render box with no size"). `SizedBox` only needs the width
 ///   constraint, which stays bounded either way.
 List<Widget>? buildActions(
+  List<Widget> actionsList,
   AppAxisFlow? actionFlow,
-  List<Widget> actionsList, {
-  bool actionsFullWidth = false,
-}) {
+  {
+    bool actionsFullWidth = false,
+  }
+) {
 
   final resolvedActionsList = !actionsFullWidth ? actionsList : [
     for (final action in actionsList)
