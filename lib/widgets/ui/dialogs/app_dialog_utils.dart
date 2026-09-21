@@ -49,3 +49,19 @@ List<Widget>? buildActions(
   ];
 
 }
+
+// Dev Handlers
+
+bool resolveShouldInvertDefaultActions(
+  AppAxisFlow? actionFlow
+) {
+  return actionFlow == AppAxisFlow.column;
+}
+
+List<Widget> resolveActionsList(
+  List<Widget>? actions,
+  List<Widget> defaultActionsList,
+  bool shouldInvertDefaultActions
+) {
+  return actions ?? (shouldInvertDefaultActions ? defaultActionsList.reversed.toList() : defaultActionsList);
+}

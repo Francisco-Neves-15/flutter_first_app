@@ -15,6 +15,8 @@
 - - Feito: Actions para Alert com Opção de Preencher toda a area disponivel (Width em Row e Column, quando Row divide espaço)
 - - No "input", adicionar required info, que precisa preencher o campo para concluir (talvez, tipar o retorno?); Quando Required, talvez tbm remover o "cancel"
 
+- - Criar estilos pré-prontos (ButtonStyle()) para os botões; Em situações diferentes como "Danger", "Success" e Disabled. Por hora, considerar apenas para "ElevatedButton's".
+
 - - - Pós fazer o Toast, adicionar avisos de tentativas de fechar Dialogs required ou "requiredInteraction"
 
 - Estilo para as Headers de BottomDivider

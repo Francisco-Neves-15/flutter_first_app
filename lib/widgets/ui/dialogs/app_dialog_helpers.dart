@@ -66,27 +66,42 @@ Future<bool?> showAppConfirmDialog(
   return result;
 }
 
+/// See: AppInputDialog (lib\widgets\ui\dialogs\app_input_dialog.dart) for more information about the parameters.
 Future<String?> showAppInputDialog(
   BuildContext context, {
   required String title,
   String? message,
   String? initialValue,
+  dynamic defaultReturnValue,
   String? hintText,
   String? confirmText,
   String? cancelText,
   bool requiredInteraction = false,
+  bool requiredInput = false,
+  bool Function(dynamic value)? validator,
+  TextInputType inputType = TextInputType.text,
+  List<Widget>? actions,
+  AppAxisFlow? actionFlow,
+  bool actionsFullWidth = false,
 }) {
   return showDialog<String?>(
     context: context,
-    barrierDismissible: !requiredInteraction,
+    barrierDismissible: !requiredInteraction && !requiredInput,
     builder: (_) => AppInputDialog(
       title: title,
       message: message,
       initialValue: initialValue,
+      defaultReturnValue: defaultReturnValue,
       hintText: hintText,
       confirmText: confirmText,
       cancelText: cancelText,
       requiredInteraction: requiredInteraction,
+      requiredInput: requiredInput,
+      validator: validator,
+      inputType: inputType,
+      actions: actions,
+      actionFlow: actionFlow,
+      actionsFullWidth: actionsFullWidth,
     ),
   );
 }

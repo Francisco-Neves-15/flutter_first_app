@@ -668,7 +668,7 @@ class _HomePageState extends State<HomePage>
                   },
                   child: Text("AppConfirmDialog (required)"),
                 ),
-                Text("AlertDialog"),
+                Text("AlertInputDialog"),
                 ElevatedButton(
                   onPressed: () async {
                     final name = await showAppInputDialog(
@@ -676,6 +676,8 @@ class _HomePageState extends State<HomePage>
                       title: "Nome",
                       message: "Digite seu nome:",
                       hintText: "Ex.: Roberto",
+                      actionFlow: .column,
+                      actionsFullWidth: true,
                     );
                     if (name != null) {
                       debugPrint(name);

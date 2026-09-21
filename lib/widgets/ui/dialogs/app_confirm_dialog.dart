@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
-import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show buildActions;
+import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show buildActions, resolveShouldInvertDefaultActions, resolveActionsList;
 
 class AppConfirmDialog extends StatelessWidget {
 
@@ -40,10 +40,12 @@ class AppConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final shouldInvertDefaultActions = resolveShouldInvertDefaultActions(actionFlow);
+
     // Actions
     
-    // Standard "OK" or action list
-    List<Widget>? actionsList = actions ?? [
+    // Standard "Confirm" & "Cancel" (item)
+    List<Widget>? defaultActionsList = [
       TextButton(
         onPressed: () {
           Navigator.of(context).pop(false);
@@ -58,11 +60,16 @@ class AppConfirmDialog extends StatelessWidget {
       ),
     ];
 
+    // Standard "Confirm" & "Cancel" or action list
+    List<Widget> actionsList = resolveActionsList(actions, defaultActionsList, shouldInvertDefaultActions);
+
     // Vars
 
     final rActions = buildActions(actionsList, actionFlow, actionsFullWidth: actionsFullWidth);
     final Widget wTitle = Text(title, style: context.appTheme.textStyles.h1);
     final Widget? wMessage = message != null ? Text(message!, style: context.appTheme.textStyles.body) : null;
+
+    // Continue
 
     return PopScope(
       canPop: !requiredInteraction,
