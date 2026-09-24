@@ -232,12 +232,9 @@ class AppTheme {
       indicatorSize: TabBarIndicatorSize.tab,
       indicatorAnimation: .elastic,
       indicatorColor: colors.primary,
-
       dividerColor: Colors.transparent,
       dividerHeight: 2,
-      
       tabAlignment: TabAlignment.fill,
-          
       labelPadding: EdgeInsets.symmetric(
         horizontal: AppMetrics.base,
         vertical: AppMetrics.extraSmall,

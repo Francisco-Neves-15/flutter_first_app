@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
         double screenHeight = MediaQuery.sizeOf(context).height;
 
         return MaterialApp(
+
           // Theme
           theme: AppTheme.build(appLightColors, screenWidth, screenHeight),
           darkTheme: AppTheme.build(appDarkColors, screenWidth, screenHeight),

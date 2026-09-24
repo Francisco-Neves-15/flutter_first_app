@@ -25,6 +25,8 @@
 
 - Reorganizar qualquer uso de Icones (Icon, Icons ou Symbols) no App Inteiro. Inclui uso dos icones, tipagem em Widgets, etc.
 
+- Reorganizar usos de AppMetrics e outras "const" (e.g.: axis); Implementar elas no systemDesign (e.g.: context.appTheme.spacing.md)
+
 # Next Steps
 
 - FEITO: Persistencia do tema e idioma guardando no cache;

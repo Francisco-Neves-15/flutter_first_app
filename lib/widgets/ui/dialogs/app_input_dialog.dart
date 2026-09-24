@@ -1,12 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:flutter_first_app/extensions/localization_extension.dart"
-    show L10nBuildContext;
+import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
 import "package:flutter_first_app/styles/app_metrics.dart";
-import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart"
-    show buildActions, resolveShouldInvertDefaultActions, resolveActionsList;
+import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show buildActions, resolveShouldInvertDefaultActions, resolveActionsList;
 
 class AppInputDialog extends StatefulWidget {
 

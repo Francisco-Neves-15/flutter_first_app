@@ -1,8 +1,11 @@
+// dart format off
+
 import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_icons.dart" show AppIcons;
 // import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 import "package:flutter_first_app/widgets/layout/overlay/app_overlay.dart";
 import "package:flutter_first_app/widgets/ui/app_icon.dart" show AppIcon;
+import "package:flutter_first_app/widgets/ui/button/app_button.dart" show AppButton;
 import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_helpers.dart" show showAppAlertDialog, showAppConfirmDialog, showAppInputDialog;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
@@ -512,6 +515,8 @@ class _HomePageState extends State<HomePage>
           child: Text("Chamar FullScreen BottomSheet"),
         ),
 
+        Divider(),
+
         Column(
           crossAxisAlignment: .start,
           children: [
@@ -721,9 +726,49 @@ class _HomePageState extends State<HomePage>
 
         Divider(),
 
-        Container(width: 44, height: 44, color: Color(0xFF3B5BDB)),
-        Container(width: 44, height: 44, color: Color(0xFF4C6EF5)),
-        Container(width: 44, height: 44, color: Color(0xFF748FFC)),
+
+        Column(
+          crossAxisAlignment: .start,
+          children: [
+            Text("Buttons: ", style: context.appTheme.textStyles.h2),
+            Column(
+              crossAxisAlignment: .start,
+              spacing: 8,
+              children: [
+                Text("Primary's: ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(type: .elevated, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(type: .outlined, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(type: .text, onPressed: () {}, child: Text("B"))),
+                ]),
+                Text("Secondary's: ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(type: .elevated, variant: .secondary, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(type: .outlined, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(type: .text, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                ]),
+                Text("Outline Tests: ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(type: .outlined, variant: .secondary, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(type: .outlined, variant: .success, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(type: .outlined, variant: .danger, onPressed: () {}, child: Text("B"))),
+                ]),
+                Text("Text (button) Tests: ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(type: .text, variant: .warning, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(type: .text, variant: .info, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(type: .text, variant: .neutral, onPressed: () {}, child: Text("B"))),
+                ])
+              ],
+            )
+          ]
+        ),
+
+        Divider(),
+
+        Container(width: 36, height: 36, color: Color(0xFF3B5BDB)),
+        Container(width: 36, height: 36, color: Color(0xFF4C6EF5)),
+        Container(width: 36, height: 36, color: Color(0xFF748FFC)),
 
         Container(
           width: 320,
@@ -1142,3 +1187,5 @@ class _HomePageState extends State<HomePage>
     );
   }
 }
+
+// dart format on
