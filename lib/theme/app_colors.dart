@@ -1,14 +1,16 @@
 import "package:flutter/material.dart" show Color;
 
+// Color(0xAARRGGBB) → Color(0x, alpha, red, green, blue)
+
 class AppColors {
-  // Main
+  // === Main
   static const primary = Color(0xFF000080);
   static const primaryContrast = Color(0xFFFFFFFF);
   static const primaryAlpha = Color(0xBF000080);
   static const primaryInverted = Color(0xFF3B5BDB);
   static const primaryInvertedContrast = Color(0xFFFFFFFF);
   static const primaryInvertedAlpha = Color(0x803B5BDB);
-  // Foundation
+  // === Foundation
   static const background = Color(0xFFF3F3F3);
   static const backgroundInverted = Color(0xFF0C0C0C);
   static const backgroundSecondary = Color(0xFFDADADA);
@@ -19,12 +21,14 @@ class AppColors {
   static const shadowInverted = Color(0x1AFFFFFF);
   static const hover = Color(0x1A000000);
   static const hoverInverted = Color(0x1AFFFFFF);
-  // Typography
+  // === Typography
   static const text = Color(0xFF000000);
   static const textInverted = Color(0xFFFFFFFF);
   static const textSecondary = Color(0xFF404040);
   static const textSecondaryInverted = Color(0xFFCCCCCC);
-  // Semantic
+  // static const linkLight = Color(0xFF000000);
+  // static const linkDark = Color(0xFF000000);
+  // === Semantic
   // Neutral
   static const neutral = Color(0xFF7F7F7F);
   static const neutralContrast = Color(0xFFFFFFFF);
@@ -48,7 +52,11 @@ class AppColors {
   static const errorLight = Color(0xFFC62828);
   static const errorDark = Color(0xFFEF5350);
   static const errorContrast = Color(0xFFFFFFFF);
-  // Base
+  // Creative
+  // static const creativeLight = Color(0xFFC62828);
+  // static const creativeDark = Color(0xFFEF5350);
+  // static const creativeContrast = Color(0xFFFFFFFF);
+  // === Base
   static const base = Color(0xFF000000);
   static const baseInverted = Color(0xFFFFFFFF);
   static const light = Color(0xFFFFFFFF);

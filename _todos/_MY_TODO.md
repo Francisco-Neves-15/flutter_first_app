@@ -15,11 +15,14 @@
 - - Feito: Actions para Alert com Opção de Preencher toda a area disponivel (Width em Row e Column, quando Row divide espaço)
 - - No "input", adicionar required info, que precisa preencher o campo para concluir (talvez, tipar o retorno?); Quando Required, talvez tbm remover o "cancel"
 
-- - Criar estilos pré-prontos (ButtonStyle()) para os botões; Em situações diferentes como "Danger", "Success" e Disabled. Por hora, considerar apenas para "ElevatedButton's".
+- - FEITO: Criar estilos pré-prontos (ButtonStyle()) para os botões; Em situações diferentes como "Danger", "Success" e Disabled. Por hora, considerar apenas para "ElevatedButton's".
+- Feito: AppButton;
+- TODO: Opção "loading" no botão que inserie o icone de loading (com opção do label)
+- TODO: Opção "disabled" no botão (atualizar nos dialogs)
 
 - - - Pós fazer o Toast, adicionar avisos de tentativas de fechar Dialogs required ou "requiredInteraction"
-
-- Estilo para as Headers de BottomDivider
+ 
+- Estilo para as Headers de BottomDivider ???
 
 - Implementar Toasts
 
@@ -27,7 +30,20 @@
 
 - Reorganizar usos de AppMetrics e outras "const" (e.g.: axis); Implementar elas no systemDesign (e.g.: context.appTheme.spacing.md)
 
+- Terminar cores "link" e "creative"
+
+Hot Updates:
+
+- FEITO: Opção para "InvertDefaultActions" nos Dialogs (Confirm & Input)
+
+- "final AppAlertDialogType? type;" para "AppConfirmDialog"
+
+- No "Input" adicionar "Inputs Qtd" e montar os parametros, "hint" dinamicamente? Ou, adicionar "customInputs" que aceita uma lista de Widgets e deixar o tratamento com o dev
+
+
 # Next Steps
+
+- Detectar Idioma do Celular Flutter First App
 
 - FEITO: Persistencia do tema e idioma guardando no cache;
 

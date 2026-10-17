@@ -29,12 +29,6 @@ class AppInputDialog extends StatefulWidget {
   /// Hint text displayed inside the input.
   final String? hintText;
 
-  /// Custom Confirm text.
-  final String? confirmText;
-
-  /// Custom Cancel text.
-  final String? cancelText;
-
   /// Determines whether the dialog must remain open until the user
   /// explicitly interacts with one of its actions.
   ///
@@ -88,6 +82,15 @@ class AppInputDialog extends StatefulWidget {
   /// Makes every action occupy the full available width.
   final bool actionsFullWidth;
 
+  /// need to write
+  final bool invertDefaultActionsButtons;
+
+  /// Custom Confirm text.
+  final String? confirmText;
+
+  /// Custom Cancel text.
+  final String? cancelText;
+
   const AppInputDialog({
     super.key,
     required this.title,
@@ -95,8 +98,6 @@ class AppInputDialog extends StatefulWidget {
     this.initialValue,
     this.defaultReturnValue,
     this.hintText,
-    this.confirmText,
-    this.cancelText,
     this.requiredInteraction = false,
     this.requiredInput = false,
     this.validator,
@@ -104,6 +105,9 @@ class AppInputDialog extends StatefulWidget {
     this.actions,
     this.actionFlow = .row,
     this.actionsFullWidth = false,
+    this.invertDefaultActionsButtons = false,
+    this.confirmText,
+    this.cancelText,
   });
 
   @override
@@ -234,24 +238,26 @@ class _AppInputDialogState extends State<AppInputDialog> {
 
   @override
   Widget build(BuildContext context) {
+
     final l10n = context.l10n;
 
-    final rConfirmText = l10n.common.confirm;
-    final rCancelText = l10n.common.cancel;
+    final rConfirmText = widget.cancelText ?? l10n.common.confirm;
+    final rCancelText = widget.confirmText ?? l10n.common.cancel;
 
     final shouldInvertDefaultActions = resolveShouldInvertDefaultActions(widget.actionFlow);
 
     final defaultActionsList = <Widget>[
-
+      // default: cancel
       if (!widget.requiredInput) ...[
         TextButton(
-          onPressed: _cancel,
-          child: Text(widget.cancelText ?? rCancelText, style: context.appTheme.textStyles.buttonText)
+          onPressed: widget.invertDefaultActionsButtons ? _confirm : _cancel,
+          child: Text(widget.invertDefaultActionsButtons ? rConfirmText : rCancelText, style: context.appTheme.textStyles.buttonText)
         )
       ],
+      // default: confirm
       ElevatedButton(
-        onPressed: _canConfirm ? _confirm : null,
-        child: Text(widget.confirmText ?? rConfirmText, style: context.appTheme.textStyles.buttonText),
+        onPressed: _canConfirm ? (widget.invertDefaultActionsButtons ? _cancel : _confirm) : null,
+        child: Text(widget.invertDefaultActionsButtons ? rCancelText : rConfirmText, style: context.appTheme.textStyles.buttonText),
       )
     ];
 

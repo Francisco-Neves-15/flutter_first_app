@@ -45,6 +45,9 @@ Future<bool?> showAppConfirmDialog(
   List<Widget>? actions,
   AppAxisFlow? actionFlow,
   bool actionsFullWidth = false,
+  bool invertDefaultActionsButtons = false,
+  String? confirmText,
+  String? cancelText,
 }) async {
   final result = await showDialog<bool?>(
     context: context,
@@ -56,6 +59,9 @@ Future<bool?> showAppConfirmDialog(
       actions: actions,
       actionFlow: actionFlow,
       actionsFullWidth: actionsFullWidth,
+      invertDefaultActionsButtons: invertDefaultActionsButtons,
+      confirmText: confirmText,
+      cancelText: cancelText,
     ),
   );
 

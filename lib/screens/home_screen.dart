@@ -624,7 +624,6 @@ class _HomePageState extends State<HomePage>
                       title: "Excluir usuário?",
                       message: "Essa operação não poderá ser desfeita.",
                     );
-
                     if (result == true) {
                       debugPrint("confirmando");
                     } else if (result == false) {
@@ -634,6 +633,24 @@ class _HomePageState extends State<HomePage>
                     }
                   },
                   child: Text("AppConfirmDialog (com null)"),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final result = await showAppConfirmDialog(
+                      context,
+                      title: "Excluir usuário?",
+                      message: "Essa operação não poderá ser desfeita.",
+                      invertDefaultActionsButtons: true,
+                    );
+                    if (result == true) {
+                      debugPrint("confirmando");
+                    } else if (result == false) {
+                      debugPrint("des-confirmando");
+                    } else {
+                      debugPrint("nullable");
+                    }
+                  },
+                  child: Text("AppConfirmDialog (invertDefaultActionsButtons)"),
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -725,7 +742,6 @@ class _HomePageState extends State<HomePage>
         ),
 
         Divider(),
-
 
         Column(
           crossAxisAlignment: .start,
