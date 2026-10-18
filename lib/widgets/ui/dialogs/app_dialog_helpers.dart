@@ -1,14 +1,15 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
+import "package:flutter_first_app/widgets/ui/dialogs/_dialogs.dart" show AppDialogsTypes, AppDialogsMainActionVariants;
 
-import "app_alert_dialog.dart" show AppAlertDialog, AppAlertDialogType;
+import "app_alert_dialog.dart" show AppAlertDialog;
 import "app_confirm_dialog.dart" show AppConfirmDialog;
 import "app_input_dialog.dart" show AppInputDialog;
 
 /// See: AppAlertDialog (lib\widgets\ui\dialogs\app_alertdialog.dart) for more information about the parameters.
 Future<void> showAppAlertDialog(
   BuildContext context, {
-  AppAlertDialogType type = AppAlertDialogType.standard,
+  AppDialogsTypes type = AppDialogsTypes.standard,
   String? title,
   String? message,
   Widget? icon,
@@ -23,6 +24,7 @@ Future<void> showAppAlertDialog(
     barrierDismissible: !requiredInteraction,
     builder: (_) => AppAlertDialog(
       type: type,
+      title: title,
       message: message,
       requiredInteraction: requiredInteraction,
       actions: actions,
@@ -30,7 +32,6 @@ Future<void> showAppAlertDialog(
       actionsFullWidth: actionsFullWidth,
       icon: icon,
       showIcon: showIcon,
-      title: title,
     ),
   );
 }
@@ -38,11 +39,15 @@ Future<void> showAppAlertDialog(
 /// See: AppConfirmDialog (lib\widgets\ui\dialogs\app_confirm_dialog.dart) for more information about the parameters.
 Future<bool?> showAppConfirmDialog(
   BuildContext context, {
+  AppDialogsTypes type = AppDialogsTypes.standard,
   required String title,
   String? message,
+  Widget? icon,
+  bool showIcon = true,
   bool requiredInteraction = false,
   bool nullReturnFalse = false,
   List<Widget>? actions,
+  AppDialogsMainActionVariants mainActionVariant = .followDialogType,
   AppAxisFlow? actionFlow,
   bool actionsFullWidth = false,
   bool invertDefaultActionsButtons = false,
@@ -53,15 +58,19 @@ Future<bool?> showAppConfirmDialog(
     context: context,
     barrierDismissible: !requiredInteraction,
     builder: (_) => AppConfirmDialog(
+      type: type,
       title: title,
       message: message,
       requiredInteraction: requiredInteraction,
       actions: actions,
+      mainActionVariant: mainActionVariant,
       actionFlow: actionFlow,
       actionsFullWidth: actionsFullWidth,
       invertDefaultActionsButtons: invertDefaultActionsButtons,
       confirmText: confirmText,
       cancelText: cancelText,
+      icon: icon,
+      showIcon: showIcon,
     ),
   );
 

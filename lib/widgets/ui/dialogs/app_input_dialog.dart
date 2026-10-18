@@ -4,7 +4,11 @@ import "package:flutter_first_app/extensions/localization_extension.dart" show L
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
 import "package:flutter_first_app/styles/app_metrics.dart";
-import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show buildActions, resolveShouldInvertDefaultActions, resolveActionsList;
+import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show
+  fAppDialogResolveShouldInvertDefaultActions,
+  fAppDialogResolveActionsList,
+  fAppDialogBuildActions
+;
 
 class AppInputDialog extends StatefulWidget {
 
@@ -74,6 +78,7 @@ class AppInputDialog extends StatefulWidget {
   /// By default, use:
   /// - TextButton     | To "cancel"  the input: _cancel()
   /// - ElevatedButton | To "confirm" the input: _confirm()
+  /// The "confirm" ElevatedButton is the > main < action
   final List<Widget>? actions;
 
   /// Actions layout flow (by default, Row).
@@ -244,7 +249,7 @@ class _AppInputDialogState extends State<AppInputDialog> {
     final rConfirmText = widget.cancelText ?? l10n.common.confirm;
     final rCancelText = widget.confirmText ?? l10n.common.cancel;
 
-    final shouldInvertDefaultActions = resolveShouldInvertDefaultActions(widget.actionFlow);
+    final shouldInvertDefaultActions = fAppDialogResolveShouldInvertDefaultActions(widget.actionFlow);
 
     final defaultActionsList = <Widget>[
       // default: cancel
@@ -261,8 +266,8 @@ class _AppInputDialogState extends State<AppInputDialog> {
       )
     ];
 
-    final actionsList = resolveActionsList(widget.actions, defaultActionsList, shouldInvertDefaultActions);
-    final rActions = buildActions(actionsList, widget.actionFlow, actionsFullWidth: widget.actionsFullWidth);
+    final actionsList = fAppDialogResolveActionsList(widget.actions, defaultActionsList, shouldInvertDefaultActions);
+    final rActions = fAppDialogBuildActions(actionsList, widget.actionFlow, actionsFullWidth: widget.actionsFullWidth);
     final wTitle = Text(widget.title, style: context.appTheme.textStyles.h1);
     final wMessage = widget.message != null ? Text(widget.message!, style: context.appTheme.textStyles.body) : null;
 

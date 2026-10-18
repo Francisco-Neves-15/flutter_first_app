@@ -36,7 +36,7 @@ Hot Updates:
 
 - FEITO: Opção para "InvertDefaultActions" nos Dialogs (Confirm & Input)
 
-- "final AppAlertDialogType? type;" para "AppConfirmDialog"
+- FEITO: "final AppAlertDialogType? type;" para "AppConfirmDialog"
 
 - No "Input" adicionar "Inputs Qtd" e montar os parametros, "hint" dinamicamente? Ou, adicionar "customInputs" que aceita uma lista de Widgets e deixar o tratamento com o dev
 

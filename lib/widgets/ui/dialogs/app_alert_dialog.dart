@@ -2,25 +2,21 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
 import "package:flutter_first_app/styles/app_metrics.dart";
-import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show buildActions;
-import "package:material_symbols_icons/symbols.dart" show Symbols;
-
-enum AppAlertDialogType {
-  standard,
-  success,
-  danger,
-  warn,
-  info,
-  error,
-}
+import "package:flutter_first_app/widgets/ui/dialogs/_dialogs.dart" show AppDialogsTypes;
+import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show
+  fAppDialogBuildMainColor,
+  fAppDialogBuildIcon,
+  fAppDialogBuildTitle,
+  fAppDialogBuildActions
+;
 
 class AppAlertDialog extends StatelessWidget {
 
   /// Predefined Styles (Icons and Colors) for the Dialog;
   /// defines "title", "icon", and semantic colors (success, danger, etc.);
-  /// can be overridden by the parameters: title & title.
+  /// can be overridden by the parameters: title & icon.
   /// By default, "standard" is used.
-  final AppAlertDialogType? type;
+  final AppDialogsTypes? type;
 
   /// Title for the Dialog; by default, it uses the presets for the "type" parameter.
   final String? title;
@@ -49,7 +45,7 @@ class AppAlertDialog extends StatelessWidget {
 
   const AppAlertDialog({
     super.key,
-    this.type = AppAlertDialogType.standard,
+    this.type = AppDialogsTypes.standard,
     this.title,
     this.message,
     this.icon,
@@ -60,90 +56,8 @@ class AppAlertDialog extends StatelessWidget {
     this.actionsFullWidth = false,
   });
 
-  IconData? _buildIcon() {
-    switch (type) {
-      case AppAlertDialogType.standard:
-        return null;
-      case AppAlertDialogType.success:
-        return Symbols.check_circle_rounded;
-      case AppAlertDialogType.danger:
-        return Symbols.dangerous_rounded;
-      case AppAlertDialogType.warn:
-        return Symbols.warning_amber_rounded;
-      case AppAlertDialogType.info:
-        return Symbols.info_rounded;
-      case AppAlertDialogType.error:
-        return Symbols.error_rounded;
-      case _:
-        return Symbols.question_mark_rounded;
-    }
-  }
-
-  String _buildTitle() {
-    if (title != null) return title!;
-    switch (type) {
-      case AppAlertDialogType.standard:
-        return "Alerta";
-      case AppAlertDialogType.success:
-        return "Success";
-      case AppAlertDialogType.danger:
-        return "Danger";
-      case AppAlertDialogType.warn:
-        return "Attention";
-      case AppAlertDialogType.info:
-        return "Info";
-      case AppAlertDialogType.error:
-        return "Error";
-      case _:
-        return "?";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-
-    // Helpers
-
-    // Style Color
-    ({Color color, Color contrast}) buildMainColor(AppAlertDialogType? inType) {
-      switch (inType) {
-        case AppAlertDialogType.standard:
-          return (
-            color: context.appTheme.colors.primary,
-            contrast: context.appTheme.colors.primaryContrast,
-          );
-        case AppAlertDialogType.success:
-          return (
-            color: context.appTheme.colors.success,
-            contrast: context.appTheme.colors.successContrast,
-          );
-        case AppAlertDialogType.danger:
-          return (
-            color: context.appTheme.colors.danger,
-            contrast: context.appTheme.colors.dangerContrast,
-          );
-        case AppAlertDialogType.warn:
-          return (
-            color: context.appTheme.colors.warn,
-            contrast: context.appTheme.colors.warnContrast,
-          );
-        case AppAlertDialogType.info:
-          return (
-            color: context.appTheme.colors.info,
-            contrast: context.appTheme.colors.infoContrast,
-          );
-        case AppAlertDialogType.error:
-          return (
-            color: context.appTheme.colors.error,
-            contrast: context.appTheme.colors.errorContrast,
-          );
-        case _:
-          return (
-            color: context.appTheme.colors.neutral,
-            contrast: context.appTheme.colors.neutralContrast,
-          );
-      }
-    }
 
     // Actions
     
@@ -159,10 +73,12 @@ class AppAlertDialog extends StatelessWidget {
 
     // Vars
 
-    final rMainColor = buildMainColor(type);
-    final rActions = buildActions(actionsList, actionFlow, actionsFullWidth: actionsFullWidth);
-    final rIcon = _buildIcon();
-    final rTitle = _buildTitle();
+    final rMainColor = fAppDialogBuildMainColor(context, type);
+    final rActions = fAppDialogBuildActions(actionsList, actionFlow, actionsFullWidth: actionsFullWidth);
+
+    final rIcon = fAppDialogBuildIcon(type);
+    final rTitle = fAppDialogBuildTitle(type, title);
+    final Widget? wMessage = message != null ? Text(message!, style: context.appTheme.textStyles.body) : null;
 
     final Widget wTitle = Row(
       mainAxisAlignment: .start,
@@ -181,7 +97,7 @@ class AppAlertDialog extends StatelessWidget {
       canPop: !requiredInteraction,
       child: AlertDialog(
         title: wTitle,
-        content: message != null ? Text(message!, style: context.appTheme.textStyles.body) : null,
+        content: wMessage,
         actions: rActions
       ),
     );

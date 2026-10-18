@@ -690,6 +690,52 @@ class _HomePageState extends State<HomePage>
                   },
                   child: Text("AppConfirmDialog (required)"),
                 ),
+                Text("AppConfirmDialog Types"),
+                Wrap(children: [
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .standard, title: "standard") },
+                    child: Text("AppConfirmDialog (standard)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .success, title: "success") },
+                    child: Text("AppConfirmDialog (success)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .danger, title: "danger") },
+                    child: Text("AppConfirmDialog (danger)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .warn, title: "warn") },
+                    child: Text("AppConfirmDialog (warn)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .info, title: "info") },
+                    child: Text("AppConfirmDialog (info)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .error, title: "error") },
+                    child: Text("AppConfirmDialog (error)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .danger, title: "danger", mainActionVariant: .followDialogType) },
+                    child: Text("AppConfirmDialog (error) | mainActionVariant (followDialogType)"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .danger, title: "danger", mainActionVariant: .success) },
+                    child: Text("AppConfirmDialog (error) | mainActionVariant (success)"),
+                  ),
+                ]),
+                Text("AppConfirmDialog Types (invertDefaultActionsButtons)"),
+                Wrap(children: [
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .standard, title: "standard", invertDefaultActionsButtons: true) },
+                    child: Text("AppConfirmDialog (standard) invertedActions"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .danger, title: "danger", invertDefaultActionsButtons: true) },
+                    child: Text("AppConfirmDialog (danger) invertedActions"),
+                  ),
+                ]),
                 Text("AlertInputDialog"),
                 ElevatedButton(
                   onPressed: () async {
