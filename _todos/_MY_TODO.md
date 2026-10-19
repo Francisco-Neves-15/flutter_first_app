@@ -18,7 +18,13 @@
 - - FEITO: Criar estilos pré-prontos (ButtonStyle()) para os botões; Em situações diferentes como "Danger", "Success" e Disabled. Por hora, considerar apenas para "ElevatedButton's".
 - Feito: AppButton;
 - TODO: Opção "loading" no botão que inserie o icone de loading (com opção do label)
-- TODO: Opção "disabled" no botão (atualizar nos dialogs)
+- TODO: Opção "disabled" no botão
+- FEITO!!: (atualizar nos dialogs... ainda precisa atualizar com loading & disabled)
+
+- - Criar estilos e Widgets pré-prontos para os Inputs; Para: text, number, password, others
+- definir estilo padrão para TextField no AppTheme
+- TODO: Opção "disabled"
+- Atualizar nos dialogs
 
 - - - Pós fazer o Toast, adicionar avisos de tentativas de fechar Dialogs required ou "requiredInteraction"
  
@@ -40,10 +46,16 @@ Hot Updates:
 
 - No "Input" adicionar "Inputs Qtd" e montar os parametros, "hint" dinamicamente? Ou, adicionar "customInputs" que aceita uma lista de Widgets e deixar o tratamento com o dev
 
+- Dialog de Input: Adicionar "confirmDisable" (ou main/secondaryDisabled);
+
+- Dialogs (Confirm & Input), se actions padronizadas, mudar nomenclantura interna para (main e secondary, sendo confirm e cancel respectivamente)
+
 
 # Next Steps
 
-- Detectar Idioma do Celular Flutter First App
+- !!! Detectar Idioma do Celular Flutter First App
+
+- Dialogs (Confirm & Input): Ver se é mesmo necessario "actions" customizadas; talvez seja apenas melhor padronizar elas; Deixando apenas o AppAlertDialog mais customizado, uma vez que não possui regras complexas.
 
 - FEITO: Persistencia do tema e idioma guardando no cache;
 

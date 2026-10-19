@@ -4,6 +4,7 @@ import "package:flutter_first_app/extensions/localization_extension.dart" show L
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
 import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/widgets/ui/button/app_button.dart" show AppButton;
 import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show
   fAppDialogResolveShouldInvertDefaultActions,
   fAppDialogResolveActionsList,
@@ -20,18 +21,18 @@ class AppInputDialog extends StatefulWidget {
 
   /// Initial value displayed in the input.
   ///
-  /// This is independent from [defaultReturnValue].
-  final String? initialValue;
+  /// This is independent from [defaultInputDefaultReturnValue].
+  final String? defaultInputInitialValue;
 
   /// Value returned when the dialog is dismissed without a value.
   ///
-  /// This is different from [initialValue]: the user can edit or erase
+  /// This is different from [defaultInputInitialValue]: the user can edit or erase
   /// the initial value, while this value is used only when the result
   /// would otherwise be null.
-  final dynamic defaultReturnValue;
+  final dynamic defaultInputDefaultReturnValue;
 
   /// Hint text displayed inside the input.
-  final String? hintText;
+  final String? defaultInputHintText;
 
   /// Determines whether the dialog must remain open until the user
   /// explicitly interacts with one of its actions.
@@ -63,7 +64,7 @@ class AppInputDialog extends StatefulWidget {
   /// - Int: `(value) => value == 3`
   /// - Double: `(value) => value > 3.5`
   /// - Bool: `(value) => value == true`
-  final bool Function(dynamic value)? validator;
+  final bool Function(dynamic value)? defaultInputValidator;
 
   /// Flutter input type.
   ///
@@ -72,7 +73,7 @@ class AppInputDialog extends StatefulWidget {
   /// - TextInputType.number
   /// - TextInputType.phone
   /// - TextInputType.emailAddress
-  final TextInputType inputType;
+  final TextInputType defaultInputType;
 
   /// Custom actions for the 'actions' parameter; use the list of widgets;
   /// By default, use:
@@ -100,13 +101,13 @@ class AppInputDialog extends StatefulWidget {
     super.key,
     required this.title,
     this.message,
-    this.initialValue,
-    this.defaultReturnValue,
-    this.hintText,
+    this.defaultInputInitialValue,
+    this.defaultInputDefaultReturnValue,
+    this.defaultInputHintText,
     this.requiredInteraction = false,
     this.requiredInput = false,
-    this.validator,
-    this.inputType = TextInputType.text,
+    this.defaultInputValidator,
+    this.defaultInputType = TextInputType.text,
     this.actions,
     this.actionFlow = .row,
     this.actionsFullWidth = false,
@@ -129,11 +130,11 @@ class _AppInputDialogState extends State<AppInputDialog> {
       return false;
     }
 
-    if (widget.validator == null) {
+    if (widget.defaultInputValidator == null) {
       return true;
     }
 
-    return widget.validator!(_controller.text);
+    return widget.defaultInputValidator!(_controller.text);
   }
 
   bool get _canConfirm {
@@ -144,12 +145,12 @@ class _AppInputDialogState extends State<AppInputDialog> {
 
     // If it isn't required and there is no validator,
     // an empty value is allowed.
-    if (widget.validator == null) {
+    if (widget.defaultInputValidator == null) {
       return true;
     }
 
     // If a validator exists, it must pass.
-    return widget.validator!(_controller.text);
+    return widget.defaultInputValidator!(_controller.text);
   }
 
   @override
@@ -157,7 +158,7 @@ class _AppInputDialogState extends State<AppInputDialog> {
     super.initState();
 
     _controller = TextEditingController(
-      text: widget.initialValue,
+      text: widget.defaultInputInitialValue,
     );
 
     _controller.addListener(_onInputChanged);
@@ -176,7 +177,7 @@ class _AppInputDialogState extends State<AppInputDialog> {
   }
 
   dynamic _resolveReturnValue(String? value) {
-    final resolvedValue = value ?? widget.defaultReturnValue;
+    final resolvedValue = value ?? widget.defaultInputDefaultReturnValue;
 
     if (resolvedValue == null) {
       return null;
@@ -186,7 +187,7 @@ class _AppInputDialogState extends State<AppInputDialog> {
   }
 
   dynamic _convertValue(String value) {
-    switch (widget.inputType) {
+    switch (widget.defaultInputType) {
 
       case TextInputType.number:
         return double.tryParse(value);
@@ -222,7 +223,7 @@ class _AppInputDialogState extends State<AppInputDialog> {
 
   List<TextInputFormatter> _resolveInputFormatters() {
 
-    if (widget.inputType == TextInputType.number) {
+    if (widget.defaultInputType == TextInputType.number) {
       return [
         FilteringTextInputFormatter.allow(
           RegExp(r"[0-9.]"),
@@ -230,7 +231,7 @@ class _AppInputDialogState extends State<AppInputDialog> {
       ];
     }
 
-    if (widget.inputType == TextInputType.phone) {
+    if (widget.defaultInputType == TextInputType.phone) {
       return [
         FilteringTextInputFormatter.allow(
           RegExp(r"[0-9+\-() ]"),
@@ -260,7 +261,9 @@ class _AppInputDialogState extends State<AppInputDialog> {
         )
       ],
       // default: confirm
-      ElevatedButton(
+      AppButton(
+        type: .elevated,
+        variant: .primary,
         onPressed: _canConfirm ? (widget.invertDefaultActionsButtons ? _cancel : _confirm) : null,
         child: Text(widget.invertDefaultActionsButtons ? rCancelText : rConfirmText, style: context.appTheme.textStyles.buttonText),
       )
@@ -276,10 +279,12 @@ class _AppInputDialogState extends State<AppInputDialog> {
       TextField(
         controller: _controller,
         autofocus: true,
-        keyboardType: widget.inputType,
+        keyboardType: TextInputType.multiline,
+        minLines: 1,
+        maxLines: 4,
         inputFormatters: _resolveInputFormatters(),
         decoration: InputDecoration(
-          hintText: widget.hintText,
+          hintText: widget.defaultInputHintText,
         ),
       ),
     ];
@@ -287,6 +292,10 @@ class _AppInputDialogState extends State<AppInputDialog> {
     return PopScope(
       canPop: !widget.requiredInteraction && !widget.requiredInput,
       child: AlertDialog(
+        constraints: BoxConstraints(
+          minWidth: 320.0,
+          maxWidth: 320.0,
+        ),
         title: wTitle,
         content: Column(
           mainAxisSize: MainAxisSize.min,

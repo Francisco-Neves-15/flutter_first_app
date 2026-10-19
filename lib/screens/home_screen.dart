@@ -743,7 +743,7 @@ class _HomePageState extends State<HomePage>
                       context,
                       title: "Nome",
                       message: "Digite seu nome:",
-                      hintText: "Ex.: Roberto",
+                      defaultInputHintText: "Ex.: Roberto",
                       actionFlow: .column,
                       actionsFullWidth: true,
                     );
