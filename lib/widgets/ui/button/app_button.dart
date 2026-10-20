@@ -3,12 +3,17 @@ import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/docs/widgets/ui/button/bad_usages.dart" show BadUsagesAppButton;
 import "package:flutter_first_app/utils/utils_style.dart" show OverlayEffect;
 
+/// Defines the visual style of the button.
 enum AppButtonType {
+  /// A filled button with a background color.
   elevated,
+  /// A button with a visible border and transparent background.
   outlined,
+  /// A button with no visible background or border.
   text
 }
 
+/// Defines the semantic color variant of the button.
 enum AppButtonVariant {
   primary,
   secondary,
@@ -20,19 +25,40 @@ enum AppButtonVariant {
   error,
 }
 
+/// A reusable button that supports multiple styles, color variants,
+/// interaction callbacks, and status handling.
 class AppButton extends StatelessWidget {
 
-  // Styles
+  /// Defines the button's visual structure.
   final AppButtonType type;
+
+  /// Defines the button's semantic color scheme.
   final AppButtonVariant variant;
 
-  // Button
+  /// The widget displayed inside the button.
   final Widget? child;
+
+  /// Overrides the default button style.
   final ButtonStyle? style;
+
+  /// Called when the button is pressed.
+  /// Set to null to disable the button's interaction.
   final VoidCallback? onPressed;
+
+  /// Called when the button's focus state changes.
   final ValueChanged<bool>? onFocusChange;
+
+  /// Called when the pointer enters or leaves the button.
   final void Function(bool isHovered)? onHover;
+
+  /// Called when the button is long-pressed.
   final VoidCallback? onLongPress;
+
+  /// Whether the button displays a loading indicator.
+  final bool? loading;
+
+  /// Whether the button is disabled.
+  final bool? disabled;
 
   const AppButton({
     super.key,
@@ -44,6 +70,8 @@ class AppButton extends StatelessWidget {
     this.onFocusChange,
     this.onHover,
     this.onLongPress,
+    this.loading = false,
+    this.disabled = false,
   });
 
   @override
@@ -54,6 +82,16 @@ class AppButton extends StatelessWidget {
     // Build
 
     Widget finalAppButton;
+
+    /// Determines whether the button should be interactive.
+    final bool isNonInteractive = disabled == true || loading == true;
+    final bool isLoading = loading == true;
+    final bool isDisabled = disabled == true;
+
+    final VoidCallback? effectiveOnPressed                = isNonInteractive ? null : onPressed;
+    final ValueChanged<bool>? effectiveOnFocusChange      = isNonInteractive ? null : onFocusChange;
+    final void Function(bool isHovered)? effectiveOnHover = isNonInteractive ? null : onHover;
+    final VoidCallback? effectiveOnLongPress              = isNonInteractive ? null : onLongPress;
 
     // Styles
 
@@ -169,41 +207,84 @@ class AppButton extends StatelessWidget {
     }
     // dart format on
 
+    ButtonStyle? resolveInteractiveButtonStyle({
+      required bool inIsNonInteractive,
+      required bool inIsDisabled,
+      required bool inIsLoading,
+      required AppButtonType inType,
+      required AppButtonVariant inVariant,
+      required Color inColorMain,
+      required Color inColorMainContrast
+    }) {
+
+      ButtonStyle? appButtonDisabledStyle;
+      if (inIsNonInteractive) {
+        appButtonDisabledStyle = ButtonStyle(
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return inColorMain.withValues(alpha: 0.45);
+            }
+            return inColorMain;
+          }),
+          foregroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return inColorMainContrast.withValues(alpha: 0.55);
+            }
+            return inColorMainContrast;
+          }),
+        );
+      }
+      return appButtonDisabledStyle;
+
+    }
+
+    // Button
+
     // dart format off
     Widget resolveButtonType(
       AppButtonType inType,
-      ButtonStyle inButtonStyle
+      ButtonStyle inButtonStyle,
+      ButtonStyle? inDisabledButtonStyle
     ) {
       switch (inType) {
         // AppButtonType.elevated
         case AppButtonType.elevated:
           return ElevatedButton(
-            onPressed: onPressed,
-            onFocusChange: onFocusChange,
-            onHover: onHover,
-            onLongPress: onLongPress,
-            style: inButtonStyle,
+            onPressed: effectiveOnPressed,
+            onFocusChange: effectiveOnFocusChange,
+            onHover: effectiveOnHover,
+            onLongPress: effectiveOnLongPress,
+            style: inDisabledButtonStyle != null ? inButtonStyle.copyWith(
+              backgroundColor: inDisabledButtonStyle.backgroundColor,
+              foregroundColor: inDisabledButtonStyle.foregroundColor,
+            ) : inButtonStyle,
             child: child,
           );
         // AppButtonType.outlined
         case AppButtonType.outlined:
           return OutlinedButton(
-            onPressed: onPressed,
-            onFocusChange: onFocusChange,
-            onHover: onHover,
-            onLongPress: onLongPress,
-            style: inButtonStyle,
+            onPressed: effectiveOnPressed,
+            onFocusChange: effectiveOnFocusChange,
+            onHover: effectiveOnHover,
+            onLongPress: effectiveOnLongPress,
+            style: inDisabledButtonStyle != null ? inButtonStyle.copyWith(
+              backgroundColor: inDisabledButtonStyle.backgroundColor,
+              foregroundColor: inDisabledButtonStyle.foregroundColor,
+            ) : inButtonStyle,
             child: child,
           );
 
         // AppButtonType.text
         case AppButtonType.text:
           return TextButton(
-            onPressed: onPressed,
-            onFocusChange: onFocusChange,
-            onHover: onHover,
-            onLongPress: onLongPress,
-            style: inButtonStyle,
+            onPressed: effectiveOnPressed,
+            onFocusChange: effectiveOnFocusChange,
+            onHover: effectiveOnHover,
+            onLongPress: effectiveOnLongPress,
+            style: inDisabledButtonStyle != null ? inButtonStyle.copyWith(
+              backgroundColor: inDisabledButtonStyle.backgroundColor,
+              foregroundColor: inDisabledButtonStyle.foregroundColor,
+            ) : inButtonStyle,
             child: child ?? Text(badUsagesTextButton001),
           );
       }
@@ -214,7 +295,16 @@ class AppButton extends StatelessWidget {
     Color rColorMainContrast = resolveColorMainContrast(variant);
 
     ButtonStyle rButtonStyle = resolveButtonStyle(type, variant, rColorMain, rColorMainContrast);
-    finalAppButton = resolveButtonType(type, rButtonStyle);
+    ButtonStyle? rInteractiveButtonStyle = resolveInteractiveButtonStyle(
+      inIsNonInteractive: isNonInteractive,
+      inIsDisabled: isDisabled,
+      inIsLoading: isLoading,
+      inType: type,
+      inVariant: variant,
+      inColorMain: rColorMain,
+      inColorMainContrast: rColorMainContrast
+    );
+    finalAppButton = resolveButtonType(type, rButtonStyle, rInteractiveButtonStyle);
 
     return finalAppButton;
 

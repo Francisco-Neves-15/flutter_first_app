@@ -717,12 +717,12 @@ class _HomePageState extends State<HomePage>
                     child: Text("AppConfirmDialog (error)"),
                   ),
                   ElevatedButton(
-                    onPressed: () async => { await showAppConfirmDialog(context, type: .danger, title: "danger", mainActionVariant: .followDialogType) },
-                    child: Text("AppConfirmDialog (error) | mainActionVariant (followDialogType)"),
+                    onPressed: () async => { await showAppConfirmDialog(context, type: .warn, title: "warn", mainActionVariant: .followDialogType) },
+                    child: Text("AppConfirmDialog (warn) | mainActionVariant (followDialogType)"),
                   ),
                   ElevatedButton(
                     onPressed: () async => { await showAppConfirmDialog(context, type: .danger, title: "danger", mainActionVariant: .success) },
-                    child: Text("AppConfirmDialog (error) | mainActionVariant (success)"),
+                    child: Text("AppConfirmDialog (danger) | mainActionVariant (success)"),
                   ),
                 ]),
                 Text("AppConfirmDialog Types (invertDefaultActionsButtons)"),
@@ -820,7 +820,19 @@ class _HomePageState extends State<HomePage>
                   Expanded(child: AppButton(type: .text, variant: .warning, onPressed: () {}, child: Text("A"))),
                   Expanded(child: AppButton(type: .text, variant: .info, onPressed: () {}, child: Text("B"))),
                   Expanded(child: AppButton(type: .text, variant: .neutral, onPressed: () {}, child: Text("B"))),
-                ])
+                ]),
+                Text("Disabled: ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(disabled: true, type: .elevated, variant: .secondary, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(disabled: true, type: .outlined, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(disabled: true, type: .text, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                ]),
+                Text("Loading: ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(loading: true, type: .elevated, variant: .secondary, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(loading: true, type: .outlined, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(loading: true, type: .text, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                ]),
               ],
             )
           ]
