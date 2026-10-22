@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/docs/widgets/ui/button/bad_usages.dart" show BadUsagesAppButton;
+import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/utils/utils_style.dart" show OverlayEffect;
 
 /// Defines the visual style of the button.
@@ -36,7 +37,7 @@ class AppButton extends StatelessWidget {
   final AppButtonVariant variant;
 
   /// The widget displayed inside the button.
-  final Widget? child;
+  final Widget child;
 
   /// Overrides the default button style.
   final ButtonStyle? style;
@@ -57,6 +58,9 @@ class AppButton extends StatelessWidget {
   /// Whether the button displays a loading indicator.
   final bool? loading;
 
+  /// Whether the loading indicator hides the content (child) when it is visible.
+  final bool? loadingOverridesChild;
+
   /// Whether the button is disabled.
   final bool? disabled;
 
@@ -64,13 +68,14 @@ class AppButton extends StatelessWidget {
     super.key,
     this.type = AppButtonType.elevated,
     this.variant = AppButtonVariant.primary,
-    this.child,
+    required this.child,
     this.style,
     this.onPressed,
     this.onFocusChange,
     this.onHover,
     this.onLongPress,
     this.loading = false,
+    this.loadingOverridesChild = false,
     this.disabled = false,
   });
 
@@ -81,6 +86,7 @@ class AppButton extends StatelessWidget {
 
     // Build
 
+    Widget? rChild;
     Widget finalAppButton;
 
     /// Determines whether the button should be interactive.
@@ -126,12 +132,12 @@ class AppButton extends StatelessWidget {
     // dart format on
 
     // dart format off
-    ButtonStyle resolveButtonStyle(
-      AppButtonType inType,
-      AppButtonVariant inVariant,
-      Color inColorMain,
-      Color inColorMainContrast
-    ) {
+    ButtonStyle resolveButtonStyle({
+      required AppButtonType inType,
+      required AppButtonVariant inVariant,
+      required Color inColorMain,
+      required Color inColorMainContrast
+    }) {
 
       OverlayEffect overlayEffectColor = OverlayEffect(color: Colors.black, value: 0.25);
       if (inVariant == AppButtonVariant.secondary) {
@@ -207,8 +213,8 @@ class AppButton extends StatelessWidget {
     }
     // dart format on
 
+    // dart format off
     ButtonStyle? resolveInteractiveButtonStyle({
-      required bool inIsNonInteractive,
       required bool inIsDisabled,
       required bool inIsLoading,
       required AppButtonType inType,
@@ -217,35 +223,79 @@ class AppButton extends StatelessWidget {
       required Color inColorMainContrast
     }) {
 
-      ButtonStyle? appButtonDisabledStyle;
-      if (inIsNonInteractive) {
-        appButtonDisabledStyle = ButtonStyle(
-          backgroundColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.disabled)) {
-              return inColorMain.withValues(alpha: 0.45);
-            }
-            return inColorMain;
-          }),
-          foregroundColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.disabled)) {
-              return inColorMainContrast.withValues(alpha: 0.55);
-            }
-            return inColorMainContrast;
-          }),
-        );
+      switch (inType) {
+
+        case AppButtonType.elevated:
+
+          if (inIsDisabled) {
+            return ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.50)),
+              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 0.75)),
+            );
+          } else if (inIsLoading) {
+            return ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.90)),
+              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 1)),
+            );
+          }
+
+        case AppButtonType.outlined:
+
+          Color borderColor = inColorMain;
+          if (inVariant == AppButtonVariant.secondary) {
+            borderColor = context.appTheme.colors.border;
+          }
+
+          if (inIsDisabled) {
+            return ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.50)),
+              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 0.75)),
+              side: WidgetStatePropertyAll(
+                BorderSide(color: borderColor.withValues(alpha: 0.50), width: 1, strokeAlign: BorderSide.strokeAlignInside),
+              ),
+            );
+          } else if (inIsLoading) {
+            return ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.90)),
+              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 1)),
+              side: WidgetStatePropertyAll(
+                BorderSide(color: borderColor.withValues(alpha: 0.90), width: 1, strokeAlign: BorderSide.strokeAlignInside),
+              ),
+            );
+          }
+
+        case AppButtonType.text:
+
+          if (inIsDisabled) {
+            return ButtonStyle(
+              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 0.75)),
+            );
+          } else if (inIsLoading) {
+            return ButtonStyle(
+              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 1)),
+            );
+          }
+
       }
-      return appButtonDisabledStyle;
+
+      return null;
 
     }
+    // dart format on
 
     // Button
 
     // dart format off
-    Widget resolveButtonType(
-      AppButtonType inType,
-      ButtonStyle inButtonStyle,
-      ButtonStyle? inDisabledButtonStyle
-    ) {
+    Widget resolveButtonType({
+      required AppButtonType inType,
+      required ButtonStyle inButtonStyle,
+      required ButtonStyle? inInteractiveButtonStyle,
+      required Widget inResolvedChild,
+    }) {
+
+      // base: resolveButtonStyle() < interactive state: copyWith() < dev customization: copyWith()
+      final ButtonStyle finalStyle = inButtonStyle.merge(inInteractiveButtonStyle).merge(style);
+
       switch (inType) {
         // AppButtonType.elevated
         case AppButtonType.elevated:
@@ -254,11 +304,8 @@ class AppButton extends StatelessWidget {
             onFocusChange: effectiveOnFocusChange,
             onHover: effectiveOnHover,
             onLongPress: effectiveOnLongPress,
-            style: inDisabledButtonStyle != null ? inButtonStyle.copyWith(
-              backgroundColor: inDisabledButtonStyle.backgroundColor,
-              foregroundColor: inDisabledButtonStyle.foregroundColor,
-            ) : inButtonStyle,
-            child: child,
+            style: finalStyle,
+            child: null,
           );
         // AppButtonType.outlined
         case AppButtonType.outlined:
@@ -267,11 +314,8 @@ class AppButton extends StatelessWidget {
             onFocusChange: effectiveOnFocusChange,
             onHover: effectiveOnHover,
             onLongPress: effectiveOnLongPress,
-            style: inDisabledButtonStyle != null ? inButtonStyle.copyWith(
-              backgroundColor: inDisabledButtonStyle.backgroundColor,
-              foregroundColor: inDisabledButtonStyle.foregroundColor,
-            ) : inButtonStyle,
-            child: child,
+            style: finalStyle,
+            child: inResolvedChild,
           );
 
         // AppButtonType.text
@@ -281,22 +325,54 @@ class AppButton extends StatelessWidget {
             onFocusChange: effectiveOnFocusChange,
             onHover: effectiveOnHover,
             onLongPress: effectiveOnLongPress,
-            style: inDisabledButtonStyle != null ? inButtonStyle.copyWith(
-              backgroundColor: inDisabledButtonStyle.backgroundColor,
-              foregroundColor: inDisabledButtonStyle.foregroundColor,
-            ) : inButtonStyle,
-            child: child ?? Text(badUsagesTextButton001),
+            style: finalStyle,
+            child: inResolvedChild ?? Text(badUsagesTextButton001),
           );
       }
     }
     // dart format on
 
+    // Resolving Main Theme
+
     Color rColorMain = resolveColorMain(variant);
     Color rColorMainContrast = resolveColorMainContrast(variant);
 
-    ButtonStyle rButtonStyle = resolveButtonStyle(type, variant, rColorMain, rColorMainContrast);
+    // Resolving Loading
+
+    Widget loadingIndicator = SizedBox(
+      width: 16,
+      height: 16,
+      // CircularProgressIndicator || LinearProgressIndicator
+      child: LinearProgressIndicator(
+        // strokeWidth: 2,
+        valueColor: AlwaysStoppedAnimation<Color>(rColorMainContrast)
+      ),
+    );
+
+    // Resolving Child
+
+    // rChild = isLoading ?
+    //   (loadingOverridesChild == true && child ? 
+    //     loadingIndicator : 
+    //     Row(
+    //       spacing: AppMetrics.extraSmall,
+    //       children: [
+    //         loadingIndicator, 
+    //         if (child != null) child
+    //       ],
+    //     )
+    //   ) : child;
+
+    // Resolving Button Style
+
+    ButtonStyle rButtonStyle = resolveButtonStyle(
+      inType: type,
+      inVariant: variant,
+      inColorMain: rColorMain,
+      inColorMainContrast: rColorMainContrast
+    );
+
     ButtonStyle? rInteractiveButtonStyle = resolveInteractiveButtonStyle(
-      inIsNonInteractive: isNonInteractive,
       inIsDisabled: isDisabled,
       inIsLoading: isLoading,
       inType: type,
@@ -304,7 +380,14 @@ class AppButton extends StatelessWidget {
       inColorMain: rColorMain,
       inColorMainContrast: rColorMainContrast
     );
-    finalAppButton = resolveButtonType(type, rButtonStyle, rInteractiveButtonStyle);
+
+    finalAppButton = resolveButtonType(
+      inType: type,
+      inButtonStyle: rButtonStyle,
+      inInteractiveButtonStyle: rInteractiveButtonStyle,
+      // inResolvedChild: rChild
+      inResolvedChild: child
+    );
 
     return finalAppButton;
 

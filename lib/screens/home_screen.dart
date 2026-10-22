@@ -803,6 +803,18 @@ class _HomePageState extends State<HomePage>
                   Expanded(child: AppButton(type: .outlined, onPressed: () {}, child: Text("B"))),
                   Expanded(child: AppButton(type: .text, onPressed: () {}, child: Text("B"))),
                 ]),
+                Text("Button's (only icon): ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  AppButton(type: .elevated, onPressed: () {}, child: Icon(Symbols.light)),
+                  AppButton(type: .outlined, onPressed: () {}, child: Icon(Symbols.light)),
+                  AppButton(type: .text, onPressed: () {}, child: Icon(Symbols.light)),
+                ]),
+                Text("Button's (icon + text): ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(type: .elevated, onPressed: () {}, child: Row(children: [Icon(Symbols.light), Text("A")]))),
+                  Expanded(child: AppButton(type: .outlined, onPressed: () {}, child: Row(children: [Icon(Symbols.light), Text("B")]))),
+                  Expanded(child: AppButton(type: .text,     onPressed: () {}, child: Row(children: [Icon(Symbols.light), Text("B")]))),
+                ]),
                 Text("Secondary's: ", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
                   Expanded(child: AppButton(type: .elevated, variant: .secondary, onPressed: () {}, child: Text("A"))),

@@ -40,6 +40,8 @@
 
 Hot Updates:
 
+- Adicionar "icon" no AppButton, que permite a entrada de 1 unico icon, dando badusage caso a pessoa tente usar icon + child; o tipo "icon" é unico e transforma o botão num estilo espeifico
+
 - FEITO: Opção para "InvertDefaultActions" nos Dialogs (Confirm & Input)
 
 - FEITO: "final AppAlertDialogType? type;" para "AppConfirmDialog"
