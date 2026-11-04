@@ -247,8 +247,8 @@ class _AppInputDialogState extends State<AppInputDialog> {
 
     final l10n = context.l10n;
 
-    final rConfirmText = widget.cancelText ?? l10n.common.confirm;
-    final rCancelText = widget.confirmText ?? l10n.common.cancel;
+    final rConfirmText = widget.cancelText ?? l10n.common.cancel;
+    final rCancelText = widget.confirmText ?? l10n.common.confirm;
 
     final shouldInvertDefaultActions = fAppDialogResolveShouldInvertDefaultActions(widget.actionFlow);
 

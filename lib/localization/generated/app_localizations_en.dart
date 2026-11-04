@@ -53,6 +53,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonTypeHere => 'Type here';
 
   @override
+  String get commonLoading => 'Loading';
+
+  @override
+  String get commonDisabled => 'Disabled';
+
+  @override
   String get pageHomeTitle => 'Home';
 
   @override

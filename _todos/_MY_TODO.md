@@ -42,7 +42,11 @@
 
 Hot Updates:
 
-- NEED TEXT: Loading and Disabled nos Button
+- Corrigir: app_input_dialog | bug1: Se "required" remover botão cancelar - bug2: verificar casos de uso
+
+- NEED TEST: Loading and Disabled nos Button
+
+- Corrigir: Button type: outlined quando Loading and Disabled não fica correto;
 
 - MUDANÇA: AppIconButton que suporta apenas o Icon como child; O AppButton apenas recebe child | Adicionar "icon" no AppButton, que permite a entrada de 1 unico icon, dando badusage caso a pessoa tente usar icon + child; o tipo "icon" é unico e transforma o botão num estilo espeifico
 

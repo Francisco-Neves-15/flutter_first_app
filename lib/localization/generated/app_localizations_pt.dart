@@ -53,6 +53,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get commonTypeHere => 'Digite aqui';
 
   @override
+  String get commonLoading => 'Carregando';
+
+  @override
+  String get commonDisabled => 'Desabilitado';
+
+  @override
   String get pageHomeTitle => 'Início';
 
   @override

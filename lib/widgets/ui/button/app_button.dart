@@ -147,10 +147,15 @@ class AppButton extends StatelessWidget {
     // dart format on
 
     // dart format off
-    Color resolveColorMainContrast(AppButtonVariant inVariant) {
+    Color resolveColorMainContrast({
+      required AppButtonType inType,
+      required AppButtonVariant inVariant,
+    }) {
       switch (inVariant) {
         case AppButtonVariant.primary:   return context.appTheme.colors.primaryContrast;
-        case AppButtonVariant.secondary: return context.appTheme.colors.textInverted;
+        case AppButtonVariant.secondary: {
+          return inType == AppButtonType.elevated ? context.appTheme.colors.textInverted : context.appTheme.colors.text;
+        }
         case AppButtonVariant.neutral:   return context.appTheme.colors.neutralContrast;
         case AppButtonVariant.danger:    return context.appTheme.colors.dangerContrast;
         case AppButtonVariant.success:   return context.appTheme.colors.successContrast;
@@ -323,8 +328,13 @@ class AppButton extends StatelessWidget {
       required Widget inResolvedChild,
     }) {
 
+      // ButtonStyle.merge gives priority to the CALLER (`this`), falling back to the
+      // argument only where `this` is null. So to get dev style > interactive > base,
+      // the merge chain must start from the highest-priority style, not the lowest.
       // base: resolveButtonStyle() < interactive state: copyWith() < dev customization: copyWith()
-      final ButtonStyle finalStyle = inButtonStyle.merge(inInteractiveButtonStyle).merge(style);
+      final ButtonStyle finalStyle = (style ?? const ButtonStyle())
+          .merge(inInteractiveButtonStyle ?? const ButtonStyle())
+          .merge(inButtonStyle);
 
       switch (inType) {
         // AppButtonType.elevated
@@ -335,7 +345,7 @@ class AppButton extends StatelessWidget {
             onHover: effectiveOnHover,
             onLongPress: effectiveOnLongPress,
             style: finalStyle,
-            child: null,
+            child: inResolvedChild,
           );
         // AppButtonType.outlined
         case AppButtonType.outlined:
@@ -365,13 +375,15 @@ class AppButton extends StatelessWidget {
     // Resolving Main Theme
 
     Color rColorMain = resolveColorMain(variant);
-    Color rColorMainContrast = resolveColorMainContrast(variant);
+    Color rColorMainContrast = resolveColorMainContrast(inType: type, inVariant: variant);
 
     // Resolving Content
 
     rMainContent = hasIcon
       ? Row(
           spacing: AppMetrics.small,
+          mainAxisAlignment: .center,
+          crossAxisAlignment: .center,
           children: [
             if (iconLocation == AppAxisLocationHorizontal.start && icon != null) icon!,
             child,
@@ -382,13 +394,15 @@ class AppButton extends StatelessWidget {
 
     // Resolving Loading
 
+    final Color rLoadingIndicatorColor = type == AppButtonType.elevated ? rColorMainContrast : rColorMain;
+
     Widget loadingIndicator = SizedBox(
-      width: 16,
-      height: 16,
+      width: 12,
+      height: 12,
       // CircularProgressIndicator || LinearProgressIndicator
-      child: LinearProgressIndicator(
-        // strokeWidth: 2,
-        valueColor: AlwaysStoppedAnimation<Color>(rColorMainContrast)
+      child: CircularProgressIndicator(
+        strokeWidth: 2,
+        valueColor: AlwaysStoppedAnimation<Color>(rLoadingIndicatorColor),
       ),
     );
 
@@ -397,9 +411,11 @@ class AppButton extends StatelessWidget {
     rFinalContent = isLoading
         ? Row(
             spacing: AppMetrics.small,
+            mainAxisAlignment: .center,
+            crossAxisAlignment: .center,
             children: [
               if (loadingLocation == AppAxisLocationHorizontal.start) loadingIndicator,
-              Text("$rLoadingLabel...", style: context.appTheme.textStyles.buttonText),
+              Text(rLoadingLabel, style: context.appTheme.textStyles.buttonText),
               if (loadingLocation == AppAxisLocationHorizontal.end) loadingIndicator
             ],
           )

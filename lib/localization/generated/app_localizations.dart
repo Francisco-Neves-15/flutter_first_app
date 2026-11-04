@@ -164,6 +164,18 @@ abstract class AppLocalizations {
   /// **'Type here'**
   String get commonTypeHere;
 
+  /// No description provided for @commonLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get commonLoading;
+
+  /// No description provided for @commonDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get commonDisabled;
+
   /// No description provided for @pageHomeTitle.
   ///
   /// In en, this message translates to:

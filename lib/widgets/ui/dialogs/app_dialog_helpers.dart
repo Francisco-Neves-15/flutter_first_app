@@ -89,8 +89,6 @@ Future<String?> showAppInputDialog(
   String? defaultInputInitialValue,
   dynamic defaultInputDefaultReturnValue,
   String? defaultInputHintText,
-  String? confirmText,
-  String? cancelText,
   bool requiredInteraction = false,
   bool requiredInput = false,
   bool Function(dynamic value)? defaultInputValidator,
@@ -98,6 +96,9 @@ Future<String?> showAppInputDialog(
   List<Widget>? actions,
   AppAxisFlow? actionFlow,
   bool actionsFullWidth = false,
+  bool invertDefaultActionsButtons = false,
+  String? confirmText,
+  String? cancelText,
 }) {
   return showDialog<String?>(
     context: context,
@@ -108,8 +109,6 @@ Future<String?> showAppInputDialog(
       defaultInputInitialValue: defaultInputInitialValue,
       defaultInputDefaultReturnValue: defaultInputDefaultReturnValue,
       defaultInputHintText: defaultInputHintText,
-      confirmText: confirmText,
-      cancelText: cancelText,
       requiredInteraction: requiredInteraction,
       requiredInput: requiredInput,
       defaultInputValidator: defaultInputValidator,
@@ -117,6 +116,9 @@ Future<String?> showAppInputDialog(
       actions: actions,
       actionFlow: actionFlow,
       actionsFullWidth: actionsFullWidth,
+      invertDefaultActionsButtons: invertDefaultActionsButtons,
+      confirmText: confirmText,
+      cancelText: cancelText,
     ),
   );
 }
