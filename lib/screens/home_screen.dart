@@ -841,9 +841,31 @@ class _HomePageState extends State<HomePage>
                 ]),
                 Text("Loading: ", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
-                  Expanded(child: AppButton(loading: true, type: .elevated, variant: .secondary, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(loading: true, type: .elevated, variant: .secondary, onPressed: () {}, child: Text("Text"))),
                   Expanded(child: AppButton(loading: true, type: .outlined, variant: .secondary, onPressed: () {}, child: Text("B"))),
                   Expanded(child: AppButton(loading: true, type: .text, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                ]),
+                Text("Loading + Disabled", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(loading: true, disabled: true, onPressed: () {}, child: Text("loading + disabled"))),
+                ]),
+                Text("Loading Variations: ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(loading: true, loadingLabel: "Sending", type: .elevated, variant: .secondary, onPressed: () {}, child: Text("Text"))),
+                  Expanded(child: AppButton(loading: true, loadingLocation: .end, type: .outlined, variant: .secondary, onPressed: () {}, child: Text("B"))),
+                ]),
+                Text("Content + Icon", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(child: Text("Text"))),
+                  Expanded(child: AppButton(icon: Icon(Symbols.emoji_emotions_rounded), child: Text("Text"))),
+                  Expanded(child: AppButton(icon: Icon(Symbols.emoji_emotions_rounded), iconLocation: .end, child: Text("Text"))),
+                ]),
+                Text("Loading + Icon", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  Expanded(child: AppButton(loading: true, loadingLocation: .start, icon: Icon(Symbols.emoji_emotions_rounded), child: Text("Text"))),
+                  Expanded(child: AppButton(loading: true, loadingLocation: .end, icon: Icon(Symbols.emoji_emotions_rounded), iconLocation: .end, child: Text("Text"))),
+                  Expanded(child: AppButton(loading: true, loadingLocation: .start, icon: Icon(Symbols.emoji_emotions_rounded), iconLocation: .end, child: Text("Text"))),
+                  Expanded(child: AppButton(loading: true, loadingLocation: .end, icon: Icon(Symbols.emoji_emotions_rounded), iconLocation: .start, child: Text("Text"))),
                 ]),
               ],
             )

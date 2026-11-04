@@ -31,6 +31,8 @@
   "commonBack": "Back",
   "commonSave": "Save",
   "commonTypeHere": "Type here",
+  "commonLoading": "Loading",
+  "commonDisabled": "Disabled",
 
   "pageHomeTitle": "Home",
   "pageHomeWelcome": "Welcome to the app!",

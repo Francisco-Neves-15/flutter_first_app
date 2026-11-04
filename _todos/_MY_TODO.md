@@ -10,6 +10,8 @@
 
 - Icone do App e Derivados (Favicon? Icon no Mobile, Default Splash Screen se houver) (no Dispositvo)
 
+- "AppTheme" renomear para AppStyles, substituindo no main.dart
+
 - Contruir e Padronizar Layout/UI em Dialogs (Alert, Confirm, Input; Style em "success", "deleting", "warn", etc)
 - - Actions para Alert (falta Confirm & Input)
 - - Feito: Actions para Alert com Opção de Preencher toda a area disponivel (Width em Row e Column, quando Row divide espaço)
@@ -40,7 +42,11 @@
 
 Hot Updates:
 
-- Adicionar "icon" no AppButton, que permite a entrada de 1 unico icon, dando badusage caso a pessoa tente usar icon + child; o tipo "icon" é unico e transforma o botão num estilo espeifico
+- NEED TEXT: Loading and Disabled nos Button
+
+- MUDANÇA: AppIconButton que suporta apenas o Icon como child; O AppButton apenas recebe child | Adicionar "icon" no AppButton, que permite a entrada de 1 unico icon, dando badusage caso a pessoa tente usar icon + child; o tipo "icon" é unico e transforma o botão num estilo espeifico
+
+- Widget para "LoadingDots" que auto coloca "..." e/ou adiciona opção para animação, onde os postos piscam...
 
 - FEITO: Opção para "InvertDefaultActions" nos Dialogs (Confirm & Input)
 

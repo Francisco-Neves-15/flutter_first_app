@@ -15,6 +15,8 @@ class CommonStrings {
   String get back => _t.commonBack;
   String get save => _t.commonSave;
   String get typeHere => _t.commonTypeHere;
+  String get loading => _t.loading;
+  String get disabled => _t.disabled;
 }
 
 /// Groups the `pageHome*` keys — only used inside the Home page.

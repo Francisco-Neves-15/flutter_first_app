@@ -84,8 +84,8 @@ class AppConfirmDialog extends StatelessWidget {
 
     final l10n = context.l10n;
 
-    final rConfirmText = cancelText ?? l10n.common.confirm;
-    final rCancelText = confirmText ?? l10n.common.cancel;
+    final rConfirmText = confirmText ?? l10n.common.confirm; ! testar e ver; por algum motivo eu inverti "cancel" e "confirm" a aprovei
+    final rCancelText = cancelText ?? l10n.common.cancel;
 
     final shouldInvertDefaultActions = fAppDialogResolveShouldInvertDefaultActions(actionFlow);
 

@@ -18,6 +18,13 @@ enum AppAxisPositionHorizontal { left, right }
 /// Horizontal Diagonal
 enum AppAxisPositionDiagonal { topRight, topLeft, bottomLeft, bottomRight }
 
+/// Locations
+enum AppAxisLocation { above, below, start, end }
+/// Vertical Locations
+enum AppAxisLocationVertical { above, below }
+/// Horizontal Locations
+enum AppAxisLocationHorizontal { start, end }
+
 /// Flows
 enum AppAxisFlow { row, column }
 

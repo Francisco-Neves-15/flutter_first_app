@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/extensions/theme_extension.dart";
-import "package:flutter_first_app/docs/widgets/ui/button/bad_usages.dart" show BadUsagesAppButton;
+import "package:flutter_first_app/styles/app_axis.dart" show AppAxisLocationHorizontal;
+import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/utils/utils_style.dart" show OverlayEffect;
 
 /// Defines the visual style of the button.
@@ -38,8 +40,11 @@ class AppButton extends StatelessWidget {
   /// The main widget displayed inside the button.
   final Widget child;
 
-  /// The
-  final Widget icon;
+  /// A widget for an icon within a button, with a specific reserved location.
+  final Widget? icon;
+
+  /// Defines the position where the icon will be placed.
+  final AppAxisLocationHorizontal? iconLocation;
 
   /// Overrides the default button style.
   final ButtonStyle? style;
@@ -57,20 +62,20 @@ class AppButton extends StatelessWidget {
   /// Called when the button is long-pressed.
   final VoidCallback? onLongPress;
 
-  /// Whether the button displays a loading indicator.
+  /// Whether the button displays a `loading indicator`.
   final bool? loading;
-
-  // /// Whether the loading indicator hides the content (child) when it is visible.
-  // final bool? loadingOverridesChild;
 
   /// Custom label when "loading" is enabled.
   final String? loadingLabel;
+
+  /// Defines the position where the `loading indicator` will be placed.
+  final AppAxisLocationHorizontal? loadingLocation;
 
   /// Whether the button is disabled.
   final bool? disabled;
 
   /// Custom label when "disabled" is enabled.
-  final String? disabledLabel;
+  // final String? disabledLabel;
 
   const AppButton({
     super.key,
@@ -78,38 +83,46 @@ class AppButton extends StatelessWidget {
     this.variant = AppButtonVariant.primary,
     required this.child,
     this.icon,
+    this.iconLocation = AppAxisLocationHorizontal.start,
     this.style,
     this.onPressed,
     this.onFocusChange,
     this.onHover,
     this.onLongPress,
     this.loading = false,
-    this.loadingLabel = "<default>",
+    this.loadingLabel,
+    this.loadingLocation = AppAxisLocationHorizontal.start,
     this.disabled = false,
-    this.disabledLabel = "<default>",
+    // this.disabledLabel
   });
 
   @override
   Widget build(BuildContext context) {
 
-    // final String badUsagesTextButton001 = BadUsagesAppButton.e001.warn();
+    // i18n
 
+    final l10n = context.l10n;
+
+    String rLoadingLabel = loadingLabel ?? l10n.common.loading;
+    // String rDisabledLabel = disabledLabel ?? l10n.common.disabled;
 
     // Content
 
     Widget finalAppButton;
 
-    Widget rContent;
+    Widget rMainContent;
+    Widget rFinalContent;
 
-    Widget hasIcon;
+    // Variables
 
-    Widget hasChild;
+    final bool hasIcon = icon != null;
+
+    final bool isLoading = loading == true;
+    final bool isDisabled = disabled == true;
 
     /// Determines whether the button should be interactive.
 
     final bool isNonInteractive = disabled == true || loading == true;
-    final bool isLoading = loading == true;
-    final bool isDisabled = disabled == true;
 
     final VoidCallback? effectiveOnPressed                = isNonInteractive ? null : onPressed;
     final ValueChanged<bool>? effectiveOnFocusChange      = isNonInteractive ? null : onFocusChange;
@@ -354,6 +367,19 @@ class AppButton extends StatelessWidget {
     Color rColorMain = resolveColorMain(variant);
     Color rColorMainContrast = resolveColorMainContrast(variant);
 
+    // Resolving Content
+
+    rMainContent = hasIcon
+      ? Row(
+          spacing: AppMetrics.small,
+          children: [
+            if (iconLocation == AppAxisLocationHorizontal.start && icon != null) icon!,
+            child,
+            if (iconLocation == AppAxisLocationHorizontal.end && icon != null) icon!
+          ]
+        )
+      : child;
+
     // Resolving Loading
 
     Widget loadingIndicator = SizedBox(
@@ -366,19 +392,21 @@ class AppButton extends StatelessWidget {
       ),
     );
 
-    // Resolving Child
+    // Resolving Final Content
 
-    // rChild = isLoading ?
-    //   (loadingOverridesChild == true && child ? 
-    //     loadingIndicator : 
-    //     Row(
-    //       spacing: AppMetrics.extraSmall,
-    //       children: [
-    //         loadingIndicator, 
-    //         if (child != null) child
-    //       ],
-    //     )
-    //   ) : child;
+    rFinalContent = isLoading
+        ? Row(
+            spacing: AppMetrics.small,
+            children: [
+              if (loadingLocation == AppAxisLocationHorizontal.start) loadingIndicator,
+              Text("$rLoadingLabel...", style: context.appTheme.textStyles.buttonText),
+              if (loadingLocation == AppAxisLocationHorizontal.end) loadingIndicator
+            ],
+          )
+        : rMainContent;
+
+    // > The same logic can also be used to insert a custom "disabled" block, 
+    // featuring a "disabledLabel" and/or custom icons/indicators.
 
     // Resolving Button Style
 
@@ -398,12 +426,13 @@ class AppButton extends StatelessWidget {
       inColorMainContrast: rColorMainContrast
     );
 
+    // Resolving Final Button
+
     finalAppButton = resolveButtonType(
       inType: type,
       inButtonStyle: rButtonStyle,
       inInteractiveButtonStyle: rInteractiveButtonStyle,
-      // inResolvedChild: rChild
-      inResolvedChild: child
+      inResolvedChild: rFinalContent
     );
 
     return finalAppButton;
