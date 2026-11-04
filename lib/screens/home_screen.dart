@@ -831,17 +831,15 @@ class _HomePageState extends State<HomePage>
               crossAxisAlignment: .start,
               spacing: 8,
               children: [
+                Text(
+                  "All buttons have an `Expanded()` widget as a wrapper. The default behavior is below", 
+                  style: context.appTheme.textStyles.body
+                ),
                 Text("Primary's: ", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
                   Expanded(child: AppButton(type: .elevated, onPressed: () {}, child: Text("A"))),
                   Expanded(child: AppButton(type: .outlined, onPressed: () {}, child: Text("B"))),
                   Expanded(child: AppButton(type: .text, onPressed: () {}, child: Text("B"))),
-                ]),
-                Text("Button's (only icon): ", style: context.appTheme.textStyles.h3),
-                Row(spacing: 8, children: [
-                  AppButton(type: .elevated, onPressed: () {}, child: Icon(Symbols.light)),
-                  AppButton(type: .outlined, onPressed: () {}, child: Icon(Symbols.light)),
-                  AppButton(type: .text, onPressed: () {}, child: Icon(Symbols.light)),
                 ]),
                 Text("Secondary's: ", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
@@ -867,21 +865,11 @@ class _HomePageState extends State<HomePage>
                   Expanded(child: AppButton(disabled: true, type: .outlined, onPressed: () {}, child: Text("B"))),
                   Expanded(child: AppButton(disabled: true, type: .text, onPressed: () {}, child: Text("B"))),
                 ]),
-                Row(spacing: 8, children: [
-                  Expanded(child: AppButton(disabled: true, type: .elevated, onPressed: () {}, child: Text("A"))),
-                  Expanded(child: AppButton(disabled: true, type: .outlined, onPressed: () {}, child: Text("B"))),
-                  Expanded(child: AppButton(disabled: true, type: .text, onPressed: () {}, child: Text("B"))),
-                ]),
-                Row(spacing: 8, children: [
-                  Expanded(child: AppButton(disabled: true, type: .elevated, onPressed: () {}, child: Text("A"))),
-                  Expanded(child: AppButton(disabled: true, type: .outlined, onPressed: () {}, child: Text("B"))),
-                  Expanded(child: AppButton(disabled: true, type: .text, onPressed: () {}, child: Text("B"))),
-                ]),
                 Text("Loading: ", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
-                  Expanded(child: AppButton(loading: true, type: .elevated, onPressed: () {}, child: Text("Text"))),
-                  Expanded(child: AppButton(loading: true, type: .outlined, onPressed: () {}, child: Text("B"))),
-                  Expanded(child: AppButton(loading: true, type: .text, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(loading: true, type: .elevated, variant: .warning, onPressed: () {}, child: Text("Text"))),
+                  Expanded(child: AppButton(loading: true, type: .outlined, variant: .warning, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(loading: true, type: .text, variant: .warning, onPressed: () {}, child: Text("B"))),
                 ]),
                 Text("Loading + Disabled", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
@@ -894,10 +882,24 @@ class _HomePageState extends State<HomePage>
                 ]),
                 Text("Content + Icon", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
-                  Expanded(child: AppButton(child: Text("Text"))),
-                  Expanded(child: AppButton(icon: Icon(Symbols.emoji_emotions_rounded), child: Text("Text"))),
-                  Expanded(child: AppButton(icon: Icon(Symbols.emoji_emotions_rounded), iconLocation: .end, child: Text("Text"))),
-                ])
+                  Expanded(child: AppButton(onPressed: () {}, child: Text("Text"))),
+                  Expanded(child: AppButton(icon: Icon(Symbols.emoji_emotions_rounded), onPressed: () {}, child: Text("Text"))),
+                  Expanded(child: AppButton(icon: Icon(Symbols.emoji_emotions_rounded), iconLocation: .end, onPressed: () {}, child: Text("Text"))),
+                ]),
+                Divider(),
+                Text("No `Expanded()` cases: ", style: context.appTheme.textStyles.body),
+                Text("Different `child` size", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  AppButton(type: .elevated, onPressed: () {}, child: Text("One")),
+                  AppButton(type: .outlined, onPressed: () {}, child: Text("TwoThree")),
+                  AppButton(type: .text, onPressed: () {}, child: Text("FourFiveSixSeven")),
+                ]),
+                Text("Button's — child: Icon(...): ", style: context.appTheme.textStyles.h3),
+                Row(spacing: 8, children: [
+                  AppButton(type: .elevated, onPressed: () {}, child: Icon(Symbols.light)),
+                  AppButton(type: .outlined, onPressed: () {}, child: Icon(Symbols.light)),
+                  AppButton(type: .text, onPressed: () {}, child: Icon(Symbols.light)),
+                ]),
               ],
             )
           ]

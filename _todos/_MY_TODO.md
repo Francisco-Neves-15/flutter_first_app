@@ -42,25 +42,31 @@
 
 Hot Updates:
 
-- Corrigir: app_input_dialog | bug1: Se "required" remover botão cancelar - bug2: verificar casos de uso
-
-- NEED TEST: Loading and Disabled nos Button
-
-- Corrigir: Button type: outlined quando Loading and Disabled não fica correto;
-
-- MUDANÇA: AppIconButton que suporta apenas o Icon como child; O AppButton apenas recebe child | Adicionar "icon" no AppButton, que permite a entrada de 1 unico icon, dando badusage caso a pessoa tente usar icon + child; o tipo "icon" é unico e transforma o botão num estilo espeifico
+- Finalizar: AppIconButton
 
 - Widget para "LoadingDots" que auto coloca "..." e/ou adiciona opção para animação, onde os postos piscam...
 
-- FEITO: Opção para "InvertDefaultActions" nos Dialogs (Confirm & Input)
+- Rename "warning" to "warn"
 
-- FEITO: "final AppAlertDialogType? type;" para "AppConfirmDialog"
+- Corrigir: app_input_dialog | bug1: Se "required" remover botão cancelar - bug2: verificar casos de uso
 
 - No "Input" adicionar "Inputs Qtd" e montar os parametros, "hint" dinamicamente? Ou, adicionar "customInputs" que aceita uma lista de Widgets e deixar o tratamento com o dev
 
 - Dialog de Input: Adicionar "confirmDisable" (ou main/secondaryDisabled);
 
 - Dialogs (Confirm & Input), se actions padronizadas, mudar nomenclantura interna para (main e secondary, sendo confirm e cancel respectivamente)
+
+---
+
+- FEITO: NEED TEST: Loading and Disabled nos Button
+
+- FEITO: Corrigir: Button type: outlined quando Loading and Disabled não fica correto;
+
+- FEITO - falta AppIconButton: MUDANÇA: AppIconButton que suporta apenas o Icon como child; O AppButton apenas recebe child | Adicionar "icon" no AppButton, que permite a entrada de 1 unico icon, dando badusage caso a pessoa tente usar icon + child; o tipo "icon" é unico e transforma o botão num estilo espeifico
+
+- FEITO: Opção para "InvertDefaultActions" nos Dialogs (Confirm & Input)
+
+- FEITO: "final AppAlertDialogType? type;" para "AppConfirmDialog"
 
 # Next Steps
 

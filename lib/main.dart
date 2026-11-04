@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/config/app_config_debug.dart" show validateDebugConfig;
 
 // Styles
 import "package:flutter_first_app/styles/app_theme.dart" show AppTheme;
@@ -17,6 +18,7 @@ import "package:flutter_first_app/config/app_config_locales.dart" show AppAvaila
 import "package:flutter_first_app/screens/splash_screen.dart" show SplashScreen;
 
 void main() {
+  validateDebugConfig();
   runApp(const MyApp());
 }
 // - main() → ponto de

@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_first_app/config/app_config_debug.dart" show debugBlockLoadingAnimation;
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisLocationHorizontal;
@@ -24,7 +25,7 @@ enum AppButtonVariant {
   success,
   warning,
   info,
-  error,
+  error
 }
 
 /// A reusable button that supports multiple styles, color variants,
@@ -283,16 +284,16 @@ class AppButton extends StatelessWidget {
 
           if (inIsDisabled) {
             return ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.50)),
-              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 0.75)),
+              backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+              foregroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.75)),
               side: WidgetStatePropertyAll(
                 BorderSide(color: borderColor.withValues(alpha: 0.50), width: 1, strokeAlign: BorderSide.strokeAlignInside),
               ),
             );
           } else if (inIsLoading) {
             return ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.90)),
-              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 1)),
+              backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+              foregroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 1)),
               side: WidgetStatePropertyAll(
                 BorderSide(color: borderColor.withValues(alpha: 0.90), width: 1, strokeAlign: BorderSide.strokeAlignInside),
               ),
@@ -303,11 +304,11 @@ class AppButton extends StatelessWidget {
 
           if (inIsDisabled) {
             return ButtonStyle(
-              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 0.75)),
+              foregroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 0.75)),
             );
           } else if (inIsLoading) {
             return ButtonStyle(
-              foregroundColor: WidgetStatePropertyAll(inColorMainContrast.withValues(alpha: 1)),
+              foregroundColor: WidgetStatePropertyAll(inColorMain.withValues(alpha: 1)),
             );
           }
 
@@ -399,10 +400,10 @@ class AppButton extends StatelessWidget {
     Widget loadingIndicator = SizedBox(
       width: 12,
       height: 12,
-      // CircularProgressIndicator || LinearProgressIndicator
       child: CircularProgressIndicator(
         strokeWidth: 2,
         valueColor: AlwaysStoppedAnimation<Color>(rLoadingIndicatorColor),
+        value: debugBlockLoadingAnimation ? 0.75 : null,
       ),
     );
 
