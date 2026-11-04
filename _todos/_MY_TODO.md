@@ -52,7 +52,6 @@ Hot Updates:
 
 - Dialogs (Confirm & Input), se actions padronizadas, mudar nomenclantura interna para (main e secondary, sendo confirm e cancel respectivamente)
 
-
 # Next Steps
 
 - !!! Detectar Idioma do Celular Flutter First App

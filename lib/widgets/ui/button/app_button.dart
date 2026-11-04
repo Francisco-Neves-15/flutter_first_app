@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/docs/widgets/ui/button/bad_usages.dart" show BadUsagesAppButton;
-import "package:flutter_first_app/styles/app_metrics.dart";
 import "package:flutter_first_app/utils/utils_style.dart" show OverlayEffect;
 
 /// Defines the visual style of the button.
@@ -36,8 +35,11 @@ class AppButton extends StatelessWidget {
   /// Defines the button's semantic color scheme.
   final AppButtonVariant variant;
 
-  /// The widget displayed inside the button.
+  /// The main widget displayed inside the button.
   final Widget child;
+
+  /// The
+  final Widget icon;
 
   /// Overrides the default button style.
   final ButtonStyle? style;
@@ -58,38 +60,53 @@ class AppButton extends StatelessWidget {
   /// Whether the button displays a loading indicator.
   final bool? loading;
 
-  /// Whether the loading indicator hides the content (child) when it is visible.
-  final bool? loadingOverridesChild;
+  // /// Whether the loading indicator hides the content (child) when it is visible.
+  // final bool? loadingOverridesChild;
+
+  /// Custom label when "loading" is enabled.
+  final String? loadingLabel;
 
   /// Whether the button is disabled.
   final bool? disabled;
+
+  /// Custom label when "disabled" is enabled.
+  final String? disabledLabel;
 
   const AppButton({
     super.key,
     this.type = AppButtonType.elevated,
     this.variant = AppButtonVariant.primary,
     required this.child,
+    this.icon,
     this.style,
     this.onPressed,
     this.onFocusChange,
     this.onHover,
     this.onLongPress,
     this.loading = false,
-    this.loadingOverridesChild = false,
+    this.loadingLabel = "<default>",
     this.disabled = false,
+    this.disabledLabel = "<default>",
   });
 
   @override
   Widget build(BuildContext context) {
 
-    final String badUsagesTextButton001 = BadUsagesAppButton.e001.warn();
+    // final String badUsagesTextButton001 = BadUsagesAppButton.e001.warn();
 
-    // Build
 
-    Widget? rChild;
+    // Content
+
     Widget finalAppButton;
 
+    Widget rContent;
+
+    Widget hasIcon;
+
+    Widget hasChild;
+
     /// Determines whether the button should be interactive.
+
     final bool isNonInteractive = disabled == true || loading == true;
     final bool isLoading = loading == true;
     final bool isDisabled = disabled == true;
@@ -326,7 +343,7 @@ class AppButton extends StatelessWidget {
             onHover: effectiveOnHover,
             onLongPress: effectiveOnLongPress,
             style: finalStyle,
-            child: inResolvedChild ?? Text(badUsagesTextButton001),
+            child: inResolvedChild,
           );
       }
     }
