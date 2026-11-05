@@ -72,10 +72,17 @@ This is fine to build, install on your own device, and share informally for test
 ### Generating your own keystore
 
 ```terminal
-keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+keytool -genkey -v -keystore $HOME\upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
+
 - Keep the resulting `.jks` file **outside the repo**, and keep its password somewhere safe (a password manager) — it's not recoverable if lost.
-- `keytool` ships with the JDK; if it's not found, it's usually under `<jdk-install>/bin/keytool` (Android Studio bundles its own JDK too).
+- `keytool` **doesn't require running from any specific project folder** — it ships with the JDK and is a global CLI tool, same as `java`/`javac`. If you get `keytool is not recognized`, it's a PATH problem, not a "wrong directory" problem.
+
+> **Windows note:** `keytool.exe` usually lives at `<jdk-install>\bin\keytool.exe` (e.g. `C:\Program Files\Java\jdk-17\bin\keytool.exe`), or under Android Studio's bundled JDK at `C:\Program Files\Android\Android Studio\jbr\bin\keytool.exe`. Adding/changing PATH does **not** affect a terminal window that's already open — close and reopen your terminal (or just your Code/PowerShell session) after confirming the JDK's `bin` folder is on PATH. As a one-off workaround without reopening anything, call it by full path:
+> ```powershell
+> & "C:\Program Files\Java\jdk-17\bin\keytool.exe" -genkey -v -keystore $HOME\upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+> ```
+> Also note: unlike bash, PowerShell does **not** expand `~` inside an argument passed to an external program — use `$HOME\...` instead (as above), or `~` only works there with PowerShell's own cmdlets (`cd ~`, etc.).
 
 ### Wiring it into the project
 
@@ -113,6 +120,7 @@ keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -va
        }
    }
    ```
+   > ⚠️ **Order matters here.** `signingConfigs` must be declared **before** `buildTypes` inside the `android {}` block — Gradle evaluates the file top to bottom, so `signingConfigs.getByName("release")` inside `buildTypes` fails with `SigningConfig with name 'release' not found` if `signingConfigs` appears later in the file (easy mistake if you paste this into the existing template, which already has its own `buildTypes` block above where `signingConfigs` would go).
 3. Rebuild with `flutter build apk --release` — it now comes out signed with your own key instead of the debug one.
 
 ### What to check when copying this project into a new app
