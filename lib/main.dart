@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/config/app_config_debug.dart" show validateDebugConfig;
 
 // Styles
-import "package:flutter_first_app/styles/app_theme.dart" show AppTheme;
+import "package:flutter_first_app/styles/app_style.dart" show AppStyle;
 import "package:flutter_first_app/styles/app_text_styles.dart" show AppTextStyles;
 
 // Theme
@@ -38,14 +38,15 @@ class MyApp extends StatelessWidget {
       ]),
 
       builder: (context, _) {
+
         double screenWidth = MediaQuery.sizeOf(context).width;
         double screenHeight = MediaQuery.sizeOf(context).height;
 
         return MaterialApp(
 
           // Theme
-          theme: AppTheme.build(appLightColors, screenWidth, screenHeight),
-          darkTheme: AppTheme.build(appDarkColors, screenWidth, screenHeight),
+          theme: AppStyle.build(appLightColors, screenWidth, screenHeight),
+          darkTheme: AppStyle.build(appDarkColors, screenWidth, screenHeight),
           themeMode: ThemeController.instance.themeMode,
 
           // Localization

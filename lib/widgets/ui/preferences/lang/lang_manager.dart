@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/config/app_config_locales.dart" show AppAvailableLocale, AppLocaleFlags, AppLocaleAcronym, AppLocaleLabels, appLocaleIcon;
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
-import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
 import "package:flutter_svg/svg.dart" show SvgPicture;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
@@ -55,7 +55,7 @@ class LangManager extends StatelessWidget {
                 ))
               ),
               child: Row(
-                spacing: AppMetrics.base,
+                spacing: AppSpacing.base,
                 children: [
                   if (showFlagOnList) ...[
                     SvgPicture.asset(
@@ -120,14 +120,14 @@ class LangManager extends StatelessWidget {
           ,
           LangManagerDisplayLayout.block =>
             Column(
-              spacing: AppMetrics.small,
+              spacing: AppSpacing.small,
               mainAxisAlignment: .start,
               crossAxisAlignment: .start,
               children: [
                 Row(
                   mainAxisAlignment: .start,
                   crossAxisAlignment: .center,
-                  spacing: AppMetrics.small,
+                  spacing: AppSpacing.small,
                   children: [
                     Icon(appLocaleIcon, fill: 1, size: 32, color: context.appTheme.colors.text),
                     Text(l10n.pageSettings.localeLabel, style: context.appTheme.textStyles.h3),
@@ -146,7 +146,7 @@ class LangManager extends StatelessWidget {
                   child: Row(
                     children: [
                       Row(
-                        spacing: AppMetrics.small, 
+                        spacing: AppSpacing.small, 
                         children: [
                           if (showFlagOnLabel) ...[
                             SvgPicture.asset(

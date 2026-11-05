@@ -1,97 +1,83 @@
-! Ajustar Arquitetura do Bottomsheet; Plano:
+# Flutter First App — TODO
 
-- FEITO > BottomsheetContainer ser apenas o Container, deixando dragHandle title, desc e closeButton padronizado; (Mover o close para o topo, e ajustar o layout da header do bottomsheetcontainer);
+> Reorganizado em 2026-11-04. Nada foi apagado, apenas agrupado por estado.
+> ✅ = confirmei no código agora | (sem check) = estava marcado "FEITO" mas não verifiquei a fundo | 🟡 = parcial/precisa atenção | 🔲 = pendente
 
-- FEITO > BottomsheetContainer criar l10n para dismissLabel;
+## ✅ Concluído (confirmado no código agora)
 
-- FEITO > Variações de Layout para ThemeManager & LangManager (adicionar opção para IconButton simples & icones "idiomas" e "tema")
+- AppTheme → **AppStyle**: classe e ficheiro renomeados (`lib/styles/app_style.dart`, `class AppStyle`). ⚠️ `lib/theme/README_THEME.md` ainda fala em `AppTheme.build(...)` — doc desatualizada, vale corrigir.
+- AppMetrics → **AppSpacing**: `lib/styles/app_spacing.dart`, `class AppSpacing`.
+- **ActionSheetBuilder**: existe e está implementado (`lib/widgets/layout/bottomsheets/action_sheet_builder.dart`), usa `BottomSheetButton` e suporta `showDividers`.
+- **AppInputDialog bug1** (remover botão cancelar quando `requiredInput`): confirmado em `app_input_dialog.dart:257` — o botão só aparece `if (!widget.requiredInput)`.
+- **AppButton**: opção `loading` (com `loadingLabel`, `loadingLocation`) e opção `disabled` já existem como parâmetros funcionais.
+- **AppIconButton**: ficheiro existe e tem estrutura completa (type, variant, aspect, icon, style, loading, callbacks).
+- **Dialogs type unificado**: o antigo `AppAlertDialogType` foi substituído por `AppDialogsTypes` (`_dialogs.dart`), já com `.warn` (não `.warning`).
+- **Rename "warning" → "warn"**: feito nos **Dialogs** (`AppDialogsTypes.warn`), mas **não** no `AppButton` — `AppButtonVariant.warning` ainda existe (`app_button.dart:26,143,163`). Falta renomear aqui para ficar consistente.
 
-# Minor Steps
+## 🟡 Parcial / Precisa de atenção
+- **Loading/Disabled nos botões dos Dialogs** (Alert/Confirm/Input): o botão `AppButton` já suporta `loading`/`disabled`, mas os Dialogs **ainda não expõem** essas opções nas suas actions — confirmei que nenhum dos 3 dialogs passa `loading`/`disabled` para o `AppButton` interno. A nota antiga dizia "FEITO!!" mas isso não corresponde ao código atual — fica como pendente real.
+- **Inputs/Textareas**: respondendo à tua pergunta — **não encontrei um widget dedicado nem estilo global**. O único campo de texto do app é o `TextField` solto dentro do `app_input_dialog.dart:279`, com `InputDecoration(hintText: ...)` simples, sem usar tema (`lib/styles/app_style.dart` não define `inputDecorationTheme`). Ou seja: ficou "solto" mesmo, não foi transformado em Widget nem estilizado via tema. Isto cobre os itens "definir estilo padrão para TextField" e "Criar estilos e Widgets pré-prontos para os Inputs" — ambos ainda pendentes.
+- **Cores "link" e "creative"**: ainda estão comentadas em `lib/theme/app_colors.dart` (linhas ~29-30 e 56-58), não finalizadas.
+- **AppInputDialog bug2** ("verificar casos de uso"): não verificado nesta passagem — fica pendente para revisão manual.
 
-- Icone do App e Derivados (Favicon? Icon no Mobile, Default Splash Screen se houver) (no Dispositvo)
+## 🔲 Pendente
 
-- "AppTheme" renomear para AppStyles, substituindo no main.dart
+### Dialogs / Inputs
+- Construir e padronizar estilos "success", "deleting", "warn" etc. nos Dialogs.
+- Actions para `AppConfirmDialog` e `AppInputDialog` (hoje só o Alert tem o full-width/custom actions mais trabalhado).
+- Adicionar `confirmDisable` (ou `mainDisabled`/`secondaryDisabled`) no `AppInputDialog`.
+- `AppInputDialog`: adicionar "Inputs Qtd" dinâmico, ou `customInputs: List<Widget>` deixando o tratamento para quem usa.
+- Padronizar nomenclatura interna dos Dialogs (`main`/`secondary` em vez de `confirm`/`cancel`), se decidido manter actions customizadas.
+- Avaliar se vale a pena manter "actions" customizadas em Confirm/Input, ou simplificar e deixar só o Alert mais flexível.
+- Depois do Toast: avisos ao tentar fechar Dialogs `required`/`requiredInteraction`.
 
-- Contruir e Padronizar Layout/UI em Dialogs (Alert, Confirm, Input; Style em "success", "deleting", "warn", etc)
-- - Actions para Alert (falta Confirm & Input)
-- - Feito: Actions para Alert com Opção de Preencher toda a area disponivel (Width em Row e Column, quando Row divide espaço)
-- - No "input", adicionar required info, que precisa preencher o campo para concluir (talvez, tipar o retorno?); Quando Required, talvez tbm remover o "cancel"
+### Inputs/Textareas (estilo)
+- Criar estilos e Widget(s) pré-prontos para inputs de texto, número, password, etc.
+- Definir `inputDecorationTheme` padrão no `AppStyle`.
+- Opção `disabled` para os inputs.
+- Atualizar `app_input_dialog.dart` para usar esse novo widget/estilo em vez do `TextField` solto.
 
-- - FEITO: Criar estilos pré-prontos (ButtonStyle()) para os botões; Em situações diferentes como "Danger", "Success" e Disabled. Por hora, considerar apenas para "ElevatedButton's".
-- Feito: AppButton;
-- TODO: Opção "loading" no botão que inserie o icone de loading (com opção do label)
-- TODO: Opção "disabled" no botão
-- FEITO!!: (atualizar nos dialogs... ainda precisa atualizar com loading & disabled)
+### Botões
+- Renomear `AppButtonVariant.warning` → `warn` (consistência com os Dialogs).
 
-- - Criar estilos e Widgets pré-prontos para os Inputs; Para: text, number, password, others
-- definir estilo padrão para TextField no AppTheme
-- TODO: Opção "disabled"
-- Atualizar nos dialogs
+### Theme / Style
+- Corrigir `README_THEME.md` para referenciar `AppStyle.build(...)` em vez de `AppTheme.build(...)`.
+- Terminar cores "link" e "creative" (hoje comentadas em `app_colors.dart`).
+- Estilo para as headers de `BottomDivider`.
 
-- - - Pós fazer o Toast, adicionar avisos de tentativas de fechar Dialogs required ou "requiredInteraction"
- 
-- Estilo para as Headers de BottomDivider ???
+### Outros
+- Ícone do App e derivados (favicon, ícone mobile, splash screen padrão) — ainda não customizado (assets padrão do Flutter continuam em `android/.../mipmap-*`).
+- Implementar Toasts.
+- Widget `LoadingDots`: auto-coloca "..." e/ou anima os pontos.
+- Detectar idioma do celular automaticamente (Flutter First App).
 
-- Implementar Toasts
+## ✅ Itens antigos marcados "FEITO" (mantidos como confiáveis, não re-verifiquei a fundo)
 
-- Reorganizar qualquer uso de Icones (Icon, Icons ou Symbols) no App Inteiro. Inclui uso dos icones, tipagem em Widgets, etc.
-
-- Reorganizar usos de AppMetrics e outras "const" (e.g.: axis); Implementar elas no systemDesign (e.g.: context.appTheme.spacing.md)
-
-- Terminar cores "link" e "creative"
-
-Hot Updates:
-
-- Finalizar: AppIconButton
-
-- Widget para "LoadingDots" que auto coloca "..." e/ou adiciona opção para animação, onde os postos piscam...
-
-- Rename "warning" to "warn"
-
-- Corrigir: app_input_dialog | bug1: Se "required" remover botão cancelar - bug2: verificar casos de uso
-
-- No "Input" adicionar "Inputs Qtd" e montar os parametros, "hint" dinamicamente? Ou, adicionar "customInputs" que aceita uma lista de Widgets e deixar o tratamento com o dev
-
-- Dialog de Input: Adicionar "confirmDisable" (ou main/secondaryDisabled);
-
-- Dialogs (Confirm & Input), se actions padronizadas, mudar nomenclantura interna para (main e secondary, sendo confirm e cancel respectivamente)
-
----
-
-- FEITO: NEED TEST: Loading and Disabled nos Button
-
-- FEITO: Corrigir: Button type: outlined quando Loading and Disabled não fica correto;
-
-- FEITO - falta AppIconButton: MUDANÇA: AppIconButton que suporta apenas o Icon como child; O AppButton apenas recebe child | Adicionar "icon" no AppButton, que permite a entrada de 1 unico icon, dando badusage caso a pessoa tente usar icon + child; o tipo "icon" é unico e transforma o botão num estilo espeifico
-
-- FEITO: Opção para "InvertDefaultActions" nos Dialogs (Confirm & Input)
-
-- FEITO: "final AppAlertDialogType? type;" para "AppConfirmDialog"
-
-# Next Steps
-
-- !!! Detectar Idioma do Celular Flutter First App
-
-- Dialogs (Confirm & Input): Ver se é mesmo necessario "actions" customizadas; talvez seja apenas melhor padronizar elas; Deixando apenas o AppAlertDialog mais customizado, uma vez que não possui regras complexas.
-
-- FEITO: Persistencia do tema e idioma guardando no cache;
-
-> - Aplicar navegação entre telas (e "encontrar" uma forma de fazer a tela com overlay)
-- FEITO: Sistema de Navegação
-- FEITO: Controle do Botão de "Voltar" em Modais
-
-- FEITO: Sistema de Navegação Aprimorado: Rotas nomeadas, rotas detectaveis, menu lateral (sideMenu) formado para suportar navegação
-- FEITO: Configurar AppBar (navigation & header) para incluir "back";
-
-- FEITO: Criar menu laterial, surgindo apartir do botão lateral
-
-- FEITO: Conseguir ajustar botões de navegação de acordo com a tela; Por exemplo:
+- BottomsheetContainer: container "puro" com dragHandle, title, desc e closeButton padronizados (close no topo).
+- BottomsheetContainer: l10n para `dismissLabel`.
+- Variações de layout para ThemeManager & LangManager (IconButton simples vs. ícones de idioma/tema).
+- Actions do Alert com opção de preencher toda a largura disponível.
+- Estilos pré-prontos (`ButtonStyle()`) para botões — Danger, Success, Disabled (ElevatedButton).
+- AppButton (base).
+- Reorganização de todo uso de ícones (Icon/Icons/Symbols) no app.
+- Correção: bug no `AppButton` tipo `outlined` quando `loading`+`disabled` juntos.
+- `AppIconButton`: AppButton passa a aceitar `icon` (ícone único) além de `child`.
+- Opção `InvertDefaultActions` nos Dialogs (Confirm & Input).
+- Persistência de tema e idioma em cache.
+- Sistema de navegação (rotas nomeadas, detectáveis, side menu).
+- Controle do botão "Voltar" em modais.
+- AppBar (navigation & header) com suporte a "back".
+- Menu lateral (side menu) via botão lateral.
+- Botões de navegação ajustados por tela.
+- Cores de background/backgroundSecondary/backgroundSurface ajustadas num monitor real.
 
 ---
 
-Navegação personalizada;
+## 📝 Notas de design (mantidas na íntegra)
 
-A tela (rota) de "Configurações", possui diversas subrotas dentro;
+### Navegação personalizada
+
+A tela (rota) de "Configurações" possui diversas subrotas dentro:
 
 ```
 --- Home
@@ -104,12 +90,6 @@ A rota configurações pode ser acessada por navegação, por exemplo no "Menu L
 
 A ideia é o menu do app ter algumas condicionais ao tentar navegar, que ele consiga pegar as rota atual, pegar o stack de rotas e com isso evitar navegações duplas e outros problemas; Porém, isto vale também para o botão de "Voltar" que geralmente há em celulares, assim, eu obrigo o botão voltar funcionar da mesma forma que botão "Voltar" do topo do menu;
 
-# Ajustes
+### Análise: BottomsheetContainer
 
-- FEITO (background & backgroundSecondary) > Ajustar cores background, backgroundSecondary, backgroundSurface em um monitor que mostre as cores reais (desktop)
-
-# Verificar:
-- Feito? - Criar o "ActionSheet", que usa dos estilos das actions, palletes e outras regras; Na construção, ele utiliza um BottomsheetContainer, porém, ActionSheet é feito para suportar actions apenas;
-
-# Analisar:
-- BottomsheetContainer passa a suportar diferentes configurações de comportamento, como: Draggable, Full Screen, Scrollable & Custom Height
+BottomsheetContainer passa a suportar diferentes configurações de comportamento, como: Draggable, Full Screen, Scrollable & Custom Height.

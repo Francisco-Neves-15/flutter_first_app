@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/widgets/layout/sidemenu/app_side_menu.dart" show SideMenuAnchorResolved;
 
@@ -46,7 +46,7 @@ class SideMenuListOption extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Row(
-        spacing: AppMetrics.small,
+        spacing: AppSpacing.small,
         mainAxisAlignment: anchor == .right ? .end : .start,
         crossAxisAlignment: .center,
         children: anchor == .right ? rowContent : rowContent.reversed.toList(),

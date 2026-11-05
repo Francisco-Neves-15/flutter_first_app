@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
-import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/layout/headers/_headers.dart" show AppBarType;
 import "package:flutter_first_app/widgets/ui/app_logo.dart" show getAppLogoSize; 
 
@@ -29,12 +29,12 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final hasLeading = leading != null && leading!.isNotEmpty;
 
-    const double paddingValue = AppMetrics.small;
+    const double paddingValue = AppSpacing.small;
 
     return AppBar(
       backgroundColor: context.appTheme.colors.background,
       title: title != null ? Text(title ?? "", style: context.appTheme.textStyles.h1) : null,
-      titleSpacing: AppMetrics.small,
+      titleSpacing: AppSpacing.small,
       actions: actions,
       actionsPadding: const EdgeInsets.only(right: paddingValue),
       automaticallyImplyLeading: false,
@@ -43,7 +43,7 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
         padding: const EdgeInsets.only(left: paddingValue),
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          spacing: AppMetrics.small,
+          spacing: AppSpacing.small,
           children: leading!,
         ),
       ) : null
@@ -54,7 +54,7 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
     final appLogoSize = getAppLogoSize(appBar);
 
     return (count * appLogoSize) +
-        ((count - 1) * AppMetrics.small) +
-        AppMetrics.small;
+        ((count - 1) * AppSpacing.small) +
+        AppSpacing.small;
   }
 }

@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisDirectionHorizontal;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/action_sheet_builder.dart" show ActionSheetBuilder;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
@@ -116,12 +116,12 @@ class DisplayModeManagerBottomsheet<T> extends StatelessWidget {
       style: ButtonStyle(
         padding: WidgetStatePropertyAll(
           EdgeInsets.only(
-            top: AppMetrics.small,
-            bottom: AppMetrics.small,
+            top: AppSpacing.small,
+            bottom: AppSpacing.small,
             // adaptive spacing for the "indicator" 
             // (chevron icon with internal horizontal padding that makes the button layout look disproportionate)
-            left: indicatorOnStart ? AppMetrics.baseSmall : AppMetrics.base,
-            right: !indicatorOnStart ? AppMetrics.baseSmall : AppMetrics.base,
+            left: indicatorOnStart ? AppSpacing.baseSmall : AppSpacing.base,
+            right: !indicatorOnStart ? AppSpacing.baseSmall : AppSpacing.base,
           ),
         ),
       ),
@@ -129,7 +129,7 @@ class DisplayModeManagerBottomsheet<T> extends StatelessWidget {
         mainAxisSize: .min,
         children: [
           Row(
-            spacing: AppMetrics.small,
+            spacing: AppSpacing.small,
             crossAxisAlignment: .center,
             mainAxisAlignment: .center,
             children: [

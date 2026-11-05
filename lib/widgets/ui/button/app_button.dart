@@ -3,7 +3,7 @@ import "package:flutter_first_app/config/app_config_debug.dart" show debugBlockL
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisLocationHorizontal;
-import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/utils/utils_style.dart" show OverlayEffect;
 
 /// Defines the visual style of the button.
@@ -23,7 +23,7 @@ enum AppButtonVariant {
   neutral,
   danger,
   success,
-  warning,
+  warn,
   info,
   error
 }
@@ -140,7 +140,7 @@ class AppButton extends StatelessWidget {
         case AppButtonVariant.neutral:   return context.appTheme.colors.neutral;
         case AppButtonVariant.danger:    return context.appTheme.colors.danger;
         case AppButtonVariant.success:   return context.appTheme.colors.success;
-        case AppButtonVariant.warning:   return context.appTheme.colors.warn;
+        case AppButtonVariant.warn:   return context.appTheme.colors.warn;
         case AppButtonVariant.info:      return context.appTheme.colors.info;
         case AppButtonVariant.error:     return context.appTheme.colors.error;
       }
@@ -160,7 +160,7 @@ class AppButton extends StatelessWidget {
         case AppButtonVariant.neutral:   return context.appTheme.colors.neutralContrast;
         case AppButtonVariant.danger:    return context.appTheme.colors.dangerContrast;
         case AppButtonVariant.success:   return context.appTheme.colors.successContrast;
-        case AppButtonVariant.warning:   return context.appTheme.colors.warnContrast;
+        case AppButtonVariant.warn:   return context.appTheme.colors.warnContrast;
         case AppButtonVariant.info:      return context.appTheme.colors.infoContrast;
         case AppButtonVariant.error:     return context.appTheme.colors.errorContrast;
       }
@@ -382,7 +382,7 @@ class AppButton extends StatelessWidget {
 
     rMainContent = hasIcon
       ? Row(
-          spacing: AppMetrics.small,
+          spacing: AppSpacing.small,
           mainAxisAlignment: .center,
           crossAxisAlignment: .center,
           children: [
@@ -411,7 +411,7 @@ class AppButton extends StatelessWidget {
 
     rFinalContent = isLoading
         ? Row(
-            spacing: AppMetrics.small,
+            spacing: AppSpacing.small,
             mainAxisAlignment: .center,
             crossAxisAlignment: .center,
             children: [

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 
 import "package:flutter_first_app/config/app_config_themes.dart" show AppAvailableThemeMode;
 import "package:flutter_first_app/theme/app_colors_theme.dart" show AppThemeColors;
@@ -8,7 +8,7 @@ import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "app_text_styles.dart" show AppTextStyles;
 import "package:flutter_first_app/theme/app_colors.dart" show AppColors;
 
-class AppTheme {
+class AppStyle {
   
   static ThemeData build(AppThemeColors colors, double screenWidth, double screenHeight) {
 
@@ -218,7 +218,7 @@ class AppTheme {
     final badgeTheme = BadgeThemeData(
       backgroundColor: colors.primary,
       textColor: colors.primaryContrast,
-      padding: .all(AppMetrics.min),
+      padding: .all(AppSpacing.min),
       textStyle: TextStyle(
         color: colors.primaryContrast,
         fontSize: 12,
@@ -236,8 +236,8 @@ class AppTheme {
       dividerHeight: 2,
       tabAlignment: TabAlignment.fill,
       labelPadding: EdgeInsets.symmetric(
-        horizontal: AppMetrics.base,
-        vertical: AppMetrics.extraSmall,
+        horizontal: AppSpacing.base,
+        vertical: AppSpacing.extraSmall,
       ),
 
       labelColor: colors.primary,
@@ -280,8 +280,8 @@ class AppTheme {
         fontFamily: "Urbanist"
       ),
       actionsPadding: .directional(
-        start: AppMetrics.base, end: AppMetrics.base,
-        top: AppMetrics.base, bottom: AppMetrics.base,
+        start: AppSpacing.base, end: AppSpacing.base,
+        top: AppSpacing.base, bottom: AppSpacing.base,
       ),
       barrierColor: AppColors.overlay,
       shape: RoundedRectangleBorder(
@@ -331,7 +331,8 @@ class AppTheme {
       navigationBarTheme: navigationBarTheme,
       badgeTheme: badgeTheme,
       tabBarTheme: tabBarTheme,
-      drawerTheme: drawerTheme
+      drawerTheme: drawerTheme,
+      // inputDecorationTheme: inputDecorationTheme
     );
   }
 }

@@ -3,7 +3,7 @@ import "package:flutter_first_app/extensions/localization_extension.dart" show L
 // import "package:flutter_first_app/docs/widgets/layout/bottomsheet/bad_usages.dart" show BadUsagesBottomsheets;
 import "package:material_symbols_icons/symbols.dart" show Symbols;
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_button.dart" show BottomSheetButton, ActionSheetButtonPalette;
 
 enum BottomSheetHeadInfoLayout { small, large }
@@ -141,9 +141,9 @@ class _BottomSheetContainerState extends State<BottomSheetContainer> {
 
     // Values
 
-    const double smallGap = AppMetrics.min;
-    const double mainGap = AppMetrics.extraSmall;
-    const double largeGap = AppMetrics.small;
+    const double smallGap = AppSpacing.min;
+    const double mainGap = AppSpacing.extraSmall;
+    const double largeGap = AppSpacing.small;
 
     const Widget widgetSmallGap = SizedBox(height: smallGap);
     const Widget widgetMainGap = SizedBox(height: mainGap);
@@ -308,9 +308,9 @@ class _BottomSheetContainerState extends State<BottomSheetContainer> {
       top: false,
       child: Container(
         color: Colors.transparent,
-        padding: widget.floatingContainer ? const EdgeInsets.all(AppMetrics.base) : EdgeInsets.zero,
+        padding: widget.floatingContainer ? const EdgeInsets.all(AppSpacing.base) : EdgeInsets.zero,
         child: Container(
-          padding: const EdgeInsets.all(AppMetrics.base),
+          padding: const EdgeInsets.all(AppSpacing.base),
           decoration: BoxDecoration(
             color: context.appTheme.colors.backgroundSecondary,
             borderRadius: containerBorderRadius,

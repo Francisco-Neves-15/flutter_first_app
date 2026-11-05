@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:material_symbols_icons/symbols.dart";
 
 enum ActionSheetButtonPalette { text, textSecondary, danger }
@@ -55,12 +55,12 @@ class BottomSheetButton extends StatelessWidget {
       ),
       child: 
       Row(
-        spacing: AppMetrics.extraSmall / 2,
+        spacing: AppSpacing.extraSmall / 2,
         children: [
           // icon
           if (icon != null) ...[
             Icon(icon, size: iconSize, fill: iconFill, color: iconColor ?? colorPalette),
-            const SizedBox(width: AppMetrics.small),
+            const SizedBox(width: AppSpacing.small),
           ],
           // label
           if (label != null) ...[

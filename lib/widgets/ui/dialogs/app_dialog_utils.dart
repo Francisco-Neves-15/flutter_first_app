@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/ui/button/app_button.dart" show AppButtonVariant;
 import "package:flutter_first_app/widgets/ui/dialogs/_dialogs.dart" show AppDialogsTypes, AppDialogsMainActionVariants;
 import "package:material_symbols_icons/material_symbols_icons.dart" show Symbols;
@@ -119,7 +119,7 @@ List<Widget>? fAppDialogBuildActions(
       Column(
         mainAxisAlignment: .end,
         crossAxisAlignment: .end,
-        spacing: AppMetrics.base,
+        spacing: AppSpacing.base,
         children: resolvedActionsList,
       )
     ];
@@ -129,7 +129,7 @@ List<Widget>? fAppDialogBuildActions(
     Row(
       mainAxisAlignment: .end,
       crossAxisAlignment: .end,
-      spacing: AppMetrics.small,
+      spacing: AppSpacing.small,
       children: resolvedActionsList,
     )
   ];
@@ -148,7 +148,7 @@ AppButtonVariant fAppDialogResolveMainActionButton(
       .standard => .primary,
       .success => .success,
       .danger => .danger,
-      .warn => .warning,
+      .warn => .warn,
       .info => .info,
       .error => .error,
       _ => .primary
@@ -161,7 +161,7 @@ AppButtonVariant fAppDialogResolveMainActionButton(
       .standard => .primary,
       .success => .success,
       .danger => .danger,
-      .warn => .warning,
+      .warn => .warn,
       .info => .info,
       .error => .error,
       _ => .primary

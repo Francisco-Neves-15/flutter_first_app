@@ -12,7 +12,7 @@ import "package:flutter_first_app/extensions/theme_extension.dart" show AppTheme
 import "package:flutter/services.dart" show SystemNavigator;
 
 // Colors & Others
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 
 // Theme
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
@@ -345,8 +345,8 @@ class _HomePageState extends State<HomePage>
                   padding: EdgeInsetsGeometry.only(
                     top: 0,
                     bottom: 0,
-                    left: AppMetrics.small,
-                    right: AppMetrics.small,
+                    left: AppSpacing.small,
+                    right: AppSpacing.small,
                   ),
 
                   isScrollable: true,
@@ -417,7 +417,7 @@ class _HomePageState extends State<HomePage>
     // Test Screen
     Widget testScreen = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: AppMetrics.small,
+      spacing: AppSpacing.small,
       children: [
         Row(
           children: [
@@ -855,7 +855,7 @@ class _HomePageState extends State<HomePage>
                 ]),
                 Text("Text (button) Tests: ", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
-                  Expanded(child: AppButton(type: .text, variant: .warning, onPressed: () {}, child: Text("A"))),
+                  Expanded(child: AppButton(type: .text, variant: .warn, onPressed: () {}, child: Text("A"))),
                   Expanded(child: AppButton(type: .text, variant: .info, onPressed: () {}, child: Text("B"))),
                   Expanded(child: AppButton(type: .text, variant: .neutral, onPressed: () {}, child: Text("B"))),
                 ]),
@@ -867,9 +867,9 @@ class _HomePageState extends State<HomePage>
                 ]),
                 Text("Loading: ", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
-                  Expanded(child: AppButton(loading: true, type: .elevated, variant: .warning, onPressed: () {}, child: Text("Text"))),
-                  Expanded(child: AppButton(loading: true, type: .outlined, variant: .warning, onPressed: () {}, child: Text("B"))),
-                  Expanded(child: AppButton(loading: true, type: .text, variant: .warning, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(loading: true, type: .elevated, variant: .warn, onPressed: () {}, child: Text("Text"))),
+                  Expanded(child: AppButton(loading: true, type: .outlined, variant: .warn, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(loading: true, type: .text, variant: .warn, onPressed: () {}, child: Text("B"))),
                 ]),
                 Text("Loading + Disabled", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
@@ -906,6 +906,12 @@ class _HomePageState extends State<HomePage>
         ),
 
         Divider(),
+        
+        Text("Inputs", style: context.appTheme.textStyles.h2),
+
+        Divider(),
+
+        Text("Color test"),
 
         Container(width: 36, height: 36, color: Color(0xFF3B5BDB)),
         Container(width: 36, height: 36, color: Color(0xFF4C6EF5)),
@@ -1228,7 +1234,7 @@ class _HomePageState extends State<HomePage>
 
     List<Widget> bottomNavigationBarTabs = [
       Column(
-        spacing: AppMetrics.extraSmall,
+        spacing: AppSpacing.extraSmall,
         children: [
           homeScreenTabsHeader,
           Expanded(
@@ -1246,7 +1252,7 @@ class _HomePageState extends State<HomePage>
       ),
       Column(children: [Text("Notifications")]),
       Column(
-        spacing: AppMetrics.base,
+        spacing: AppSpacing.base,
         children: [
           Text("Settings"),
           ElevatedButton(

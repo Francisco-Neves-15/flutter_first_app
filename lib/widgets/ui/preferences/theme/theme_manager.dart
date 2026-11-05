@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/action_sheet_builder.dart" show ActionSheetBuilder;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_container.dart" show BottomSheetContainer;
@@ -79,7 +79,7 @@ class ThemeManager extends StatelessWidget {
           ),
           ThemeManagerOptionsLayout.segmented =>
             Container(
-              margin: EdgeInsetsGeometry.directional(top: AppMetrics.small, bottom: AppMetrics.base),
+              margin: EdgeInsetsGeometry.directional(top: AppSpacing.small, bottom: AppSpacing.base),
               child: SegmentedButton<AppAvailableThemeMode>(
                 segments: [
                   ButtonSegment(
@@ -89,7 +89,7 @@ class ThemeManager extends StatelessWidget {
                     label: ThemeManagerOptionButtonSegment(
                       icon: AppThemeIcons.light,
                       label: AppThemeLabels.light,
-                      margin: EdgeInsetsGeometry.directional(start: AppMetrics.small)
+                      margin: EdgeInsetsGeometry.directional(start: AppSpacing.small)
                     )
                   ),
                   ButtonSegment(
@@ -108,7 +108,7 @@ class ThemeManager extends StatelessWidget {
                     label: ThemeManagerOptionButtonSegment(
                       icon: AppThemeIcons.dark,
                       label: AppThemeLabels.dark,
-                      margin: EdgeInsetsGeometry.directional(end: AppMetrics.small)
+                      margin: EdgeInsetsGeometry.directional(end: AppSpacing.small)
                     )
                   )
                 ],
@@ -185,14 +185,14 @@ class ThemeManager extends StatelessWidget {
           ,
           ThemeManagerDisplayLayout.block => 
             Column(
-              spacing: AppMetrics.small,
+              spacing: AppSpacing.small,
               mainAxisAlignment: .start,
               crossAxisAlignment: .start,
               children: [
                 Row(
                   mainAxisAlignment: .start,
                   crossAxisAlignment: .center,
-                  spacing: AppMetrics.small,
+                  spacing: AppSpacing.small,
                   children: [
                     Icon(appThemeIcon, fill: 1, size: 32, color: context.appTheme.colors.text),
                     Text(l10n.pageSettings.localeLabel, style: context.appTheme.textStyles.h3),
@@ -211,7 +211,7 @@ class ThemeManager extends StatelessWidget {
                   child: Row(
                     children: [
                       Row(
-                        spacing: AppMetrics.small, 
+                        spacing: AppSpacing.small, 
                         children: [
                           Icon(visibleLabel.icon, size: 24, fill: ThemeController.instance.mode == AppAvailableThemeMode.auto ? fillThemeAutoIcon : 1),
                           Text(visibleLabel.text, style: context.appTheme.textStyles.buttonText),

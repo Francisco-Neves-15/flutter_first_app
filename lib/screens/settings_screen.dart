@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
 import "package:flutter_first_app/screens/privacy_screen.dart" show PrivacyScreen;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/layout/app_container.dart" show AppContainer;
 import "package:flutter_first_app/widgets/layout/app_scaffold.dart" show AppScaffold;
 
@@ -24,7 +24,7 @@ class SettingsScreen extends StatelessWidget {
         autoPadding: true,
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: AppMetrics.base,
+          spacing: AppSpacing.base,
           children: [
             Text(l10n.pageSettings.title),
             // Regular forward push — only the side menu's own items use

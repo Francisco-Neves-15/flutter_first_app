@@ -4,7 +4,7 @@ import "package:flutter_first_app/extensions/theme_extension.dart" show AppTheme
 
 // Values
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisPositionHorizontal;
-import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 
 // Screens
 import "package:flutter_first_app/screens/home_screen.dart" show HomePage;
@@ -72,8 +72,8 @@ class AppSideMenu extends StatelessWidget {
             height: 75,
             margin: .zero,
             padding: EdgeInsets.only(
-              left: resolvedAnchor == .right ? AppMetrics.base : AppMetrics.small,
-              right: resolvedAnchor == .left ? AppMetrics.base : AppMetrics.small
+              left: resolvedAnchor == .right ? AppSpacing.base : AppSpacing.small,
+              right: resolvedAnchor == .left ? AppSpacing.base : AppSpacing.small
             ),
             child: Row(
               children: resolvedAnchor == .left ? headerContent.reversed.toList() : headerContent,
@@ -83,7 +83,7 @@ class AppSideMenu extends StatelessWidget {
           // Body
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: AppMetrics.base),
+              padding: EdgeInsets.symmetric(horizontal: 0, vertical: AppSpacing.base),
               child: Column(
                 // spacing: 8,
                 mainAxisAlignment: .start,
@@ -132,8 +132,8 @@ class AppSideMenu extends StatelessWidget {
             height: 75,
             margin: .zero,
             padding: EdgeInsets.only(
-              left: resolvedAnchor == .right ? AppMetrics.base : AppMetrics.small,
-              right: resolvedAnchor == .left ? AppMetrics.base : AppMetrics.small
+              left: resolvedAnchor == .right ? AppSpacing.base : AppSpacing.small,
+              right: resolvedAnchor == .left ? AppSpacing.base : AppSpacing.small
             ),
             child: Row(
               mainAxisAlignment: .end,
@@ -142,7 +142,7 @@ class AppSideMenu extends StatelessWidget {
               children: [
                 LangManager(displayLayout: .icon),
                 ThemeManager(displayLayout: .icon, optionsLayout: .segmented),
-                SizedBox(width: AppMetrics.small)
+                SizedBox(width: AppSpacing.small)
               ],
             )
           ),

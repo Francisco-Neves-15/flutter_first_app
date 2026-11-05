@@ -8,7 +8,7 @@ Same pattern as [`lib/localization/README_LOCALIZATION.md`](../localization/READ
 |---|---|
 | [`lib/theme/app_colors.dart`](app_colors.dart) | **All** raw colors for the app, without any theme rules. It is just the palette (`primary`, `background`, `danger`, ...), with no knowledge of what is "light" or "dark". |
 | [`lib/theme/app_colors_theme.dart`](app_colors_theme.dart) | Applies the rules: takes raw colors from `app_colors.dart` and builds the two sets (`appLightColors`, `appDarkColors`), typed as `AppThemeColors`. This is where it is decided, for example, that in dark mode `primary` becomes the old `primaryInverted`. |
-| [`lib/styles/app_theme.dart`](../styles/app_theme.dart) | `AppTheme.build(colors)` — turns an `AppThemeColors` instance into a complete Material `ThemeData` (see section 3). |
+| [`lib/styles/app_style.dart`](../styles/app_style.dart) | `AppTheme.build(colors)` — turns an `AppThemeColors` instance into a complete Material `ThemeData` (see section 3). |
 | [`lib/config/app_config_themes.dart`](../config/app_config_themes.dart) | Source of truth for theme **information**: enums (`AppAvailableThemeMode`, `AppAvailableThemeBrightness`) and UI identifiers (`AppThemeLabels`, `AppThemeIcons`). Contains no colors — only metadata about what exists. |
 | [`lib/controllers/theme_controller.dart`](../controllers/theme_controller.dart) | Session state: which `AppAvailableThemeMode` is currently active (see section 4). |
 | [`lib/extensions/theme_extension.dart`](../extensions/theme_extension.dart) | `context.appTheme` — quick access to resolved colors/styles for the current brightness (see section 5). |

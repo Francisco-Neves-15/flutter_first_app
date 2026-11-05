@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/localization_extension.dart" show L10nBuildContext;
 import "package:flutter_first_app/extensions/theme_extension.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisFlow;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/ui/button/app_button.dart";
 import "package:flutter_first_app/widgets/ui/dialogs/_dialogs.dart" show AppDialogsTypes, AppDialogsMainActionVariants;
 import "package:flutter_first_app/widgets/ui/dialogs/app_dialog_utils.dart" show
@@ -126,7 +126,7 @@ class AppConfirmDialog extends StatelessWidget {
     final Widget wTitle = Row(
       mainAxisAlignment: .start,
       crossAxisAlignment: .center,
-      spacing: AppMetrics.small,
+      spacing: AppSpacing.small,
       children: [
         if (showIcon) 
           if (icon != null) icon!

@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/docs/widgets/ui/displayModeManager/bad_usages.dart" show BadUsagesDisplayModeManager;
 import "package:flutter_first_app/extensions/theme_extension.dart";
-import "package:flutter_first_app/styles/app_metrics.dart";
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/app/displayModeManager/models.dart" show DisplayModeOption;
 
 class DisplayModeManagerSegmented<T> extends StatelessWidget {
@@ -76,7 +76,7 @@ class DisplayModeManagerSegmented<T> extends StatelessWidget {
               showLabel ? buttonSegmentLabel = resolvedLabel : buttonSegmentLabel = null;
             } else {
               buttonSegmentLabel = Row(
-                spacing: AppMetrics.small,
+                spacing: AppSpacing.small,
                 crossAxisAlignment: .center,
                 mainAxisAlignment: .center,
                 children: [

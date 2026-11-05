@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/styles/app_axis.dart" show AppAxisPosition;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 
 class AppContainer extends StatelessWidget {
   final Widget content;
@@ -22,10 +22,10 @@ class AppContainer extends StatelessWidget {
 
     final customPadding = padding?.resolve(Directionality.of(context));
 
-    final double baseTop = customPadding?.top ?? (autoPadding ? AppMetrics.base : 0.0);
-    final double baseBottom = customPadding?.bottom ?? (autoPadding ? AppMetrics.base : 0.0);
-    final double baseLeft = customPadding?.left ?? (autoPadding ? AppMetrics.base : 0.0);
-    final double baseRight = customPadding?.right ?? (autoPadding ? AppMetrics.base : 0.0);
+    final double baseTop = customPadding?.top ?? (autoPadding ? AppSpacing.base : 0.0);
+    final double baseBottom = customPadding?.bottom ?? (autoPadding ? AppSpacing.base : 0.0);
+    final double baseLeft = customPadding?.left ?? (autoPadding ? AppSpacing.base : 0.0);
+    final double baseRight = customPadding?.right ?? (autoPadding ? AppSpacing.base : 0.0);
 
     bool isExcluded(AppAxisPosition position) {
       return paddingExclude?.contains(position) ?? false;

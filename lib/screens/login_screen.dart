@@ -13,7 +13,7 @@ import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
 import "package:flutter_first_app/screens/home_screen.dart" show HomePage;
 
 // Styles
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 
 /// The app's "index" while logged out. There's no real auth backend here —
 /// the button just flips `AuthController` and moves on. See
@@ -40,10 +40,10 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(AppMetrics.base),
+          padding: const EdgeInsets.all(AppSpacing.base),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            spacing: AppMetrics.base,
+            spacing: AppSpacing.base,
             children: [
               Text("Login", style: context.appTheme.textStyles.h1),
               Text(

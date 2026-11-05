@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 import "package:flutter_first_app/widgets/layout/bottomsheets/_models.dart" show ActionSheetBuilderItem;
 import "package:flutter_first_app/widgets/layout/bottomsheets/bottom_sheet_button.dart" show BottomSheetButton;
 
@@ -48,7 +48,7 @@ class ActionSheetBuilder extends StatelessWidget {
                 selected: action.selected,
               ),
 
-              if (showDividers && !isLast) const Divider(height: AppMetrics.small),
+              if (showDividers && !isLast) const Divider(height: AppSpacing.small),
 
             ],
           );

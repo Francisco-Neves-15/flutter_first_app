@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_first_app/extensions/theme_extension.dart" show AppThemeExtensionContext;
-import "package:flutter_first_app/styles/app_metrics.dart" show AppMetrics;
+import "package:flutter_first_app/styles/app_spacing.dart" show AppSpacing;
 
 class ThemeManagerOptionButtonSegment extends StatelessWidget {
   final EdgeInsetsGeometry margin;
@@ -18,9 +18,9 @@ class ThemeManagerOptionButtonSegment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      padding: EdgeInsetsGeometry.directional(top: AppMetrics.baseSmall, bottom: AppMetrics.small, start: AppMetrics.extraSmall, end: AppMetrics.extraSmall),
+      padding: EdgeInsetsGeometry.directional(top: AppSpacing.baseSmall, bottom: AppSpacing.small, start: AppSpacing.extraSmall, end: AppSpacing.extraSmall),
       child: Column(
-        spacing: AppMetrics.extraSmall,
+        spacing: AppSpacing.extraSmall,
         children: [
           Icon(icon, size: 24, fill: iconFill ?? 1),
           Text(label, style: context.appTheme.textStyles.buttonText)
