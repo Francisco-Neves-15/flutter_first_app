@@ -100,7 +100,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // i18n
+    // l10n
 
     final l10n = context.l10n;
 

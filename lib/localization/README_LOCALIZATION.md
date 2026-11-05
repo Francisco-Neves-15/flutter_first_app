@@ -1,4 +1,4 @@
-# Localization l10n (or i18n)
+# Localization l10n
 
 How this project uses Flutter's official `gen-l10n`, from the `.arb` file to the `context.l10n` used in screens.
 
@@ -80,18 +80,18 @@ Widget build(BuildContext context) {
 }
 ```
 
-`context.l10n` is the extension in [`lib/extensions/localization_extension.dart`](../extensions/localization_extension.dart) — it is simply `BuildContext` resolving `L10n` from `i18n.dart` (see section 5). Separating `context.l10n` from `i18n.dart` follows the same pattern as `context.appTheme` for themes: the extension lives in `lib/extensions/`, while logic/data reside in the domain file.
+`context.l10n` is the extension in [`lib/extensions/localization_extension.dart`](../extensions/localization_extension.dart) — it is simply `BuildContext` resolving `L10n` from `l10n.dart` (see section 5). Separating `context.l10n` from `l10n.dart` follows the same pattern as `context.appTheme` for themes: the extension lives in `lib/extensions/`, while logic/data reside in the domain file.
 
 ## 4. How to add a new string
 
 1. Add the key to the **template** first — `app_en.arb`. It defines the contract (key name, placeholder types, plural rules). You can include a `@key` block with metadata (see section 6).
 2. Add the exact same key, translated, to `app_pt.arb` (and any other existing `.arb`). If a key exists in the template but is missing from a translation, the generator throws an error.
 3. Run `flutter gen-l10n` (or `flutter pub get`, or simply `flutter run`/`flutter build` again) to regenerate `lib/localization/generated/`.
-4. If the key belongs to a group (`common*`, `pageHome*`, ...), add the corresponding getter in `i18n.dart` pointing to it (a manual step — the generator knows nothing about groups).
+4. If the key belongs to a group (`common*`, `pageHome*`, ...), add the corresponding getter in `l10n.dart` pointing to it (a manual step — the generator knows nothing about groups).
 
-## 5. `i18n.dart` — why group strings
+## 5. `l10n.dart` — why group strings
 
-The generated `AppLocalizations` class is **flat**: one getter per key with no hierarchy. `lib/localization/i18n.dart` exists to reorganize these keys into logical groups (`CommonStrings`, `PageHomeStrings`, `PageSettingsStrings`...), allowing `l10n.common.confirm` / `l10n.pageHome.welcome` instead of `l10n.commonConfirm` / `l10n.pageHomeWelcome`. This is purely a Dart convention built on top of the generated class — there is no additional data source; it is the exact same `AppLocalizations` regrouped. The naming convention in `.arb` files (`common*`, `pageHome*`) is what makes this grouping cohesive.
+The generated `AppLocalizations` class is **flat**: one getter per key with no hierarchy. `lib/localization/l10n.dart` exists to reorganize these keys into logical groups (`CommonStrings`, `PageHomeStrings`, `PageSettingsStrings`...), allowing `l10n.common.confirm` / `l10n.pageHome.welcome` instead of `l10n.commonConfirm` / `l10n.pageHomeWelcome`. This is purely a Dart convention built on top of the generated class — there is no additional data source; it is the exact same `AppLocalizations` regrouped. The naming convention in `.arb` files (`common*`, `pageHome*`) is what makes this grouping cohesive.
 
 The `L10n` class centralizes this and exposes:
 - `l10n.raw` → direct access to the generated `AppLocalizations`, for standalone keys not yet part of a group.

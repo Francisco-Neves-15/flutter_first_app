@@ -21,7 +21,7 @@ void validateDebugConfig() {
 
 // bool.fromEnvironment
 
-// E.g.: creating the variable and the flag
+// E.g.: creating the variable and retrieving the flag present in the environment
 
 // const bool debugFront = bool.fromEnvironment('DEBUG_FRONT', defaultValue: false);
 // const bool debugBack = bool.fromEnvironment('DEBUG_BACK', defaultValue: false);

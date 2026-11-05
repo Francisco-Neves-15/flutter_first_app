@@ -466,7 +466,7 @@ class _HomePageState extends State<HomePage>
         // Ungrouped key, used directly from the generated class.
         Text(l10n.raw.hello),
 
-        // Namespaced access: "common*" and "pageHome*" arb keys regrouped by i18n.dart.
+        // Namespaced access: "common*" and "pageHome*" arb keys regrouped by l10n.dart.
         Text(l10n.common.confirm),
         Text(l10n.pageHome.welcome),
 
