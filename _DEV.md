@@ -7,7 +7,9 @@ Execute this before starting the project, after "clone" or "pull" the repository
 ```terminal
 flutter pub get
 ```
+
 or
+
 ```terminal
 dart pub get
 ```
@@ -48,11 +50,27 @@ Edge (web)                   • edge          • web-javascript • Microsoft 
 
 ---
 
+# Clean/Clear/Cache
+
+```terminal
+flutter clean
+```
+
+```terminal
+flutter pub get
+```
+
 # Generators
 
 > ⚠️ Some packages in this project need a manual command/step to work (generators, codegen, etc.) — they don't just work after `flutter pub get`. 
 
 > See **[_DEV-PACKAGES.md](_DEV-PACKAGES.md)** for the list and the exact flow for each one (currently: l10n).
+
+---
+
+# Build (Android APK/AAB)
+
+> See **[_DEV-APK.md](_DEV-APK.md)** for build modes (debug/profile/release), where app name/id/version live, and release signing (keystore).
 
 ---
 
