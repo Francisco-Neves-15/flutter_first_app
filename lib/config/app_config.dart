@@ -1,1 +1,0 @@
-const String appVersion = "v0.1-alpha";

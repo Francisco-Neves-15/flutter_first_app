@@ -14,6 +14,17 @@ or
 dart pub get
 ```
 
+## Developer Mode (Windows)
+### ms-settings:developers
+
+**Windows only:** adding a package that ships native/platform code (plugins, not pure-Dart packages) may fail with `Building with plugins requires symlink support` / asking to enable Developer Mode. Fix once per machine:
+```terminal
+start ms-settings:developers
+```
+then toggle "Developer Mode" on in the Settings window that opens.
+
+This is only necessary if the warning interferes with startup, package installation, or publishing; Enabling this option is not strictly required; for **security** reasons, only turn it on when necessary.
+
 ## Run with a "device" included in the line
 
 ```terminal

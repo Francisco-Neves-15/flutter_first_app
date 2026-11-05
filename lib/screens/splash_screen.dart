@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_first_app/controllers/theme_controller.dart" show ThemeController;
 import "package:flutter_first_app/controllers/lang_controller.dart" show LangController;
 import "package:flutter_first_app/controllers/auth_controller.dart" show AuthController;
+import "package:flutter_first_app/controllers/app_version_controller.dart" show AppVersionController;
 
 // Navigation
 import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
@@ -33,11 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _bootstrap() async {
+
     // This used to run in `main()`, before `runApp`. It moved here once
     // this screen existed, so the loading time is actually spent with
     // something visible on screen instead of before the first frame.
     await ThemeController.instance.loadPersistedPreference();
     await LangController.instance.loadPersistedPreference();
+    await AppVersionController.instance.load();
 
     if (!mounted) return;
 

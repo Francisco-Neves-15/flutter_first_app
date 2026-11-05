@@ -48,9 +48,27 @@ Generates one APK per CPU architecture (`app-armeabi-v7a-release.apk`, `app-arm6
 | App display name (Android) | [`android/app/src/main/AndroidManifest.xml`](android/app/src/main/AndroidManifest.xml) | `android:label="..."` |
 | App display name (iOS) | `ios/Runner/Info.plist` | `CFBundleDisplayName` (and `CFBundleName`, shorter/no-spaces variant) |
 | Package id / Application ID | [`android/app/build.gradle.kts`](android/app/build.gradle.kts) | `defaultConfig { applicationId = "..." }` |
-| Version name + code | [`pubspec.yaml`](pubspec.yaml) | `version: 1.0.0+1` → `1.0.0` is `versionName`, `1` (after `+`) is `versionCode` — both flow automatically into Android/iOS via `flutter.versionName`/`flutter.versionCode` in `build.gradle.kts`, no manual sync needed. |
+| Version name + code | [`pubspec.yaml`](pubspec.yaml) | `version: 0.1.0+1` → `0.1.0` is `versionName` (shown to the user — Play Store, Settings → Apps, etc.), `1` (after `+`) is `versionCode` — both flow automatically into Android/iOS via `flutter.versionName`/`flutter.versionCode` in `build.gradle.kts`, no manual sync needed. |
 
 **Important:** `applicationId` is the app's unique identity on a device/Play Store (like a package name in other ecosystems) — it still needs to be unique and matches the template default (`com.example.flutter_first_app`) until changed. `android:label`/`CFBundleDisplayName` are only the human-readable name shown under the icon — changing one does **not** change the other. Both exist independently.
+
+### ⚠️ `versionCode` must increase on every release
+
+`versionCode` (the number after `+`) has to go **up** every time you ship a new build to the same install (Play Store update, or even just reinstalling over a previous APK on some setups) — Android/Play Store reject a build whose `versionCode` isn't strictly greater than the previous one. `versionName` (`0.1.0`) can be bumped on whatever schedule/semver you want; it has no such constraint and isn't even required to be numeric.
+
+### Reading it from inside the app
+
+If a screen needs to display the version, **don't** hardcode a second copy of it in Dart (that drifts from `pubspec.yaml` the moment one of the two is bumped and not the other — this project used to have exactly that problem). Instead, read the real installed value at runtime via [`package_info_plus`](https://pub.dev/packages/package_info_plus), wired in [`lib/controllers/app_version_controller.dart`](lib/controllers/app_version_controller.dart):
+
+```dart
+await AppVersionController.instance.load(); // see SplashScreen._bootstrap
+// later:
+AppVersionController.instance.versionName; // "0.1.0"
+AppVersionController.instance.buildNumber; // "1"
+AppVersionController.instance.full;        // "0.1.0+1"
+```
+
+`load()` already runs once in `SplashScreen._bootstrap`, alongside `ThemeController`/`LangController` — by the time any screen past the splash is on screen, the real value is already loaded and available synchronously via the getters above.
 
 > Web (`web/manifest.json` → `name`/`short_name`, `web/index.html` → `<title>`) and Desktop (Windows `windows/runner/Runner.rc` / `CMakeLists.txt` `BINARY_NAME`, similarly for Linux/macOS) have their own separate "app name" spots too — only relevant if you ever build for those targets.
 

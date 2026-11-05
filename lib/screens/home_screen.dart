@@ -35,6 +35,8 @@ import "package:flutter_first_app/controllers/auth_controller.dart" show AuthCon
 import "package:flutter_first_app/navigation/app_routes.dart" show AppRoutes;
 import "package:flutter_first_app/screens/login_screen.dart" show LoginScreen;
 
+// Others
+import "package:flutter_first_app/controllers/app_version_controller.dart" show AppVersionController;
 
 // MaterialApp
 // - “container global” do app
@@ -419,6 +421,14 @@ class _HomePageState extends State<HomePage>
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.small,
       children: [
+
+        Text("isLoaded: ${AppVersionController.instance.isLoaded}"),
+        Text("versionName: ${AppVersionController.instance.versionName}"),
+        Text("buildNumber: ${AppVersionController.instance.buildNumber}"),
+        Text("full: ${AppVersionController.instance.full}"),
+
+        Divider(),
+
         Row(
           children: [
             Text('Widget "Icon", using "Icons."'),
