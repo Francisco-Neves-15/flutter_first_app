@@ -66,11 +66,14 @@ class AppButton extends StatelessWidget {
   /// Whether the button displays a `loading indicator`.
   final bool? loading;
 
+  /// Defines the position where the `loading indicator` will be placed.
+  final AppAxisLocationHorizontal? loadingLocation;
+
   /// Custom label when "loading" is enabled.
   final String? loadingLabel;
 
-  /// Defines the position where the `loading indicator` will be placed.
-  final AppAxisLocationHorizontal? loadingLocation;
+  /// Enable the visibility of "loadingLabel" during loading.
+  final bool? showLoadingLabel;
 
   /// Whether the button is disabled.
   final bool? disabled;
@@ -91,8 +94,9 @@ class AppButton extends StatelessWidget {
     this.onHover,
     this.onLongPress,
     this.loading = false,
-    this.loadingLabel,
     this.loadingLocation = AppAxisLocationHorizontal.start,
+    this.loadingLabel,
+    this.showLoadingLabel = true,
     this.disabled = false,
     // this.disabledLabel
   });
@@ -397,9 +401,10 @@ class AppButton extends StatelessWidget {
 
     final Color rLoadingIndicatorColor = type == AppButtonType.elevated ? rColorMainContrast : rColorMain;
 
+    double loadingIndicatorSize = showLoadingLabel == true ? 12 : 16;
     Widget loadingIndicator = SizedBox(
-      width: 12,
-      height: 12,
+      width: loadingIndicatorSize,
+      height: loadingIndicatorSize,
       child: CircularProgressIndicator(
         strokeWidth: 2,
         valueColor: AlwaysStoppedAnimation<Color>(rLoadingIndicatorColor),
@@ -416,7 +421,7 @@ class AppButton extends StatelessWidget {
             crossAxisAlignment: .center,
             children: [
               if (loadingLocation == AppAxisLocationHorizontal.start) loadingIndicator,
-              Text(rLoadingLabel, style: context.appTheme.textStyles.buttonText),
+              if (showLoadingLabel == true) Text(rLoadingLabel, style: context.appTheme.textStyles.buttonText),
               if (loadingLocation == AppAxisLocationHorizontal.end) loadingIndicator
             ],
           )

@@ -12,7 +12,8 @@
 - **AppButton**: opção `loading` (com `loadingLabel`, `loadingLocation`) e opção `disabled` já existem como parâmetros funcionais.
 - **AppIconButton**: ficheiro existe e tem estrutura completa (type, variant, aspect, icon, style, loading, callbacks).
 - **Dialogs type unificado**: o antigo `AppAlertDialogType` foi substituído por `AppDialogsTypes` (`_dialogs.dart`), já com `.warn` (não `.warning`).
-- **Rename "warning" → "warn"**: feito nos **Dialogs** (`AppDialogsTypes.warn`), mas **não** no `AppButton` — `AppButtonVariant.warning` ainda existe (`app_button.dart:26,143,163`). Falta renomear aqui para ficar consistente.
+- **Rename "warning" → "warn"**: feito nos **Dialogs** (`AppDialogsTypes.warn`).
+- **Rename "warning" → "warn"**: feito nos **Botões** (`AppButtonVariant.warn`).
 
 ## 🟡 Parcial / Precisa de atenção
 - **Loading/Disabled nos botões dos Dialogs** (Alert/Confirm/Input): o botão `AppButton` já suporta `loading`/`disabled`, mas os Dialogs **ainda não expõem** essas opções nas suas actions — confirmei que nenhum dos 3 dialogs passa `loading`/`disabled` para o `AppButton` interno. A nota antiga dizia "FEITO!!" mas isso não corresponde ao código atual — fica como pendente real.
@@ -36,9 +37,6 @@
 - Definir `inputDecorationTheme` padrão no `AppStyle`.
 - Opção `disabled` para os inputs.
 - Atualizar `app_input_dialog.dart` para usar esse novo widget/estilo em vez do `TextField` solto.
-
-### Botões
-- Renomear `AppButtonVariant.warning` → `warn` (consistência com os Dialogs).
 
 ### Theme / Style
 - Corrigir `README_THEME.md` para referenciar `AppStyle.build(...)` em vez de `AppTheme.build(...)`.

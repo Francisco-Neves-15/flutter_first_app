@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart' show kReleaseMode;
 
-const bool debugBlockLoadingAnimation = true;
+/// Toggle freely while developing — the `!kReleaseMode` below forces it
+/// back to `false` in a release build regardless of this value, so
+/// forgetting to flip it off before building can't ship with it on.
+const bool _debugBlockLoadingAnimation = true;
+const bool debugBlockLoadingAnimation = !kReleaseMode && _debugBlockLoadingAnimation;
 
 const bool debugFront = false;
 const bool debugBack = false;

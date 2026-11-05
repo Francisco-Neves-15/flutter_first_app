@@ -889,6 +889,7 @@ class _HomePageState extends State<HomePage>
                 Row(spacing: 8, children: [
                   Expanded(child: AppButton(loading: true, loadingLabel: "Sending", onPressed: () {}, child: Text("Text"))),
                   Expanded(child: AppButton(loading: true, loadingLocation: .end, onPressed: () {}, child: Text("B"))),
+                  Expanded(child: AppButton(loading: true, showLoadingLabel: false, onPressed: () {}, child: Text("B"))),
                 ]),
                 Text("Content + Icon", style: context.appTheme.textStyles.h3),
                 Row(spacing: 8, children: [
@@ -917,7 +918,25 @@ class _HomePageState extends State<HomePage>
 
         Divider(),
         
-        Text("Inputs", style: context.appTheme.textStyles.h2),
+        // Text("Inputs", style: context.appTheme.textStyles.h2),
+
+        // Column(
+        //   crossAxisAlignment: .start,
+        //   children: [
+        //     Text("Inputs: ", style: context.appTheme.textStyles.h2),
+        //     Column(
+        //       crossAxisAlignment: .start,
+        //       spacing: 8,
+        //       children: [
+        //         TextField(
+        //           decoration: InputDecoration(
+
+        //           ),
+        //         )
+        //       ],
+        //     )
+        //   ]
+        // ),
 
         Divider(),
 
